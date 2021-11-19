@@ -23,11 +23,13 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "react/jsx-curly-newline": 0,
     "react/jsx-one-expression-per-line": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
     "jsx-a11y/label-has-associated-control": [
       2,
       {
