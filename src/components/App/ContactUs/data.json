@@ -1,0 +1,90 @@
+{
+  "radiosOptionsEnquiry": [
+    {
+      "id": "1",
+      "enquiry": {
+        "value": "Tickets and passes",
+        "text": "Tickets and passes",
+        "id": "",
+        "children": [
+          {
+            "value": "Swift card and photocard",
+            "text": "Swift card and photocard",
+            "children": [
+              {
+                "value": "Update my Direct Debit",
+                "text": "Update my Direct Debit",
+                "content": "To update your bank details:"
+              },
+              {
+                "value": "Cancel my Direct Debit",
+                "text": "Cancel my Direct Debit",
+                "content": "We have created a service to help you cancel your Direct Debit."
+              },
+              {
+                "value": "Replace a card",
+                "text": "Replace a card",
+                "content": "If your card has a Direct Debit ticket on"
+              },
+              {
+                "value": "Request a refund or cancel your card",
+                "text": "Request a refund or cancel your card",
+                "content": "If you’re a Swift card holder you can request a refund and cancel your card online. "
+              },
+              { "value": "Other", "text": "Other", "content": "Give us a call" }
+            ]
+          },
+          {
+            "value": "Older person’s pass",
+            "text": "Older person’s pass",
+            "children": [
+              {
+                "value": "Help with my application",
+                "content": "Change my older person’s pass application"
+              },
+              {
+                "value": "Change my details",
+                "content": "Change my older person’s pass details"
+              },
+              { "value": "Renew my pass", "content": "Renew my older person’s pass" },
+              { "value": "Replace my pass", "content": "Replace my older person’s pass" },
+              { "value": "Other", "content": "Give us a call" }
+            ]
+          },
+          {
+            "value": "Disabled person’s pass",
+            "text": "Disabled person’s pass",
+            "children": [
+              {
+                "value": "Help with my application",
+                "content": "Change my disabled person’s pass application"
+              },
+              {
+                "value": "Change my details",
+                "content": "Change my disabled person’s pass details"
+              },
+              { "value": "Renew my pass", "content": "Renew my disabled person’s pass" },
+              { "value": "Replace my pass", "content": "Replace my disabled person’s pass" },
+              { "value": "Other", "content": "Give us a call" }
+            ]
+          },
+          {
+            "value": "Paper ticket",
+            "text": "Paper ticket",
+            "content": "If your paper ticket is paid by Direct Debit, you can cancel your"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "enquiry": { "value": "Bus, train or tram", "text": "Bus, train or tram", "id": "" }
+    },
+    { "id": "3", "enquiry": { "value": "Cycling", "text": "Cycling", "id": "" } },
+    {
+      "id": "4",
+      "enquiry": { "value": "Accessible travel", "text": "Accessible travel", "id": "" }
+    },
+    { "id": "5", "enquiry": { "value": "Report a problem", "text": "Report a problem", "id": "" } }
+  ]
+}

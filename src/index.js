@@ -9,7 +9,6 @@ import App from './components/App/App';
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    {/* <TestButton /> */}
   </React.StrictMode>,
   document.getElementById('wmn-app-name')
 );

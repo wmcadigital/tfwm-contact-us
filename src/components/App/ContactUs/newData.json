@@ -1,0 +1,271 @@
+{
+  "dashboard": [
+    {
+      "id": "1",
+      "heading": "What is your enquiry about?",
+      "fields": [
+        {
+          "id": "ticket-and-passes",
+          "type": "radio",
+          "text": "Ticket and passes",
+          "value": "Ticket and passes"
+        },
+        {
+          "id": "bus-train-tram",
+          "type": "radio",
+          "text": "Bus, train or tram",
+          "value": "Bus, train or tram"
+        },
+        {
+          "id": "cycling",
+          "type": "radio",
+          "text": "Cycling",
+          "value": "Cycling"
+        },
+        {
+          "id": "accessible-travel",
+          "type": "radio",
+          "text": "Accessible travel",
+          "value": "Accessible travel"
+        },
+        {
+          "id": "report-a-problem",
+          "type": "radio",
+          "text": "Report a problem",
+          "value": "AReport a problem"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "parentId": "ticket-and-passes",
+      "heading": "Tickets and passes",
+      "fields": [
+        {
+          "id": "swiftcard-and-photocard",
+          "type": "radio",
+          "text": "Swiftcard and photocard",
+          "value": "Swiftcard and photocard"
+        },
+        {
+          "id": "older-person-pass",
+          "type": "radio",
+          "text": "Older person’s pass",
+          "value": "Older person’s pass"
+        },
+        {
+          "id": "disabled-person-pass",
+          "type": "radio",
+          "text": "Disabled person’s pass",
+          "value": "Disabled person’s pass"
+        },
+        {
+          "id": "paper-ticket",
+          "type": "radio",
+          "text": "Paper ticket",
+          "value": "Paper ticket"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "parentId": "swiftcard-and-photocard",
+      "heading": "Swiftcard and photocard",
+      "fields": [
+        {
+          "id": "update-DD",
+          "type": "radio",
+          "text": "Update my Direct Debit",
+          "value": "Update my Direct Debit"
+        },
+        {
+          "id": "cancel-DD",
+          "type": "radio",
+          "text": "Cancel my Direct Debit",
+          "value": "Cancel my Direct Debit"
+        },
+        {
+          "id": "replace-card",
+          "type": "radio",
+          "text": "Replace a card",
+          "value": "Replace a card"
+        },
+        {
+          "id": "request-refund",
+          "type": "radio",
+          "text": "Request a refund or cancel your card",
+          "value": "Request a refund or cancel your card"
+        },
+        {
+          "id": "other",
+          "type": "radio",
+          "text": "Other",
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "parentId": "update-DD",
+      "heading": "Update my Direct Debit",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "description": "To update your bank details:"
+      }
+    },
+    {
+      "id": "4",
+      "parentId": "bus-train-tram",
+      "heading": "Bus, train or tram",
+      "fields": [
+        {
+          "id": "bus",
+          "type": "radio",
+          "text": "Bus",
+          "value": "Bus"
+        },
+        {
+          "id": "train",
+          "type": "radio",
+          "text": "Train",
+          "value": "Train"
+        },
+        {
+          "id": "tram",
+          "type": "radio",
+          "text": "Tram",
+          "value": "Tram"
+        },
+        {
+          "id": "park-ride",
+          "type": "radio",
+          "text": "Park and ride",
+          "value": "Park and ride"
+        },
+        {
+          "id": "sprint-bus",
+          "type": "radio",
+          "text": "Sprint bus",
+          "value": "Sprint bus"
+        }
+      ]
+    },
+    {
+      "parentId": "bus",
+      "heading": "Bus",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "description": "Contact the company if your enquiry is about service"
+      }
+    },
+    {
+      "id": "5",
+      "parentId": "cycling",
+      "heading": "Cycling",
+      "fields": [
+        {
+          "id": "cycle-hire",
+          "type": "radio",
+          "text": "Cycle hire",
+          "value": "Cycle hire"
+        },
+        {
+          "id": "cycle-storage",
+          "type": "radio",
+          "text": "Cycle storage",
+          "value": "Cycle storage"
+        },
+        {
+          "id": "other-cycle",
+          "type": "radio",
+          "text": "Other",
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "parentId": "cycle-hire",
+      "heading": "Cycle hire",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "description": "You can find information about the West Midlands Cycle Hire scheme on our dedicated website."
+      }
+    },
+    {
+      "id": "6",
+      "parentId": "accessible-travel",
+      "heading": "Accessible travel",
+      "fields": [
+        {
+          "id": "Book-Ring-journey",
+          "type": "radio",
+          "text": "Book a Ring and Ride journey",
+          "value": "Book a Ring and Ride journey"
+        },
+        {
+          "id": "request-accessible-product",
+          "type": "radio",
+          "text": "Request an accessible product",
+          "value": "Request an accessible product"
+        },
+        {
+          "id": "other-travel",
+          "type": "radio",
+          "text": "Other",
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "parentId": "Book-Ring-journey",
+      "heading": "Book a Ring and Ride journey",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "description": "You can book a Ring and Ride journey using the online form. "
+      }
+    },
+    {
+      "id": "7",
+      "parentId": "report-a-problem",
+      "heading": "Report a problem",
+      "fields": [
+        {
+          "id": "problem-busstop-park-ride",
+          "type": "radio",
+          "text": "Report a problem with a bus stop or park and ride",
+          "value": "Report a problem with a bus stop or park and ride"
+        },
+        {
+          "id": "issue-travel-info",
+          "type": "radio",
+          "text": "Report an issue with travel information",
+          "value": "Report an issue with travel information"
+        },
+        {
+          "id": "feedback-or-complaint",
+          "type": "radio",
+          "text": "Leave feedback or make a complaint",
+          "value": "Leave feedback or make a complaint"
+        },
+        {
+          "id": "other-report",
+          "type": "radio",
+          "text": "Other",
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "parentId": "problem-busstop-park-ride",
+      "heading": "Report a problem with a bus stop or park and ride",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "description": "Use this service to:"
+      }
+    }
+  ]
+}
