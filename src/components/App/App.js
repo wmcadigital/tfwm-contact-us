@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Contexts
 // import ContextProvider from '../../globalState/ContactUsContext';
-import ContactUs from './ContactUs/components/Enquiry';
-import { GlobalProvider } from '../../globalState/ContactUsContext';
+import ContactUsForm from './ContactUs/components/Enquiry';
+import { FormProvider } from '../../globalState/ContactUsContext';
 
 function App() {
   // console.log(data);
@@ -19,15 +19,15 @@ function App() {
     //     options: state.radiosOptionsEnquiry,
     //   }}
     // >
-    <GlobalProvider>
+    <FormProvider>
       <Router>
         <Switch>
           <Route path="/">
-            <ContactUs />
+            <ContactUsForm />
           </Route>
         </Switch>
       </Router>
-    </GlobalProvider>
+    </FormProvider>
     // </ContextProvider>
   );
 }

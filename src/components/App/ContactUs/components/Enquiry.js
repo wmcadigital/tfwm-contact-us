@@ -1,52 +1,90 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-console */
-/* eslint-disable react/prop-types */
-import React, { useContext, useState, useReducer } from 'react';
+import React, { useContext, useState, useReducer, useEffect } from 'react';
+import { useFormContext, useForm } from 'react-hook-form';
+import { FormProvider, FormDataContext } from 'globalState';
 import Radios from 'components/shared/Radios/Radios';
 import Button from 'components/shared/Button/Button';
-import { GlobalContext } from 'globalState';
-import ContactUsReducer from 'globalState/ContactUsContext/ContactUsReducer';
+import LastPage from './LastPage';
 
-const ContactUs = () => {
-  const { dashboard, continueNext } = useContext(GlobalContext);
-  console.log(dashboard);
-  const [questionVal, setQuestionVal] = useState(null);
+const ContactUsForm = () => {
+  const [formState, formDispatch] = useContext(FormDataContext);
+  // const { register, handleSubmit, getValues } = useForm();
+  // const { register } = useFormContext();
 
-  const handleChange = (e) => {
-    console.log('changed', e.target);
-    return setQuestionVal(e.target.id);
+  const [selectedVal, setSelectedVal] = useState();
+  const [formError, setFormError] = useState();
+  console.log('formState>>>>>>>>>>>>', formState);
+  const methods = useForm({
+    mode: 'onBlur',
+  });
+  useEffect(() => {
+    console.log('here in useeffect', selectedVal);
+    const selectedRadio = formState.currentStep.fields?.find((item) => item.selected);
+    // if (formState.currentStep.parentId) {
+    setSelectedVal(selectedRadio?.id);
+    // }
+  }, [formState?.currentStep]);
+
+  // console.log(getValues());
+  const handleRadioChange = (e) => {
+    console.log('inside handle radio change');
+    setSelectedVal(e.target.id);
   };
 
-  const handleContinue = (e) => {
+  const continueHandler = (e) => {
     e.preventDefault();
-    console.log('clicked');
-    return continueNext(questionVal);
+
+    if (!selectedVal) {
+      setFormError({
+        message: '<p>Please choose an option</p>',
+      });
+    }
+    console.log('selectedValue inside handlecontinue', selectedVal);
+    // handleSubmit((data) => console.log(data));
+    formDispatch({
+      type: 'CONTINUE',
+      payload: { formState, selectedVal },
+    });
+  };
+  const backHandler = () => {
+    // console.log('backkkk clicked*************', formState.prevStepId);
+    formDispatch({
+      type: 'BACK',
+      payload: formState,
+    });
   };
   return (
     <div className="wmnds-container">
-      <a href="/" title="link title" target="_self" className="wmnds-link">
-        <span>&lt; Back</span>
-      </a>
-      <form className="wmnds-bg-white wmnds-p-lg">
-        <h2 className="wmnds-fe-question">{dashboard.heading}</h2>
-        {dashboard.description ? (
-          <div>{dashboard.description}</div>
-        ) : (
-          <Radios
-            name="Enquiry"
-            classes="wmnds-m-b-sm"
-            radios={dashboard.fields}
-            // fieldValidation={register({
-            //   required: `Please select one option to proceed`,
-            // })}
-            onChange={handleChange}
-          />
-        )}
-        <Button text="Continue" type="submit" onClick={handleContinue}>
-          Continue
-        </Button>
-      </form>
+      {formState.currentStep.heading === 'What is your enquiry about?' ? null : (
+        <button type="button" className="wmnds-btn wmnds-btn--link" onClick={backHandler}>
+          &lt; Back
+        </button>
+      )}
+      <FormProvider {...methods}>
+        <form className="wmnds-bg-white wmnds-p-lg" onSubmit={continueHandler}>
+          <h2 className="wmnds-fe-question">{formState.currentStep?.heading}</h2>
+          {formState.currentStep.hasReachedConfirmation ? (
+            <LastPage content={formState.currentStep.content} />
+          ) : (
+            <>
+              <Radios
+                name={formState.currentStep?.heading}
+                label={formState.currentStep.heading}
+                classes="wmnds-m-b-sm"
+                radios={formState.currentStep.fields}
+                fieldValidation={formError}
+                onChange={handleRadioChange}
+              />
+              <Button text="Continue" type="submit">
+                Continue
+              </Button>
+            </>
+          )}
+        </form>
+      </FormProvider>
     </div>
   );
 };
 
-export default ContactUs;
+export default ContactUsForm;
