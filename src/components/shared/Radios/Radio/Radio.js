@@ -1,16 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import dompurify from 'dompurify';
-// Import contexts
-import { GlobalContext } from 'globalState';
 
 const { sanitize } = dompurify;
 
 // eslint-disable-next-line react/prop-types
-const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecked }) => {
-  // Get the state of form data from FormDataContext
-  // console.log('pages inside radio>>>>', pagesState);
+const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecked, register }) => {
   return (
     <>
       <label className="wmnds-fe-radios__container">
@@ -24,7 +20,7 @@ const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecke
           id={id}
           name={name}
           type="radio"
-          ref={fieldValidation}
+          ref={register}
           onChange={onChange}
           value={value}
           defaultChecked={defaultChecked}
@@ -41,11 +37,9 @@ Radio.propTypes = {
   onChange: PropTypes.func,
   text: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  // fieldValidation: PropTypes.func,
 };
 
 Radio.defaultProps = {
-  // fieldValidation: null,
   onChange: null,
 };
 

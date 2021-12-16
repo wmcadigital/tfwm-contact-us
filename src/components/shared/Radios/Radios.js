@@ -10,9 +10,10 @@ import Radio from './Radio/Radio';
 const { sanitize } = dompurify;
 
 // eslint-disable-next-line react/prop-types
-const Radios = ({ name, label, classes, radios, onChange, fieldValidation }) => {
+const Radios = ({ name, label, classes, radios, onChange, fieldValidation, register }) => {
   const { errors } = useForm();
-  console.log('radios >>>', radios);
+  console.log('here in radiosss', fieldValidation);
+  // console.log('register >>>', register);
   return (
     <>
       {fieldValidation ? (
@@ -26,12 +27,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation }) => 
             </svg>
             <h3 className="wmnds-msg-summary__title">There is a Problem</h3>
           </div>
-          <span
-            className="wmnds-msg-summary__info"
-            dangerouslySetInnerHTML={{
-              __html: sanitize(fieldValidation.message),
-            }}
-          />
+          <span className="wmnds-msg-summary__info">Please choose an option</span>
         </div>
       ) : null}
       <div className={`wmnds-fe-group ${fieldValidation ? 'wmnds-fe-group--error' : ''}`}>
@@ -39,14 +35,14 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation }) => 
           <legend className="wmnds-fe-fieldset__legend">
             {/* {label && <h2 className="wmnds-fe-question">{label}</h2>} */}
             {/* If there is an error, show here */}
-            {fieldValidation && (
+            {/* {fieldValidation && (
               <span
                 className="wmnds-fe-error-message"
                 dangerouslySetInnerHTML={{
                   __html: sanitize(fieldValidation.message),
                 }}
               />
-            )}
+            )} */}
             <div className="wmnds-fe-radios">
               {/* Loop through radios and display each radio button */}
               {radios?.map((radio) => (
@@ -59,6 +55,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation }) => 
                   onChange={onChange}
                   fieldValidation={fieldValidation}
                   defaultChecked={radio.selected}
+                  register={register}
                 />
               ))}
             </div>
@@ -71,10 +68,10 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation }) => 
 
 // PropTypes
 Radios.propTypes = {
-  fieldValidation: PropTypes.func,
+  fieldValidation: PropTypes.bool,
   classes: PropTypes.string,
   name: PropTypes.string.isRequired,
-  // label: PropTypes.string,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   radios: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any, PropTypes.bool)).isRequired,
 };
@@ -84,7 +81,7 @@ Radios.defaultProps = {
   onChange: PropTypes.func,
 
   classes: null,
-  // label: null,
+  label: null,
 };
 
 export default Radios;

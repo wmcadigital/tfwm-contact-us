@@ -1,15 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React, { createContext, useReducer } from 'react';
-// import ContactUsReducer from './ContactUsReducer';
 import Data from '../../components/App/ContactUs/newData.json';
-
 // create context
 export const FormDataContext = createContext();
 
 export const FormProvider = (props) => {
   const { children } = props || {};
-
   // initial state
   const initialState = {
     currentStep: {
@@ -23,13 +20,12 @@ export const FormProvider = (props) => {
     steps: Data,
   };
   const ContactUsReducer = (state, action) => {
-    console.log('payload>>>>>', action.payload, state);
     switch (action.type) {
       case 'CONTINUE': {
         const selectedStep = state.steps.pages.find(
           (item) => item.parentId === action.payload.selectedVal
         );
-        console.log('selected step continue>>>>>', selectedStep);
+        // console.log('selected step continue>>>>>', selectedStep);
         const selectedStepFields = selectedStep?.fields?.map((field) => ({
           ...field,
           selected: field.id === action.payload,
@@ -56,25 +52,17 @@ export const FormProvider = (props) => {
           return item;
         });
 
-        console.log('selectedddddd object backkk >>>>>>>>', prevSelectedStep);
+        // console.log('selectedddddd object backkk >>>>>>>>', prevSelectedStep);
         return {
           ...state,
           currentStep: { ...prevSelectedStep, fields: updatedFields },
           steps: { pages },
-          // steps: {...steps, }
-          // fields: updatedFields,
         };
       }
       default:
         return state;
     }
   };
-
-  // console.log('state>>>>>>>>>>>>>>>', initialState);
-
-  // provider component
-  // export const GlobalProvider = (props) => {
-  // const { children } = props || {};
 
   const [formState, formDispatch] = useReducer(ContactUsReducer, initialState);
 
