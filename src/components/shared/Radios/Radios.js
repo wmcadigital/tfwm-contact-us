@@ -12,12 +12,12 @@ const { sanitize } = dompurify;
 // eslint-disable-next-line react/prop-types
 const Radios = ({ name, label, classes, radios, onChange, fieldValidation, register }) => {
   const { errors } = useForm();
-  console.log('here in radiosss', fieldValidation);
-  // console.log('register >>>', register);
+
   return (
     <>
+      {label && <h2 className="wmnds-fe-question">{label}</h2>}
       {fieldValidation ? (
-        <div className="wmnds-msg-summary wmnds-msg-summary--error ">
+        <div className="wmnds-msg-summary wmnds-msg-summary--error wmnds-m-b-lg">
           <div className="wmnds-msg-summary__header">
             <svg className="wmnds-msg-summary__icon">
               <use
@@ -33,16 +33,10 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
       <div className={`wmnds-fe-group ${fieldValidation ? 'wmnds-fe-group--error' : ''}`}>
         <fieldset className="wmnds-fe-fieldset">
           <legend className="wmnds-fe-fieldset__legend">
-            {/* {label && <h2 className="wmnds-fe-question">{label}</h2>} */}
             {/* If there is an error, show here */}
-            {/* {fieldValidation && (
-              <span
-                className="wmnds-fe-error-message"
-                dangerouslySetInnerHTML={{
-                  __html: sanitize(fieldValidation.message),
-                }}
-              />
-            )} */}
+            {fieldValidation && (
+              <span className="wmnds-fe-error-message">Please choose an option</span>
+            )}
             <div className="wmnds-fe-radios">
               {/* Loop through radios and display each radio button */}
               {radios?.map((radio) => (

@@ -25,7 +25,6 @@ export const FormProvider = (props) => {
         const selectedStep = state.steps.pages.find(
           (item) => item.parentId === action.payload.selectedVal
         );
-        // console.log('selected step continue>>>>>', selectedStep);
         const selectedStepFields = selectedStep?.fields?.map((field) => ({
           ...field,
           selected: field.id === action.payload,
@@ -38,25 +37,16 @@ export const FormProvider = (props) => {
 
       case 'BACK': {
         const prevSelectedStep = state.steps.pages.find(
-          (item) => item.currentStepId === action.payload.currentStep.prevStepId
+          (item) => item.currentStepId === action.payload.prevStepId
         );
         const updatedFields = prevSelectedStep?.fields?.map((field) => ({
           ...field,
-          selected: field.id === action.payload.currentStep.parentId,
+          selected: field.id === action.payload.parentId,
         }));
 
-        const pages = state.steps.pages.map((item) => {
-          if (item.currentStepId === action.payload.currentStep.prevStepId) {
-            return { ...item, fields: updatedFields };
-          }
-          return item;
-        });
-
-        // console.log('selectedddddd object backkk >>>>>>>>', prevSelectedStep);
         return {
           ...state,
           currentStep: { ...prevSelectedStep, fields: updatedFields },
-          steps: { pages },
         };
       }
       default:

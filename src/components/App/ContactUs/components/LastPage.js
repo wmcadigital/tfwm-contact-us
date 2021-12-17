@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import dompurify from 'dompurify';
-// Import contexts
-import { FormDataContext } from 'globalState';
 
 const { sanitize } = dompurify;
 // eslint-disable-next-line react/prop-types
-const LastPage = ({ content }) => {
-  console.log('contentt>>>>>>>>>>>>', content.table);
+const LastPage = ({ content, currentStep }) => {
   return (
     <>
-      <h3>{content.heading}</h3>
+      <h2 className="wmnds-m-t-xs">{currentStep?.heading}</h2>
+      {content.heading && <h3>{content.heading}</h3>}
       {content.serviceDetails && (
         <ul className="wmnds-unordered-list">
           {content.serviceDetails.map((item) => (
