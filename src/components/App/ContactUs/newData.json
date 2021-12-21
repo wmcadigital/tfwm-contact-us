@@ -50,8 +50,8 @@
         {
           "id": "swiftcard-and-photocard",
           "type": "radio",
-          "text": "Swiftcard and photocard",
-          "value": "Swiftcard and photocard"
+          "text": "Swift card and photocard",
+          "value": "Swift card and photocard"
         },
         {
           "id": "older-person-pass",
@@ -78,7 +78,7 @@
       "currentStepId": "step-swiftcard-and-photocard",
       "prevStepId": "step-ticket-and-passes",
       "parentId": "swiftcard-and-photocard",
-      "heading": "Swiftcard and photocard",
+      "heading": "Swift card and photocard",
       "hasReachedConfirmation": false,
       "fields": [
         {

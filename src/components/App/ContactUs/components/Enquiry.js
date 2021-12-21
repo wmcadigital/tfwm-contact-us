@@ -32,6 +32,7 @@ const ContactUsForm = () => {
         type: 'CONTINUE',
         payload: { currentStep, selectedVal },
       });
+      window.scrollTo(0, 0);
     }
   };
   const backHandler = () => {
@@ -41,6 +42,7 @@ const ContactUsForm = () => {
       type: 'BACK',
       payload: currentStep,
     });
+    window.scrollTo(0, 0);
   };
   return (
     <div className="wmnds-container wmnds-container--main">
