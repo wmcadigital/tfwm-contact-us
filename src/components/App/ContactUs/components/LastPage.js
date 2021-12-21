@@ -149,10 +149,10 @@ const LastPage = ({ content, currentStep }) => {
             <p>{content.timings}</p>
           ) : (
             <>
-              <p>Mondays, Tuesdays, Thursdays and Fridays, 8am to 6pm</p>
-              <p>Wednesdays, 10am to 6pm</p>
-              <p>Saturdays, 9am to 1pm</p>
-              <p>Sundays and Bank Holidays, Closed</p>
+              <div>Mondays, Tuesdays, Thursdays and Fridays, 8am to 6pm</div>
+              <div>Wednesdays, 10am to 6pm</div>
+              <div>Saturdays, 9am to 1pm</div>
+              <div>Sundays and Bank Holidays, Closed</div>
             </>
           )}
         </div>

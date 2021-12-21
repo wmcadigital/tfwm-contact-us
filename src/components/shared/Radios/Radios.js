@@ -25,7 +25,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
                 href="#wmnds-general-warning-triangle"
               />
             </svg>
-            <h3 className="wmnds-msg-summary__title">There is a Problem</h3>
+            <h3 className="wmnds-msg-summary__title">There is a problem</h3>
           </div>
           <span className="wmnds-msg-summary__info">Please choose an option</span>
         </div>
