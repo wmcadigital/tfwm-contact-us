@@ -7,20 +7,14 @@ const { sanitize } = dompurify;
 const LastPage = ({ content, currentStep }) => {
   return (
     <>
-      <h2 className="wmnds-m-t-xs">{currentStep?.heading}</h2>
+      <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
       {content.heading && <h3>{content.heading}</h3>}
-      {content.serviceDetails && (
-        <ul className="wmnds-unordered-list">
-          {content.serviceDetails.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      )}
       {content.details?.includes('<a href=') ? (
         <div
           dangerouslySetInnerHTML={{
             __html: sanitize(content.details),
           }}
+          className="wmnds-p-t-md"
         />
       ) : (
         <p> {content.details}</p>
@@ -30,7 +24,7 @@ const LastPage = ({ content, currentStep }) => {
           <li>
             <div className="wmnds-file-download">
               <div
-                className="wmnds-file-download__desc"
+                className="wmnds-file-download__desc wmnds-p-l-none"
                 dangerouslySetInnerHTML={{
                   __html: sanitize(content.downloadText),
                 }}
@@ -41,11 +35,14 @@ const LastPage = ({ content, currentStep }) => {
         {content.info && <li>{content.info}</li>}
       </ul>
       {content.form && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: sanitize(content.form),
-          }}
-        />
+        <>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: sanitize(content.form),
+            }}
+          />
+          <br />
+        </>
       )}
       {content.ringRideInfo && (
         <ul className="wmnds-unordered-list">
@@ -59,17 +56,19 @@ const LastPage = ({ content, currentStep }) => {
         </ul>
       )}
       {content.actionText && content.actionText !== 'Book now' && (
-        <a
-          href={content.actionLink}
-          title={content.actionText}
-          target="_self"
-          className="wmnds-btn"
-        >
-          {content.actionText}
-          <svg className="wmnds-btn__icon wmnds-btn__icon--right">
-            <use xlinkHref="#wmnds-general-chevron-right" href="#wmnds-general-chevron-right" />
-          </svg>
-        </a>
+        <div className="wmnds-p-b-lg">
+          <a
+            href={content.actionLink}
+            title={content.actionText}
+            target="_self"
+            className="wmnds-btn"
+          >
+            {content.actionText}
+            <svg className="wmnds-btn__icon wmnds-btn__icon--right">
+              <use xlinkHref="#wmnds-general-chevron-right" href="#wmnds-general-chevron-right" />
+            </svg>
+          </a>
+        </div>
       )}
       {content.actionText === 'Book now' && (
         <a
@@ -86,13 +85,7 @@ const LastPage = ({ content, currentStep }) => {
       )}
 
       {content.heading2 && <h3>{content.heading2}</h3>}
-      {content.beforeStart && (
-        <ul className="wmnds-unordered-list">
-          {content.beforeStart.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      )}
+
       {content.details2 && (
         <p
           dangerouslySetInnerHTML={{
@@ -157,9 +150,7 @@ const LastPage = ({ content, currentStep }) => {
           )}
         </div>
       )}
-      {content.dangerousProblems && (
-        <div className="wmnds-inset-text">{content.dangerousProblems}</div>
-      )}
+
       <br />
       <br />
       <p
@@ -167,19 +158,6 @@ const LastPage = ({ content, currentStep }) => {
           __html: sanitize(content.complaint),
         }}
       />
-      {content.start && (
-        <a
-          href={content.actionLink}
-          title={content.start}
-          target="_self"
-          className="wmnds-btn wmnds-btn--start"
-        >
-          {content.start}
-          <svg className="wmnds-btn__icon wmnds-btn__icon--right">
-            <use xlinkHref="#wmnds-general-chevron-right" href="#wmnds-general-chevron-right" />
-          </svg>
-        </a>
-      )}
     </>
   );
 };

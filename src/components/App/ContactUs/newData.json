@@ -124,7 +124,7 @@
         "type": "text",
         "details": "To update your bank details:",
         "downloadText": "<a href='https://www.tfwm.org.uk/media/oegp2kj3/dd-bank-mandate.pdf' title='dd-bank-mandate' target='_self' class='wmnds-link wmnds-file-download__link' download='example_file.pdf'>Download, print out and fill in the Direct Debit form.</a>",
-        "form": "Use <a href='https://legacy.wmnetwork.co.uk/forms/update-a-direct-debit/' title='dd-bank-mandate' target='_blank'>this form</a> to update your contact details.",
+        "form": "Use <a href='https://legacy.wmnetwork.co.uk/forms/update-a-direct-debit/' title='dd-bank-mandate' target='_blank'>this form</a> to update your contact details.<br />",
         "info": "Send it to the address on the form.",
         "callHelp": "If you need help updating your Direct Debit, you can give us a call",
         "customerService": true
@@ -171,7 +171,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "If you’re a Swift card holder you can <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'> request a refund and cancel your card online</a>.",
+        "details": "Learn how you can <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'> request a refund for your swift card</a>. Your Swift card will be automatically cancelled if your refund is accepted.",
         "callHelp": "If you need help requesting a refund or cancelling your card, you can give us a call.",
         "customerService": true
       }
@@ -325,7 +325,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can find information about our <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/park-and-ride/' title='new-request-card' target='_blank'>Sprint bus service including frequently asked questions here</a>.",
+        "details": "You can find information about our <a href='https://www.tfwm.org.uk/who-we-are/what-we-do/sprint-priority-bus-corridor/' title='sprint-bus-info' target='_blank'>Sprint bus service including frequently asked questions here</a>.",
         "callHelp": "If you need help with our Sprint bus service, you can give us a call.",
         "customerService": true
       }
@@ -476,7 +476,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Read our guidance on <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'> how to travel across the network with accessibility needs</a>.",
+        "details": "Read our guidance on <a href='https://www.tfwm.org.uk/plan-your-journey/travel-information/how-to-travel-with-accessibility-needs/' title='travel-with-accessibility' target='_blank'> how to travel across the network with accessibility needs</a>.",
         "callHelp": "If you need help with accessible travel, you can give us a call.",
         "customerService": true
       }
@@ -523,22 +523,9 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "heading": "Use this service to:",
-        "details": "This process takes around 5 minutes.",
-        "serviceDetails": [
-          "report problems with a bus shelter or stop",
-          "report problems with a park and ride shelter"
-        ],
-        "heading2": "Before you start",
-        "beforeStart": [
-          "take a photo of the problem to upload",
-          "you should take a photo of the bus stop sign and poster to help you answer questions about the location"
-        ],
-        "heading3": "What we’ll do with your report",
-        "callHelp": "We’ll review your report as soon as possible.",
-        "dangerousProblems": "We aim to make dangerous problems safe within 4 hours of receiving a report",
-        "complaint": "Sometimes we cannot fix problems immediately. For example, if there is missing timetable information and there is a new timetable starting soon.",
-        "start": "Start now"
+        "details": "You can <a href='https://www.tfwm.org.uk/get-help/report-a-problem-with-a-bus-stop-or-park-and-ride/' title='travel-with-accessibility' target='_blank'> report a problem with a bus stop or park and ride</a> online.",
+        "callHelp": "To report an issue with other forms of transport, you’ll need to call us.",
+        "customerService": true
       }
     },
     {
@@ -682,8 +669,8 @@
       "content": {
         "type": "text",
         "details": "You can <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'>apply for an older person’s pass online</a>.",
-        "details2": "You can also <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'> download the application</a> form to print out and send in the post.",
-        "details3": "Find more <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'> information about the older person’s pass </a> including eligibility criteria.",
+        "details2": "You can also <a href='https://www.tfwm.org.uk/media/fmbkmzmf/oapapplication_form.pdf' title='download-application' target='_blank'> download the application</a> form to print out and send in the post.",
+        "details3": "Find more <a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> information about the older person’s pass </a> including eligibility criteria.",
         "callHelp": "If you need help with your application, you can give us a call.",
         "customerService": true
       }
