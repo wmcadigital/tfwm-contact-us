@@ -14,7 +14,7 @@ const LastPage = ({ content, currentStep }) => {
           dangerouslySetInnerHTML={{
             __html: sanitize(content.details),
           }}
-          className="wmnds-p-t-md"
+          className="wmnds-p-b-xs wmnds-p-t-md"
         />
       ) : (
         <p> {content.details}</p>
@@ -102,7 +102,7 @@ const LastPage = ({ content, currentStep }) => {
       )}
 
       {content.warningText && (
-        <div className="wmnds-warning-text">
+        <div className="wmnds-warning-text wmnds-p-b-xs">
           <svg className="wmnds-warning-text__icon">
             <use xlinkHref="#wmnds-general-warning-circle" href="#wmnds-general-warning-circle" />
           </svg>
