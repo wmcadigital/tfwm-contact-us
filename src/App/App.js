@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Contexts
 import ContactUsForm from './ContactUs/components/Enquiry';
-import { FormProvider } from '../../globalState/ContactUsContext';
+import { FormProvider } from '../globalState/ContactUsContext';
 
 function App() {
   return (

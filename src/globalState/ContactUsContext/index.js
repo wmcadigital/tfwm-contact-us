@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React, { createContext, useReducer } from 'react';
-import Data from '../../components/App/ContactUs/newData.json';
+import Data from '../../App/ContactUs/newData.json';
 // create context
 export const FormDataContext = createContext();
 
