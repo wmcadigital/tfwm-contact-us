@@ -83,36 +83,6 @@ const LastPage = ({ content, currentStep }) => {
           </svg>
         </a>
       )}
-
-      {content.heading2 && <h3>{content.heading2}</h3>}
-
-      {content.details2 && (
-        <p
-          dangerouslySetInnerHTML={{
-            __html: sanitize(content.details2),
-          }}
-        />
-      )}
-      {content.details3 && (
-        <p
-          dangerouslySetInnerHTML={{
-            __html: sanitize(content.details3),
-          }}
-        />
-      )}
-
-      {content.warningText && (
-        <div className="wmnds-warning-text wmnds-p-b-xs">
-          <svg className="wmnds-warning-text__icon">
-            <use xlinkHref="#wmnds-general-warning-circle" href="#wmnds-general-warning-circle" />
-          </svg>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: sanitize(content.warningText),
-            }}
-          />
-        </div>
-      )}
       {content.table && (
         <table className="wmnds-table wmnds-table--without-header">
           <caption className="wmnds-table__caption">
@@ -132,11 +102,71 @@ const LastPage = ({ content, currentStep }) => {
           </tbody>
         </table>
       )}
+      {content.heading2 && <h3>{content.heading2}</h3>}
+
+      {content.details2 && (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.details2),
+          }}
+        />
+      )}
+      {content.details3 && (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.details3),
+          }}
+        />
+      )}
+      {content.insetText && (
+        <div
+          className="wmnds-inset-text wmnds-m-b-lg"
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.insetText),
+          }}
+        />
+      )}
+      <p
+        dangerouslySetInnerHTML={{
+          __html: sanitize(content.complaint),
+        }}
+      />
+      {content.warningText && (
+        <div className="wmnds-warning-text wmnds-p-b-xs">
+          <svg className="wmnds-warning-text__icon">
+            <use xlinkHref="#wmnds-general-warning-circle" href="#wmnds-general-warning-circle" />
+          </svg>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: sanitize(content.warningText),
+            }}
+          />
+        </div>
+      )}
+
       {content.heading3 && <h3>{content.heading3}</h3>}
-      {content.callHelp && <p>{content.callHelp}</p>}
+      {content.callHelp && (
+        <div
+          className="wmnds-m-b-md"
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.callHelp),
+          }}
+        />
+      )}
       {content.customerService && (
         <div className="wmnds-inset-text" aria-label="customer services">
           <h4>{content.customerServiceInfo ? content.customerServiceInfo : 'Customer Services'}</h4>
+          {!content.hideChat && (
+            <>
+              <h5>Live Chat</h5>
+              <button className="wmnds-btn wmnds-m-b-md wmnds-m-t-xs" type="button">
+                Chat to a team member
+              </button>
+              <p>Starting live chat will open a window at the bottom of your browser</p>
+            </>
+          )}
+
+          <h4>Telephone</h4>
           <p>{content.ph ? content.ph : 'Phone: 0345 303 6760'}</p>
           {content.timings ? (
             <p>{content.timings}</p>
@@ -153,11 +183,6 @@ const LastPage = ({ content, currentStep }) => {
 
       <br />
       <br />
-      <p
-        dangerouslySetInnerHTML={{
-          __html: sanitize(content.complaint),
-        }}
-      />
     </>
   );
 };

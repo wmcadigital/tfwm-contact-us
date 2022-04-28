@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormDataContext } from 'globalState';
-import Radios from 'components/shared/Radios/Radios';
-import Button from 'components/shared/Button/Button';
+import { FormDataContext } from '../../../../globalState';
+import Radios from '../../../shared/Radios/Radios';
+import Button from '../../../shared/Button/Button';
 import LastPage from './LastPage';
 
 const ContactUsForm = () => {

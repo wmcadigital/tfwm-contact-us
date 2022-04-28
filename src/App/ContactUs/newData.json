@@ -8,16 +8,16 @@
       "hasReachedConfirmation": false,
       "fields": [
         {
-          "id": "ticket-and-passes",
+          "id": "swift-tickets-passes",
           "type": "radio",
-          "text": "Ticket and passes",
-          "value": "Ticket and passes"
+          "text": "Swift, tickets and passes",
+          "value": "Swift, tickets and passes"
         },
         {
           "id": "bus-train-tram",
           "type": "radio",
-          "text": "Bus, train or tram",
-          "value": "Bus, train or tram"
+          "text": "Bus, train or tram services",
+          "value": "Bus, train or tram services"
         },
         {
           "id": "cycling",
@@ -34,17 +34,29 @@
         {
           "id": "report-a-problem",
           "type": "radio",
-          "text": "Report a problem",
-          "value": "AReport a problem"
+          "text": "Report an issue on the transport network",
+          "value": "Report an issue on the transport network"
+        },
+        {
+          "id": "leave-feedback-or-complaint",
+          "type": "radio",
+          "text": "Leave feedback or make a complaint",
+          "value": "Leave feedback or make a complaint"
+        },
+        {
+          "id": "enquiry-other",
+          "type": "radio",
+          "text": "Other",
+          "value": "Other"
         }
       ]
     },
     {
       "id": "step-2",
-      "currentStepId": "step-ticket-and-passes",
+      "currentStepId": "step-swift-tickets-passes",
       "prevStepId": "step-enquiry",
-      "parentId": "ticket-and-passes",
-      "heading": "Tickets and passes",
+      "parentId": "swift-tickets-passes",
+      "heading": "Swift, tickets and passes",
       "hasReachedConfirmation": false,
       "fields": [
         {
@@ -52,6 +64,12 @@
           "type": "radio",
           "text": "Swift card and photocard",
           "value": "Swift card and photocard"
+        },
+        {
+          "id": "direct-debit",
+          "type": "radio",
+          "text": "Direct Debit",
+          "value": "Direct Debit"
         },
         {
           "id": "older-person-pass",
@@ -66,33 +84,39 @@
           "value": "Disabled person’s pass"
         },
         {
+          "id": "corporate-ticketing",
+          "type": "radio",
+          "text": "Corporate ticketing",
+          "value": "Corporate ticketing"
+        },
+        {
+          "id": "workwise-general-enquiry",
+          "type": "radio",
+          "text": "Workwise general enquiry",
+          "value": "Workwise general enquiry"
+        },
+        {
           "id": "paper-ticket",
           "type": "radio",
           "text": "Paper ticket",
           "value": "Paper ticket"
+        },
+        {
+          "id": "swift-parking-or-transport",
+          "type": "radio",
+          "text": "SwiftParking or the Transport for West Midlands app",
+          "value": "SwiftParking or the Transport for West Midlands app"
         }
       ]
     },
     {
       "id": "step-3",
       "currentStepId": "step-swiftcard-and-photocard",
-      "prevStepId": "step-ticket-and-passes",
+      "prevStepId": "step-swift-tickets-passes",
       "parentId": "swiftcard-and-photocard",
       "heading": "Swift card and photocard",
       "hasReachedConfirmation": false,
       "fields": [
-        {
-          "id": "update-DD",
-          "type": "radio",
-          "text": "Update my Direct Debit",
-          "value": "Update my Direct Debit"
-        },
-        {
-          "id": "cancel-DD",
-          "type": "radio",
-          "text": "Cancel my Direct Debit",
-          "value": "Cancel my Direct Debit"
-        },
         {
           "id": "replace-card",
           "type": "radio",
@@ -105,6 +129,13 @@
           "text": "Request a refund or cancel your card",
           "value": "Request a refund or cancel your card"
         },
+
+        {
+          "id": "paying-cycle-hire-with-swift",
+          "type": "radio",
+          "text": "Paying for cycle hire with Swift",
+          "value": "Paying for cycle hire with Swift"
+        },
         {
           "id": "other",
           "type": "radio",
@@ -112,37 +143,6 @@
           "value": "Other"
         }
       ]
-    },
-    {
-      "id": "step-4",
-      "parentId": "update-DD",
-      "currentStepId": "step-update-DD",
-      "prevStepId": "step-swiftcard-and-photocard",
-      "heading": "Update my Direct Debit",
-      "hasReachedConfirmation": true,
-      "content": {
-        "type": "text",
-        "details": "To update your bank details:",
-        "downloadText": "<a href='https://www.tfwm.org.uk/media/oegp2kj3/dd-bank-mandate.pdf' title='dd-bank-mandate' target='_self' class='wmnds-link wmnds-file-download__link' download='example_file.pdf'>Download, print out and fill in the Direct Debit form.</a>",
-        "form": "Use <a href='https://legacy.wmnetwork.co.uk/forms/update-a-direct-debit/' title='dd-bank-mandate' target='_blank'>this form</a> to update your contact details.<br />",
-        "info": "Send it to the address on the form.",
-        "callHelp": "If you need help updating your Direct Debit, you can give us a call",
-        "customerService": true
-      }
-    },
-    {
-      "id": "step-4",
-      "parentId": "cancel-DD",
-      "currentStepId": "step-cancel-DD",
-      "prevStepId": "step-swiftcard-and-photocard",
-      "heading": "Cancel my Direct Debit",
-      "hasReachedConfirmation": true,
-      "content": {
-        "type": "text",
-        "details": "We have created a service to help you <a href='https://refund.tfwm.org.uk/' title='cancel-bank-mandate' target='_blank'>cancel your Direct Debit</a>.",
-        "callHelp": "If you need help cancelling your Direct Debit, you can give us a call.",
-        "customerService": true
-      }
     },
     {
       "id": "step-4",
@@ -157,8 +157,11 @@
         "details": "If you’re a Direct Debit Swift card holder you can <a href='https://pay.wmca.org.uk/' title='cancel-bank-mandate' target='_blank'> replace your lost card online</a>.",
         "heading2": "If your card does not have a Direct Debit ticket on",
         "details2": "If you do not use Direct Debit to pay for your Swift card, call us on 0345 075 6006 as soon as possible.",
-        "callHelp": "If you need help replacing your card, you can give us a call.",
-        "warningText": "If you bought your Swift card from National Express, you need to <a href='https://www.tfwm.org.uk/get-help/contact-us/contact-national-express-west-midlands-about-your-swift-card/' title='replace-card' target='_blank'> contact them to replace it</a>.",
+        "callHelp": "If you need help replacing your card, get in touch.",
+
+        "insetText": "If you bought your Swift card from National Express, you need to <a href='https://www.tfwm.org.uk/get-help/contact-us/contact-national-express-west-midlands-about-your-swift-card/' title='replace-card' target='_blank'> contact them to replace it</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+
         "customerService": true
       }
     },
@@ -171,8 +174,21 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Learn how you can <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'> request a refund for your swift card</a>. Your Swift card will be automatically cancelled if your refund is accepted.",
-        "callHelp": "If you need help requesting a refund or cancelling your card, you can give us a call.",
+        "details": "If you’re a Swift card holder <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'>you can request a refund and cancel your card online</a>.",
+        "callHelp": "If you need help requesting a refund or cancelling your card, get in touch.",
+        "customerService": true
+      }
+    },
+
+    {
+      "id": "step-4",
+      "parentId": "paying-cycle-hire-with-swift",
+      "currentStepId": "step-paying-cycle-hire-with-swift",
+      "prevStepId": "step-swiftcard-and-photocard",
+      "heading": "Paying for cycle hire with Swift",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
         "customerService": true
       }
     },
@@ -185,6 +201,140 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
+        "details": "For all other enquiries please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+        "customerService": true
+      }
+    },
+
+    {
+      "id": "step-3",
+      "currentStepId": "step-direct-debit",
+      "prevStepId": "step-swift-tickets-passes",
+      "parentId": "direct-debit",
+      "heading": "Direct Debit",
+      "hasReachedConfirmation": false,
+      "fields": [
+        {
+          "id": "update-DD",
+          "type": "radio",
+          "text": "Update your Direct Debit",
+          "value": "Update your Direct Debit"
+        },
+        {
+          "id": "cancel-DD",
+          "type": "radio",
+          "text": "Cancel your Direct Debit",
+          "value": "Cancel your Direct Debit"
+        }
+      ]
+    },
+
+    {
+      "id": "step-4",
+      "parentId": "update-DD",
+      "currentStepId": "step-update-DD",
+      "prevStepId": "step-direct-debit",
+      "heading": "Update my Direct Debit",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "If you need to update your contact/bank account details, call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "customerService": true
+      }
+    },
+    {
+      "id": "step-4",
+      "parentId": "cancel-DD",
+      "currentStepId": "step-cancel-DD",
+      "prevStepId": "step-direct-debit",
+      "heading": "Cancel my Direct Debit",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "We have created a service to help you <a href='https://refund.tfwm.org.uk/' title='cancel-bank-mandate' target='_blank'>cancel your Direct Debit</a>.",
+        "callHelp": "If you need help cancelling your Direct Debit, you can give us a call or chat to us.",
+        "customerService": true
+      }
+    },
+    {
+      "id": "step-3",
+      "currentStepId": "step-corporate-ticketing",
+      "prevStepId": "step-swift-tickets-passes",
+      "parentId": "corporate-ticketing",
+      "heading": "Corporate ticketing",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+
+        "details": "For anything to do with corporate ticketing, give us a call.",
+
+        "customerService": true
+      }
+    },
+    {
+      "id": "step-3",
+      "currentStepId": "step-workwise-general-enquiry",
+      "prevStepId": "step-swift-tickets-passes",
+      "parentId": "workwise-general-enquiry",
+      "heading": "Workwise general enquiry",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+
+        "details": "Please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+        "customerService": true
+      }
+    },
+
+    {
+      "id": "step-3",
+      "currentStepId": "step-swift-parking-or-transport",
+      "prevStepId": "step-swift-tickets-passes",
+      "parentId": "swift-parking-or-transport",
+      "heading": "SwiftParking or the Transport for West Midlands app",
+      "hasReachedConfirmation": false,
+      "fields": [
+        {
+          "id": "swift-parking-app",
+          "type": "radio",
+          "text": "SwiftParking app",
+          "value": "SwiftParking app"
+        },
+        {
+          "id": "transport-west-midland-app",
+          "type": "radio",
+          "text": "Transport for West Midlands app",
+          "value": "Transport for West Midlands app"
+        }
+      ]
+    },
+    {
+      "id": "step-4",
+      "parentId": "swift-parking-app",
+      "currentStepId": "swift-parking-app",
+      "prevStepId": "step-swift-parking-or-transport",
+      "heading": "Swift Parking app",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "Please call us or <a href='' title='step-swift-parking-app' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
+        "customerService": true
+      }
+    },
+    {
+      "id": "step-4",
+      "parentId": "transport-west-midland-app",
+      "currentStepId": "transport-west-midland-app",
+      "prevStepId": "step-swift-parking-or-transport",
+      "heading": "Transport for West Midlands app",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "If you have a question, please call us or <a href='' title='step-swift-parking-app' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -193,7 +343,7 @@
       "parentId": "bus-train-tram",
       "currentStepId": "step-bus-train-tram",
       "prevStepId": "step-enquiry",
-      "heading": "Bus, train or tram",
+      "heading": "Bus, train or tram services",
       "hasReachedConfirmation": false,
       "fields": [
         {
@@ -237,9 +387,9 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "<a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>Contact the bus company</a> if your enquiry is about service issues, lost property and staff.",
-        "heading2": "Customer service feedback",
-        "callHelp": "If you want to leave feedback for a bus service, you can give us a call.",
+        "details": "Contact the <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
+        "details2": "For all other enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -279,8 +429,8 @@
             "ph": "0845 606 1660"
           }
         ],
-        "heading3": "Customer service feedback",
-        "callHelp": "If you want to leave feedback for a train stop or service, you can give us a call.",
+        "details2": "For all other enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -313,7 +463,8 @@
       "content": {
         "type": "text",
         "details": "You can view <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/park-and-ride/' title='new-request-card' target='_blank'> park and ride information including maintenance here</a>.",
-        "callHelp": "If you need help with park and ride, you can give us a call.",
+        "details2": "If you need help with park and ride, you can give us a call or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -326,7 +477,8 @@
       "content": {
         "type": "text",
         "details": "You can find information about our <a href='https://www.tfwm.org.uk/who-we-are/what-we-do/sprint-priority-bus-corridor/' title='sprint-bus-info' target='_blank'>Sprint bus service including frequently asked questions here</a>.",
-        "callHelp": "If you need help with our Sprint bus service, you can give us a call.",
+        "details2": "If you need help with our Sprint bus service, you can give us a call or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -370,7 +522,11 @@
         "heading2": "Contact the team online",
         "details2": "The West Midlands Cycle Hire team is on hand to help if you have any problems. You can contact the team using live chat through the chat button floating at the bottom of your browser.",
         "actionText": "Visit West Midlands Cycle Hire",
-        "actionLink": "https://www.wmcyclehire.co.uk/"
+        "customerServiceInfo": "West Midlands Cycle Hire",
+        "hideChat": true,
+        "ph": "Phone: ??????",
+        "actionLink": "https://www.wmcyclehire.co.uk/",
+        "customerService": true
       }
     },
     {
@@ -382,7 +538,8 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/find-bike-storage-at-a-station/' title='cancel-bank-mandate' target='_blank'>apply or renew bus, rail and cycle hub storage online</a>.",
-        "callHelp": "If you need help with cycle storage, you can give us a call.",
+        "details2": "For all other cycle storage enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -395,7 +552,8 @@
       "content": {
         "type": "text",
         "details": "You can find information about cycling in the <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/' title='cancel-bank-mandate' target='_blank'>West Midlands including cycle routes here</a>.",
-        "callHelp": "If you need help with cycling, you can give us a call.",
+        "details2": "For all other cycling enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     },
@@ -439,10 +597,10 @@
         "details": "You can book a Ring and Ride journey using the online form.",
         "ringRideInfo": [
           "to use this service <a href='https://ringandride.org/register/regonline.html' title='cancel-bank-mandate' target='_blank'>you need to register online</a> or by phone.",
-          "Ring and Ride runs:<br />Monday to Friday, 8:00am to 5:30pm<br /> Saturdays, 8:30am to 3:30pm.<br />Sundays, Closed.",
-          "submit your request by 8am on the day before your journey. You’ll receive an email  confirmation for your jouney by 4pm that day.",
+
           "see <a href='https://ringandride.org/service/index.html' title='cancel-bank-mandate' target='_blank'>Ring and Ride fare Prices</a>."
         ],
+        "hideChat": true,
         "heading2": "Book a journey by phone",
         "actionText": "Book now",
         "actionLink": "https://ringandride.org/booking/bookonline.html",
@@ -465,6 +623,7 @@
         "actionText": "Request an accessible product",
         "actionLink": "https://legacy.wmnetwork.co.uk/forms/accessibility-products/",
         "callHelp": "If you need help requesting an accessible product, you can give us a call.",
+        "hideChat": true,
         "customerService": true
       }
     },
@@ -477,6 +636,7 @@
       "content": {
         "type": "text",
         "details": "Read our guidance on <a href='https://www.tfwm.org.uk/plan-your-journey/travel-information/how-to-travel-with-accessibility-needs/' title='travel-with-accessibility' target='_blank'> how to travel across the network with accessibility needs</a>.",
+        "hideChat": true,
         "callHelp": "If you need help with accessible travel, you can give us a call.",
         "customerService": true
       }
@@ -486,7 +646,7 @@
       "currentStepId": "step-report-a-problem",
       "prevStepId": "step-enquiry",
       "parentId": "report-a-problem",
-      "heading": "Report a problem",
+      "heading": "Report an issue",
       "hasReachedConfirmation": false,
       "fields": [
         {
@@ -502,10 +662,10 @@
           "value": "Report an issue with travel information"
         },
         {
-          "id": "feedback-or-complaint",
+          "id": "issue-with-payzone",
           "type": "radio",
-          "text": "Leave feedback or make a complaint",
-          "value": "Leave feedback or make a complaint"
+          "text": "Report an issue with a Payzone shop",
+          "value": "Report an issue with a Payzone shop"
         },
         {
           "id": "other-report",
@@ -525,6 +685,7 @@
         "type": "text",
         "details": "You can <a href='https://www.tfwm.org.uk/get-help/report-a-problem-with-a-bus-stop-or-park-and-ride/' title='travel-with-accessibility' target='_blank'> report a problem with a bus stop or park and ride</a> online.",
         "callHelp": "To report an issue with other forms of transport, you’ll need to call us.",
+        "hideChat": true,
         "customerService": true
       }
     },
@@ -538,39 +699,59 @@
         "type": "text",
         "details": "You can <a href='https://www.tfwm.org.uk/get-help/report-a-problem-with-a-bus-stop-or-park-and-ride/' title='new-request-card' target='_blank'>report an issue with travel information at bus stops</a> online.",
         "callHelp": "To report an issue with travel information on other forms of transport, you’ll need to call us.",
+        "hideChat": true,
+        "customerService": true
+      }
+    },
+
+    {
+      "parentId": "issue-with-payzone",
+      "currentStepId": "step-issue-with-payzone",
+      "prevStepId": "step-report-a-problem",
+      "heading": "Report an issue with a Payzone shop",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "Contact us to report an issue with topping up a Swift card at a Payzone shop.",
+        "callHelp": "You can <a href='https://www.payzone.co.uk/contact-us/' target='_blank'>contact Payzone</a> to report other issues with Payzone shops.",
+        "hideChat": true,
         "customerService": true
       }
     },
     {
-      "parentId": "feedback-or-complaint",
-      "currentStepId": "step-feedback-or-complaint",
-      "prevStepId": "step-report-a-problem",
+      "parentId": "leave-feedback-or-complaint",
+      "currentStepId": "step-leave-feedback-or-complaint",
+      "prevStepId": "step-enquiry",
       "heading": "Leave feedback or make a complaint",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
         "details": "You can help us improve our services by sending us feedback. This includes suggestions and concerns.",
         "details2": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
-        "callHelp": "To leave feedback for anything else, you’ll need to call us.",
+        "callHelp": "To leave feedback for anything else, please call us or <a href='' target='_blank'>fill in this form</a>.",
         "customerService": true,
-        "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint</a>."
+        "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint online</a>."
       }
     },
     {
       "parentId": "other-report",
       "currentStepId": "step-other-report",
       "prevStepId": "step-report-a-problem",
-      "heading": "Give us a call",
+      "heading": "Contact Us",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
+
+        "details": "For all other enquiries please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+        "hideChat": true,
         "customerService": true
       }
     },
     {
       "id": "8",
       "currentStepId": "step-older-person-pass",
-      "prevStepId": "step-ticket-and-passes",
+      "prevStepId": "step-swift-tickets-passes",
       "parentId": "older-person-pass",
       "heading": "Older person’s pass",
       "hasReachedConfirmation": false,
@@ -611,7 +792,7 @@
       "id": "9",
       "parentId": "disabled-person-pass",
       "currentStepId": "step-disabled-person-pass",
-      "prevStepId": "step-ticket-and-passes",
+      "prevStepId": "step-swift-tickets-passes",
       "heading": "Disabled person’s pass",
       "hasReachedConfirmation": false,
       "fields": [
@@ -650,13 +831,14 @@
     {
       "parentId": "paper-ticket",
       "currentStepId": "step-paper-ticket",
-      "prevStepId": "step-ticket-and-passes",
+      "prevStepId": "step-swift-tickets-passes",
       "heading": "Paper ticket",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
         "details": "If you paper ticket is paid by Direct Debit, you can <a href='https://refund.tfwm.org.uk/' title='cancel-bank-mandate' target='_blank'>cancel your Direct Debit online</a>. ",
-        "callHelp": "If you need help with your paper ticket, you can give us a call.",
+        "details2": "If you need help with your paper ticket, you can call us or <a href='' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
       }
     },
@@ -671,7 +853,8 @@
         "details": "You can <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'>apply for an older person’s pass online</a>.",
         "details2": "You can also <a href='https://www.tfwm.org.uk/media/fmbkmzmf/oapapplication_form.pdf' title='download-application' target='_blank'> download the application</a> form to print out and send in the post.",
         "details3": "Find more <a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> information about the older person’s pass </a> including eligibility criteria.",
-        "callHelp": "If you need help with your application, you can give us a call.",
+        "callHelp": "For help with completing your application, call us or<a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
       }
     },
@@ -684,7 +867,7 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='cancel-bank-mandate' target='_blank'>update the details on your older person’s pass online</a>.",
-        "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call.",
+        "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call or chat to us.",
         "customerService": true
       }
     },
@@ -696,9 +879,9 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='cancel-bank-mandate' target='_blank'> renew your older person’s pass online</a>.",
+        "details": "You can <a href='https://www.wmca.org.uk/renewals' title='cancel-bank-mandate' target='_blank'>renew your older person’s pass online</a>. It’s the easiest way to renew and takes around 15 minutes.",
         "details2": "You can renew your pass up to 6 weeks before your current one is due to expire.",
-        "callHelp": "If you need help renewing your older person’s pass, you can give us a call.",
+        "callHelp": "If you need help renewing your older person’s pass, you can give us a call or chat to us.",
         "customerService": true
       }
     },
@@ -710,8 +893,9 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='cancel-bank-mandate' target='_blank'> replace your older person’s pass online</a>.",
-        "callHelp": "If you need help replacing your older person’s pass, you can give us a call.",
+        "details": "You can <a href='https://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'> replace your older person’s pass online</a>.",
+        "details2": "If you need help replacing your older person’s pass, you can give us a call.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
       }
     },
@@ -719,10 +903,12 @@
       "parentId": "other-pass-older",
       "currentStepId": "step-other-pass-older",
       "prevStepId": "step-older-person-pass",
-      "heading": "Give us a call",
+      "heading": "Contact Us",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
+        "details": "For all other enquiries please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
       }
     },
@@ -734,9 +920,9 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'>download the application form</a>to print out and send in the post.",
-        "details2": "It can take us up to 30 days to process an application. We’ll be in touch if we need any more information from you.",
-        "callHelp": "If you need help with your application, you can give us a call.",
+        "details": "You can <a href='' target='_blank'>apply online for a Disabled Person’s Pass</a>. You can also <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
+        "details2": "It can take us up to 6 weeks to process an application. We’ll be in touch if we need any more information from you.",
+        "callHelp": "If you need help with completing the application, call or chat to us. You can also <a href='' target='_blank'>fill in this form</a>.",
         "customerService": true
       }
     },
@@ -749,7 +935,7 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='disabled-pass-details' target='_blank'>update the details on your disabled person’s pass online</a>.",
-        "callHelp": "If you need help changing the details on your disabled person’s pass, you can give us a call.",
+        "callHelp": "If you need help changing the details on your disabled person’s pass, you can call or chat to us.",
         "customerService": true
       }
     },
@@ -761,8 +947,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "If you need to renew your disabled person’s pass, you’ll have to call us.",
-        "details2": "You can renew your pass up to 6 weeks before your current one is due to expire.",
+        "details": "We will contact you about 6 weeks before your pass expires to renew it.",
+        "warningText": "If you haven’t heard from us 6 weeks before your pass expires,  call or chat to us.",
         "customerService": true
       }
     },
@@ -775,7 +961,8 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://freetravelwm.org.uk/BeforeYouApply_input.action' title='disabled-pass-replace' target='_blank'> replace your disabled person’s pass online</a>.",
-        "callHelp": "If you need help replacing your disabled person’s pass, you can give us a call.",
+        "details2": "If you need help replacing your disabled person’s pass, you can give us a call.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
       }
     },
@@ -783,10 +970,25 @@
       "parentId": "other-pass-disabled",
       "currentStepId": "help-other-pass-disabled",
       "prevStepId": "step-disabled-person-pass",
-      "heading": "Give us a call",
+      "heading": "Contact Us",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
+        "details": "For all other enquiries please call or chat to us. You can also <a href='' title='other' target='_blank'>fill in this form</a>.",
+        "customerService": true
+      }
+    },
+    {
+      "id": "step-2",
+      "parentId": "enquiry-other",
+      "currentStepId": "step-enquiry-other",
+      "prevStepId": "step-enquiry",
+      "heading": "Contact Us",
+      "hasReachedConfirmation": true,
+      "content": {
+        "type": "text",
+        "details": "To give feedback or make an enquiry please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       }
     }
