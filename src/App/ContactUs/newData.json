@@ -197,14 +197,176 @@
       "parentId": "other",
       "currentStepId": "step-other",
       "prevStepId": "step-swiftcard-and-photocard",
-      "heading": "Give us a call",
+      "heading": "Contact Us",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "For all other enquiries please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
+        "details": "For all other enquiries please call us or <a href='/form/step-other' title='other' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your Swift card and photocard enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you have a Swift card?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Swift card number",
+                  "inputLabel2": "",
+                  "type": "number",
+                  "errorMsg": "Enter a valid Swift number"
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you have a Direct Debit number?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Swift card number",
+                  "inputLabel2": "",
+                  "type": "number",
+                  "errorMsg": "Enter a valid Swift number"
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        }
+      ]
     },
 
     {
@@ -282,10 +444,87 @@
       "content": {
         "type": "text",
 
-        "details": "Please call us or <a href='' target='_blank'>fill in this form</a>.",
+        "details": "Please call us or <a href='/form/step-workwise-general-enquiry' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your Workwise enquiry about?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        }
+      ]
     },
 
     {
@@ -313,7 +552,7 @@
     {
       "id": "step-4",
       "parentId": "swift-parking-app",
-      "currentStepId": "swift-parking-app",
+      "currentStepId": "step-swift-parking-app",
       "prevStepId": "step-swift-parking-or-transport",
       "heading": "Swift Parking app",
       "hasReachedConfirmation": true,
@@ -322,7 +561,101 @@
         "details": "Please call us or <a href='' title='step-swift-parking-app' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your app enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "step-4",
@@ -391,7 +724,170 @@
         "details2": "For all other enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What was the date and time of  the issue?",
+
+          "components": [
+            {
+              "type": "Date",
+              "required": true,
+              "id": "1",
+              "name": "date"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Where did the issue happen?",
+
+          "components": [
+            {
+              "type": "Location",
+              "required": true,
+              "id": "1",
+              "name": "date"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Who was the bus company?",
+
+          "components": [
+            {
+              "type": "Dropdown",
+              "details": "I don’t know the bus company I travelled with",
+              "label": "Please choose a company",
+              "required": true,
+              "id": "1",
+              "name": "date",
+              "options": [
+                "Arriva",
+                "Banga Travel",
+                "Chaserider",
+                "Chaserider",
+                "Community Transport",
+                "Coventry Minibuses"
+              ]
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you know the service number?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Service number",
+                  "inputLabel2": "",
+                  "type": "number",
+                  "errorMsg": "Enter a valid service number"
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Is there any other information to add to your enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "train",
@@ -432,7 +928,136 @@
         "details2": "For all other enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What was the date and time of  the issue?",
+
+          "components": [
+            {
+              "type": "Date",
+              "required": true,
+              "id": "1",
+              "name": "date"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Where did the issue happen?",
+
+          "components": [
+            {
+              "type": "Location",
+              "required": true,
+              "id": "1",
+              "name": "date"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Who was the train company?",
+
+          "components": [
+            {
+              "type": "Dropdown",
+
+              "label": "Please choose a company",
+              "required": true,
+              "id": "1",
+              "name": "date",
+              "options": [
+                "West Midlands Railway",
+                "Avanti West Coast",
+                "Cross Country",
+                "Chiltern Railways",
+                "London Northwestern Railway",
+                "Transport for Wales"
+              ]
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Is there any other information to add to your enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "tram",
@@ -466,7 +1091,182 @@
         "details2": "If you need help with park and ride, you can give us a call or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Is your enquiry about a specific park and ride location?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Park and ride location",
+                  "inputLabel2": "",
+                  "options": [
+                    "Acocks Green",
+                    "Berkswell",
+                    "Bescot Stadium",
+                    "Black Lake",
+                    "Blake Street",
+                    "Bloxwich North",
+                    "Bradley Lane",
+                    "Canley",
+                    "Chester Road",
+                    "Coseley",
+                    "Coventry",
+                    "Cradley Heath",
+                    "Dorridge",
+                    "Dudley Port",
+                    "Earlswood",
+                    "Four Oaks",
+                    "Hall Green",
+                    "Hampton-in-Arden",
+                    "Kings Norton",
+                    "Langley Green",
+                    "Lea Hall",
+                    "Longbridge",
+                    "Lye",
+                    "Marston Green",
+                    "Northfield",
+                    "Old Hill",
+                    "Olton",
+                    "Priestfield",
+                    "Rowley Regis",
+                    "Sandwell and Dudley",
+                    "Selly Oak",
+                    "Shirley",
+                    "Smethwick Galton Bridge",
+                    "Solihull",
+                    "Stourbridge Junction",
+                    "Sutton Coldfield",
+                    "Tame Bridge Parkway",
+                    "The Hawthorns",
+                    "Tile Hill",
+                    "Tipton",
+                    "Wednesbury Parkway",
+                    "Whitlocks End",
+                    "Widney Manor",
+                    "Wylde Green",
+                    "Yardley Wood"
+                  ],
+                  "type": "Dropdown",
+                  "errorMsg": ""
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your park and ride enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "sprint-bus",
@@ -480,7 +1280,102 @@
         "details2": "If you need help with our Sprint bus service, you can give us a call or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your sprint bus enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "5",
@@ -541,7 +1436,142 @@
         "details2": "For all other cycle storage enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Is your enquiry about a specific cycle storage location?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Cycle storage location",
+                  "inputLabel2": "",
+                  "options": [
+                    "Rowley Regis",
+                    "Longbridge",
+                    "New Street Station, Birmingham",
+                    "Selly Oak",
+                    "Stourbridge Junction"
+                  ],
+                  "type": "Dropdown",
+                  "errorMsg": ""
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your cycle storage enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "other-cycle",
@@ -555,7 +1585,102 @@
         "details2": "For all other cycling enquiries please call us or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your cycling enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "6",
@@ -731,7 +1856,85 @@
         "callHelp": "To leave feedback for anything else, please call us or <a href='' target='_blank'>fill in this form</a>.",
         "customerService": true,
         "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint online</a>."
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your feedback?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "other-report",
@@ -742,11 +1945,106 @@
       "content": {
         "type": "text",
 
-        "details": "For all other enquiries please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+        "details": "For all other enquiries please call us or <a href='/form/step-other-report' title='other' target='_blank'>fill in this form</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "hideChat": true,
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What problem would you like to report?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "8",
@@ -840,7 +2138,101 @@
         "details2": "If you need help with your paper ticket, you can call us or <a href='' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your paper ticket enquiry about?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "help-olderpass-application",
@@ -856,7 +2248,134 @@
         "callHelp": "For help with completing your application, call us or<a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your address?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "Postcode",
+              "required": true,
+              "id": "1",
+              "name": "postcode",
+              "errorMsg": "Postcode is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you have an olders person’s pass?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Older person’s pass number",
+                  "inputLabel2": "",
+                  "type": "number",
+                  "errorMsg": "Enter a valid older person’s pass number"
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What assistance do you require with your older person's pass application?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "change-details-older",
@@ -914,7 +2433,7 @@
     },
     {
       "parentId": "help-disabledpass-application",
-      "currentStepId": "help-disabledpass-application",
+      "currentStepId": "step-help-disabledpass-application",
       "prevStepId": "step-disabled-person-pass",
       "heading": "Help with my disabled person’s pass application",
       "hasReachedConfirmation": true,
@@ -924,7 +2443,135 @@
         "details2": "It can take us up to 6 weeks to process an application. We’ll be in touch if we need any more information from you.",
         "callHelp": "If you need help with completing the application, call or chat to us. You can also <a href='' target='_blank'>fill in this form</a>.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you already have a disabled person’s pass?",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Disabled person’s pass number",
+                  "inputLabel2": "",
+                  "type": "number",
+                  "errorMsg": "Enter a valid disabled person’s pass number"
+                },
+                {
+                  "name": "no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What assistance do you require with your disabled person’s pass application?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "change-details-disabled",
@@ -990,7 +2637,102 @@
         "details": "To give feedback or make an enquiry please call us or <a href='https://pay.wmca.org.uk/' title='other' target='_blank'>fill in this form</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
-      }
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email",
+                  "option": "Email",
+                  "required": true,
+                  "inputLabel1": "Email address",
+                  "inputLabel2": "For example, name@example.com",
+                  "type": "email",
+                  "errorMsg": "Enter a valid email address"
+                },
+                {
+                  "name": "phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputLabel1": "Phone number",
+                  "inputLabel2": "For example, 07700900457",
+                  "type": "number",
+                  "errorMsg": "Enter a valid phone number"
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your enquiry?",
+
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

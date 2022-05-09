@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Contexts
 import ContactUsForm from './ContactUs/components/Enquiry';
-import { FormProvider } from '../globalState/ContactUsContext';
+import { FormProvider, FormDataContext } from '../globalState/ContactUsContext';
+import Form from './EnquiryForm/components/Form';
 
 function App() {
+  const [{ formId }] = useContext(FormDataContext);
+  console.log(formId);
   return (
-    <FormProvider>
-      <Router>
-        <Switch>
-          <Route path="/">
-            <ContactUsForm />
-          </Route>
-        </Switch>
-      </Router>
-    </FormProvider>
+    <Router>
+      <Switch>
+        {/* <Route path="/form/:formId" render={({ match }) => <Form formId={match.params.formId} />} /> */}
+
+        <Route path="/">{formId ? <Form /> : <ContactUsForm />}</Route>
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
+const Root = () => {
+  return (
+    <FormProvider>
+      <App />
+    </FormProvider>
+  );
+};
+export default Root;

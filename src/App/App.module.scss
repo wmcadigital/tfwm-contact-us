@@ -21,6 +21,13 @@
   color: get-color(metro);
 }
 
+.textArea {
+  width: 70%;
+  height: 10rem;
+  resize: none;
+  border: 2px solid get-color(secondary);
+}
+
 .iconDimension {
   width: 2.5rem;
   height: 2.5rem;

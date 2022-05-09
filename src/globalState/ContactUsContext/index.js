@@ -18,6 +18,10 @@ export const FormProvider = (props) => {
       hasReachedConfirmation: false,
     },
     steps: Data,
+    page: 'COMPLAINT',
+    stepNum: 0,
+    formData: {},
+    formId: '',
   };
   const ContactUsReducer = (state, action) => {
     switch (action.type) {
@@ -47,6 +51,40 @@ export const FormProvider = (props) => {
         return {
           ...state,
           currentStep: { ...prevSelectedStep, fields: updatedFields },
+        };
+      }
+      case 'CHANGE-PAGE': {
+        return {
+          ...state,
+          page: action.payload.page,
+          stepNum: action.payload.stepNum,
+        };
+      }
+      case 'ADD-DATA': {
+        const cloneState = state;
+        cloneState.formData[action.payload.name] = action.payload.value;
+        return {
+          ...state,
+          formData: cloneState.formData,
+        };
+      }
+
+      case 'NEXT': {
+        return {
+          ...state,
+          stepNum: state.stepNum + 1,
+        };
+      }
+      case 'PREV': {
+        return {
+          ...state,
+          stepNum: state.stepNum - 1,
+        };
+      }
+      case 'FORM-ID': {
+        return {
+          ...state,
+          formId: action.payload.formId,
         };
       }
       default:

@@ -44,6 +44,12 @@ const ContactUsForm = () => {
     });
     window.scrollTo(0, 0);
   };
+  const fillFormHandler = (formId) => {
+    formDispatch({
+      type: 'FORM-ID',
+      payload: { formId },
+    });
+  };
   return (
     <div className="wmnds-container wmnds-container--main">
       {currentStep.heading === 'What is your enquiry about?' ? null : (
@@ -80,6 +86,9 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
+      <button type="button" onClick={() => fillFormHandler('step-other')}>
+        Fill in this Form
+      </button>
     </div>
   );
 };
