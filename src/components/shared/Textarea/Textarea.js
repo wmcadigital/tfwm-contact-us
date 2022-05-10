@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import classes from '../../../App/App.module.scss';
 
+/* eslint-disable react/prop-types */
 const Textarea = ({
   title = '',
   errorMsg = '',
@@ -11,6 +12,7 @@ const Textarea = ({
   name = '',
   defaultValue = undefined,
   required = false,
+  register,
 }) => {
   const [hasError, setHasError] = useState(defaultValue === '');
 
@@ -50,6 +52,7 @@ const Textarea = ({
           placeholder=""
           onChange={textChageHandler}
           style={{ width: '70%' }}
+          ref={register}
         />
       </div>
     </div>

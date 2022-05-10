@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
-const Input = ({ label = '', name = '', defaultValue = '', errorMsg = '', required = false }) => {
+// eslint-disable-next-line react/prop-types
+const Input = ({ label = '', name = '', defaultValue = '', errorMsg = '', required, register }) => {
   const [hasError, setHasError] = useState(defaultValue === '');
 
   const inputChageHandler = (event) => {
@@ -35,6 +37,7 @@ const Input = ({ label = '', name = '', defaultValue = '', errorMsg = '', requir
         style={{ width: '20rem' }}
         defaultValue={defaultValue}
         onChange={inputChageHandler}
+        ref={register}
       />
     </div>
   );

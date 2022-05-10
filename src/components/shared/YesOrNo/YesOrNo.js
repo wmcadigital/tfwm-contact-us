@@ -1,27 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+
 import PropTypes from 'prop-types';
+import Radio from '../Radios/Radio/Radio';
 
-const YesOrNo = ({ label = '', options = [], defaultValues = [], required = false }) => {
+const YesOrNo = ({ label = '', options = [], defaultValues = [], required = false, register }) => {
   const [hasError, setHasError] = useState(defaultValues.every((value) => value === undefined));
-  const { register, getValues } = useForm();
 
-  const [checkedBoxes, setCheckedBoxes] = useState([]);
-  const checkBoxesChangeHandler = () => {
-    const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)].map(
-      (checkbox) => checkbox.value
-    );
-
-    if (findCheckedBoxes.length > 0) {
-      setHasError(false);
-    } else {
-      setHasError(true);
-    }
-    setCheckedBoxes(findCheckedBoxes);
+  const [checkedRadio, setCheckedRadio] = useState([]);
+  const checkBoxesChangeHandler = (e) => {
+    setCheckedRadio(e.target.value);
   };
-  useEffect(() => {
-    checkBoxesChangeHandler();
-  }, []);
 
   useEffect(() => {
     if (defaultValues.every((value) => value === undefined)) {
@@ -37,46 +26,44 @@ const YesOrNo = ({ label = '', options = [], defaultValues = [], required = fals
         {hasError && (
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
-        {options.map((option, idx) => (
-          <div key={option.name} className="wmnds-m-b-md">
-            <label htmlFor="checkbox-example" className="wmnds-fe-radios__container">
-              {option.option}
-              <input
-                className="wmnds-fe-radios__input"
-                value="Option 1"
-                name="checkbox-example"
-                type="radio"
-                id="ok"
-                ref={register}
-              />
-              <span className="wmnds-fe-radios__checkmark" />
-            </label>
-            {checkedBoxes.includes(option.name) && (
-              <div
-                style={{ marginLeft: 60 }}
-                className={` ${defaultValues[idx] === '' && 'wmnds-fe-group--error'}`}
-              >
-                <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
-                  {option.inputLabel1}
-                </label>
-                <label className="wmnds-fe-label" htmlFor="input">
-                  {option.inputLabel2}
-                </label>{' '}
-                {defaultValues[idx] === '' && (
-                  <span className="wmnds-fe-error-message">{option.errorMsg}</span>
-                )}
-                <input
-                  name={option.name}
-                  className="wmnds-fe-input"
-                  id={required ? 'required' : ''}
-                  type={option.type}
-                  style={{ width: '20rem' }}
-                  defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
-                />
-              </div>
-            )}
-          </div>
-        ))}
+        <fieldset style={{ border: 'none' }} onChange={checkBoxesChangeHandler}>
+          {options.map((option, idx) => (
+            <div key={option.name} className="wmnds-m-b-md">
+              <Radio
+                key={option.name}
+                name="yes-or-no"
+                text={option.option}
+                id={option.name}
+                value={option.name}
+                register={register}
+              />{' '}
+              {checkedRadio === 'yes' && option.name === 'yes' && (
+                <div
+                  style={{ marginLeft: 60 }}
+                  className={` ${defaultValues[idx] === '' && 'wmnds-fe-group--error'}`}
+                >
+                  <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
+                    {option.inputLabel1}
+                  </label>
+                  <label className="wmnds-fe-label" htmlFor="input">
+                    {option.inputLabel2}
+                  </label>{' '}
+                  {defaultValues[idx] === '' && (
+                    <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                  )}
+                  <input
+                    name={option.name}
+                    className="wmnds-fe-input"
+                    id={required ? 'required' : ''}
+                    type={option.type}
+                    style={{ width: '20rem' }}
+                    defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </fieldset>
       </div>
     </div>
   );

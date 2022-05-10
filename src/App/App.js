@@ -7,7 +7,7 @@ import Form from './EnquiryForm/components/Form';
 
 function App() {
   const [{ formId }] = useContext(FormDataContext);
-  console.log(formId);
+
   return (
     <Router>
       <Switch>

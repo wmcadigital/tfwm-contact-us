@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
+/* eslint-disable react/prop-types */
 const Dropdown = ({
   label = '',
   details = '',
@@ -10,7 +12,8 @@ const Dropdown = ({
   onChange = () => {},
   name = '',
   defaultValue = undefined,
-  required = false,
+  required,
+  register,
 }) => {
   const [hasError, setHasError] = useState(defaultValue === '');
 
@@ -48,6 +51,7 @@ const Dropdown = ({
             dropdownChageHandler(e);
           }}
           defaultValue={defaultValue}
+          ref={register}
         >
           <option value="">Choose from list</option>
           {options.map((option) => (

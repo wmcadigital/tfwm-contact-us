@@ -2,26 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 
+/* eslint-disable react/prop-types */
 const FileUpload = ({
   label = '',
   name = '',
   defaultValue = '',
   errorMsg = '',
   details = '',
-
   required = false,
+  register,
 }) => {
   const [file, setFile] = useState();
-  const fileUploadRef = useRef();
+
   const reset = () => {
-    fileUploadRef.current.value = '';
+    // register.current.value = '';
     setFile(undefined);
   };
   const fileChangeHandler = (event) => {
-    setFile(event.target.files[0]);
+    // setFile(event.target.files[0]);
   };
-  if (fileUploadRef.current) {
-    console.log(fileUploadRef.current.files);
+  if (register.current) {
+    // console.log(register.current.files);
   }
   return (
     <div className="wmnds-fe-group ">
@@ -42,7 +43,7 @@ const FileUpload = ({
             id="fileUploader"
             className="wmnds-fe-file-upload__input"
             onChange={fileChangeHandler}
-            ref={fileUploadRef}
+            ref={register}
             accept="image/png,image/jpeg,image/jpg,application/pdf"
           />
           <svg className="wmnds-btn__icon wmnds-btn__icon--right">
@@ -75,7 +76,6 @@ const FileUpload = ({
 FileUpload.propTypes = {
   label: PropTypes.string.isRequired,
   details: PropTypes.string.isRequired,
-
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

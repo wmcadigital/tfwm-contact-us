@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { useForm } from 'react-hook-form';
+
 import FileUpload from 'components/shared/FileUpload/FileUpload';
 
 import YesOrNo from 'components/shared/YesOrNo/YesOrNo';
@@ -69,7 +71,25 @@ const Form = () => {
       type: 'PREV',
     });
   };
+  const { register, handleSubmit, getValues, errors } = useForm();
+  const [formError, setFormError] = useState(false);
 
+  const continueHandler = (event) => {
+    const values = getValues();
+    const hasAllValues = Object.values(values).every((val) => val);
+    console.log(values);
+    setFormError(!hasAllValues);
+    if (hasAllValues) {
+      // formDispatch({
+      //   type: 'CONTINUE',
+      //   payload: { currentStep, selectedVal },
+      // });
+      // window.scrollTo(0, 0);
+      formDispatch({
+        type: 'NEXT',
+      });
+    }
+  };
   return (
     <>
       <div className="wmnds-col-1 wmnds-m-lg">
@@ -85,7 +105,7 @@ const Form = () => {
         <h4 className="wmnds-m-t-xs">{data.sectionDescription}</h4>
 
         <h2 className=" wmnds-m-t-lg">{data.title}</h2>
-        <form onSubmit={nextStep}>
+        <form onSubmit={handleSubmit(continueHandler)}>
           {data.components.map((component) => (
             <div key={component.id}>
               {component.type === 'Dropdown' && (
@@ -97,6 +117,7 @@ const Form = () => {
                   options={component.options}
                   name={component.name}
                   defaultValue={formData[component.name]}
+                  register={register}
                 />
               )}
 
@@ -109,6 +130,7 @@ const Form = () => {
                   name={component.name}
                   errorMsg={component.errorMsg}
                   defaultValue={formData[component.name]}
+                  register={register}
                 />
               )}
 
@@ -119,6 +141,7 @@ const Form = () => {
                   defaultValue={formData[component.name]}
                   errorMsg={component.errorMsg}
                   required={component.required}
+                  register={register}
                 />
               )}
               {component.type === 'FileUpload' && (
@@ -129,6 +152,7 @@ const Form = () => {
                   defaultValue={formData[component.name]}
                   errorMsg={component.errorMsg}
                   required={component.required}
+                  register={register}
                 />
               )}
               {component.type === 'Checkbox' && (
@@ -138,6 +162,7 @@ const Form = () => {
                   name={component.name}
                   defaultValues={[formData.email, formData.phone]}
                   required={component.required}
+                  register={register}
                 />
               )}
               {component.type === 'YesOrNo' && (
@@ -147,6 +172,7 @@ const Form = () => {
                   name={component.name}
                   defaultValues={[formData.email, formData.phone]}
                   required={component.required}
+                  register={register}
                 />
               )}
             </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 
-const Checkbox = ({ label = '', options = [], defaultValues = [], required = false }) => {
+const Checkbox = ({ label = '', options = [], defaultValues = [], required = false, register }) => {
   const [hasError, setHasError] = useState(defaultValues.every((value) => value === undefined));
 
   const [checkedBoxes, setCheckedBoxes] = useState([]);
@@ -77,6 +78,7 @@ const Checkbox = ({ label = '', options = [], defaultValues = [], required = fal
                   type={option.type}
                   style={{ width: '20rem' }}
                   defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                  ref={register}
                 />
               </div>
             )}

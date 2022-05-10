@@ -315,7 +315,7 @@
                   "required": true,
                   "inputLabel1": "Swift card number",
                   "inputLabel2": "",
-                  "type": "number",
+
                   "errorMsg": "Enter a valid Swift number"
                 },
                 {
