@@ -4,21 +4,32 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Radio from '../Radios/Radio/Radio';
 
-const YesOrNo = ({ label = '', options = [], defaultValues = [], required = false, register }) => {
-  const [hasError, setHasError] = useState(defaultValues.every((value) => value === undefined));
+const YesOrNo = ({
+  label = '',
+  options = [],
+  defaultValues = [],
+  required = false,
+  register,
+  unregister,
+  errors,
+}) => {
+  const [hasError, setHasError] = useState(false);
 
   const [checkedRadio, setCheckedRadio] = useState([]);
   const checkBoxesChangeHandler = (e) => {
+    if (e.target.value) {
+      setHasError(false);
+    }
     setCheckedRadio(e.target.value);
   };
 
   useEffect(() => {
-    if (defaultValues.every((value) => value === undefined)) {
+    if (errors.includes('yes-or-no')) {
       setHasError(true);
     } else {
       setHasError(false);
     }
-  }, [defaultValues]);
+  }, [errors]);
 
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
@@ -26,7 +37,7 @@ const YesOrNo = ({ label = '', options = [], defaultValues = [], required = fals
         {hasError && (
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
-        <fieldset style={{ border: 'none' }} onChange={checkBoxesChangeHandler}>
+        <fieldset style={{ border: 'none' }}>
           {options.map((option, idx) => (
             <div key={option.name} className="wmnds-m-b-md">
               <Radio
@@ -36,11 +47,12 @@ const YesOrNo = ({ label = '', options = [], defaultValues = [], required = fals
                 id={option.name}
                 value={option.name}
                 register={register}
+                onChange={checkBoxesChangeHandler}
               />{' '}
               {checkedRadio === 'yes' && option.name === 'yes' && (
                 <div
                   style={{ marginLeft: 60 }}
-                  className={` ${defaultValues[idx] === '' && 'wmnds-fe-group--error'}`}
+                  className={` ${errors.includes('yes') && 'wmnds-fe-group--error'}`}
                 >
                   <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                     {option.inputLabel1}
@@ -48,16 +60,16 @@ const YesOrNo = ({ label = '', options = [], defaultValues = [], required = fals
                   <label className="wmnds-fe-label" htmlFor="input">
                     {option.inputLabel2}
                   </label>{' '}
-                  {defaultValues[idx] === '' && (
+                  {errors.includes('yes') && (
                     <span className="wmnds-fe-error-message">{option.errorMsg}</span>
                   )}
                   <input
                     name={option.name}
                     className="wmnds-fe-input"
-                    id={required ? 'required' : ''}
                     type={option.type}
                     style={{ width: '20rem' }}
                     defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                    ref={register}
                   />
                 </div>
               )}

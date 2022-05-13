@@ -45,7 +45,10 @@ const Button = ({
       ) : (
         /* If icon right is set then call icon component and inject correct svg */
         iconRight && (
-          <Icon className="wmnds-btn__icon wmnds-btn__icon--right" iconName={iconRight} />
+          <Icon
+            className={`wmnds-btn__icon ${text && 'wmnds-btn__icon--right'}`}
+            iconName={iconRight}
+          />
         )
       )}
     </button>

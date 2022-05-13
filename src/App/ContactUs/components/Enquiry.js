@@ -86,9 +86,24 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-other')}>
+      <button type="button" onClick={() => fillFormHandler('step-train')}>
         Fill in this Form
       </button>
+      <button
+        type="button"
+        id="addPoint"
+        className="wmnds-btn wmnds-btn--secondary wmnds-m-t-md wmnds-m-r-md"
+      >
+        Add Point
+      </button>
+      <button
+        type="button"
+        id="removePoint"
+        className="wmnds-btn wmnds-btn--secondary wmnds-m-t-md wmnds-m-r-md"
+      >
+        Remove Point
+      </button>
+      <div id="mapDiv" />
     </div>
   );
 };

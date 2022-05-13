@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+// import { isRegularExpressionLiteral } from 'typescript';
 /* eslint-disable react/prop-types */
 
-const Checkbox = ({ label = '', options = [], defaultValues = [], required = false, register }) => {
-  const [hasError, setHasError] = useState(defaultValues.every((value) => value === undefined));
+const Checkbox = ({
+  label = '',
+  options = [],
+  defaultValues = [],
+  required = false,
+  register,
+  unregister,
+  errors,
+}) => {
+  const [hasError, setHasError] = useState(false);
 
   const [checkedBoxes, setCheckedBoxes] = useState([]);
   const checkBoxesChangeHandler = () => {
@@ -12,24 +21,27 @@ const Checkbox = ({ label = '', options = [], defaultValues = [], required = fal
       (checkbox) => checkbox.value
     );
 
-    if (findCheckedBoxes.length > 0) {
-      setHasError(false);
-    } else {
+    if (findCheckedBoxes.length === 0 && errors.length > 0) {
       setHasError(true);
+    } else {
+      setHasError(false);
     }
     setCheckedBoxes(findCheckedBoxes);
   };
   useEffect(() => {
     checkBoxesChangeHandler();
-  }, []);
+  }, [errors]);
 
-  useEffect(() => {
-    if (defaultValues.every((value) => value === undefined)) {
-      setHasError(true);
-    } else {
-      setHasError(false);
+  const registerRef = (name) => {
+    if (checkedBoxes.length === 0) {
+      return true;
     }
-  }, [defaultValues]);
+    if (checkedBoxes.includes(name)) {
+      return true;
+    }
+
+    return false;
+  };
 
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
@@ -39,28 +51,34 @@ const Checkbox = ({ label = '', options = [], defaultValues = [], required = fal
         )}
 
         <span className="wmnds-fe-checkboxes__desc">{label}</span>
+
         {options.map((option, idx) => (
           <div key={option.name} className="wmnds-m-b-md">
-            <div className="wmnds-fe-checkboxes__container">
+            <label htmlFor={option.name} className="wmnds-fe-checkboxes__container">
               {option.option}
               <input
                 onChange={checkBoxesChangeHandler}
-                className="wmnds-fe-checkboxes__input"
+                className={`wmnds-fe-checkboxes__input ${
+                  registerRef(option.name) ? 'register' : 'undefined'
+                }`}
                 value={option.name}
                 type="checkbox"
                 defaultChecked={defaultValues[idx] && true}
-                id={required ? 'required' : ''}
+                id={option.name}
+                name={option.name}
+                ref={registerRef(option.name) ? register : unregister(option.name)}
               />
+
               <span className="wmnds-fe-checkboxes__checkmark">
                 <svg className="wmnds-fe-checkboxes__icon">
                   <use xlinkHref="#wmnds-general-checkmark" href="#wmnds-general-checkmark" />
                 </svg>
               </span>
-            </div>
+            </label>
             {checkedBoxes.includes(option.name) && (
               <div
                 style={{ marginLeft: 60 }}
-                className={` ${defaultValues[idx] === '' && 'wmnds-fe-group--error'}`}
+                className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
               >
                 <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                   {option.inputLabel1}
@@ -68,7 +86,7 @@ const Checkbox = ({ label = '', options = [], defaultValues = [], required = fal
                 <label className="wmnds-fe-label" htmlFor="input">
                   {option.inputLabel2}
                 </label>{' '}
-                {defaultValues[idx] === '' && (
+                {errors.includes(option.name) && (
                   <span className="wmnds-fe-error-message">{option.errorMsg}</span>
                 )}
                 <input

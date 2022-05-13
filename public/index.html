@@ -75,7 +75,281 @@
       rel="stylesheet"
       href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/css/wmnds.min.css"
     />
-
+    <!-- maps api scripts -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/css/main.css" />
+    <script src="https://js.arcgis.com/4.22/"></script>
+    <script>
+      require([
+        'esri/Map',
+        'esri/views/MapView',
+        'esri/Basemap',
+        'esri/layers/VectorTileLayer',
+        'esri/widgets/Locate',
+        'esri/widgets/Sketch/SketchViewModel',
+        'esri/Graphic',
+        'esri/layers/GraphicsLayer',
+        'esri/widgets/Expand',
+        'esri/widgets/Search',
+        'esri/geometry/support/webMercatorUtils',
+        'esri/geometry/Polygon',
+        'esri/geometry/Polyline',
+        'esri/core/watchUtils',
+      ], function (
+        Map,
+        MapView,
+        Basemap,
+        VectorTileLayer,
+        Locate,
+        SketchViewModel,
+        Graphic,
+        GraphicsLayer,
+        Expand,
+        Search,
+        webMercatorUtils,
+        Polygon,
+        Polyline,
+        watchUtils
+      ) {
+        const graphicsLayer = new GraphicsLayer();
+        const basemap = new Basemap({
+          baseLayers: [
+            new VectorTileLayer({
+              id: 'wmca-basemap',
+              portalItem: {
+                // set the basemap to the one being used: https://tfwm.maps.arcgis.com/home/item.html?id=53f165a8863c4d40ba017042e248355e
+                id: '53f165a8863c4d40ba017042e248355e',
+              },
+            }),
+          ],
+        });
+        var map = new Map({
+          basemap: basemap,
+          layers: [graphicsLayer],
+        });
+        const view = new MapView({
+          map: map,
+          container: 'mapDiv',
+          center: [-2.0047209, 52.4778132],
+          zoom: 8,
+        });
+        let sketchVM;
+        const addPointButton = document.getElementById('addPoint');
+        const removePointButton = document.getElementById('removePoint');
+        const locateBtn = new Locate({
+          view: view,
+        });
+        const searchWidget = new Search({
+          view: view,
+          container: 'searchWidget',
+        });
+        view.when(() => {
+          // Create a new instance of sketchViewModel
+          sketchVM = new SketchViewModel({
+            view: view,
+            layer: graphicsLayer,
+            pointSymbol: {
+              type: 'simple-marker',
+              style: 'circle',
+              size: 20,
+              color: '#3c1053',
+              outline: {
+                width: 1,
+                style: 'solid',
+                color: '#9d5baf',
+              },
+            },
+          });
+          // show add point button
+          const addBtn = document.querySelector('#addPoint');
+          addBtn.style.display = 'inline';
+          addPointButton.addEventListener('click', (evt) => {
+            sketchVM.create('point');
+          });
+          removePointButton.addEventListener('click', (evt) => {
+            // remove point from map
+            graphicsLayer.removeAll();
+            // remove add point button once it's been added
+            const addPointBtn = document.querySelector('#addPoint');
+            addPointBtn.style.display = 'inline';
+            // add remove point button
+            const removePointBtn = document.querySelector('#removePoint');
+            removePointBtn.style.display = 'none';
+          });
+          // new point
+          sketchVM.on('create', (event) => {
+            if (event.state === 'complete') {
+              // remove add point button once it's been added
+              const addPointBtn = document.querySelector('#addPoint');
+              addPointBtn.style.display = 'none';
+              // add remove point button
+              const removePointBtn = document.querySelector('#removePoint');
+              removePointBtn.style.display = 'inline';
+              // set x y geometry
+              let x = event.graphic.geometry.latitude;
+              let y = event.graphic.geometry.longitude;
+              // add point data to form input
+              document.querySelector(
+                '.mapPoint'
+              ).value = `https://www.google.com/maps/search/?api=1&query=${x},${y}`;
+              sessionStorage.setItem('latitude', x);
+              sessionStorage.setItem('longitude', y);
+            }
+          });
+          // point is selected
+          sketchVM.on('update', (event) => {
+            if (event.state === 'start') {
+              // disable submit button
+              const subBtn = document.querySelector('.submit');
+              subBtn.disabled = true;
+              subBtn.classList.add('wmnds-btn--disabled');
+            }
+          });
+          // move point
+          sketchVM.on('update', (event) => {
+            if (event.state === 'complete') {
+              // enable submit button
+              const subBtn = document.querySelector('.submit');
+              subBtn.disabled = false;
+              subBtn.classList.remove('wmnds-btn--disabled');
+              // set x y geometry
+              let x = event.graphics[0].geometry.latitude;
+              let y = event.graphics[0].geometry.longitude;
+              // add point data to form input
+              document.querySelector(
+                '.mapPoint'
+              ).value = `https://www.google.com/maps/search/?api=1&query=${x},${y}`;
+            }
+          });
+        });
+        // Hide the loading indicator when the view stops updating
+        watchUtils.whenFalse(view, 'updating', function (evt) {
+          // search input style
+          const searchContainer = document.querySelector('.esri-search__input-container');
+          const searchInput = document.querySelector('#searchWidget-input');
+          searchContainer?.classList.add('wmnds-autocomplete');
+          searchInput?.classList.add('wmnds-fe-input');
+          searchInput?.classList.add('wmnds-autocomplete__input');
+          searchInput?.classList.add('wmnds-col-1');
+          searchInput?.insertAdjacentHTML(
+            'beforebegin',
+            '<svg class="wmnds-autocomplete__icon"><use xlink:href="#wmnds-general-search" href="#wmnds-general-search"></use></svg>'
+          );
+          const selectElement = document.querySelector('#searchWidget-input');
+          selectElement?.addEventListener('change', (event) => {
+            console.log('dropdown');
+            const searchList = document.querySelector('.esri-menu__list');
+            searchList.classList.add('wmnds-autocomplete-suggestions');
+          });
+        });
+        // Move ui elements into the right position
+        view.ui.move(['zoom'], 'top-right');
+        view.ui.move(['attribution'], 'bottom');
+        view.ui.add(locateBtn, { position: 'top-right' });
+      });
+      var mapView = false;
+      function mapToggle(event) {
+        const x = document.getElementById('formMap');
+        const y = document.getElementById('formList');
+        const b = document.querySelector('.mapBtn');
+        if (y.style.display === 'none') {
+          y.style.display = 'block';
+          x.style.display = 'none';
+          b.innerHTML =
+            'Map view ' +
+            `<svg class="wmnds-btn__icon wmnds-btn__icon--right"><use xlink:href="#wmnds-general-location-pin" href="#wmnds-general-location-pin"></use></svg>`;
+          mapView = false;
+          sessionStorage.setItem('mapView', 'false');
+        } else {
+          console.log('turkey');
+          y.style.display = 'none';
+          x.style.display = 'block';
+          b.innerHTML =
+            'List view ' +
+            `<svg class="wmnds-btn__icon wmnds-btn__icon--right"><use xlink:href="#wmnds-general-chevron-right" href="#wmnds-general-list"></use></svg>`;
+          mapView = true;
+          sessionStorage.setItem('mapView', 'true');
+        }
+      }
+      // get map view state from session storage
+      var mapValue = sessionStorage.getItem('mapView');
+      // show map if true
+      window.addEventListener('load', function () {
+        if (mapValue === 'true') {
+          const map = document.getElementById('formMap');
+          const list = document.getElementById('formList');
+          const point = {
+            //Create a point
+            type: 'point',
+            longitude: sessionStorage.getItem('longitude'),
+            latitude: sessionStorage.getItem('latitude'),
+          };
+          list.style.display = 'none';
+          map.style.display = 'block';
+          console.log('map is true');
+          const pointGraphic = new Graphic({
+            geometry: point,
+          });
+          graphicsLayer.add(pointGraphic);
+        }
+      });
+    </script>
+    <style>
+      #mapDiv {
+        padding: 0;
+        margin: 0;
+        height: 350px;
+        width: 100%;
+      }
+      #formMap {
+        display: none;
+      }
+      .esri-ui-top-right {
+        flex-flow: column-reverse;
+      }
+      .esri-ui-top-right .esri-zoom .esri-widget--button {
+        background-color: #84329b;
+        color: #fff;
+      }
+      .esri-ui-top-right .esri-zoom .esri-widget--button .esri-icon {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .esri-ui-top-right .esri-locate,
+      .esri-ui-top-right .esri-zoom .esri-widget--button {
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+        margin-bottom: 0.75rem;
+        box-shadow: none;
+      }
+      .esri-ui-top-right .esri-zoom {
+        background: 0;
+        box-shadow: none;
+        border: 0;
+      }
+      .esri-search__submit-button {
+        display: none;
+      }
+      .wmnds-autocomplete__icon {
+        z-index: 9999;
+      }
+      .esri-input[type='text'],
+      .esri-input[type='password'],
+      .esri-input[type='number'] {
+        height: inherit;
+      }
+      .esri-search__clear-button {
+        display: none;
+      }
+      .esri-search__suggestions-list--current-location {
+        list-style: none !important;
+        -webkit-padding-start: 0 !important;
+        padding-inline-start: 0 !important;
+      }
+      .esri-search {
+        width: 75% !important;
+      }
+    </style>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {

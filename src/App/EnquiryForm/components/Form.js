@@ -16,6 +16,10 @@ import Checkbox from '../../../components/shared/Checkbox/Checkbox';
 
 import Input from '../../../components/shared/Input/Input';
 
+import Date from '../../../components/shared/Date/Date';
+
+import Address from '../../../components/shared/Address/Address';
+
 import { FormDataContext } from '../../../globalState/ContactUsContext';
 
 import Data from '../../ContactUs/newData.json';
@@ -37,7 +41,7 @@ const Form = () => {
       }
     });
     // event.target.forEach((target) => {
-    //   console.log(target);
+
     // if (target.name) {
     //   // answers.push({ name: target.name, value: target.value, required: target.id });
     //   formDispatch({
@@ -71,20 +75,18 @@ const Form = () => {
       type: 'PREV',
     });
   };
-  const { register, handleSubmit, getValues, errors } = useForm();
-  const [formError, setFormError] = useState(false);
+  const { register, handleSubmit, getValues, unregister } = useForm({ shouldUnregister: true });
+  const [formError, setFormError] = useState([]);
 
   const continueHandler = (event) => {
     const values = getValues();
-    const hasAllValues = Object.values(values).every((val) => val);
     console.log(values);
-    setFormError(!hasAllValues);
-    if (hasAllValues) {
-      // formDispatch({
-      //   type: 'CONTINUE',
-      //   payload: { currentStep, selectedVal },
-      // });
-      // window.scrollTo(0, 0);
+    const errors = Object.entries(values)
+      .filter((val) => !val[1])
+      .map((val) => val[0]);
+
+    setFormError(errors);
+    if (errors.length === 0) {
       formDispatch({
         type: 'NEXT',
       });
@@ -118,6 +120,7 @@ const Form = () => {
                   name={component.name}
                   defaultValue={formData[component.name]}
                   register={register}
+                  errors={formError}
                 />
               )}
 
@@ -131,6 +134,7 @@ const Form = () => {
                   errorMsg={component.errorMsg}
                   defaultValue={formData[component.name]}
                   register={register}
+                  errors={formError}
                 />
               )}
 
@@ -142,6 +146,7 @@ const Form = () => {
                   errorMsg={component.errorMsg}
                   required={component.required}
                   register={register}
+                  errors={formError}
                 />
               )}
               {component.type === 'FileUpload' && (
@@ -153,6 +158,7 @@ const Form = () => {
                   errorMsg={component.errorMsg}
                   required={component.required}
                   register={register}
+                  errors={formError}
                 />
               )}
               {component.type === 'Checkbox' && (
@@ -163,6 +169,8 @@ const Form = () => {
                   defaultValues={[formData.email, formData.phone]}
                   required={component.required}
                   register={register}
+                  unregister={unregister}
+                  errors={formError}
                 />
               )}
               {component.type === 'YesOrNo' && (
@@ -173,6 +181,28 @@ const Form = () => {
                   defaultValues={[formData.email, formData.phone]}
                   required={component.required}
                   register={register}
+                  errors={formError}
+                />
+              )}
+              {component.type === 'Date' && (
+                <Date
+                  name={component.name}
+                  defaultValues={[formData.email, formData.phone]}
+                  required={component.required}
+                  register={register}
+                  errors={formError}
+                />
+              )}
+              {component.type === 'Address' && (
+                <Address
+                  label={component.label}
+                  name={component.name}
+                  defaultValue={formData[component.name]}
+                  errorMsg={component.errorMsg}
+                  required={component.required}
+                  register={register}
+                  errors={formError}
+                  inputs={component.inputs}
                 />
               )}
             </div>

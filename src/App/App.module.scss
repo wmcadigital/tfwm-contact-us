@@ -32,3 +32,10 @@
   width: 2.5rem;
   height: 2.5rem;
 }
+
+.searchButton {
+  padding: 13px !important;
+  background-color: get-color(primary) !important;
+  cursor: pointer !important;
+  all: unset;
+}

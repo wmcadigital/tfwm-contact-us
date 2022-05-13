@@ -1,11 +1,19 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-const Input = ({ label = '', name = '', defaultValue = '', errorMsg = '', required, register }) => {
-  const [hasError, setHasError] = useState(defaultValue === '');
+const Input = ({
+  label = '',
+  label2 = '',
+  name = '',
+  defaultValue = '',
+  errorMsg = '',
+  required,
+  register,
+  errors,
+}) => {
+  const [hasError, setHasError] = useState(errors.includes(name));
 
   const inputChageHandler = (event) => {
     if (event.target.value === '') {
@@ -15,17 +23,23 @@ const Input = ({ label = '', name = '', defaultValue = '', errorMsg = '', requir
     }
   };
   useEffect(() => {
-    if (defaultValue === '') {
+    if (errors.includes(name)) {
       setHasError(true);
     } else {
       setHasError(false);
     }
-  }, [defaultValue]);
+  }, [errors]);
+
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {label && (
-        <label className="wmnds-fe-label" htmlFor="input">
+        <label style={{ marginBottom: label2 && 0 }} className="wmnds-fe-label" htmlFor="input">
           {label}
+        </label>
+      )}
+      {label2 && (
+        <label className="wmnds-fe-label" htmlFor="input">
+          {label2}
         </label>
       )}
       {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}

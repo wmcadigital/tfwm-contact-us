@@ -1,6 +1,6 @@
 import React from 'react';
 // Components;
-import Icon from '../../../shared/Icon/Icon';
+import Icon from '../../../components/shared/Icon/Icon';
 // Styles
 import s from '../../App.module.scss';
 

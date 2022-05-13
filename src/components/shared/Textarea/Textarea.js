@@ -13,8 +13,9 @@ const Textarea = ({
   defaultValue = undefined,
   required = false,
   register,
+  errors,
 }) => {
-  const [hasError, setHasError] = useState(defaultValue === '');
+  const [hasError, setHasError] = useState(errors.includes(name));
 
   const textChageHandler = (event) => {
     if (event.target.value === '') {
@@ -24,12 +25,12 @@ const Textarea = ({
     }
   };
   useEffect(() => {
-    if (defaultValue === '') {
+    if (errors.includes(name)) {
       setHasError(true);
     } else {
       setHasError(false);
     }
-  }, [defaultValue]);
+  }, [errors]);
 
   return (
     <div className="wmnds-m-t-lg">
@@ -41,7 +42,7 @@ const Textarea = ({
         <label className="wmnds-fe-label wmnds-m-t-20" htmlFor="example-textarea">
           {text2}
         </label>
-        {hasError && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+        {hasError && <span className="wmnds-fe-error-message">Field is required</span>}
         <textarea
           defaultValue={defaultValue}
           className={`wmnds-fe-textarea ${classes.textArea}`}
