@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import MapView from 'components/shared/MapView/MapView';
+
 import { FormDataContext } from '../../../globalState';
 import Radios from '../../../components/shared/Radios/Radios';
 import Button from '../../../components/shared/Button/Button';
@@ -86,24 +88,12 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-train')}>
+      <button type="button" onClick={() => fillFormHandler('step-bus')}>
         Fill in this Form
       </button>
-      <button
-        type="button"
-        id="addPoint"
-        className="wmnds-btn wmnds-btn--secondary wmnds-m-t-md wmnds-m-r-md"
-      >
-        Add Point
-      </button>
-      <button
-        type="button"
-        id="removePoint"
-        className="wmnds-btn wmnds-btn--secondary wmnds-m-t-md wmnds-m-r-md"
-      >
-        Remove Point
-      </button>
-      <div id="mapDiv" />
+
+      {/* <div id="mapDiv" /> */}
+      {/* <MapView /> */}
     </div>
   );
 };

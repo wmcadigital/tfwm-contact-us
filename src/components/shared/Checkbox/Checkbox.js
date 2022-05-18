@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
-// import { isRegularExpressionLiteral } from 'typescript';
 /* eslint-disable react/prop-types */
 
 const Checkbox = ({
@@ -14,7 +13,6 @@ const Checkbox = ({
   errors,
 }) => {
   const [hasError, setHasError] = useState(false);
-
   const [checkedBoxes, setCheckedBoxes] = useState([]);
   const checkBoxesChangeHandler = () => {
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)].map(

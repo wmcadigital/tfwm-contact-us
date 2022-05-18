@@ -49,7 +49,7 @@ const Input = ({
         name={name}
         type="text"
         style={{ width: '20rem' }}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue.value}
         onChange={inputChageHandler}
         ref={register}
       />
@@ -63,7 +63,7 @@ Input.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.objectOf.isRequired,
 };
 
 export default Input;

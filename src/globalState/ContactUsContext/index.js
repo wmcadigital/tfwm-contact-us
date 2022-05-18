@@ -62,7 +62,11 @@ export const FormProvider = (props) => {
       }
       case 'ADD-DATA': {
         const cloneState = state;
-        cloneState.formData[action.payload.name] = action.payload.value;
+        cloneState.formData[action.payload.name] = {
+          value: action.payload.value,
+          stepNum: action.payload.stepNum,
+          answerTitle: action.payload.answerTitle,
+        };
         return {
           ...state,
           formData: cloneState.formData,

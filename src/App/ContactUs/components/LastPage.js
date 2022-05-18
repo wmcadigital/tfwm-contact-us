@@ -1,10 +1,24 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import dompurify from 'dompurify';
+import { FormDataContext } from 'globalState';
 
 const { sanitize } = dompurify;
 // eslint-disable-next-line react/prop-types
 const LastPage = ({ content, currentStep }) => {
+  const [, formDispatch] = useContext(FormDataContext);
+
+  useEffect(() => {
+    const fillFormEl = document.querySelector('#formId');
+    if (fillFormEl) {
+      fillFormEl.addEventListener('click', () => {
+        formDispatch({
+          type: 'FORM-ID',
+          payload: { formId: content.formId },
+        });
+      });
+    }
+  }, []);
   return (
     <>
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>

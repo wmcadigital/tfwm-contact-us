@@ -44,7 +44,7 @@ const Textarea = ({
         </label>
         {hasError && <span className="wmnds-fe-error-message">Field is required</span>}
         <textarea
-          defaultValue={defaultValue}
+          defaultValue={defaultValue ? defaultValue.value : ''}
           className={`wmnds-fe-textarea ${classes.textArea}`}
           id={required ? 'required' : ''}
           name={name}

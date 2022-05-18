@@ -80,29 +80,48 @@ const Form = () => {
 
   const continueHandler = (event) => {
     const values = getValues();
-    console.log(values);
+
     const errors = Object.entries(values)
       .filter((val) => !val[1])
       .map((val) => val[0]);
 
     setFormError(errors);
+
+    // Object.keys(values).map(function (key, index) {
+    formDispatch({
+      type: 'ADD-DATA',
+      payload: {
+        name: data.name,
+        value: Object.entries(values),
+        stepNum,
+        answerTitle: data.answerTitle,
+      },
+    });
+    //   return true;
+    // });
+
     if (errors.length === 0) {
+      if (stepNum === findComponents.length - 1) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'ANSWERS', stepNum },
+        });
+        return;
+      }
       formDispatch({
         type: 'NEXT',
       });
     }
   };
+
   return (
-    <>
-      <div className="wmnds-col-1 wmnds-m-lg">
+    <div className="wmnds-container wmnds-container--main">
+      <div className="wmnds-col-1 wmnds-m-b-lg">
         <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
           &lt; Back
         </button>
       </div>
-      <div
-        className="bg-white wmnds-p-l-md wmnds-m-l-lg"
-        style={{ width: '40rem', backgroundColor: 'white' }}
-      >
+      <div className="bg-white wmnds-p-l-md " style={{ width: '40rem', backgroundColor: 'white' }}>
         <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
         <h4 className="wmnds-m-t-xs">{data.sectionDescription}</h4>
 
@@ -200,6 +219,7 @@ const Form = () => {
                   defaultValue={formData[component.name]}
                   errorMsg={component.errorMsg}
                   required={component.required}
+                  allowMapView={component.allowMapView}
                   register={register}
                   errors={formError}
                   inputs={component.inputs}
@@ -213,7 +233,7 @@ const Form = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

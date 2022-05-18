@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+import dompurify from 'dompurify';
 
+const { sanitize } = dompurify;
 /* eslint-disable react/prop-types */
 const Dropdown = ({
   label = '',
@@ -33,8 +35,12 @@ const Dropdown = ({
   }, [defaultValue]);
   return (
     <div className={`wmnds-fe-group wmnds-m-b-lg  ${hasError && 'wmnds-fe-group--error'}`}>
-      <p className="wmnds-m-t-lg wmnds-m-b-lg">{details}</p>
-
+      <div
+        dangerouslySetInnerHTML={{
+          __html: sanitize(details),
+        }}
+        style={{ marginBottom: 30 }}
+      />
       <div className="wmnds-fe-dropdown">
         <label className="wmnds-fe-label" htmlFor="dropdown-example">
           {label}
