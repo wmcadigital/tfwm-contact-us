@@ -55,15 +55,6 @@
   -webkit-padding-start: 0 !important;
   padding-inline-start: 0 !important;
 }
-.esri-search {
-  width: 75% !important;
-}
-.esri-search__container {
-  width: 15rem !important;
-  margin-left: 4rem;
-  padding: 0.5rem;
-  border-radius: 10px;
-}
-.esri-search__input {
-  width: fit-content;
+.esri-input {
+  padding: 12px !important;
 }

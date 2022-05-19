@@ -47,18 +47,21 @@ const Address = ({
                   appear. You can edit the point by clicking on it and dragging.
                 </li>
               </ul>
+
+              {/* <div id="searchWidget" /> */}
+
               <div className="wmnds-fe-group">
                 <label className="wmnds-fe-label" htmlFor="postcode">
                   Place or postcode
                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <input
-                      className="wmnds-fe-input mapPoint"
-                      // id="searchWidget"
+                    <div id="searchWidget" />
+                    {/* <input
+                      // className="wmnds-fe-input mapPoint"
                       name="postcode"
                       type="text"
                       ref={register}
                       style={{ width: '60%' }}
-                    />
+                    /> */}
                     <button type="button" className={s.searchButton} onClick={() => {}}>
                       <Icon className="wmnds-btn__icon" iconName="general-search" />
                     </button>

@@ -50,7 +50,7 @@ const MapViewContent = () => {
       view,
       container: 'searchWidget',
     });
-    view.ui.add(searchWidget, 'top-left');
+    view.ui.add(searchWidget, 'none');
 
     view.when(() => {
       // Create a new instance of sketchViewModel
@@ -140,10 +140,10 @@ const MapViewContent = () => {
       searchInput?.classList.add('wmnds-fe-input');
       searchInput?.classList.add('wmnds-autocomplete__input');
       searchInput?.classList.add('wmnds-col-1');
-      searchInput?.insertAdjacentHTML(
-        'beforebegin',
-        '<svg className="wmnds-autocomplete__icon"><use xlink:href="#wmnds-general-search" href="#wmnds-general-search"></use></svg>'
-      );
+      // searchInput?.insertAdjacentHTML(
+      //   'beforebegin',
+      //   '<svg className="wmnds-autocomplete__icon"><use xlink:href="#wmnds-general-search" href="#wmnds-general-search"></use></svg>'
+      // );
       const selectElement = document.querySelector('#searchWidget-input');
       selectElement?.addEventListener('change', (event) => {
         console.log('dropdown');

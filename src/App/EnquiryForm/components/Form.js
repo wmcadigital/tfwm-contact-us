@@ -113,7 +113,7 @@ const Form = () => {
       });
     }
   };
-
+  console.log(formData);
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-lg">
