@@ -55,15 +55,25 @@ const Address = ({
                   Place or postcode
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div id="searchWidget" />
-                    {/* <input
-                      // className="wmnds-fe-input mapPoint"
+                    <input
+                      className="wmnds-fe-input mapPoint"
                       name="postcode"
                       type="text"
                       ref={register}
-                      style={{ width: '60%' }}
-                    /> */}
+                      style={{ display: 'none' }}
+                    />
                     <button type="button" className={s.searchButton} onClick={() => {}}>
-                      <Icon className="wmnds-btn__icon" iconName="general-search" />
+                      <svg id="search-button" className="wmnds-btn__icon">
+                        <use xlinkHref="#wmnds-general-search" href="#wmnds-general-search" />
+                      </svg>
+
+                      <svg
+                        id="hide-search-button"
+                        style={{ display: 'none' }}
+                        className="wmnds-btn__icon"
+                      >
+                        <use xlinkHref="#wmnds-general-cross" href="#wmnds-general-cross" />
+                      </svg>
                     </button>
                   </div>
                 </label>

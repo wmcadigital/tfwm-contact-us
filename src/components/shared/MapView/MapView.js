@@ -50,6 +50,8 @@ const MapViewContent = () => {
       view,
       container: 'searchWidget',
     });
+    const searchButton = document.getElementById('search-button');
+    const hideSearchButton = document.getElementById('hide-search-button');
     view.ui.add(searchWidget, 'none');
 
     view.when(() => {
@@ -136,6 +138,7 @@ const MapViewContent = () => {
       // search input style
       const searchContainer = document.querySelector('.esri-search__input-container');
       const searchInput = document.querySelector('#searchWidget-input');
+
       searchContainer?.classList.add('wmnds-autocomplete');
       searchInput?.classList.add('wmnds-fe-input');
       searchInput?.classList.add('wmnds-autocomplete__input');
@@ -146,10 +149,17 @@ const MapViewContent = () => {
       // );
       const selectElement = document.querySelector('#searchWidget-input');
       selectElement?.addEventListener('change', (event) => {
-        console.log('dropdown');
+        searchButton.style.display = 'none';
+        hideSearchButton.style.display = 'inline';
+
         const searchList = document?.querySelector('.esri-menu__list');
         searchList?.classList.add('wmnds-autocomplete-suggestions');
       });
+    });
+    hideSearchButton.addEventListener('click', () => {
+      searchWidget.clear();
+      searchButton.style.display = 'inline';
+      hideSearchButton.style.display = 'none';
     });
     // Move ui elements into the right position
     view.ui.move(['zoom'], 'top-right');
