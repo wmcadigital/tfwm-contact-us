@@ -745,62 +745,6 @@
       },
       "formComponents": [
         {
-          "sectionNum": 2,
-          "sectionDescription": "Your enquiry",
-          "title": "Where did the issue happen?",
-          "answerTitle": "Where did the issue happen?",
-          "name": "address",
-
-          "components": [
-            {
-              "type": "Address",
-              "required": true,
-              "id": "1",
-              "name": "date",
-              "allowMapView": true,
-
-              "inputs": [
-                {
-                  "name": "area-or-town",
-
-                  "required": true,
-                  "label": "Town or area *",
-                  "label2": "For example, Halesowen",
-                  "type": "text",
-                  "errorMsg": "Enter a valid area or town"
-                },
-                {
-                  "name": "street",
-
-                  "required": true,
-                  "label": "Street name *",
-
-                  "type": "text",
-                  "errorMsg": "Enter a valid street name"
-                },
-                {
-                  "name": "direction-of-travel",
-
-                  "required": false,
-                  "label": "Direction of travel",
-                  "label2": "For example, towards Birmingham",
-                  "type": "text",
-                  "errorMsg": "Enter a valid direction of travel"
-                },
-                {
-                  "name": "bus-or-pole",
-
-                  "required": false,
-                  "label": "Bus shelter or pole number",
-
-                  "type": "text",
-                  "errorMsg": "Enter a valid bus shelter or pole number"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "sectionNum": 1,
           "sectionDescription": "About you",
           "title": "What is your name?",
@@ -873,7 +817,7 @@
               "type": "Address",
               "required": true,
               "id": "1",
-              "name": "date",
+              "name": "address",
               "allowMapView": true,
 
               "inputs": [
@@ -1128,7 +1072,7 @@
               "type": "Address",
               "required": true,
               "id": "1",
-              "name": "date",
+              "name": "address",
               "allowMapView": false,
 
               "inputs": [
@@ -2509,7 +2453,7 @@
               "type": "Address",
               "required": true,
               "id": "1",
-              "name": "date",
+              "name": "address",
               "allowMapView": true,
 
               "inputs": [

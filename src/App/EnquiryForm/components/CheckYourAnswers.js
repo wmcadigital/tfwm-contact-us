@@ -1,3 +1,4 @@
+import GetMap from 'components/shared/Map/Map';
 import React, { useContext, useState } from 'react';
 
 import { FormDataContext } from '../../../globalState';
@@ -35,7 +36,12 @@ const CheckYourAnswers = () => {
   };
 
   const formDataArray = Object.values(formData).filter((data) => data.answerTitle);
-  console.log(formData);
+  console.log(formDataArray);
+  const getCoords = (value) => {
+    const coords = value.split('query=')[1].split(',');
+    console.log(coords);
+    return coords;
+  };
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
@@ -59,6 +65,7 @@ const CheckYourAnswers = () => {
                 <button
                   type="button"
                   className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
+                  style={{ float: 'right' }}
                   onClick={() => changeForm(formData.name.stepNum)}
                 >
                   Change
@@ -70,29 +77,20 @@ const CheckYourAnswers = () => {
                 How would you like to be contacted?
               </th>
               <td data-header="Header 2">
-                {formData.contact.value[1] && (
+                {formData.contact.value.map((contact) => (
                   <>
                     <span>
-                      Email <br /> {formData.contact.value[1][1]}
+                      {contact[0] === 'phone' ? 'Phone' : 'Email'} <br /> {contact[1]}
                     </span>
-                  </>
-                )}
-                {formData.contact.value[1] && formData.contact.value[1] && (
-                  <>
-                    <br />
                     <br />
                   </>
-                )}
-                {formData.contact.value[1] && (
-                  <span>
-                    Phone <br /> {formData.contact.value[0][1]}
-                  </span>
-                )}
+                ))}
               </td>
               <td data-header="Header 2">
                 <button
                   type="button"
                   className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
+                  style={{ float: 'right' }}
                   onClick={() => changeForm(formData.contact.stepNum)}
                 >
                   Change
@@ -110,17 +108,40 @@ const CheckYourAnswers = () => {
                   {data.answerTitle}
                 </th>
                 <td data-header="Header 2">
-                  {data.value.map((value) => (
+                  {data.answerTitle === 'Supporting documents' && (
+                    <img
+                      src={URL.createObjectURL(data.value[0][1][0])}
+                      alt="File"
+                      style={{ marginTop: 20 }}
+                      width={200}
+                      height={200}
+                    />
+                  )}
+                  {data.value[0][0] === 'postcode' && (
                     <>
-                      <br />
-                      {value[1]}
+                      <GetMap
+                        lat={getCoords(data.value[0][1])[1]}
+                        lang={getCoords(data.value[0][1])[0]}
+                      />
+                      {}
                     </>
-                  ))}
+                  )}
+                  {data.answerTitle !== 'Supporting documents' && data.value[0][0] !== 'postcode' && (
+                    <>
+                      {data.value.map((value) => (
+                        <>
+                          <br />
+                          {value[1]}
+                        </>
+                      ))}
+                    </>
+                  )}
                 </td>
                 <td data-header="Header 2">
                   <button
                     type="button"
-                    className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
+                    className={`wmnds-btn wmnds-btn--link `}
+                    style={{ float: 'right' }}
                     onClick={() => changeForm(data.stepNum)}
                   >
                     Change

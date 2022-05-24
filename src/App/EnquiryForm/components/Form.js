@@ -81,6 +81,8 @@ const Form = () => {
   const continueHandler = (event) => {
     const values = getValues();
 
+    const isEmpty = Object.keys(values).length === 0;
+
     const errors = Object.entries(values)
       .filter((val) => !val[1])
       .map((val) => val[0]);
@@ -88,15 +90,18 @@ const Form = () => {
     setFormError(errors);
 
     // Object.keys(values).map(function (key, index) {
-    formDispatch({
-      type: 'ADD-DATA',
-      payload: {
-        name: data.name,
-        value: Object.entries(values),
-        stepNum,
-        answerTitle: data.answerTitle,
-      },
-    });
+    if (!isEmpty) {
+      formDispatch({
+        type: 'ADD-DATA',
+        payload: {
+          name: data.name,
+          value: Object.entries(values),
+          stepNum,
+          answerTitle: data.answerTitle,
+        },
+      });
+    }
+
     //   return true;
     // });
 
@@ -117,9 +122,11 @@ const Form = () => {
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-lg">
-        <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
-          &lt; Back
-        </button>
+        {stepNum !== 0 && (
+          <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
+            &lt; Back
+          </button>
+        )}
       </div>
       <div className="bg-white wmnds-p-l-md " style={{ width: '40rem', backgroundColor: 'white' }}>
         <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
@@ -178,6 +185,7 @@ const Form = () => {
                   required={component.required}
                   register={register}
                   errors={formError}
+                  unregister={unregister}
                 />
               )}
               {component.type === 'Checkbox' && (

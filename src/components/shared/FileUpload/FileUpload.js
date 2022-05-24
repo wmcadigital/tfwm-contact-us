@@ -11,17 +11,17 @@ const FileUpload = ({
   details = '',
   required = false,
   register,
+  unregister,
 }) => {
   const [file, setFile] = useState();
 
   const reset = () => {
-    // register.current.value = '';
     setFile(undefined);
   };
   const fileChangeHandler = (event) => {
-    // setFile(event.target.files[0]);
+    setFile(URL.createObjectURL(event.target.files[0]));
   };
-
+  console.log(file);
   return (
     <div className="wmnds-fe-group ">
       <div className="wmnds-fe-file-upload">
@@ -41,7 +41,7 @@ const FileUpload = ({
             id="fileUploader"
             className="wmnds-fe-file-upload__input"
             onChange={fileChangeHandler}
-            ref={register}
+            ref={file ? register : unregister('fileUploader')}
             accept="image/png,image/jpeg,image/jpg,application/pdf"
           />
           <svg className="wmnds-btn__icon wmnds-btn__icon--right">
@@ -66,6 +66,8 @@ const FileUpload = ({
         )}
         <span>{file ? file.name : 'no file selected'}</span>
       </div>
+
+      {file && <img src={file} alt="File" style={{ marginTop: 20 }} width={200} height={200} />}
     </div>
   );
 };
