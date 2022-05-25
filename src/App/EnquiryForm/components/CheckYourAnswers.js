@@ -39,7 +39,7 @@ const CheckYourAnswers = () => {
   console.log(formDataArray);
   const getCoords = (value) => {
     const coords = value.split('query=')[1].split(',');
-    console.log(coords);
+
     return coords;
   };
   return (
@@ -123,7 +123,9 @@ const CheckYourAnswers = () => {
                         lat={getCoords(data.value[0][1])[1]}
                         lang={getCoords(data.value[0][1])[0]}
                       />
-                      {}
+
+                      <br />
+                      {data.value[1][1]}
                     </>
                   )}
                   {data.answerTitle !== 'Supporting documents' && data.value[0][0] !== 'postcode' && (

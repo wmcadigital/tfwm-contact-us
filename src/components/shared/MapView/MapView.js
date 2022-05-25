@@ -53,7 +53,9 @@ const MapViewContent = () => {
     const searchButton = document.getElementById('search-button');
     const hideSearchButton = document.getElementById('hide-search-button');
     view.ui.add(searchWidget, 'none');
-
+    searchWidget.on('select-result', (event) => {
+      document.querySelector('.searchAddress').value = event.result.name;
+    });
     view.when(() => {
       // Create a new instance of sketchViewModel
       sketchVM = new SketchViewModel({
@@ -165,51 +167,6 @@ const MapViewContent = () => {
     view.ui.move(['zoom'], 'top-right');
     view.ui.move(['attribution'], 'bottom');
     view.ui.add(locateBtn, { position: 'top-right' });
-
-    let mapView = false;
-    function mapToggle(event) {
-      const x = document.getElementById('formMap');
-      const y = document.getElementById('formList');
-      const b = document.querySelector('.mapBtn');
-      if (y.style.display === 'none') {
-        y.style.display = 'block';
-        x.style.display = 'none';
-        b.innerHTML =
-          'Map view ' +
-          `<svg className="wmnds-btn__icon wmnds-btn__icon--right"><use xlink:href="#wmnds-general-location-pin" href="#wmnds-general-location-pin"></use></svg>`;
-        mapView = false;
-        sessionStorage.setItem('mapView', 'false');
-      } else {
-        y.style.display = 'none';
-        x.style.display = 'block';
-        b.innerHTML =
-          'List view ' +
-          `<svg className="wmnds-btn__icon wmnds-btn__icon--right"><use xlink:href="#wmnds-general-chevron-right" href="#wmnds-general-list"></use></svg>`;
-        mapView = true;
-        sessionStorage.setItem('mapView', 'true');
-      }
-    }
-    // get map view state from session storage
-    const mapValue = sessionStorage.getItem('mapView');
-    // show map if true
-    window.addEventListener('load', function () {
-      if (mapValue === 'true') {
-        const map2 = document.getElementById('formMap');
-        const list = document.getElementById('formList');
-        const point = {
-          type: 'point',
-          longitude: sessionStorage.getItem('longitude'),
-          latitude: sessionStorage.getItem('latitude'),
-        };
-        list.style.display = 'none';
-        map2.style.display = 'block';
-        console.log('map is true');
-        const pointGraphic = new Graphic({
-          geometry: point,
-        });
-        graphicsLayer.add(pointGraphic);
-      }
-    });
   }, []);
 
   return (
@@ -224,6 +181,7 @@ const MapViewContent = () => {
       <button
         type="button"
         id="removePoint"
+        style={{ display: 'none' }}
         className="wmnds-btn wmnds-btn--secondary wmnds-m-t-md wmnds-m-r-md"
       >
         Remove Point

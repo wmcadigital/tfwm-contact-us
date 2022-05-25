@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import Radio from '../Radios/Radio/Radio';
+import Dropdown from '../Dropdown/Dropdown';
 
 const YesOrNo = ({
   label = '',
@@ -50,28 +51,44 @@ const YesOrNo = ({
                 onChange={checkBoxesChangeHandler}
               />{' '}
               {checkedRadio === 'yes' && option.name === 'yes' && (
-                <div
-                  style={{ marginLeft: 60 }}
-                  className={` ${errors.includes('yes') && 'wmnds-fe-group--error'}`}
-                >
-                  <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
-                    {option.inputLabel1}
-                  </label>
-                  <label className="wmnds-fe-label" htmlFor="input">
-                    {option.inputLabel2}
-                  </label>{' '}
-                  {errors.includes('yes') && (
-                    <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                <>
+                  {option.type === 'Dropdown' ? (
+                    <div style={{ marginLeft: 40 }}>
+                      <Dropdown
+                        label={option.inputLabel1}
+                        errorMsg={option.errorMsg}
+                        required={option.required}
+                        options={option.options}
+                        name={option.name}
+                        register={register}
+                        errors={errors}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      style={{ marginLeft: 60 }}
+                      className={` ${errors.includes('yes') && 'wmnds-fe-group--error'}`}
+                    >
+                      <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
+                        {option.inputLabel1}
+                      </label>
+                      <label className="wmnds-fe-label" htmlFor="input">
+                        {option.inputLabel2}
+                      </label>{' '}
+                      {errors.includes('yes') && (
+                        <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                      )}
+                      <input
+                        name={option.name}
+                        className="wmnds-fe-input"
+                        type={option.type}
+                        style={{ width: '20rem' }}
+                        defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                        ref={register}
+                      />
+                    </div>
                   )}
-                  <input
-                    name={option.name}
-                    className="wmnds-fe-input"
-                    type={option.type}
-                    style={{ width: '20rem' }}
-                    defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
-                    ref={register}
-                  />
-                </div>
+                </>
               )}
             </div>
           ))}

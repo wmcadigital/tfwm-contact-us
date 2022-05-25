@@ -21,7 +21,7 @@ const FileUpload = ({
   const fileChangeHandler = (event) => {
     setFile(URL.createObjectURL(event.target.files[0]));
   };
-  console.log(file);
+
   return (
     <div className="wmnds-fe-group ">
       <div className="wmnds-fe-file-upload">

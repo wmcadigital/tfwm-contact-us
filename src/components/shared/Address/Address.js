@@ -21,9 +21,32 @@ const Address = ({
   register,
   errors,
   inputs,
+  unregister,
   allowMapView,
 }) => {
   const [mapView, setMapView] = useState(false);
+  const [inputValues, setInputValues] = useState([]);
+
+  const checkBoxesChangeHandler = () => {
+    console.log('change');
+    const findInputs = [...document.querySelectorAll('.mapInput')].map((input) => input.value);
+
+    setInputValues(findInputs);
+  };
+
+  const registerRef = (idx) => {
+    if (inputValues.every((input) => !input)) {
+      console.log('0', idx);
+      return true;
+    }
+    if (inputValues[idx]) {
+      console.log('1', idx);
+      return true;
+    }
+    console.log('2', idx);
+    return false;
+  };
+
   return (
     <div className="wmnds-fe-group">
       {allowMapView && (
@@ -55,12 +78,22 @@ const Address = ({
                   Place or postcode
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <div id="searchWidget" />
+
                     <input
-                      className="wmnds-fe-input mapPoint"
+                      className="wmnds-fe-input mapPoint mapInput"
                       name="postcode"
                       type="text"
-                      ref={register}
+                      onChangeCapture={checkBoxesChangeHandler}
                       style={{ display: 'none' }}
+                      ref={registerRef(0) ? register : unregister('postcode')}
+                    />
+                    <input
+                      className="wmnds-fe-input searchAddress mapInput"
+                      name="address"
+                      type="text"
+                      onChangeCapture={checkBoxesChangeHandler}
+                      style={{ display: 'none' }}
+                      ref={registerRef(1) ? register : unregister('address')}
                     />
                     <button type="button" className={s.searchButton} onClick={() => {}}>
                       <svg id="search-button" className="wmnds-btn__icon">
@@ -92,7 +125,8 @@ const Address = ({
               name={input.name}
               errorMsg={input.errorMsg}
               required={input.required}
-              register={input.required ? register : undefined}
+              unregister={unregister}
+              register={register}
               errors={errors}
             />
           ))}

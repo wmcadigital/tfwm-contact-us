@@ -16,8 +16,9 @@ const Dropdown = ({
   defaultValue = undefined,
   required,
   register,
+  errors,
 }) => {
-  const [hasError, setHasError] = useState(defaultValue === '');
+  const [hasError, setHasError] = useState(false);
 
   const dropdownChageHandler = (event) => {
     if (event.target.value === '') {
@@ -26,13 +27,14 @@ const Dropdown = ({
       setHasError(false);
     }
   };
+
   useEffect(() => {
-    if (defaultValue === '') {
+    if (errors.includes(name)) {
       setHasError(true);
     } else {
       setHasError(false);
     }
-  }, [defaultValue]);
+  }, [errors]);
   return (
     <div className={`wmnds-fe-group wmnds-m-b-lg  ${hasError && 'wmnds-fe-group--error'}`}>
       <div

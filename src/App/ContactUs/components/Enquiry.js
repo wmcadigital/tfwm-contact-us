@@ -91,9 +91,6 @@ const ContactUsForm = () => {
       <button type="button" onClick={() => fillFormHandler('step-bus')}>
         Fill in this Form
       </button>
-
-      {/* <div id="mapDiv" /> */}
-      {/* <MapView /> */}
     </div>
   );
 };

@@ -173,6 +173,7 @@ const Form = () => {
                   required={component.required}
                   register={register}
                   errors={formError}
+                  unregister={unregister}
                 />
               )}
               {component.type === 'FileUpload' && (
@@ -231,6 +232,7 @@ const Form = () => {
                   register={register}
                   errors={formError}
                   inputs={component.inputs}
+                  unregister={unregister}
                 />
               )}
             </div>

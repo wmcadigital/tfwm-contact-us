@@ -11,11 +11,19 @@ const Input = ({
   errorMsg = '',
   required,
   register,
+  unregister,
+
   errors,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
-
+  const [registerRef, setRegisterRef] = useState(required);
   const inputChageHandler = (event) => {
+    if (!required && event.target.value) {
+      setRegisterRef(true);
+    }
+    if (!required && !event.target.value) {
+      setRegisterRef(false);
+    }
     if (event.target.value === '') {
       setHasError(true);
     } else {
@@ -51,7 +59,7 @@ const Input = ({
         style={{ width: '20rem' }}
         defaultValue={defaultValue.value}
         onChange={inputChageHandler}
-        ref={register}
+        ref={registerRef ? register : unregister(name)}
       />
     </div>
   );

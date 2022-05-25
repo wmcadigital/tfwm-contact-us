@@ -874,6 +874,8 @@
               "type": "Dropdown",
               "details": "<a href='https://find-bus-company.tfwm.org.uk/?ticketSearch=true&modes=bus' target='_blank'>I don’t know the bus company I travelled with</a>",
               "label": "Please choose a company",
+              "errorMsg": "Please select a bus company",
+
               "required": true,
               "id": "1",
               "name": "date",
@@ -1125,7 +1127,7 @@
           "components": [
             {
               "type": "Dropdown",
-
+              "errorMsg": "Please select a train company",
               "label": "Please choose a company",
               "required": true,
               "id": "1",
@@ -1321,7 +1323,7 @@
                     "Yardley Wood"
                   ],
                   "type": "Dropdown",
-                  "errorMsg": ""
+                  "errorMsg": "Please select a location"
                 },
                 {
                   "name": "no",
@@ -1635,7 +1637,7 @@
                     "Stourbridge Junction"
                   ],
                   "type": "Dropdown",
-                  "errorMsg": ""
+                  "errorMsg": "Please select a location"
                 },
                 {
                   "name": "no",
