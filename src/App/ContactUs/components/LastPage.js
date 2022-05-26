@@ -19,6 +19,38 @@ const LastPage = ({ content, currentStep }) => {
       });
     }
   }, []);
+  useEffect(() => {
+    /* eslint no-underscore-dangle: 0 */
+
+    window.__8x8Chat = {
+      uuid: 'script_1846483120624b05c7b46378.06993588',
+
+      tenant: 'd2VzdG1pZGxhbmRzY29tYmkwMQ',
+
+      channel: 'Ticketing Web Chat',
+
+      domain: 'https://vcc-eu7.8x8.com',
+
+      path: '/.',
+
+      buttonContainerId: '__8x8-chat-button-container-script_1846483120624b05c7b46378.06993588',
+
+      align: 'right',
+    };
+    const se = document.createElement('script');
+
+    se.type = 'text/javascript';
+
+    se.async = true;
+
+    // eslint-disable-next-line no-underscore-dangle
+    se.src = `${window.__8x8Chat.domain + window.__8x8Chat.path}/CHAT/common/js/chat.js`;
+
+    const os = document.getElementsByTagName('script')[0];
+
+    os.parentNode.insertBefore(se, os);
+  });
+
   return (
     <>
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
@@ -173,9 +205,8 @@ const LastPage = ({ content, currentStep }) => {
           {!content.hideChat && (
             <>
               <h5>Live Chat</h5>
-              <button className="wmnds-btn wmnds-m-b-md wmnds-m-t-xs" type="button">
-                Chat to a team member
-              </button>
+              <div id="__8x8-chat-button-container-script_1846483120624b05c7b46378.06993588" />
+
               <p>Starting live chat will open a window at the bottom of your browser</p>
             </>
           )}
