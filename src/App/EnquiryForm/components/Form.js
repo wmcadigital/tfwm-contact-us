@@ -210,6 +210,7 @@ const Form = () => {
                   required={component.required}
                   register={register}
                   errors={formError}
+                  unregister={unregister}
                 />
               )}
               {component.type === 'Date' && (

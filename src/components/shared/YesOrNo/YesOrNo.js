@@ -16,7 +16,7 @@ const YesOrNo = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  const [checkedRadio, setCheckedRadio] = useState([]);
+  const [checkedRadio, setCheckedRadio] = useState();
   const checkBoxesChangeHandler = (e) => {
     if (e.target.value) {
       setHasError(false);
@@ -47,7 +47,7 @@ const YesOrNo = ({
                 text={option.option}
                 id={option.name}
                 value={option.name}
-                register={register}
+                register={!checkedRadio ? register : unregister('yes-or-no')}
                 onChange={checkBoxesChangeHandler}
               />{' '}
               {checkedRadio === 'yes' && option.name === 'yes' && (

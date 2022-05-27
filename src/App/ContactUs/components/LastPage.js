@@ -19,6 +19,7 @@ const LastPage = ({ content, currentStep }) => {
       });
     }
   }, []);
+
   useEffect(() => {
     /* eslint no-underscore-dangle: 0 */
 
@@ -50,7 +51,6 @@ const LastPage = ({ content, currentStep }) => {
 
     os.parentNode.insertBefore(se, os);
   });
-
   return (
     <>
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>

@@ -119,21 +119,20 @@ const CheckYourAnswers = () => {
                   )}
                   {data.value[0][0] === 'postcode' && (
                     <>
+                      {data.value[1][1]}
+                      <br />
+
                       <GetMap
                         lat={getCoords(data.value[0][1])[1]}
                         lang={getCoords(data.value[0][1])[0]}
                       />
-
-                      <br />
-                      {data.value[1][1]}
                     </>
                   )}
                   {data.answerTitle !== 'Supporting documents' && data.value[0][0] !== 'postcode' && (
                     <>
                       {data.value.map((value) => (
                         <>
-                          <br />
-                          {value[1]}
+                          {value[1]} <br />
                         </>
                       ))}
                     </>
