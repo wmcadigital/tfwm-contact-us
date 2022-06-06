@@ -1289,16 +1289,13 @@
                 },
                 {
                   "name": "street",
-
                   "required": false,
                   "label": "Rail station",
-
                   "type": "text",
                   "errorMsg": "Enter a valid rail station"
                 },
                 {
                   "name": "direction-of-travel",
-
                   "required": false,
                   "label": "Route",
                   "label2": "for example, Birmingham to Wolverhampton",
@@ -1307,11 +1304,9 @@
                 },
                 {
                   "name": "bus-or-pole",
-
                   "required": false,
                   "label": "Direction of travel",
                   "label2": "For example, towards Birmingham",
-
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 }

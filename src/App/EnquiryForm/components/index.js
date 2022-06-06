@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Form from './Form';
 
@@ -8,6 +8,10 @@ import CheckYourAnswers from './CheckYourAnswers';
 import ReceivedForm from './ReceivedForm';
 
 const Complaint = () => {
+  useEffect(() => {
+    console.log(document.querySelector('#formClicked').innerText);
+    document.querySelector('#formClicked').innerText = 'Submit an Enquiry';
+  });
   const [{ page }] = useContext(FormDataContext);
 
   return (
