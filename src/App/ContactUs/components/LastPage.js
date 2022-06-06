@@ -52,7 +52,7 @@ const LastPage = ({ content, currentStep }) => {
     os.parentNode.insertBefore(se, os);
   });
   return (
-    <>
+    <div style={{ width: '70%' }}>
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
       {content.heading && <h3>{content.heading}</h3>}
       {content.details?.includes('<a href=') ? (
@@ -142,7 +142,7 @@ const LastPage = ({ content, currentStep }) => {
                   data-header="Header 1"
                   dangerouslySetInnerHTML={{ __html: sanitize(item.link) }}
                 />
-                <td>{item.ph}</td>
+                <td style={{ textAlign: 'right' }}>{item.ph}</td>
               </tr>
             ))}
           </tbody>
@@ -202,7 +202,7 @@ const LastPage = ({ content, currentStep }) => {
       {content.customerService && (
         <div className="wmnds-inset-text" aria-label="customer services">
           <h4>{content.customerServiceInfo ? content.customerServiceInfo : 'Customer Services'}</h4>
-          {!content.hideChat && (
+          {content.showChat && (
             <>
               <h5>Live Chat</h5>
               <div id="__8x8-chat-button-container-script_1846483120624b05c7b46378.06993588" />
@@ -228,7 +228,7 @@ const LastPage = ({ content, currentStep }) => {
 
       <br />
       <br />
-    </>
+    </div>
   );
 };
 

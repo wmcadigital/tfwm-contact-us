@@ -88,7 +88,7 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-bus')}>
+      <button type="button" onClick={() => fillFormHandler('step-train')}>
         Fill in this Form
       </button>
     </div>

@@ -12,39 +12,13 @@ const Calendar = ({
   register,
   errors,
 }) => {
-  const [hasError, setHasError] = useState();
-  const dateChangeHandler = () => {
-    // const findDateInputs = [...document.querySelectorAll(`input`)].map(
-    //   (checkbox) => checkbox.value
-    // );
-    // const dateIsEmpty = findDateInputs.every((value) => value === '');
-    // if (dateIsEmpty) {
-    //   setIsRequired(false);
-    //   setHasError(false);
-    //   return;
-    // }
-    // if (!dateIsEmpty) {
-    //   setIsRequired(true);
-    // }
-    // if (findDateInputs.includes('')) {
-    //   setHasError(true);
-    // } else {
-    //   setHasError(false);
-    // }
-  };
-
-  useEffect(() => {
-    if (errors.length > 0) {
-      setHasError(true);
-    } else {
-      setHasError(false);
-    }
-  }, [errors]);
-
+  const dateError = errors.includes('year') || errors.includes('month') || errors.includes('day');
+  const timeError = errors.includes('hour') || errors.includes('minute');
   return (
     <div className="wmnds-fe-group">
       <div className="wmnds-fe-group  ">
-        <div className="wmnds-fe-dropdown">
+        <div className={`wmnds-fe-dropdown ${timeError && 'wmnds-fe-group--error'}`}>
+          {timeError && <span className="wmnds-fe-error-message">Enter a valid time</span>}
           <label className="wmnds-fe-label" htmlFor="dropdown-example">
             <p style={{ marginBottom: 10 }}>Time</p>
             <select
@@ -55,10 +29,10 @@ const Calendar = ({
               ref={register}
             >
               <option value="" selected="true">
-                00
+                --
               </option>
               {Array.from(Array(24).keys()).map((val) => (
-                <option value={val + 1}>{val + 1}</option>
+                <option value={val}>{val}</option>
               ))}
             </select>
 
@@ -71,18 +45,18 @@ const Calendar = ({
               ref={register}
             >
               <option value="" selected="true">
-                00
+                --
               </option>
               {Array.from(Array(60).keys()).map((val) => (
-                <option value={val + 1}>{val + 1}</option>
+                <option value={val}>{val}</option>
               ))}
             </select>
           </label>
         </div>
       </div>
-      <div id="date-input" className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
+      <div id="date-input" className={`wmnds-fe-group ${dateError && 'wmnds-fe-group--error'}`}>
         <div className="wmnds-fe-date-input">
-          {hasError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
+          {dateError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
 
           <div className="wmnds-fe-date-input__day">
             <p style={{ marginBottom: 10 }}>Date</p>
@@ -98,7 +72,6 @@ const Calendar = ({
                 maxLength="2"
                 minLength="1"
                 pattern="[0-9]*"
-                onChange={dateChangeHandler}
                 defaultValue={dayDefaultValue}
                 ref={register}
               />
@@ -116,7 +89,6 @@ const Calendar = ({
                 maxLength="2"
                 minLength="1"
                 pattern="[0-9]*"
-                onChange={dateChangeHandler}
                 defaultValue={monthDefaultValue}
                 ref={register}
               />
@@ -134,7 +106,6 @@ const Calendar = ({
                 maxLength="4"
                 minLength="4"
                 pattern="[0-9]*"
-                onChange={dateChangeHandler}
                 defaultValue={yearDefaultValue}
                 ref={register}
               />

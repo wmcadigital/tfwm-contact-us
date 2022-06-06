@@ -28,7 +28,6 @@ const Address = ({
   const [inputValues, setInputValues] = useState([]);
 
   const checkBoxesChangeHandler = () => {
-    console.log('change');
     const findInputs = [...document.querySelectorAll('.mapInput')].map((input) => input.value);
 
     setInputValues(findInputs);
@@ -36,14 +35,12 @@ const Address = ({
 
   const registerRef = (idx) => {
     if (inputValues.every((input) => !input)) {
-      console.log('0', idx);
       return true;
     }
     if (inputValues[idx]) {
-      console.log('1', idx);
       return true;
     }
-    console.log('2', idx);
+
     return false;
   };
 

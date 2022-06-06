@@ -36,12 +36,13 @@ const CheckYourAnswers = () => {
   };
 
   const formDataArray = Object.values(formData).filter((data) => data.answerTitle);
-  console.log(formDataArray);
+
   const getCoords = (value) => {
     const coords = value.split('query=')[1].split(',');
 
     return coords;
   };
+  console.log(formDataArray);
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
@@ -117,6 +118,13 @@ const CheckYourAnswers = () => {
                       height={200}
                     />
                   )}
+                  {data.answerTitle === 'What was the date and time of the issue?' && (
+                    <>
+                      {data.value[0][1]}:{data.value[1][1]}
+                      <br />
+                      {data.value[2][1]}/{data.value[3][1]}/{data.value[4][1]}
+                    </>
+                  )}
                   {data.value[0][0] === 'postcode' && (
                     <>
                       {data.value[1][1]}
@@ -128,15 +136,17 @@ const CheckYourAnswers = () => {
                       />
                     </>
                   )}
-                  {data.answerTitle !== 'Supporting documents' && data.value[0][0] !== 'postcode' && (
-                    <>
-                      {data.value.map((value) => (
-                        <>
-                          {value[1]} <br />
-                        </>
-                      ))}
-                    </>
-                  )}
+                  {data.answerTitle !== 'Supporting documents' &&
+                    data.answerTitle !== 'What was the date and time of the issue?' &&
+                    data.value[0][0] !== 'postcode' && (
+                      <>
+                        {data.value.map((value) => (
+                          <>
+                            {value[1]} <br />
+                          </>
+                        ))}
+                      </>
+                    )}
                 </td>
                 <td data-header="Header 2">
                   <button
