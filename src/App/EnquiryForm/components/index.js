@@ -9,7 +9,6 @@ import ReceivedForm from './ReceivedForm';
 
 const Complaint = () => {
   useEffect(() => {
-    console.log(document.querySelector('#formClicked').innerText);
     document.querySelector('#formClicked').innerText = 'Submit an Enquiry';
   });
   const [{ page }] = useContext(FormDataContext);

@@ -49,8 +49,8 @@ const YesOrNo = ({
                 value={option.name}
                 register={!checkedRadio ? register : unregister('yes-or-no')}
                 onChange={checkBoxesChangeHandler}
-              />{' '}
-              {checkedRadio === 'yes' && option.name === 'yes' && (
+              />
+              {option.inputLabel1 && checkedRadio === 'yes' && option.name === 'yes' && (
                 <>
                   {option.type === 'Dropdown' ? (
                     <div style={{ marginLeft: 40 }}>

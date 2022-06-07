@@ -117,6 +117,7 @@ const Address = ({
         <>
           {inputs.map((input) => (
             <Input
+              key={input.name}
               label={input.label}
               label2={input.label2}
               name={input.name}

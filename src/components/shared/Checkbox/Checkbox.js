@@ -73,7 +73,7 @@ const Checkbox = ({
                 </svg>
               </span>
             </label>
-            {checkedBoxes.includes(option.name) && (
+            {checkedBoxes.includes(option.name) && option.inputLabel1 && (
               <div
                 style={{ marginLeft: 60 }}
                 className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}

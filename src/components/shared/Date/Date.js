@@ -11,56 +11,58 @@ const Calendar = ({
   name = '',
   register,
   errors,
+  label,
+  showTime,
 }) => {
   const dateError = errors.includes('year') || errors.includes('month') || errors.includes('day');
   const timeError = errors.includes('hour') || errors.includes('minute');
   return (
     <div className="wmnds-fe-group">
-      <div className="wmnds-fe-group  ">
-        <div className={`wmnds-fe-dropdown ${timeError && 'wmnds-fe-group--error'}`}>
-          {timeError && <span className="wmnds-fe-error-message">Enter a valid time</span>}
-          <label className="wmnds-fe-label" htmlFor="dropdown-example">
-            <p style={{ marginBottom: 10 }}>Time</p>
-            <select
-              className="wmnds-fe-dropdown__select "
-              id="hour"
-              name="hour"
-              style={{ width: 100, marginRight: 20 }}
-              ref={register}
-            >
-              <option value="" selected="true">
-                --
-              </option>
-              {Array.from(Array(24).keys()).map((val) => (
-                <option value={val}>{val}</option>
-              ))}
-            </select>
+      {showTime && (
+        <div className="wmnds-fe-group  ">
+          <div className={`wmnds-fe-dropdown ${timeError && 'wmnds-fe-group--error'}`}>
+            {timeError && <span className="wmnds-fe-error-message">Enter a valid time</span>}
+            <label className="wmnds-fe-label" htmlFor="dropdown-example">
+              <p style={{ marginBottom: 10 }}>Time</p>
+              <select
+                className="wmnds-fe-dropdown__select "
+                id="hour"
+                name="hour"
+                style={{ width: 100, marginRight: 20 }}
+                ref={register}
+              >
+                <option value="" selected="true">
+                  --
+                </option>
+                {Array.from(Array(24).keys()).map((val) => (
+                  <option value={val}>{val}</option>
+                ))}
+              </select>
 
-            <select
-              className="wmnds-fe-dropdown__select "
-              id="minute"
-              name="minute"
-              style={{ width: 100 }}
-              placeholder="00"
-              ref={register}
-            >
-              <option value="" selected="true">
-                --
-              </option>
-              {Array.from(Array(60).keys()).map((val) => (
-                <option value={val}>{val}</option>
-              ))}
-            </select>
-          </label>
+              <select
+                className="wmnds-fe-dropdown__select "
+                id="minute"
+                name="minute"
+                style={{ width: 100 }}
+                placeholder="00"
+                ref={register}
+              >
+                <option value="" selected="true">
+                  --
+                </option>
+                {Array.from(Array(60).keys()).map((val) => (
+                  <option value={val}>{val}</option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
-      </div>
+      )}
       <div id="date-input" className={`wmnds-fe-group ${dateError && 'wmnds-fe-group--error'}`}>
         <div className="wmnds-fe-date-input">
           {dateError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
-
+          <p style={{ marginBottom: 30 }}>{label}</p>
           <div className="wmnds-fe-date-input__day">
-            <p style={{ marginBottom: 10 }}>Date</p>
-
             <label className="wmnds-fe-label" htmlFor="LastUsedDateDay">
               Day{' '}
               <input

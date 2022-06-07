@@ -129,10 +129,14 @@ const Form = () => {
         )}
       </div>
       <div className="bg-white wmnds-p-l-md " style={{ width: '40rem', backgroundColor: 'white' }}>
-        <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
-        <h4 className="wmnds-m-t-xs">{data.sectionDescription}</h4>
+        {data.sectionNum && (
+          <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
+        )}
+        {data.sectionDescription && (
+          <h4 className="wmnds-m-t-xs wmnds-m-b-xs">{data.sectionDescription}</h4>
+        )}
 
-        <h2 className=" wmnds-m-t-lg">{data.title}</h2>
+        <h2 className="wmnds-p-t-lg wmnds-m-t-xs">{data.title}</h2>
         <form onSubmit={handleSubmit(continueHandler)}>
           {data.components.map((component) => (
             <div key={component.id}>
@@ -167,6 +171,7 @@ const Form = () => {
               {component.type === 'Input' && (
                 <Input
                   label={component.label}
+                  label2={component.label2}
                   name={component.name}
                   defaultValue={formData[component.name]}
                   errorMsg={component.errorMsg}
@@ -220,6 +225,8 @@ const Form = () => {
                   required={component.required}
                   register={register}
                   errors={formError}
+                  label={component.label}
+                  showTime={component.showTime}
                 />
               )}
               {component.type === 'Address' && (
