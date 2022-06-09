@@ -58,10 +58,12 @@ const Calendar = ({
           </div>
         </div>
       )}
+
       <div id="date-input" className={`wmnds-fe-group ${dateError && 'wmnds-fe-group--error'}`}>
         <div className="wmnds-fe-date-input">
           {dateError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
           <p style={{ marginBottom: 30 }}>{label}</p>
+
           <div className="wmnds-fe-date-input__day">
             <label className="wmnds-fe-label" htmlFor="LastUsedDateDay">
               Day{' '}

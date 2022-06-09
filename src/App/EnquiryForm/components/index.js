@@ -6,11 +6,12 @@ import { FormDataContext } from '../../../globalState';
 
 import CheckYourAnswers from './CheckYourAnswers';
 import ReceivedForm from './ReceivedForm';
+import SubmitAnEnquiry from './SubmitAnEnquiry';
 
 const Complaint = () => {
   useEffect(() => {
-    document.querySelector('#formClicked').innerText = 'Submit an Enquiry';
-  });
+    document.getElementById('formClicked').innerText = 'Submit an enquiry';
+  }, []);
   const [{ page }] = useContext(FormDataContext);
 
   return (
@@ -24,6 +25,7 @@ const Complaint = () => {
           text2=" We aim to resolve issues brought to our attention within 10 working days, however, some investigations may take longer. Customer Relations will keep you informed of progress until your issue is resolved."
         />
       )}
+      {page === 'SUBMIT' && <SubmitAnEnquiry />}
 
       {page === 'COMPLAINT' && <Form />}
 

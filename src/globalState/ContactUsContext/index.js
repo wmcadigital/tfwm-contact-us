@@ -18,7 +18,7 @@ export const FormProvider = (props) => {
       hasReachedConfirmation: false,
     },
     steps: Data,
-    page: 'COMPLAINT',
+    page: 'SUBMIT',
     stepNum: 0,
     formData: {},
     formId: '',

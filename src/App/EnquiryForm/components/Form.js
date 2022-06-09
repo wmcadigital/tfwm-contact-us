@@ -27,49 +27,12 @@ import Data from '../../ContactUs/newData.json';
 const Form = () => {
   const [{ stepNum, formData, formId }, formDispatch] = useContext(FormDataContext);
   const findComponents = Data.pages.find((page) => page.currentStepId === formId).formComponents;
-  const data = findComponents[stepNum];
 
-  const nextStep = (event) => {
-    event.preventDefault();
-    Array.prototype.forEach.call(event.target, (target) => {
-      if (target.name) {
-        // answers.push({ name: target.name, value: target.value, required: target.id });
-        formDispatch({
-          type: 'ADD-DATA',
-          payload: { name: target.name, value: target.value },
-        });
-      }
-    });
-    // event.target.forEach((target) => {
-
-    // if (target.name) {
-    //   // answers.push({ name: target.name, value: target.value, required: target.id });
-    //   formDispatch({
-    //     type: 'ADD-DATA',
-    //     payload: { name: target.name, value: target.value },
-    //   });
-    // }
-    // });
-
-    // const hasEmptyField = answers.some((target) => !target.value);
-    // const isRequired = answers.some((target) => target.required === 'required');
-    // // exit func if there is a field with an empty value or if there are no answers
-    // if ((hasEmptyField && isRequired) || answers.length === 0) return;
-
-    // when last form is reached
-    if (stepNum === findComponents.length) {
-      formDispatch({
-        type: 'CHANGE-PAGE',
-        payload: { page: 'ANSWERS', stepNum },
-      });
-      return;
-    }
-
-    formDispatch({
-      type: 'NEXT',
-    });
-  };
-
+  const [components, setComponents] = useState(findComponents);
+  const [data, setData] = useState(components[stepNum]);
+  useEffect(() => {
+    setData(components[stepNum]);
+  }, [stepNum, components]);
   const prevStep = () => {
     formDispatch({
       type: 'PREV',
@@ -89,6 +52,14 @@ const Form = () => {
 
     setFormError(errors);
 
+    if (data.hasDynamicComponents) {
+      if (Object.keys(values).length > 1) {
+        setComponents(data.dynamicComponents[0]);
+      } else {
+        setComponents(data.dynamicComponents[+Object.keys(values)[0]]);
+      }
+      return;
+    }
     // Object.keys(values).map(function (key, index) {
     if (!isEmpty) {
       formDispatch({
@@ -106,7 +77,7 @@ const Form = () => {
     // });
 
     if (errors.length === 0) {
-      if (stepNum === findComponents.length - 1) {
+      if (stepNum === components.length - 1) {
         formDispatch({
           type: 'CHANGE-PAGE',
           payload: { page: 'ANSWERS', stepNum },
@@ -118,7 +89,7 @@ const Form = () => {
       });
     }
   };
-
+  console.log(components, 'comps');
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-lg">

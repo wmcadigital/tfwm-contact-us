@@ -206,10 +206,8 @@ const LastPage = ({ content, currentStep }) => {
             <>
               <h5>Live Chat</h5>
               <div id="__8x8-chat-button-container-script_1846483120624b05c7b46378.06993588" />
-              <p>
-                The chat button will appear below when this service is available. <br />
-                Starting live chat will open a window at the bottom of your browser
-              </p>
+
+              <p>Starting live chat will open a window at the bottom of your browser</p>
             </>
           )}
 

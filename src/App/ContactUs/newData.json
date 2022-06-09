@@ -161,8 +161,8 @@
 
         "insetText": "If you bought your Swift card from National Express, you need to <a href='https://www.tfwm.org.uk/get-help/contact-us/contact-national-express-west-midlands-about-your-swift-card/' title='replace-card' target='_blank'> contact them to replace it</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
-        "customerService": true,
-        "showChat": true
+
+        "customerService": true
       }
     },
     {
@@ -318,7 +318,7 @@
 
               "options": [
                 {
-                  "name": "yes",
+                  "name": "swift-yes",
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Swift card number",
@@ -327,7 +327,7 @@
                   "errorMsg": "Enter a valid Swift number"
                 },
                 {
-                  "name": "no",
+                  "name": "swift-no",
                   "option": "No",
                   "required": true,
                   "inputLabel1": "",
@@ -353,7 +353,7 @@
 
               "options": [
                 {
-                  "name": "yes",
+                  "name": "debit-yes",
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Direct Debit number",
@@ -362,7 +362,7 @@
                   "errorMsg": "Enter a valid Swift number"
                 },
                 {
-                  "name": "no",
+                  "name": "debit-no",
                   "option": "No",
                   "required": true,
                   "inputLabel1": "",
@@ -425,6 +425,7 @@
         {
           "title": "What do you need to update?",
           "name": "update",
+          "hasDynamicComponents": true,
           "components": [
             {
               "type": "Checkbox",
@@ -432,294 +433,689 @@
 
               "options": [
                 {
-                  "name": "bank-details",
+                  "name": "1",
                   "option": "Update my bank details",
                   "required": true
                 },
                 {
-                  "name": "contact-details",
+                  "name": "2",
                   "option": "Update my contact details",
                   "required": true
                 }
               ],
               "id": "1"
             }
-          ]
-        },
-        {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "What is your name?",
-          "name": "name",
-          "components": [
-            {
-              "type": "Input",
-              "label": "First Name",
-              "required": true,
-              "id": "1",
-              "name": "first-name",
-              "errorMsg": "First name is required"
-            },
-            {
-              "type": "Input",
-              "label": "Last Name",
-              "required": true,
+          ],
+          "dynamicComponents": [
+            [
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your name?",
+                "name": "name",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "First Name",
+                    "required": true,
+                    "id": "1",
+                    "name": "first-name",
+                    "errorMsg": "First name is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Last Name",
+                    "required": true,
 
-              "id": "2",
-              "name": "last-name",
-              "errorMsg": "Last name is required"
-            }
-          ]
-        },
-        {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "What is your date of birth?",
-          "answerTitle": "Date of birth",
-          "name": "date",
-          "components": [
-            {
-              "type": "Date",
-              "required": true,
-              "label": "For example, 3 7 1985",
-              "id": "1",
-              "name": "date"
-            }
-          ]
-        },
-        {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "What is your postcode?",
-          "answerTitle": "Postcode",
-          "name": "postcode",
-          "components": [
-            {
-              "type": "Input",
-              "label": "Postcode",
-              "required": true,
-              "id": "1",
-              "name": "postcode",
-              "errorMsg": "Postcode is required"
-            }
-          ]
-        },
-        {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "What is your Direct Debit number?",
-          "answerTitle": "Direct Debit number",
-          "name": "direct-debit-number",
-          "components": [
-            {
-              "type": "Input",
-              "label": "Direct Debit number",
-              "label2": "This begins with 6 and is shown next to every payment to WMCA on your bank statement",
-              "required": true,
-              "id": "1",
-              "name": "direct-debit-number",
-              "errorMsg": "Direct Debit number is required"
-            }
-          ]
-        },
-        {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "name": "contact",
-          "components": [
-            {
-              "type": "Checkbox",
-              "required": true,
-              "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "Your contact details",
-          "title": "Do you need to change the name on the Direct Debit ticket?",
-          "answerTitle": "Name on the Direct Debit ticket",
-          "name": "direct_debit_ticket",
+                    "id": "2",
+                    "name": "last-name",
+                    "errorMsg": "Last name is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your date of birth?",
+                "answerTitle": "Date of birth",
+                "name": "date",
+                "components": [
+                  {
+                    "type": "Date",
+                    "required": true,
+                    "label": "For example, 3 7 1985",
+                    "id": "1",
+                    "name": "date"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your postcode?",
+                "answerTitle": "Postcode",
+                "name": "postcode",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Postcode",
+                    "required": true,
+                    "id": "1",
+                    "name": "postcode-input",
+                    "errorMsg": "Postcode is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your Direct Debit number?",
+                "answerTitle": "Direct Debit number",
+                "name": "direct-debit-number",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Direct Debit number",
+                    "label2": "This begins with 6 and is shown next to every payment to WMCA on your bank statement",
+                    "required": true,
+                    "id": "1",
+                    "name": "direct-debit-number",
+                    "errorMsg": "Direct Debit number is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "How would you like to be contacted?",
+                "name": "contact",
+                "components": [
+                  {
+                    "type": "Checkbox",
+                    "required": true,
+                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
+                    "options": [
+                      {
+                        "name": "email",
+                        "option": "Email",
+                        "required": true,
+                        "inputLabel1": "Email address",
+                        "inputLabel2": "For example, name@example.com",
+                        "type": "email",
+                        "errorMsg": "Enter a valid email address"
+                      },
+                      {
+                        "name": "phone",
+                        "option": "Phone",
+                        "required": true,
+                        "inputLabel1": "Phone number",
+                        "inputLabel2": "For example, 07700900457",
+                        "type": "number",
+                        "errorMsg": "Enter a valid phone number"
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "Do you need to change the name on the Direct Debit ticket?",
+                "answerTitle": "Name on the Direct Debit ticket",
+                "name": "direct_debit_ticket",
 
-          "components": [
-            {
-              "type": "YesOrNo",
-              "required": true,
-              "options": [
-                {
-                  "name": "yes",
-                  "option": "Yes",
-                  "required": true,
-                  "inputLabel1": "First and Last Name",
+                "components": [
+                  {
+                    "type": "YesOrNo",
+                    "required": true,
+                    "options": [
+                      {
+                        "name": "name-yes",
+                        "option": "Yes",
+                        "required": true,
+                        "inputLabel1": "First and Last Name",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid name"
-                },
-                {
-                  "name": "no",
-                  "option": "No",
-                  "required": true,
-                  "inputLabel1": "",
-                  "inputLabel2": "",
-                  "type": "",
-                  "errorMsg": ""
-                }
-              ],
-              "id": "1"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "Your contact details",
-          "title": "Do you need to update your address?",
-          "answerTitle": "Name on the Direct Debit ticket",
-          "name": "direct_debit_ticket",
+                        "type": "text",
+                        "errorMsg": "Enter a valid name"
+                      },
+                      {
+                        "name": "name-no",
+                        "option": "No",
+                        "required": true,
+                        "inputLabel1": "",
+                        "inputLabel2": "",
+                        "type": "",
+                        "errorMsg": ""
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "Do you need to update your address?",
+                "answerTitle": "Name on the Direct Debit ticket",
+                "name": "direct_debit_ticket",
 
-          "components": [
-            {
-              "type": "YesOrNo",
-              "required": true,
-              "options": [
-                {
-                  "name": "yes",
-                  "option": "Yes",
-                  "required": true
-                },
-                {
-                  "name": "no",
-                  "option": "No",
-                  "required": true,
-                  "inputLabel1": "",
-                  "inputLabel2": "",
-                  "type": "",
-                  "errorMsg": ""
-                }
-              ],
-              "id": "1"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "Your contact details",
-          "title": "What is your updated address?",
-          "answerTitle": "Address",
-          "name": "address",
+                "components": [
+                  {
+                    "type": "YesOrNo",
+                    "required": true,
+                    "options": [
+                      {
+                        "name": "address-yes",
+                        "option": "Yes",
+                        "required": true
+                      },
+                      {
+                        "name": "address-no",
+                        "option": "No",
+                        "required": true,
+                        "inputLabel1": "",
+                        "inputLabel2": "",
+                        "type": "",
+                        "errorMsg": ""
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "What is your updated address?",
+                "answerTitle": "Address",
+                "name": "address",
 
-          "components": [
-            {
-              "type": "Address",
-              "required": true,
-              "id": "1",
-              "name": "address",
-              "allowMapView": false,
+                "components": [
+                  {
+                    "type": "Address",
+                    "required": true,
+                    "id": "1",
+                    "name": "address",
+                    "allowMapView": false,
 
-              "inputs": [
-                {
-                  "name": "building",
+                    "inputs": [
+                      {
+                        "name": "building",
 
-                  "required": true,
-                  "label": "Building",
+                        "required": true,
+                        "label": "Building",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid building"
-                },
-                {
-                  "name": "street",
+                        "type": "text",
+                        "errorMsg": "Enter a valid building"
+                      },
+                      {
+                        "name": "street",
 
-                  "required": true,
-                  "label": "Street name",
+                        "required": true,
+                        "label": "Street name",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid street name"
-                },
-                {
-                  "name": "town-or-city",
+                        "type": "text",
+                        "errorMsg": "Enter a valid street name"
+                      },
+                      {
+                        "name": "town-or-city",
 
-                  "required": false,
-                  "label": "Town or city",
+                        "required": false,
+                        "label": "Town or city",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid direction of travel"
-                },
-                {
-                  "name": "county",
+                        "type": "text",
+                        "errorMsg": "Enter a valid direction of travel"
+                      },
+                      {
+                        "name": "county",
 
-                  "required": false,
-                  "label": "Country",
+                        "required": false,
+                        "label": "Country",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid country"
-                },
-                {
-                  "name": "postcode",
+                        "type": "text",
+                        "errorMsg": "Enter a valid country"
+                      },
+                      {
+                        "name": "address-postcode",
 
-                  "required": false,
-                  "label": "Postcode",
+                        "required": true,
+                        "label": "Postcode",
 
-                  "type": "text",
-                  "errorMsg": "Enter a valid postcode"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "sectionNum": 3,
-          "sectionDescription": "Your bank details",
-          "title": "What are your updated bank account details?",
-          "answerTitle": "Your updated bank account details",
-          "name": "bank-details",
-          "components": [
-            {
-              "type": "Input",
-              "label": "Name as it appears on your bank account",
-              "required": true,
-              "id": "1",
-              "name": "bank-account-name",
-              "errorMsg": "Name is required"
-            },
-            {
-              "type": "Input",
-              "label": "Sort code",
-              "label2": "Must be 6 digits long",
-              "required": true,
-              "id": "1",
-              "name": "sort-code",
-              "errorMsg": "Sort code is required"
-            },
-            {
-              "type": "Input",
-              "label": "Account number",
-              "label2": "Must be between 6 and 8 digits long",
-              "required": true,
-              "id": "1",
-              "name": "account-number",
-              "errorMsg": "Account number is required"
-            }
+                        "type": "text",
+                        "errorMsg": "Enter a valid postcode"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "sectionNum": 3,
+                "sectionDescription": "Your bank details",
+                "title": "What are your updated bank account details?",
+                "answerTitle": "Your updated bank account details",
+                "name": "bank-details",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Name as it appears on your bank account",
+                    "required": true,
+                    "id": "1",
+                    "name": "bank-account-name",
+                    "errorMsg": "Name is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Sort code",
+                    "label2": "Must be 6 digits long",
+                    "required": true,
+                    "id": "1",
+                    "name": "sort-code",
+                    "errorMsg": "Sort code is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Account number",
+                    "label2": "Must be between 6 and 8 digits long",
+                    "required": true,
+                    "id": "1",
+                    "name": "account-number",
+                    "errorMsg": "Account number is required"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your name?",
+                "name": "name",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "First Name",
+                    "required": true,
+                    "id": "1",
+                    "name": "first-name",
+                    "errorMsg": "First name is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Last Name",
+                    "required": true,
+
+                    "id": "2",
+                    "name": "last-name",
+                    "errorMsg": "Last name is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your date of birth?",
+                "answerTitle": "Date of birth",
+                "name": "date",
+                "components": [
+                  {
+                    "type": "Date",
+                    "required": true,
+                    "label": "For example, 3 7 1985",
+                    "id": "1",
+                    "name": "date"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your postcode?",
+                "answerTitle": "Postcode",
+                "name": "postcode",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Postcode",
+                    "required": true,
+                    "id": "1",
+                    "name": "postcode-input",
+                    "errorMsg": "Postcode is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your Direct Debit number?",
+                "answerTitle": "Direct Debit number",
+                "name": "direct-debit-number",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Direct Debit number",
+                    "label2": "This begins with 6 and is shown next to every payment to WMCA on your bank statement",
+                    "required": true,
+                    "id": "1",
+                    "name": "direct-debit-number",
+                    "errorMsg": "Direct Debit number is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "How would you like to be contacted?",
+                "name": "contact",
+                "components": [
+                  {
+                    "type": "Checkbox",
+                    "required": true,
+                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
+                    "options": [
+                      {
+                        "name": "email",
+                        "option": "Email",
+                        "required": true,
+                        "inputLabel1": "Email address",
+                        "inputLabel2": "For example, name@example.com",
+                        "type": "email",
+                        "errorMsg": "Enter a valid email address"
+                      },
+                      {
+                        "name": "phone",
+                        "option": "Phone",
+                        "required": true,
+                        "inputLabel1": "Phone number",
+                        "inputLabel2": "For example, 07700900457",
+                        "type": "number",
+                        "errorMsg": "Enter a valid phone number"
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your bank details",
+                "title": "What are your updated bank account details?",
+                "answerTitle": "Your updated bank account details",
+                "name": "bank-details",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Name as it appears on your bank account",
+                    "required": true,
+                    "id": "1",
+                    "name": "bank-account-name",
+                    "errorMsg": "Name is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Sort code",
+                    "label2": "Must be 6 digits long",
+                    "required": true,
+                    "id": "1",
+                    "name": "sort-code",
+                    "errorMsg": "Sort code is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Account number",
+                    "label2": "Must be between 6 and 8 digits long",
+                    "required": true,
+                    "id": "1",
+                    "name": "account-number",
+                    "errorMsg": "Account number is required"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your name?",
+                "name": "name",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "First Name",
+                    "required": true,
+                    "id": "1",
+                    "name": "first-name",
+                    "errorMsg": "First name is required"
+                  },
+                  {
+                    "type": "Input",
+                    "label": "Last Name",
+                    "required": true,
+
+                    "id": "2",
+                    "name": "last-name",
+                    "errorMsg": "Last name is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your date of birth?",
+                "answerTitle": "Date of birth",
+                "name": "date",
+                "components": [
+                  {
+                    "type": "Date",
+                    "required": true,
+                    "label": "For example, 3 7 1985",
+                    "id": "1",
+                    "name": "date"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your postcode?",
+                "answerTitle": "Postcode",
+                "name": "postcode",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Postcode",
+                    "required": true,
+                    "id": "1",
+                    "name": "postcode-input",
+                    "errorMsg": "Postcode is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "What is your Direct Debit number?",
+                "answerTitle": "Direct Debit number",
+                "name": "direct-debit-number",
+                "components": [
+                  {
+                    "type": "Input",
+                    "label": "Direct Debit number",
+                    "label2": "This begins with 6 and is shown next to every payment to WMCA on your bank statement",
+                    "required": true,
+                    "id": "1",
+                    "name": "direct-debit-number",
+                    "errorMsg": "Direct Debit number is required"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 1,
+                "sectionDescription": "About you",
+                "title": "How would you like to be contacted?",
+                "name": "contact",
+                "components": [
+                  {
+                    "type": "Checkbox",
+                    "required": true,
+                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
+                    "options": [
+                      {
+                        "name": "email",
+                        "option": "Email",
+                        "required": true,
+                        "inputLabel1": "Email address",
+                        "inputLabel2": "For example, name@example.com",
+                        "type": "email",
+                        "errorMsg": "Enter a valid email address"
+                      },
+                      {
+                        "name": "phone",
+                        "option": "Phone",
+                        "required": true,
+                        "inputLabel1": "Phone number",
+                        "inputLabel2": "For example, 07700900457",
+                        "type": "number",
+                        "errorMsg": "Enter a valid phone number"
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "Do you need to change the name on the Direct Debit ticket?",
+                "answerTitle": "Name on the Direct Debit ticket",
+                "name": "direct_debit_ticket",
+
+                "components": [
+                  {
+                    "type": "YesOrNo",
+                    "required": true,
+                    "options": [
+                      {
+                        "name": "name-yes",
+                        "option": "Yes",
+                        "required": true,
+                        "inputLabel1": "First and Last Name",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid name"
+                      },
+                      {
+                        "name": "name-no",
+                        "option": "No",
+                        "required": true,
+                        "inputLabel1": "",
+                        "inputLabel2": "",
+                        "type": "",
+                        "errorMsg": ""
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "Do you need to update your address?",
+                "answerTitle": "Name on the Direct Debit ticket",
+                "name": "direct_debit_ticket",
+
+                "components": [
+                  {
+                    "type": "YesOrNo",
+                    "required": true,
+                    "options": [
+                      {
+                        "name": "address-yes",
+                        "option": "Yes",
+                        "required": true
+                      },
+                      {
+                        "name": "address-no",
+                        "option": "No",
+                        "required": true,
+                        "inputLabel1": "",
+                        "inputLabel2": "",
+                        "type": "",
+                        "errorMsg": ""
+                      }
+                    ],
+                    "id": "1"
+                  }
+                ]
+              },
+              {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "What is your updated address?",
+                "answerTitle": "Address",
+                "name": "address",
+
+                "components": [
+                  {
+                    "type": "Address",
+                    "required": true,
+                    "id": "1",
+                    "name": "address",
+                    "allowMapView": false,
+
+                    "inputs": [
+                      {
+                        "name": "building",
+
+                        "required": true,
+                        "label": "Building",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid building"
+                      },
+                      {
+                        "name": "street",
+
+                        "required": true,
+                        "label": "Street name",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid street name"
+                      },
+                      {
+                        "name": "town-or-city",
+
+                        "required": false,
+                        "label": "Town or city",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid direction of travel"
+                      },
+                      {
+                        "name": "county",
+
+                        "required": false,
+                        "label": "Country",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid country"
+                      },
+                      {
+                        "name": "address-postcode",
+
+                        "required": true,
+                        "label": "Postcode",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid postcode"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           ]
         }
       ]
@@ -810,13 +1206,13 @@
             {
               "type": "YesOrNo",
               "required": true,
+              "label": "You can find it on your bank statement or a letter from us about your ticket",
               "options": [
                 {
                   "name": "yes",
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Direct Debit number",
-                  "inputLabel2": " You can find it on your bank statement or a letter from us about your ticket",
                   "type": "number",
                   "errorMsg": "Enter a valid service number"
                 },
@@ -1562,6 +1958,7 @@
               "required": true,
               "showTime": true,
               "label": "Date",
+
               "id": "1",
               "name": "date"
             }
@@ -2955,36 +3352,46 @@
               "inputs": [
                 {
                   "name": "building",
+
                   "required": true,
                   "label": "Building",
+
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
+
                   "required": true,
                   "label": "Street name",
+
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
+
                   "required": false,
                   "label": "Town or city",
+
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
+
                   "required": false,
                   "label": "Country",
+
                   "type": "text",
                   "errorMsg": "Enter a valid country"
                 },
                 {
-                  "name": "address-postcode",
-                  "required": true,
+                  "name": "postcode",
+
+                  "required": false,
                   "label": "Postcode",
+
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -3184,36 +3591,46 @@
               "inputs": [
                 {
                   "name": "building",
+
                   "required": true,
                   "label": "Building",
+
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
+
                   "required": true,
                   "label": "Street name",
+
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
+
                   "required": false,
                   "label": "Town or city",
+
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
+
                   "required": false,
                   "label": "Country",
+
                   "type": "text",
                   "errorMsg": "Enter a valid country"
                 },
                 {
-                  "name": "address-postcode",
-                  "required": true,
+                  "name": "postcode",
+
+                  "required": false,
                   "label": "Postcode",
+
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -3266,7 +3683,9 @@
           "components": [
             {
               "type": "Textarea",
+
               "required": true,
+
               "id": "1",
               "name": "about"
             }
@@ -3309,6 +3728,7 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
+
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"

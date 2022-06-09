@@ -42,6 +42,7 @@ const CheckYourAnswers = () => {
 
     return coords;
   };
+  console.log(formData, 'FORM');
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
@@ -108,15 +109,18 @@ const CheckYourAnswers = () => {
                   {data.answerTitle}
                 </th>
                 <td data-header="Header 2">
-                  {data.answerTitle === 'Supporting documents' && (
-                    <img
-                      src={URL.createObjectURL(data.value[0][1][0])}
-                      alt="File"
-                      style={{ marginTop: 20 }}
-                      width={200}
-                      height={200}
-                    />
-                  )}
+                  {data.answerTitle === 'Supporting documents' &&
+                    (data.value[0][1].length === 0 ? (
+                      'None'
+                    ) : (
+                      <img
+                        src={URL.createObjectURL(data.value[0][1][0])}
+                        alt="File"
+                        style={{ marginTop: 20 }}
+                        width={200}
+                        height={200}
+                      />
+                    ))}
                   {data.answerTitle === 'What was the date and time of the issue?' && (
                     <>
                       {data.value[0][1]}:{data.value[1][1]}

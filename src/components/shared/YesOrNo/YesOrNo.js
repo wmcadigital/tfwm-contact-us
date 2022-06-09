@@ -38,6 +38,7 @@ const YesOrNo = ({
         {hasError && (
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
+        <p>{label}</p>
         <fieldset style={{ border: 'none' }}>
           {options.map((option, idx) => (
             <div key={option.name} className="wmnds-m-b-md">
@@ -46,11 +47,11 @@ const YesOrNo = ({
                 name="yes-or-no"
                 text={option.option}
                 id={option.name}
-                value={option.name}
-                register={!checkedRadio ? register : unregister('yes-or-no')}
+                value={option.option}
+                register={register}
                 onChange={checkBoxesChangeHandler}
               />
-              {option.inputLabel1 && checkedRadio === 'yes' && option.name === 'yes' && (
+              {option.inputLabel1 && checkedRadio === 'Yes' && option.name === 'yes' && (
                 <>
                   {option.type === 'Dropdown' ? (
                     <div style={{ marginLeft: 40 }}>

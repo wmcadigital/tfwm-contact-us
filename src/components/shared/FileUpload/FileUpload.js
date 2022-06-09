@@ -41,7 +41,7 @@ const FileUpload = ({
             id="fileUploader"
             className="wmnds-fe-file-upload__input"
             onChange={fileChangeHandler}
-            ref={file ? register : unregister('fileUploader')}
+            ref={register}
             accept="image/png,image/jpeg,image/jpg,application/pdf"
           />
           <svg className="wmnds-btn__icon wmnds-btn__icon--right">
