@@ -6,7 +6,7 @@ import { FormDataContext } from '../../../globalState';
 import classes from '../../App.module.scss';
 
 const CheckYourAnswers = () => {
-  const [{ formData, stepNum }, formDispatch] = useContext(FormDataContext);
+  const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
   const [errorMsg, setErrorMsg] = useState('');
   const prevStep = () => {
     formDispatch({
@@ -22,8 +22,9 @@ const CheckYourAnswers = () => {
   };
 
   const checkCheckboxes = () => {
+    const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
-    if (findCheckedBoxes.length < 2) {
+    if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg('Please select both options');
     } else {
       formDispatch({
@@ -174,6 +175,53 @@ const CheckYourAnswers = () => {
         <div className="wmnds-fe-group">
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+            {formId === 'step-update-DD' && (
+              <div style={{ display: 'flex', gap: '.5rem' }}>
+                <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
+                  Please pay West Midlands Combined Authority Direct Debits from the account
+                  detailed in this Instruction subject to the safeguards assured by the
+                  <button
+                    style={{
+                      all: 'unset',
+                      cursor: 'pointer',
+                      color: '#1d7bbf',
+                      fontWeight: 'bold',
+                      textDecoration: 'underline',
+                    }}
+                    onClick={() => {
+                      formDispatch({
+                        type: 'CHANGE-PAGE',
+                        payload: { page: 'DIRECT-DEBIT-GUARANTEE', stepNum },
+                      });
+                    }}
+                    type="button"
+                  >
+                    Direct Debit Guarantee
+                  </button>
+                  . I understand that this Instruction may remain with West Midlands Combined
+                  Authority and, if so, details will be passed electronically to my bank/building
+                  society.
+                  <input
+                    id="checkboxes_option0"
+                    className="wmnds-fe-checkboxes__input checkox-option"
+                    value="terms-and-conditions"
+                    name="checkbox-example"
+                    type="checkbox"
+                  />
+                  <span className="wmnds-fe-checkboxes__checkmark">
+                    <svg className="wmnds-fe-checkboxes__icon">
+                      <use xlinkHref="#wmnds-general-checkmark" href="#wmnds-general-checkmark" />
+                    </svg>
+                  </span>
+                </label>
+                <img
+                  src="/direct-debit-logo.png"
+                  alt="direct debit logo"
+                  className={classes.ddLogo}
+                />
+              </div>
+            )}
+
             <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option1">
               Agree to the{' '}
               <a href="https://www.tfwm.org.uk/terms-and-conditions/transport-for-west-midlands-website/">
@@ -181,7 +229,7 @@ const CheckYourAnswers = () => {
               </a>
               <input
                 id="checkboxes_option1"
-                className="wmnds-fe-checkboxes__input"
+                className="wmnds-fe-checkboxes__input checkox-option"
                 value="terms-and-conditions"
                 name="checkbox-example"
                 type="checkbox"
@@ -199,7 +247,7 @@ const CheckYourAnswers = () => {
               </a>
               <input
                 id="checkboxes_option2"
-                className="wmnds-fe-checkboxes__input"
+                className="wmnds-fe-checkboxes__input checkox-option"
                 value="privacy-policy"
                 name="checkbox-example"
                 type="checkbox"
