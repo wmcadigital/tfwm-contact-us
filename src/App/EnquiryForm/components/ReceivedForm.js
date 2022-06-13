@@ -12,6 +12,7 @@ const ReceivedForm = ({
   title = '',
   text1 = '',
   text2 = '',
+  text3 = '',
 }) => {
   return (
     <div className="wmnds-container wmnds-container--main">
@@ -19,17 +20,20 @@ const ReceivedForm = ({
         {' '}
         <div className="wmnds-msg-summary wmnds-msg-summary--success-fill ">
           <h3 className="wmnds-text-align-center">{successTitle}</h3>
-          <div
-            className="wmnds-text-align-center wmnds-m-t-lg"
-            style={{ color: 'white' }}
-            dangerouslySetInnerHTML={{
-              __html: sanitize(successText),
-            }}
-          />
+          {successText && (
+            <div
+              className="wmnds-text-align-center wmnds-m-t-lg"
+              style={{ color: 'white' }}
+              dangerouslySetInnerHTML={{
+                __html: sanitize(successText),
+              }}
+            />
+          )}{' '}
         </div>
         <h2 className="wmnds-m-t-lg">{title}</h2>
         <p>{text1}</p>
         <p>{text2}</p>
+        <p>{text3}</p>
       </div>
     </div>
   );
@@ -41,6 +45,7 @@ ReceivedForm.propTypes = {
   title: PropTypes.string.isRequired,
   text1: PropTypes.string.isRequired,
   text2: PropTypes.string.isRequired,
+  text3: PropTypes.string.isRequired,
 };
 
 export default ReceivedForm;

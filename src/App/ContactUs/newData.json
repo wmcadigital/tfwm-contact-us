@@ -1485,7 +1485,7 @@
         "details": "If you have a question, please call us or <a href='#' title='step-swift-parking-app' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-transport-west-midland-app",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 2 for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true,
         "showChat": true
       },
@@ -1638,7 +1638,7 @@
         "details": "Contact the <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
         "details2": "For all other enquiries please call us or <a href='#' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-bus",
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -1700,6 +1700,24 @@
                 }
               ],
               "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What was the date and time of the issue?",
+          "answerTitle": "What was the date and time of the issue?",
+          "name": "date",
+          "components": [
+            {
+              "type": "Date",
+              "required": true,
+              "showTime": true,
+              "label": "Date",
+
+              "id": "1",
+              "name": "date"
             }
           ]
         },
@@ -1778,12 +1796,23 @@
               "id": "1",
               "name": "date",
               "options": [
-                "Arriva",
-                "Banga Travel",
+                "Arriva Midlands",
+                "Banga Buses",
                 "Chaserider",
-                "Chaserider",
-                "Community Transport",
-                "Coventry Minibuses"
+                "Coventry Minibuses",
+                "Diamond Bus",
+                "Discount Travel Solutions",
+                "Kev's Cars & Coaches",
+                "Landflight Travel Services",
+                "Let's Go",
+                "National Express Coventry",
+                "National Express West Midlands",
+                "Select Bus Services",
+                "Stagecoach Midlands",
+                "Thandi Transport",
+                "The Green Bus",
+                "The Green Transport Co",
+                "Walsall Community Transport"
               ]
             }
           ]
@@ -1883,7 +1912,7 @@
         "details2": "For all other enquiries please call us or <a href='#' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-train",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -2091,7 +2120,7 @@
         "details2": "If you need help with park and ride, you can give us a call or <a href='#' id='formId'>fill in this form</a>.",
         "formId": "step-park-ride",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -2285,7 +2314,7 @@
         "details2": "If you need help with our Sprint bus service, you can give us a call or <a href='#' id='formId' >fill in this form</a>.",
         "formId": "step-sprint-bus",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -2444,7 +2473,7 @@
         "details2": "For all other cycle storage enquiries please call us or <a href='#' id='formId' >fill in this form</a>.",
         "formId": "step-cycle-storage",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -2598,7 +2627,7 @@
         "details2": "For all other cycling enquiries please call us or <a href='#' id='formId'>fill in this form</a>.",
         "formId": "step-other-cycle",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -2962,7 +2991,7 @@
         "details": "For all other enquiries please call us or <a href='#' id='formId' title='other'>fill in this form</a>.",
         "formId": "step-other-report",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "formComponents": [
@@ -4042,7 +4071,7 @@
         "type": "text",
         "details": "To give feedback or make an enquiry please call us or <a href='#' id='formId'>fill in this form</a>.",
         "formId": "step-enquiry-other",
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true,
         "showChat": true
       },

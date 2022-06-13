@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
+
 import Form from './Form';
+
 import { FormDataContext } from '../../../globalState';
+
 import CheckYourAnswers from './CheckYourAnswers';
 import ReceivedForm from './ReceivedForm';
 import SubmitAnEnquiry from './SubmitAnEnquiry';
@@ -17,10 +20,11 @@ const Complaint = () => {
       {page === 'SUCCESS' && (
         <ReceivedForm
           successTitle="We’ve received your form"
-          successText="Your reference number is <b>123456</b>"
+          // successText="Your reference number is <b>123456</b>"
           title="What happens next"
-          text1="You’ll receive an email to confirm your complaint."
-          text2=" We aim to resolve issues brought to our attention within 2 working days, however, some investigations may take longer. Customer Relations will keep you informed of progress until your issue is resolved."
+          text1="You’ll receive an email to confirm that we have received your enquiry."
+          text2=" It can take 10 working days to process your enquiry. It may take longer if we need more information from you."
+          text3="If you’ve not received a response after 10 days contact our Customer Services team on 0345 303 6760."
         />
       )}
       {page === 'SUBMIT' && <SubmitAnEnquiry />}
@@ -28,7 +32,6 @@ const Complaint = () => {
       {page === 'COMPLAINT' && <Form />}
 
       {page === 'ANSWERS' && <CheckYourAnswers />}
-
       {page === 'DIRECT-DEBIT-GUARANTEE' && <DirectDebitGuarantee />}
     </>
   );

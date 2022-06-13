@@ -89,7 +89,7 @@ const Form = () => {
       });
     }
   };
-  console.log(components, 'comps');
+  console.log(formData, 'data');
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-lg">
@@ -99,7 +99,10 @@ const Form = () => {
           </button>
         )}
       </div>
-      <div className="bg-white wmnds-p-l-md " style={{ width: '40rem', backgroundColor: 'white' }}>
+      <div
+        className="bg-white wmnds-p-l-md wmnds-p-r-md "
+        style={{ width: '40rem', backgroundColor: 'white' }}
+      >
         {data.sectionNum && (
           <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
         )}

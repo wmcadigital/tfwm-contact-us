@@ -23,6 +23,7 @@ const CheckYourAnswers = () => {
 
   const checkCheckboxes = () => {
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
+
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg('Please select both options');
@@ -43,7 +44,7 @@ const CheckYourAnswers = () => {
 
     return coords;
   };
-  console.log(formData, 'FORM');
+
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
@@ -61,7 +62,7 @@ const CheckYourAnswers = () => {
                 Name
               </th>
               <td data-header="Header 2">
-                {formData.name.value[0][1]} {formData.name.value[0][1]}
+                {formData.name.value[0][1]} {formData.name.value[1][1]}
               </td>
               <td data-header="Header 2">
                 <button
@@ -106,10 +107,10 @@ const CheckYourAnswers = () => {
           <tbody>
             {formDataArray.map((data) => (
               <tr>
-                <th scope="row" data-header="Header 1">
+                <th scope="row" data-header="Header 1" style={{ verticalAlign: 'top' }}>
                   {data.answerTitle}
                 </th>
-                <td data-header="Header 2">
+                <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
                   {data.answerTitle === 'Supporting documents' &&
                     (data.value[0][1].length === 0 ? (
                       'None'
@@ -166,9 +167,9 @@ const CheckYourAnswers = () => {
             ))}
           </tbody>
         </table>
-        <h3>Now send your complaint</h3>
+        <h3>Now send your request</h3>
         <p>
-          By submitting this complaint you are confirming that, to the best of your knowledge, the
+          By submitting this request you are confirming that, to the best of your knowledge, the
           details you are providing are correct.
         </p>
 
