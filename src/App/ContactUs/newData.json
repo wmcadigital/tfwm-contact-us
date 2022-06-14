@@ -2540,7 +2540,7 @@
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "Is your enquiry about a specific cycle storage location?",
-          "answerTitle": "Cycle storage location",
+          "answerTitle": "Specific cycle storage location?",
           "name": "location",
           "components": [
             {
@@ -2552,16 +2552,6 @@
                   "name": "yes",
                   "option": "Yes",
                   "required": true,
-                  "inputLabel1": "Cycle storage location",
-                  "inputLabel2": "",
-                  "options": [
-                    "Rowley Regis",
-                    "Longbridge",
-                    "New Street Station, Birmingham",
-                    "Selly Oak",
-                    "Stourbridge Junction"
-                  ],
-                  "type": "Dropdown",
                   "errorMsg": "Please select a location"
                 },
                 {
@@ -2572,6 +2562,64 @@
                   "inputLabel2": "",
                   "type": "",
                   "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Is your enquiry about a specific cycle storage location?",
+          "answerTitle": "Cycle storage location",
+          "name": "location",
+          "components": [
+            {
+              "type": "Radios",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "cycle-hubs",
+                  "option": "Cycle Hubs",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "options": [
+                    "Rowley Regis",
+                    "Longbridge",
+                    "New Street Station, Birmingham",
+                    "Selly Oak",
+                    "Stourbridge Junction"
+                  ],
+                  "type": "Dropdown",
+                  "errorMsg": "Please select a cycle hub"
+                },
+                {
+                  "name": "cycle-lockers",
+                  "option": "Cycle lockers",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "options": [
+                    "Bilston Bus Station",
+                    "Coventry Pool Meadow Bus Station",
+                    "Wednesbury Bus Station",
+                    "Acocks Green Train Station",
+                    "Blake Street Train Station",
+                    "Dorridge Train Station",
+                    "Hampton in Arden Train Station",
+                    "Kings Norton Train Station",
+                    "Langley Green Train Station",
+                    "Marston Green Train Station",
+                    "Sutton Coldfield Train Station",
+                    "Tame Bridge Parkway Train Station",
+                    "The Hawthorns Train Station",
+                    "Walsall Train Station"
+                  ],
+                  "type": "Dropdown",
+                  "errorMsg": "Please select a cycle locker"
                 }
               ],
               "id": "1"

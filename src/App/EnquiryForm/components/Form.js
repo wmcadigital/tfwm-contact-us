@@ -8,6 +8,8 @@ import FileUpload from 'components/shared/FileUpload/FileUpload';
 
 import YesOrNo from 'components/shared/YesOrNo/YesOrNo';
 
+import RadioOptions from 'components/shared/RadioOptions/RadioOptions';
+
 import Dropdown from '../../../components/shared/Dropdown/Dropdown';
 
 import Textarea from '../../../components/shared/Textarea/Textarea';
@@ -182,6 +184,18 @@ const Form = () => {
               )}
               {component.type === 'YesOrNo' && (
                 <YesOrNo
+                  label={component.label}
+                  options={component.options}
+                  name={component.name}
+                  defaultValues={[formData.email, formData.phone]}
+                  required={component.required}
+                  register={register}
+                  errors={formError}
+                  unregister={unregister}
+                />
+              )}
+              {component.type === 'Radios' && (
+                <RadioOptions
                   label={component.label}
                   options={component.options}
                   name={component.name}
