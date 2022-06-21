@@ -31,7 +31,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
         </div>
       ) : null}
       <div className={`wmnds-fe-group ${fieldValidation ? 'wmnds-fe-group--error' : ''}`}>
-        <fieldset className="wmnds-fe-fieldset">
+        <div className="wmnds-fe-fieldset">
           <legend className="wmnds-fe-fieldset__legend">
             {/* If there is an error, show here */}
             {fieldValidation && (
@@ -54,7 +54,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
               ))}
             </div>
           </legend>
-        </fieldset>
+        </div>
       </div>
     </>
   );

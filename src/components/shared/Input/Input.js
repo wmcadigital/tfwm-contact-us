@@ -41,23 +41,23 @@ const Input = ({
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {label && (
-        <label style={{ marginBottom: label2 && 0 }} className="wmnds-fe-label" htmlFor="input">
+        <label style={{ marginBottom: label2 && 0 }} className="wmnds-fe-label" htmlFor={name}>
           {label}
         </label>
       )}
       {label2 && (
-        <label className="wmnds-fe-label" htmlFor="input">
+        <label className="wmnds-fe-label" htmlFor={name}>
           {label2}
         </label>
       )}
       {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}
       <input
         className={`wmnds-fe-input ${hasError && required && 'wmnds-fe-input--error'}`}
-        id={required ? 'required' : ''}
+        id={name}
         name={name}
+        key={name}
         type="text"
         style={{ width: '20rem' }}
-        defaultValue={defaultValue.value}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
       />

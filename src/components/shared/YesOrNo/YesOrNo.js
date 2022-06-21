@@ -17,11 +17,11 @@ const YesOrNo = ({
   const [hasError, setHasError] = useState(false);
 
   const [checkedRadio, setCheckedRadio] = useState();
-  const checkBoxesChangeHandler = (e) => {
+  const checkBoxesChangeHandler = (e, idx) => {
     if (e.target.value) {
       setHasError(false);
     }
-    setCheckedRadio(e.target.value);
+    setCheckedRadio(idx);
   };
 
   useEffect(() => {
@@ -48,10 +48,12 @@ const YesOrNo = ({
                 text={option.option}
                 id={option.name}
                 value={option.option}
-                register={register}
-                onChange={checkBoxesChangeHandler}
+                register={
+                  checkedRadio === 0 && option.inputLabel1 ? unregister('yes-or-no') : register
+                }
+                onChange={(e) => checkBoxesChangeHandler(e, idx)}
               />
-              {option.inputLabel1 && checkedRadio === 'Yes' && option.name === 'yes' && (
+              {option.inputLabel1 && checkedRadio === 0 && (
                 <>
                   {option.type === 'Dropdown' ? (
                     <div style={{ marginLeft: 40 }}>
@@ -68,7 +70,7 @@ const YesOrNo = ({
                   ) : (
                     <div
                       style={{ marginLeft: 60 }}
-                      className={` ${errors.includes('yes') && 'wmnds-fe-group--error'}`}
+                      className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
                     >
                       <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                         {option.inputLabel1}
@@ -76,7 +78,7 @@ const YesOrNo = ({
                       <label className="wmnds-fe-label" htmlFor="input">
                         {option.inputLabel2}
                       </label>{' '}
-                      {errors.includes('yes') && (
+                      {errors.includes(option.name) && (
                         <span className="wmnds-fe-error-message">{option.errorMsg}</span>
                       )}
                       <input

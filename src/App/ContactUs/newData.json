@@ -359,7 +359,7 @@
                   "inputLabel1": "Direct Debit number",
                   "inputLabel2": " You can find it on your bank statement or a letter from us about your ticket",
                   "type": "number",
-                  "errorMsg": "Enter a valid Swift number"
+                  "errorMsg": "Enter a valid direct debit number"
                 },
                 {
                   "name": "debit-no",
@@ -420,6 +420,12 @@
         "formId": "step-update-DD",
         "customerService": true,
         "showChat": true
+      },
+      "formStartContent": {
+        "title": "Update my Direct Debit",
+        "serviceUse": "•   Update your contact/bank account details for your Direct Debit",
+        "processTime": "This process takes around 15 minutes.",
+        "children": "<h2>Before you start</h2><p>• You will need your Direct Debit reference number. This begins with <b>6</b> and is shown next to every payment to WMCA on your bank statement</p>"
       },
       "formComponents": [
         {
@@ -1553,7 +1559,7 @@
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "What is your app enquiry?",
-          "answerTitle": "Your app enquiry about",
+          "answerTitle": "Your app enquiry",
           "name": "about",
           "components": [
             {
@@ -2541,7 +2547,7 @@
           "sectionDescription": "Your enquiry",
           "title": "Is your enquiry about a specific cycle storage location?",
           "answerTitle": "Specific cycle storage location?",
-          "name": "location",
+          "name": "location-yes-or-no",
           "components": [
             {
               "type": "YesOrNo",
@@ -2571,7 +2577,7 @@
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
-          "title": "Is your enquiry about a specific cycle storage location?",
+          "title": "Which cycle storage location is your enquiry about?",
           "answerTitle": "Cycle storage location",
           "name": "location",
           "components": [
@@ -2947,6 +2953,11 @@
         "customerService": true,
         "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint online</a>."
       },
+      "formStartContent": {
+        "title": "Leave feedback",
+        "serviceUse": "•   Leave feedback about our services",
+        "processTime": "This process takes around 5 minutes."
+      },
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3107,7 +3118,7 @@
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "What problem would you like to report?",
-          "answerTitle": "What assistance do you require?",
+          "answerTitle": "What problem would you like to report?",
           "name": "about",
           "components": [
             {
@@ -3300,7 +3311,7 @@
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "What is your paper ticket enquiry about?",
-          "answerTitle": "What assistance do you require?",
+          "answerTitle": "What is your paper ticket enquiry about?",
           "name": "about",
           "components": [
             {

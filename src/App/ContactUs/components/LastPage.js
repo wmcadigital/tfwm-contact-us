@@ -52,7 +52,10 @@ const LastPage = ({ content, currentStep }) => {
     os.parentNode.insertBefore(se, os);
   });
   return (
-    <div style={{ width: '70%' }}>
+    <div
+      className=" wmnds-col-1 wmnds-col-md-3-4"
+      style={{ maxWidth: 640, paddingLeft: 16, paddingRight: 16 }}
+    >
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
       {content.heading && <h3>{content.heading}</h3>}
       {content.details?.includes('<a href=') ? (

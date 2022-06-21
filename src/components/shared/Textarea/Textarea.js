@@ -49,7 +49,6 @@ const Textarea = ({
           id={required ? 'required' : ''}
           name={name}
           rows="2"
-          maxLength="200"
           placeholder=""
           onChange={textChageHandler}
           style={{ width: '70%' }}

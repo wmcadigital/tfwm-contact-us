@@ -79,7 +79,7 @@ const CheckYourAnswers = () => {
               <th scope="row" data-header="Header 1">
                 How would you like to be contacted?
               </th>
-              <td data-header="Header 2">
+              <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
                 {formData.contact.value.map((contact) => (
                   <>
                     <span>
@@ -89,7 +89,7 @@ const CheckYourAnswers = () => {
                   </>
                 ))}
               </td>
-              <td data-header="Header 2">
+              <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
                 <button
                   type="button"
                   className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
@@ -107,7 +107,7 @@ const CheckYourAnswers = () => {
           <tbody>
             {formDataArray.map((data) => (
               <tr>
-                <th scope="row" data-header="Header 1" style={{ verticalAlign: 'top' }}>
+                <th scope="row" data-header="Header 1" style={{ verticalAlign: 'top', width: 192 }}>
                   {data.answerTitle}
                 </th>
                 <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
@@ -153,7 +153,7 @@ const CheckYourAnswers = () => {
                       </>
                     )}
                 </td>
-                <td data-header="Header 2">
+                <td data-header="Header 2" style={{ verticalAlign: 'top', width: 70 }}>
                   <button
                     type="button"
                     className={`wmnds-btn wmnds-btn--link `}

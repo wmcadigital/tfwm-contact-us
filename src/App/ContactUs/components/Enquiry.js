@@ -53,9 +53,9 @@ const ContactUsForm = () => {
     });
   };
   return (
-    <div className="wmnds-container wmnds-container--main">
+    <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       {currentStep.heading === 'What is your enquiry about?' ? null : (
-        <div className="wmnds-col-1 wmnds-m-b-md">
+        <div style={{ paddingLeft: 16 }} className="wmnds-col-1 wmnds-m-b-md">
           <button type="button" className="wmnds-btn wmnds-btn--link" onClick={backHandler}>
             &lt; Back
           </button>
@@ -65,7 +65,7 @@ const ContactUsForm = () => {
         <LastPage content={currentStep?.content} currentStep={currentStep} />
       ) : (
         <form
-          className="wmnds-bg-white wmnds-p-lg wmnds-col-1 wmnds-col-md-3-4"
+          className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
           onSubmit={handleSubmit(continueHandler)}
         >
           <>

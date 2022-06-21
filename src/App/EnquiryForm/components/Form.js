@@ -93,7 +93,7 @@ const Form = () => {
   };
   console.log(formData, 'data');
   return (
-    <div className="wmnds-container wmnds-container--main">
+    <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
         {stepNum !== 0 && (
           <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
@@ -102,8 +102,8 @@ const Form = () => {
         )}
       </div>
       <div
-        className="bg-white wmnds-p-l-md wmnds-p-r-md "
-        style={{ width: '40rem', backgroundColor: 'white' }}
+        className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
+        style={{ maxWidth: 608 }}
       >
         {data.sectionNum && (
           <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>

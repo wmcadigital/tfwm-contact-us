@@ -14,14 +14,16 @@ const FileUpload = ({
   unregister,
 }) => {
   const [file, setFile] = useState();
-
+  const [fileMetaData, setFileMetaData] = useState('');
   const reset = () => {
     setFile(undefined);
+    setFileMetaData('');
   };
   const fileChangeHandler = (event) => {
+    setFileMetaData(event.target.files[0]);
     setFile(URL.createObjectURL(event.target.files[0]));
   };
-
+  console.log(fileMetaData);
   return (
     <div className="wmnds-fe-group ">
       <div className="wmnds-fe-file-upload">
@@ -67,7 +69,20 @@ const FileUpload = ({
         <span>{file ? file.name : 'no file selected'}</span>
       </div>
 
-      {file && <img src={file} alt="File" style={{ marginTop: 20 }} width={200} height={200} />}
+      {fileMetaData && (
+        <>
+          <div style={{ marginTop: 20 }}>
+            {fileMetaData.type === 'application/pdf' ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <img src="/pdf-icon.png" alt="pdf logo" width={20} height={20} />
+                <p style={{ marginBottom: 0 }}>{fileMetaData.name}</p>
+              </div>
+            ) : (
+              <img src={file} alt="File" width={200} height={200} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
