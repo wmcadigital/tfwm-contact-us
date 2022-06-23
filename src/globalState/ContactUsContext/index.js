@@ -22,6 +22,7 @@ export const FormProvider = (props) => {
     stepNum: 0,
     formData: {},
     formId: '',
+    pageType: '',
   };
   const ContactUsReducer = (state, action) => {
     switch (action.type) {
@@ -58,6 +59,7 @@ export const FormProvider = (props) => {
           ...state,
           page: action.payload.page,
           stepNum: action.payload.stepNum,
+          pageType: action.payload.pageType,
         };
       }
       case 'ADD-DATA': {

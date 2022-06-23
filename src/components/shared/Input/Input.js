@@ -16,6 +16,7 @@ const Input = ({
   errors,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
+
   const [registerRef, setRegisterRef] = useState(required);
   const inputChageHandler = (event) => {
     if (!required && event.target.value) {
@@ -57,6 +58,7 @@ const Input = ({
         name={name}
         key={name}
         type="text"
+        defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ width: '20rem' }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}

@@ -174,7 +174,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "If you’re a Swift card holder <a href='https://pay.wmca.org.uk/' title='new-request-card' target='_blank'>you can request a refund and cancel your card online</a>.",
+        "details": "If you’re a Swift card holder <a href='https://refund.tfwm.org.uk/' title='new-request-card' target='_blank'>you can request a refund and cancel your card online</a>.",
         "callHelp": "If you need help requesting a refund or cancelling your card, get in touch.",
         "customerService": true,
         "showChat": true
@@ -190,6 +190,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
+        "details": "You can pay for cycle hire using the <a href='https://www.wmcyclehire.co.uk/beryl/' title='Beryl cycle app'>Beryl cycle hire app</a>.",
+        "details2": "If you need help using the cycle hire service through your Swift account, get in touch.",
         "customerService": true
       }
     },
@@ -639,12 +641,12 @@
 
                 "components": [
                   {
-                    "type": "Address",
+                    "type": "FindAddress",
                     "required": true,
                     "id": "1",
-                    "name": "address",
+                    "name": "find-address-postcode",
                     "allowMapView": false,
-
+                    "errorMsg": "Field is required",
                     "inputs": [
                       {
                         "name": "building",
@@ -667,7 +669,7 @@
                       {
                         "name": "town-or-city",
 
-                        "required": false,
+                        "required": true,
                         "label": "Town or city",
 
                         "type": "text",
@@ -676,7 +678,7 @@
                       {
                         "name": "county",
 
-                        "required": false,
+                        "required": true,
                         "label": "Country",
 
                         "type": "text",
@@ -881,6 +883,71 @@
             ],
             [
               {
+                "sectionNum": 2,
+                "sectionDescription": "Your contact details",
+                "title": "What is your updated address?",
+                "answerTitle": "Address",
+                "name": "address",
+
+                "components": [
+                  {
+                    "type": "FindAddress",
+                    "required": true,
+                    "id": "1",
+                    "name": "find-address-postcode",
+                    "allowMapView": false,
+                    "errorMsg": "Field is required",
+                    "inputs": [
+                      {
+                        "name": "building",
+
+                        "required": true,
+                        "label": "Building",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid building"
+                      },
+                      {
+                        "name": "street",
+
+                        "required": true,
+                        "label": "Street name",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid street name"
+                      },
+                      {
+                        "name": "town-or-city",
+
+                        "required": true,
+                        "label": "Town or city",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid direction of travel"
+                      },
+                      {
+                        "name": "county",
+
+                        "required": true,
+                        "label": "Country",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid country"
+                      },
+                      {
+                        "name": "address-postcode",
+
+                        "required": true,
+                        "label": "Postcode",
+
+                        "type": "text",
+                        "errorMsg": "Enter a valid postcode"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your name?",
@@ -1065,12 +1132,12 @@
 
                 "components": [
                   {
-                    "type": "Address",
+                    "type": "FindAddress",
                     "required": true,
                     "id": "1",
-                    "name": "address",
+                    "name": "find-address-postcode",
                     "allowMapView": false,
-
+                    "errorMsg": "Field is required",
                     "inputs": [
                       {
                         "name": "building",
@@ -1093,7 +1160,7 @@
                       {
                         "name": "town-or-city",
 
-                        "required": false,
+                        "required": true,
                         "label": "Town or city",
 
                         "type": "text",
@@ -1102,7 +1169,7 @@
                       {
                         "name": "county",
 
-                        "required": false,
+                        "required": true,
                         "label": "Country",
 
                         "type": "text",
@@ -1491,7 +1558,7 @@
         "details": "If you have a question, please call us or <a href='#' title='step-swift-parking-app' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-transport-west-midland-app",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -3424,19 +3491,19 @@
         },
         {
           "sectionNum": 2,
-          "sectionDescription": "Your Enquiry",
+          "sectionDescription": "Your contact details",
           "title": "What is your address?",
           "answerTitle": "Address",
           "name": "address",
 
           "components": [
             {
-              "type": "Address",
+              "type": "FindAddress",
               "required": true,
               "id": "1",
-              "name": "address",
-              "allowMapView": true,
-
+              "name": "find-address-postcode",
+              "allowMapView": false,
+              "errorMsg": "Field is required",
               "inputs": [
                 {
                   "name": "building",
@@ -3459,7 +3526,7 @@
                 {
                   "name": "town-or-city",
 
-                  "required": false,
+                  "required": true,
                   "label": "Town or city",
 
                   "type": "text",
@@ -3468,16 +3535,16 @@
                 {
                   "name": "county",
 
-                  "required": false,
+                  "required": true,
                   "label": "Country",
 
                   "type": "text",
                   "errorMsg": "Enter a valid country"
                 },
                 {
-                  "name": "postcode",
+                  "name": "address-postcode",
 
-                  "required": false,
+                  "required": true,
                   "label": "Postcode",
 
                   "type": "text",
@@ -3663,19 +3730,19 @@
         },
         {
           "sectionNum": 2,
-          "sectionDescription": "Your Enquiry",
+          "sectionDescription": "Your contact details",
           "title": "What is your address?",
           "answerTitle": "Address",
           "name": "address",
 
           "components": [
             {
-              "type": "Address",
+              "type": "FindAddress",
               "required": true,
               "id": "1",
-              "name": "address",
-              "allowMapView": true,
-
+              "name": "find-address-postcode",
+              "allowMapView": false,
+              "errorMsg": "Field is required",
               "inputs": [
                 {
                   "name": "building",
@@ -3698,7 +3765,7 @@
                 {
                   "name": "town-or-city",
 
-                  "required": false,
+                  "required": true,
                   "label": "Town or city",
 
                   "type": "text",
@@ -3707,16 +3774,16 @@
                 {
                   "name": "county",
 
-                  "required": false,
+                  "required": true,
                   "label": "Country",
 
                   "type": "text",
                   "errorMsg": "Enter a valid country"
                 },
                 {
-                  "name": "postcode",
+                  "name": "address-postcode",
 
-                  "required": false,
+                  "required": true,
                   "label": "Postcode",
 
                   "type": "text",

@@ -10,6 +10,8 @@ import YesOrNo from 'components/shared/YesOrNo/YesOrNo';
 
 import RadioOptions from 'components/shared/RadioOptions/RadioOptions';
 
+import FindAddress from 'components/shared/FindAddress/FindAddress';
+
 import Dropdown from '../../../components/shared/Dropdown/Dropdown';
 
 import Textarea from '../../../components/shared/Textarea/Textarea';
@@ -27,7 +29,7 @@ import { FormDataContext } from '../../../globalState/ContactUsContext';
 import Data from '../../ContactUs/newData.json';
 
 const Form = () => {
-  const [{ stepNum, formData, formId }, formDispatch] = useContext(FormDataContext);
+  const [{ stepNum, formData, formId, pageType }, formDispatch] = useContext(FormDataContext);
   const findComponents = Data.pages.find((page) => page.currentStepId === formId).formComponents;
 
   const [components, setComponents] = useState(findComponents);
@@ -79,19 +81,27 @@ const Form = () => {
     // });
 
     if (errors.length === 0) {
-      if (stepNum === components.length - 1) {
+      if (stepNum === components.length - 1 || pageType === 'change') {
         formDispatch({
           type: 'CHANGE-PAGE',
           payload: { page: 'ANSWERS', stepNum },
         });
         return;
       }
+
       formDispatch({
         type: 'NEXT',
       });
     }
   };
-  console.log(formData, 'data');
+
+  const getDefaultValue = (name) => {
+    if (formData[data.name]) {
+      return formData[data.name].value.find((value) => value[0] === name);
+    }
+    return '';
+  };
+  console.log(formData, 'FORM');
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
@@ -138,7 +148,7 @@ const Form = () => {
                   text2={component.text2}
                   name={component.name}
                   errorMsg={component.errorMsg}
-                  defaultValue={formData[component.name]}
+                  defaultValue={getDefaultValue(component.name)}
                   register={register}
                   errors={formError}
                 />
@@ -149,11 +159,25 @@ const Form = () => {
                   label={component.label}
                   label2={component.label2}
                   name={component.name}
-                  defaultValue={formData[component.name]}
+                  defaultValue={getDefaultValue(component.name)}
                   errorMsg={component.errorMsg}
                   required={component.required}
                   register={register}
                   errors={formError}
+                  unregister={unregister}
+                />
+              )}
+              {component.type === 'FindAddress' && (
+                <FindAddress
+                  label={component.label}
+                  name={component.name}
+                  defaultValue={formData[component.name]}
+                  errorMsg={component.errorMsg}
+                  required={component.required}
+                  allowMapView={component.allowMapView}
+                  register={register}
+                  errors={formError}
+                  inputs={component.inputs}
                   unregister={unregister}
                 />
               )}
@@ -175,7 +199,7 @@ const Form = () => {
                   label={component.label}
                   options={component.options}
                   name={component.name}
-                  defaultValues={[formData.email, formData.phone]}
+                  defaultValues={getDefaultValue(component.name)}
                   required={component.required}
                   register={register}
                   unregister={unregister}
@@ -187,7 +211,7 @@ const Form = () => {
                   label={component.label}
                   options={component.options}
                   name={component.name}
-                  defaultValues={[formData.email, formData.phone]}
+                  defaultValue={formData[data.name] ? formData[data.name].value : ''}
                   required={component.required}
                   register={register}
                   errors={formError}

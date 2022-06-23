@@ -64,7 +64,7 @@ const Address = ({
                 </li>
                 <li>
                   Click on the Add point button. Click on the map where you want the point to
-                  appear. You can edit the point by clicking on it and dragging.
+                  appear.
                 </li>
               </ul>
 

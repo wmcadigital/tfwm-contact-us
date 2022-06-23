@@ -8,7 +8,7 @@ import Dropdown from '../Dropdown/Dropdown';
 const YesOrNo = ({
   label = '',
   options = [],
-  defaultValues = [],
+  defaultValue = [],
   required = false,
   register,
   unregister,
@@ -31,7 +31,7 @@ const YesOrNo = ({
       setHasError(false);
     }
   }, [errors]);
-
+  console.log(defaultValue);
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
       <div className="wmnds-fe-radios" role="radiogroup">
@@ -86,7 +86,7 @@ const YesOrNo = ({
                         className="wmnds-fe-input"
                         type={option.type}
                         style={{ width: '20rem' }}
-                        defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                        // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
                         ref={register}
                       />
                     </div>
@@ -107,7 +107,7 @@ YesOrNo.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   required: PropTypes.bool.isRequired,
 
-  defaultValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+  defaultValue: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default YesOrNo;

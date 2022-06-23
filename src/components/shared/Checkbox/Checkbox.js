@@ -11,6 +11,7 @@ const Checkbox = ({
   register,
   unregister,
   errors,
+  name,
 }) => {
   const [hasError, setHasError] = useState(false);
   const [checkedBoxes, setCheckedBoxes] = useState([]);
@@ -30,11 +31,11 @@ const Checkbox = ({
     checkBoxesChangeHandler();
   }, [errors]);
 
-  const registerRef = (name) => {
+  const registerRef = (checkboxName) => {
     if (checkedBoxes.length === 0) {
       return true;
     }
-    if (checkedBoxes.includes(name)) {
+    if (checkedBoxes.includes(checkboxName)) {
       return true;
     }
 
@@ -61,7 +62,7 @@ const Checkbox = ({
                 }`}
                 value={option.name}
                 type="checkbox"
-                defaultChecked={defaultValues[idx] && true}
+                // defaultChecked={defaultValues.find((values) => values[0] === option.name) && true}
                 id={option.name}
                 name={option.name}
                 ref={registerRef(option.name) ? register : unregister(option.name)}
@@ -93,7 +94,7 @@ const Checkbox = ({
                   id={required ? 'required' : ''}
                   type={option.type}
                   style={{ width: '20rem' }}
-                  defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
+                  // defaultValue={defaultValues.find((values) => values[0] === option.name)[1] || ''}
                   ref={register}
                 />
               </div>

@@ -23,7 +23,7 @@ const FileUpload = ({
     setFileMetaData(event.target.files[0]);
     setFile(URL.createObjectURL(event.target.files[0]));
   };
-  console.log(fileMetaData);
+
   return (
     <div className="wmnds-fe-group ">
       <div className="wmnds-fe-file-upload">

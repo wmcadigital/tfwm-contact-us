@@ -50,6 +50,7 @@ const Textarea = ({
           name={name}
           rows="2"
           placeholder=""
+          defaultValue={defaultValue ? defaultValue[1] : ''}
           onChange={textChageHandler}
           style={{ width: '70%' }}
           ref={register}
