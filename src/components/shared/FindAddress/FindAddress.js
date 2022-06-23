@@ -58,10 +58,14 @@ const FindAddress = ({
   const findAddressHandler = async (postcodeValue) => {
     setFormState('find-address');
 
-    const fetchFindAddress = await fetch(
-      `https://apis.networkwestmidlands.com/Addresses/AddressByPostcode/WV81BY`
-    );
-    const findAddressRes = await fetchFindAddress.json();
+    try {
+      const fetchFindAddress = await fetch(
+        `https://apis.networkwestmidlands.com/Addresses/AddressByPostcode/${postcodeValue}`
+      );
+      const findAddressRes = await fetchFindAddress.json();
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
@@ -78,14 +82,14 @@ const FindAddress = ({
               key={name}
               onChange={(e) => setPostcode(e.target.value)}
               type="text"
-              style={{ width: '20rem' }}
+              style={{ maxWidth: '20rem' }}
               ref={register}
             />
           </label>
           <button
             onClick={() => {
               if (postcode) {
-                findAddressHandler(postcode);
+                findAddressHandler('WV8 1BY');
               }
             }}
             className="wmnds-btn wmnds-btn--primary"
@@ -123,7 +127,7 @@ const FindAddress = ({
               {hasError && <span className="wmnds-fe-error-message">{errorMsg}</span>}
               <select
                 className="wmnds-fe-dropdown__select"
-                style={{ width: '50%' }}
+                style={{ maxWidth: '20rem' }}
                 name="find-address"
                 ref={register}
               >

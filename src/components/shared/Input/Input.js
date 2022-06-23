@@ -59,7 +59,7 @@ const Input = ({
         key={name}
         type="text"
         defaultValue={defaultValue ? defaultValue[1] : ''}
-        style={{ width: '20rem' }}
+        style={{ maxWidth: '20rem' }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
       />

@@ -101,7 +101,7 @@ const Form = () => {
     }
     return '';
   };
-  console.log(formData, 'FORM');
+
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
@@ -112,17 +112,15 @@ const Form = () => {
         )}
       </div>
       <div
-        className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
+        className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
         style={{ maxWidth: 608 }}
       >
-        {data.sectionNum && (
-          <p className="wmnds-m-b-xs wmnds-p-t-lg">Section {data.sectionNum} of 2</p>
-        )}
+        {data.sectionNum && <p className="wmnds-m-b-xs">Section {data.sectionNum} of 2</p>}
         {data.sectionDescription && (
-          <h4 className="wmnds-m-t-xs wmnds-m-b-xs">{data.sectionDescription}</h4>
+          <h4 className="wmnds-m-t-xs wmnds-m-b-lg">{data.sectionDescription}</h4>
         )}
 
-        <h2 className="wmnds-p-t-lg wmnds-m-t-xs">{data.title}</h2>
+        <h2 style={{ margin: 0, marginBottom: 30 }}>{data.title}</h2>
         <form onSubmit={handleSubmit(continueHandler)}>
           {data.components.map((component) => (
             <div key={component.id}>
@@ -210,7 +208,7 @@ const Form = () => {
                 <YesOrNo
                   label={component.label}
                   options={component.options}
-                  name={component.name}
+                  name={data.name}
                   defaultValue={formData[data.name] ? formData[data.name].value : ''}
                   required={component.required}
                   register={register}
@@ -258,7 +256,7 @@ const Form = () => {
             </div>
           ))}
 
-          <button className="wmnds-btn wmnds-m-b-lg" type="submit">
+          <button className="wmnds-btn" style={{ margin: 0 }} type="submit">
             Continue
           </button>
         </form>

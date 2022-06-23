@@ -52,23 +52,22 @@ const CheckYourAnswers = () => {
           &lt; Back
         </button>
       </div>
-      <div className="bg-white wmnds-p-lg" style={{ width: '40rem', backgroundColor: 'white' }}>
+      <div className="bg-white wmnds-p-lg" style={{ maxWidth: '40rem', backgroundColor: 'white' }}>
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
         <h3>About you</h3>
         <table className="wmnds-table wmnds-table--without-header">
           <tbody>
             <tr>
-              <th scope="row" data-header="Header 1">
+              <th style={{ verticalAlign: 'top' }} scope="row" data-header="Header 1">
                 Name
               </th>
               <td data-header="Header 2">
                 {formData.name.value[0][1]} {formData.name.value[1][1]}
               </td>
-              <td data-header="Header 2">
+              <td data-header="Header 2" className={classes.textAlign}>
                 <button
                   type="button"
-                  className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
-                  style={{ float: 'right' }}
+                  className="wmnds-btn wmnds-btn--link"
                   onClick={() => changeForm(formData.name.stepNum)}
                 >
                   Change
@@ -76,7 +75,7 @@ const CheckYourAnswers = () => {
               </td>
             </tr>
             <tr>
-              <th scope="row" data-header="Header 1">
+              <th style={{ verticalAlign: 'top' }} scope="row" data-header="Header 1">
                 How would you like to be contacted?
               </th>
               <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
@@ -89,11 +88,14 @@ const CheckYourAnswers = () => {
                   </>
                 ))}
               </td>
-              <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
+              <td
+                data-header="Header 2"
+                className={classes.textAlign}
+                style={{ verticalAlign: 'top' }}
+              >
                 <button
                   type="button"
-                  className={`wmnds-btn wmnds-btn--link ${classes.floatRight}`}
-                  style={{ float: 'right' }}
+                  className="wmnds-btn wmnds-btn--link"
                   onClick={() => changeForm(formData.contact.stepNum)}
                 >
                   Change
@@ -153,11 +155,14 @@ const CheckYourAnswers = () => {
                       </>
                     )}
                 </td>
-                <td data-header="Header 2" style={{ verticalAlign: 'top', width: 70 }}>
+                <td
+                  data-header="Header 2"
+                  style={{ verticalAlign: 'top', width: 70 }}
+                  className={classes.textAlign}
+                >
                   <button
                     type="button"
-                    className={`wmnds-btn wmnds-btn--link `}
-                    style={{ float: 'right' }}
+                    className="wmnds-btn wmnds-btn--link"
                     onClick={() => changeForm(data.stepNum)}
                   >
                     Change

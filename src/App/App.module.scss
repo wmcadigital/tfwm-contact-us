@@ -6,6 +6,16 @@
 @import '~assets/wmnds/vars';
 @import '~assets/wmnds/mixins';
 
+td {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+th {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
 .icon {
   height: 50px;
   // get-color() function taken from mixins (refer to: https://designsystem.wmnetwork.co.uk/styles/colour-palettes/ for usage)
@@ -43,4 +53,14 @@
 .ddLogo {
   width: 138px;
   height: 44px !important;
+}
+
+.textAlign {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .textAlign {
+    text-align: left;
+  }
 }

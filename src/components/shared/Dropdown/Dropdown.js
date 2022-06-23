@@ -51,7 +51,7 @@ const Dropdown = ({
 
         <select
           className="wmnds-fe-dropdown__select"
-          style={{ width: '50%' }}
+          style={{ maxWidth: '20rem' }}
           id={required ? 'required' : ''}
           name={name}
           onChangeCapture={(e) => {

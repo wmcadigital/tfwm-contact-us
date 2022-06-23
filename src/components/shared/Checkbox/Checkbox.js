@@ -93,7 +93,7 @@ const Checkbox = ({
                   className="wmnds-fe-input"
                   id={required ? 'required' : ''}
                   type={option.type}
-                  style={{ width: '20rem' }}
+                  style={{ maxWidth: '20rem' }}
                   // defaultValue={defaultValues.find((values) => values[0] === option.name)[1] || ''}
                   ref={register}
                 />

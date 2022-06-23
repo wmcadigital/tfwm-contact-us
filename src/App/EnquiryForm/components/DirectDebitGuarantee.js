@@ -23,7 +23,10 @@ const DirectDebitGuarantee = () => {
           &lt; Back
         </button>
       )}
-      <div className="bg-white " style={{ width: '40rem', backgroundColor: 'white', padding: 30 }}>
+      <div
+        className="bg-white "
+        style={{ maxWidth: '40rem', backgroundColor: 'white', padding: 30 }}
+      >
         {' '}
         <h1 className=" wmnds-m-t-xs  wmnds-m-b-xs ">The Direct Debit Guarantee</h1>
         <ul>

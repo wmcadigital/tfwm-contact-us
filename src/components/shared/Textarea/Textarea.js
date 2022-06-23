@@ -52,7 +52,7 @@ const Textarea = ({
           placeholder=""
           defaultValue={defaultValue ? defaultValue[1] : ''}
           onChange={textChageHandler}
-          style={{ width: '70%' }}
+          style={{ maxWidth: '20rem' }}
           ref={register}
         />
       </div>

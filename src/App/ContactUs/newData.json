@@ -425,9 +425,9 @@
       },
       "formStartContent": {
         "title": "Update my Direct Debit",
-        "serviceUse": "•   Update your contact/bank account details for your Direct Debit",
+        "serviceUse": "Update your contact/bank account details for your Direct Debit",
         "processTime": "This process takes around 15 minutes.",
-        "children": "<h2>Before you start</h2><p>• You will need your Direct Debit reference number. This begins with <b>6</b> and is shown next to every payment to WMCA on your bank statement</p>"
+        "children": "<h2>Before you start</h2><ul><li>You will need your Direct Debit reference number. This begins with <b>6</b> and is shown next to every payment to WMCA on your bank statement</li></ul>"
       },
       "formComponents": [
         {
@@ -882,71 +882,6 @@
               }
             ],
             [
-              {
-                "sectionNum": 2,
-                "sectionDescription": "Your contact details",
-                "title": "What is your updated address?",
-                "answerTitle": "Address",
-                "name": "address",
-
-                "components": [
-                  {
-                    "type": "FindAddress",
-                    "required": true,
-                    "id": "1",
-                    "name": "find-address-postcode",
-                    "allowMapView": false,
-                    "errorMsg": "Field is required",
-                    "inputs": [
-                      {
-                        "name": "building",
-
-                        "required": true,
-                        "label": "Building",
-
-                        "type": "text",
-                        "errorMsg": "Enter a valid building"
-                      },
-                      {
-                        "name": "street",
-
-                        "required": true,
-                        "label": "Street name",
-
-                        "type": "text",
-                        "errorMsg": "Enter a valid street name"
-                      },
-                      {
-                        "name": "town-or-city",
-
-                        "required": true,
-                        "label": "Town or city",
-
-                        "type": "text",
-                        "errorMsg": "Enter a valid direction of travel"
-                      },
-                      {
-                        "name": "county",
-
-                        "required": true,
-                        "label": "Country",
-
-                        "type": "text",
-                        "errorMsg": "Enter a valid country"
-                      },
-                      {
-                        "name": "address-postcode",
-
-                        "required": true,
-                        "label": "Postcode",
-
-                        "type": "text",
-                        "errorMsg": "Enter a valid postcode"
-                      }
-                    ]
-                  }
-                ]
-              },
               {
                 "sectionNum": 1,
                 "sectionDescription": "About you",
@@ -3018,11 +2953,12 @@
         "formId": "step-leave-feedback-or-complaint",
 
         "customerService": true,
-        "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint online</a>."
+        "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.wmca.org.uk/media/3441/complaints-handling-document-white-cover_v4.pdf' title='new-request-card' target='_blank'> make a complaint online</a>.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form."
       },
       "formStartContent": {
         "title": "Leave feedback",
-        "serviceUse": "•   Leave feedback about our services",
+        "serviceUse": "Leave feedback about our services",
         "processTime": "This process takes around 5 minutes."
       },
       "formComponents": [

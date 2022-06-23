@@ -64,3 +64,15 @@
 .esri-input {
   padding: 12px !important;
 }
+@media only screen and (max-width: 630px) {
+  #mapDiv {
+    height: 400px;
+    width: 400px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  #mapDiv {
+    height: 300px;
+    width: 300px;
+  }
+}

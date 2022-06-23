@@ -13,6 +13,7 @@ const YesOrNo = ({
   register,
   unregister,
   errors,
+  name,
 }) => {
   const [hasError, setHasError] = useState(false);
 
@@ -31,7 +32,13 @@ const YesOrNo = ({
       setHasError(false);
     }
   }, [errors]);
-  console.log(defaultValue);
+
+  useEffect(() => {
+    setCheckedRadio(undefined);
+  }, [name]);
+  console.log(errors, 'ERRS');
+  console.log(checkedRadio, 'RADIO');
+
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
       <div className="wmnds-fe-radios" role="radiogroup">
@@ -85,7 +92,7 @@ const YesOrNo = ({
                         name={option.name}
                         className="wmnds-fe-input"
                         type={option.type}
-                        style={{ width: '20rem' }}
+                        style={{ maxWidth: '20rem' }}
                         // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
                         ref={register}
                       />

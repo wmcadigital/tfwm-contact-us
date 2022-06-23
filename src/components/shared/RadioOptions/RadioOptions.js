@@ -83,7 +83,7 @@ const RadioOptions = ({
                         name={option.name}
                         className="wmnds-fe-input"
                         type={option.type}
-                        style={{ width: '20rem' }}
+                        style={{ maxWidth: '20rem' }}
                         defaultValue={defaultValues[idx] ? defaultValues[idx] : ''}
                         ref={register}
                       />
