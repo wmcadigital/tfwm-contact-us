@@ -42,7 +42,10 @@ const Form = () => {
       type: 'PREV',
     });
   };
-  const { register, handleSubmit, getValues, unregister } = useForm({ shouldUnregister: true });
+  const { register, handleSubmit, getValues, unregister } = useForm({
+    shouldUnregister: true,
+    reValidateMode: 'onChange',
+  });
   const [formError, setFormError] = useState([]);
 
   const continueHandler = (event) => {
@@ -73,6 +76,7 @@ const Form = () => {
           value: Object.entries(values),
           stepNum,
           answerTitle: data.answerTitle,
+          section: data.sectionDescription,
         },
       });
     }
@@ -115,7 +119,11 @@ const Form = () => {
         className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
         style={{ maxWidth: 608 }}
       >
-        {data.sectionNum && <p className="wmnds-m-b-xs">Section {data.sectionNum} of 2</p>}
+        {data.sectionNum && (
+          <p className="wmnds-m-b-xs">
+            Section {data.sectionNum} of {data.sectionTotal || 2}
+          </p>
+        )}
         {data.sectionDescription && (
           <h4 className="wmnds-m-t-xs wmnds-m-b-lg">{data.sectionDescription}</h4>
         )}
@@ -256,7 +264,7 @@ const Form = () => {
             </div>
           ))}
 
-          <button className="wmnds-btn" style={{ margin: 0 }} type="submit">
+          <button className="wmnds-btn" style={{ margin: 0, marginTop: 10 }} type="submit">
             Continue
           </button>
         </form>

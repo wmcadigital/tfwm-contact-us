@@ -40,9 +40,16 @@ const Input = ({
   }, [errors]);
 
   return (
-    <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
+    <div
+      className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}
+      style={{ margin: 0 }}
+    >
       {label && (
-        <label style={{ marginBottom: label2 && 0 }} className="wmnds-fe-label" htmlFor={name}>
+        <label
+          style={{ marginBottom: label2 && 0, marginTop: 20 }}
+          className="wmnds-fe-label"
+          htmlFor={name}
+        >
           {label}
         </label>
       )}
@@ -59,7 +66,7 @@ const Input = ({
         key={name}
         type="text"
         defaultValue={defaultValue ? defaultValue[1] : ''}
-        style={{ maxWidth: '20rem' }}
+        style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
       />

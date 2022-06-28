@@ -37,13 +37,19 @@ const CheckYourAnswers = () => {
     }
   };
 
-  const formDataArray = Object.values(formData).filter((data) => data.answerTitle);
-
   const getCoords = (value) => {
     const coords = value.split('query=')[1].split(',');
 
     return coords;
   };
+  const groupBySection = Object.values(formData).reduce(
+    (groups, item) => ({
+      ...groups,
+      [item.section]: [...(groups[item.section] || []), item],
+    }),
+    {}
+  );
+  const formAnswers = Object.entries(groupBySection);
 
   return (
     <div className="wmnds-container wmnds-container--main">
@@ -54,124 +60,103 @@ const CheckYourAnswers = () => {
       </div>
       <div className="bg-white wmnds-p-lg" style={{ maxWidth: '40rem', backgroundColor: 'white' }}>
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
-        <h3>About you</h3>
-        <table className="wmnds-table wmnds-table--without-header">
-          <tbody>
-            <tr>
-              <th style={{ verticalAlign: 'top' }} scope="row" data-header="Header 1">
-                Name
-              </th>
-              <td data-header="Header 2">
-                {formData.name.value[0][1]} {formData.name.value[1][1]}
-              </td>
-              <td data-header="Header 2" className={classes.textAlign}>
-                <button
-                  type="button"
-                  className="wmnds-btn wmnds-btn--link"
-                  onClick={() => changeForm(formData.name.stepNum)}
-                >
-                  Change
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th style={{ verticalAlign: 'top' }} scope="row" data-header="Header 1">
-                How would you like to be contacted?
-              </th>
-              <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
-                {formData.contact.value.map((contact) => (
-                  <>
-                    <span>
-                      {contact[0] === 'phone' ? 'Phone' : 'Email'} <br /> {contact[1]}
-                    </span>
-                    <br />
-                  </>
-                ))}
-              </td>
-              <td
-                data-header="Header 2"
-                className={classes.textAlign}
-                style={{ verticalAlign: 'top' }}
-              >
-                <button
-                  type="button"
-                  className="wmnds-btn wmnds-btn--link"
-                  onClick={() => changeForm(formData.contact.stepNum)}
-                >
-                  Change
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>Your enquiry</h3>
-        <table className="wmnds-table wmnds-table--without-header">
-          <tbody>
-            {formDataArray.map((data) => (
-              <tr>
-                <th scope="row" data-header="Header 1" style={{ verticalAlign: 'top', width: 192 }}>
-                  {data.answerTitle}
-                </th>
-                <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
-                  {data.answerTitle === 'Supporting documents' &&
-                    (data.value[0][1].length === 0 ? (
-                      'None'
-                    ) : (
-                      <img
-                        src={URL.createObjectURL(data.value[0][1][0])}
-                        alt="File"
-                        style={{ marginTop: 20 }}
-                        width={200}
-                        height={200}
-                      />
-                    ))}
-                  {data.answerTitle === 'What was the date and time of the issue?' && (
-                    <>
-                      {data.value[0][1]}:{data.value[1][1]}
-                      <br />
-                      {data.value[2][1]}/{data.value[3][1]}/{data.value[4][1]}
-                    </>
-                  )}
-                  {data.value[0][0] === 'postcode' && (
-                    <>
-                      {data.value[1][1]}
-                      <br />
 
-                      <GetMap
-                        lat={getCoords(data.value[0][1])[1]}
-                        lang={getCoords(data.value[0][1])[0]}
-                      />
-                    </>
-                  )}
-                  {data.answerTitle !== 'Supporting documents' &&
-                    data.answerTitle !== 'What was the date and time of the issue?' &&
-                    data.value[0][0] !== 'postcode' && (
-                      <>
-                        {data.value.map((value) => (
-                          <>
-                            {value[1]} <br />
-                          </>
+        {formAnswers.map((answers) => (
+          <>
+            <h3>{answers[0]}</h3>
+            <table className="wmnds-table wmnds-table--without-header">
+              <tbody>
+                {answers[1].map((data) => (
+                  <tr>
+                    <th
+                      scope="row"
+                      data-header="Header 1"
+                      style={{ verticalAlign: 'top', width: 192 }}
+                    >
+                      {data.answerTitle || 'Answer'}
+                    </th>
+                    <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
+                      {data.answerTitle === 'Supporting documents' &&
+                        (data.value[0][1].length === 0 ? (
+                          'None'
+                        ) : (
+                          <img
+                            src={URL.createObjectURL(data.value[0][1][0])}
+                            alt="File"
+                            style={{ marginTop: 20 }}
+                            width={200}
+                            height={200}
+                          />
                         ))}
-                      </>
-                    )}
-                </td>
-                <td
-                  data-header="Header 2"
-                  style={{ verticalAlign: 'top', width: 70 }}
-                  className={classes.textAlign}
-                >
-                  <button
-                    type="button"
-                    className="wmnds-btn wmnds-btn--link"
-                    onClick={() => changeForm(data.stepNum)}
-                  >
-                    Change
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                      {data.answerTitle === 'What was the date and time of the issue?' && (
+                        <>
+                          {data.value[0][1]}:{data.value[1][1]}
+                          <br />
+                          {data.value[2][1]}/{data.value[3][1]}/{data.value[4][1]}
+                        </>
+                      )}
+                      {data.answerTitle === 'Date of birth' && (
+                        <>
+                          {data.value[0][1]}/{data.value[1][1]}/{data.value[2][1]}
+                        </>
+                      )}
+                      {data.answerTitle === 'Name' && (
+                        <>
+                          {data.value[0][1]} {data.value[1][1]}
+                        </>
+                      )}
+                      {data.value[0][0] === 'postcode' && (
+                        <>
+                          {data.value[1][1]}
+                          <br />
+
+                          <GetMap
+                            lat={getCoords(data.value[0][1])[1]}
+                            lang={getCoords(data.value[0][1])[0]}
+                          />
+                        </>
+                      )}
+                      {data.answerTitle !== 'Name' &&
+                        data.answerTitle !== 'Date of birth' &&
+                        data.answerTitle !== 'Supporting documents' &&
+                        data.answerTitle !== 'What was the date and time of the issue?' &&
+                        data.value[0][0] !== 'postcode' && (
+                          <>
+                            {data.value.map((value) => (
+                              <>
+                                {value[0] === 'yes-or-no' &&
+                                value[1] === 'Yes' &&
+                                data.value.length > 1 ? (
+                                  ''
+                                ) : (
+                                  <>
+                                    {value[1]} <br />
+                                  </>
+                                )}
+                              </>
+                            ))}
+                          </>
+                        )}
+                    </td>
+                    <td
+                      data-header="Header 2"
+                      style={{ verticalAlign: 'top', width: 70 }}
+                      className={classes.textAlign}
+                    >
+                      <button
+                        type="button"
+                        className="wmnds-btn wmnds-btn--link"
+                        onClick={() => changeForm(data.stepNum)}
+                      >
+                        Change
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ))}
         <h3>Now send your request</h3>
         <p>
           By submitting this request you are confirming that, to the best of your knowledge, the

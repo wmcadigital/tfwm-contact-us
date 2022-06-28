@@ -68,6 +68,7 @@ export const FormProvider = (props) => {
           value: action.payload.value,
           stepNum: action.payload.stepNum,
           answerTitle: action.payload.answerTitle,
+          section: action.payload.section,
         };
         return {
           ...state,
