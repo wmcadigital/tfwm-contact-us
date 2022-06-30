@@ -14,6 +14,7 @@ const Input = ({
   unregister,
 
   errors,
+  type,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
@@ -64,7 +65,7 @@ const Input = ({
         id={name}
         name={name}
         key={name}
-        type="text"
+        type={type || 'text'}
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}

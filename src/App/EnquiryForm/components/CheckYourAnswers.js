@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import GetMap from 'components/shared/Map/Map';
 import React, { useContext, useState } from 'react';
 
@@ -124,9 +125,7 @@ const CheckYourAnswers = () => {
                           <>
                             {data.value.map((value) => (
                               <>
-                                {value[0] === 'yes-or-no' &&
-                                value[1] === 'Yes' &&
-                                data.value.length > 1 ? (
+                                {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
                                   ''
                                 ) : (
                                   <>
@@ -187,7 +186,7 @@ const CheckYourAnswers = () => {
                     }}
                     type="button"
                   >
-                    Direct Debit Guarantee
+                    <a href="#">Direct Debit Guarantee</a>
                   </button>
                   . I understand that this Instruction may remain with West Midlands Combined
                   Authority and, if so, details will be passed electronically to my bank/building

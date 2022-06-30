@@ -74,7 +74,7 @@ const FileUpload = ({
           <div style={{ marginTop: 20 }}>
             {fileMetaData.type === 'application/pdf' ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <img src="/pdf-icon.png" alt="pdf logo" width={20} height={20} />
+                <img src="/pdf-icon.svg" alt="pdf logo" width={20} height={20} />
                 <p style={{ marginBottom: 0 }}>{fileMetaData.name}</p>
               </div>
             ) : (

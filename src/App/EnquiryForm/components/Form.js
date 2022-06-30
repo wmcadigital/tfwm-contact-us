@@ -48,14 +48,13 @@ const Form = () => {
   });
   const [formError, setFormError] = useState([]);
 
-  const continueHandler = (event) => {
+  const continueHandler = () => {
     const values = getValues();
 
-    const isEmpty = Object.keys(values).length === 0;
+    const entries = Object.entries(values);
 
-    const errors = Object.entries(values)
-      .filter((val) => !val[1])
-      .map((val) => val[0]);
+    const isEmpty = Object.keys(values).length === 0;
+    const errors = entries.filter((val) => !val[1]).map((val) => val[0]);
 
     setFormError(errors);
 
@@ -67,22 +66,18 @@ const Form = () => {
       }
       return;
     }
-    // Object.keys(values).map(function (key, index) {
     if (!isEmpty) {
       formDispatch({
         type: 'ADD-DATA',
         payload: {
           name: data.name,
-          value: Object.entries(values),
+          value: entries,
           stepNum,
           answerTitle: data.answerTitle,
           section: data.sectionDescription,
         },
       });
     }
-
-    //   return true;
-    // });
 
     if (errors.length === 0) {
       if (stepNum === components.length - 1 || pageType === 'change') {
@@ -92,10 +87,22 @@ const Form = () => {
         });
         return;
       }
-
-      formDispatch({
-        type: 'NEXT',
-      });
+      if (entries.length === 1 && entries[0][0] === 'yes-or-no-skip' && entries[0][1] === 'No') {
+        if (stepNum === components.length - 2 || pageType === 'change') {
+          formDispatch({
+            type: 'CHANGE-PAGE',
+            payload: { page: 'ANSWERS', stepNum },
+          });
+          return;
+        }
+        formDispatch({
+          type: 'SKIP',
+        });
+      } else {
+        formDispatch({
+          type: 'NEXT',
+        });
+      }
     }
   };
 
@@ -129,7 +136,11 @@ const Form = () => {
         )}
 
         <h2 style={{ margin: 0, marginBottom: 30 }}>{data.title}</h2>
-        <form onSubmit={handleSubmit(continueHandler)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           {data.components.map((component) => (
             <div key={component.id}>
               {component.type === 'Dropdown' && (
@@ -171,6 +182,7 @@ const Form = () => {
                   register={register}
                   errors={formError}
                   unregister={unregister}
+                  type={component.inputType}
                 />
               )}
               {component.type === 'FindAddress' && (
@@ -264,7 +276,12 @@ const Form = () => {
             </div>
           ))}
 
-          <button className="wmnds-btn" style={{ margin: 0, marginTop: 10 }} type="submit">
+          <button
+            onClick={handleSubmit(continueHandler)}
+            className="wmnds-btn"
+            style={{ margin: 0, marginTop: 10 }}
+            type="button"
+          >
             Continue
           </button>
         </form>

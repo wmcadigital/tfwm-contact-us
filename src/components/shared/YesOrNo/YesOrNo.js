@@ -27,7 +27,7 @@ const YesOrNo = ({
   };
 
   useEffect(() => {
-    if (errors.includes('yes-or-no')) {
+    if (errors.includes('yes-or-no') || errors.includes('yes-or-no-skip')) {
       setHasError(true);
     } else {
       setHasError(false);
@@ -45,12 +45,15 @@ const YesOrNo = ({
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
         <p>{label}</p>
-        <fieldset style={{ border: 'none' }} name="yes-or-no">
+        <fieldset
+          style={{ border: 'none' }}
+          name={`yes-or-no${options[0].inputLabel1 || options[0].inputs ? '' : '-skip'}`}
+        >
           {options.map((option, idx) => (
             <div key={option.name} className="wmnds-m-b-md">
               <Radio
                 key={option.name}
-                name="yes-or-no"
+                name={`yes-or-no${options[0].inputLabel1 || options[0].inputs ? '' : '-skip'}`}
                 text={option.option}
                 id={option.name}
                 value={option.option}

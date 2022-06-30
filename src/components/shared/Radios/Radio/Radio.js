@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
+
 import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import dompurify from 'dompurify';
@@ -6,7 +8,17 @@ import dompurify from 'dompurify';
 const { sanitize } = dompurify;
 
 // eslint-disable-next-line react/prop-types
-const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecked, register }) => {
+const Radio = ({
+  name,
+  text,
+  value,
+  id,
+  onChange,
+  fieldValidation,
+  defaultChecked,
+  register,
+  tabIndex,
+}) => {
   return (
     <>
       <label className="wmnds-fe-radios__container">
@@ -24,6 +36,7 @@ const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecke
           onChange={onChange}
           value={value}
           defaultChecked={defaultChecked}
+          tabIndex={tabIndex}
         />
         <span className="wmnds-fe-radios__checkmark" />
       </label>

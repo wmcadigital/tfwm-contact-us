@@ -242,35 +242,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -548,35 +532,19 @@
 
                 "sectionNum": 1,
                 "sectionDescription": "About you",
-                "title": "How would you like to be contacted?",
-                "answerTitle": "Contact preference",
+                "title": "What is your email?",
+                "answerTitle": "Email",
                 "name": "contact",
                 "components": [
                   {
-                    "type": "Checkbox",
+                    "type": "Input",
+                    "label": "Email address, for example",
+                    "label2": "name@example.com",
+                    "inputType": "email",
                     "required": true,
-                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
-                    "options": [
-                      {
-                        "name": "email",
-                        "option": "Email",
-                        "required": true,
-                        "inputLabel1": "Email address",
-                        "inputLabel2": "For example, name@example.com",
-                        "type": "email",
-                        "errorMsg": "Enter a valid email address"
-                      },
-                      {
-                        "name": "phone",
-                        "option": "Phone",
-                        "required": true,
-                        "inputLabel1": "Phone number",
-                        "inputLabel2": "For example, 07700900457",
-                        "type": "number",
-                        "errorMsg": "Enter a valid phone number"
-                      }
-                    ],
-                    "id": "1"
+                    "id": "1",
+                    "name": "email",
+                    "errorMsg": "Email name is required"
                   }
                 ]
               },
@@ -848,35 +816,19 @@
               {
                 "sectionNum": 1,
                 "sectionDescription": "About you",
-                "title": "How would you like to be contacted?",
-                "answerTitle": "Contact preference",
+                "title": "What is your email?",
+                "answerTitle": "Email",
                 "name": "contact",
                 "components": [
                   {
-                    "type": "Checkbox",
+                    "type": "Input",
+                    "label": "Email address, for example",
+                    "label2": "name@example.com",
+                    "inputType": "email",
                     "required": true,
-                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
-                    "options": [
-                      {
-                        "name": "email",
-                        "option": "Email",
-                        "required": true,
-                        "inputLabel1": "Email address",
-                        "inputLabel2": "For example, name@example.com",
-                        "type": "email",
-                        "errorMsg": "Enter a valid email address"
-                      },
-                      {
-                        "name": "phone",
-                        "option": "Phone",
-                        "required": true,
-                        "inputLabel1": "Phone number",
-                        "inputLabel2": "For example, 07700900457",
-                        "type": "number",
-                        "errorMsg": "Enter a valid phone number"
-                      }
-                    ],
-                    "id": "1"
+                    "id": "1",
+                    "name": "email",
+                    "errorMsg": "Email name is required"
                   }
                 ]
               },
@@ -998,35 +950,19 @@
               {
                 "sectionNum": 1,
                 "sectionDescription": "About you",
-                "title": "How would you like to be contacted?",
-                "answerTitle": "Contact preference",
+                "title": "What is your email?",
+                "answerTitle": "Email",
                 "name": "contact",
                 "components": [
                   {
-                    "type": "Checkbox",
+                    "type": "Input",
+                    "label": "Email address, for example",
+                    "label2": "name@example.com",
+                    "inputType": "email",
                     "required": true,
-                    "label": "We’ll use this to contact you to confirm we have completed your request or if we require more information.",
-                    "options": [
-                      {
-                        "name": "email",
-                        "option": "Email",
-                        "required": true,
-                        "inputLabel1": "Email address",
-                        "inputLabel2": "For example, name@example.com",
-                        "type": "email",
-                        "errorMsg": "Enter a valid email address"
-                      },
-                      {
-                        "name": "phone",
-                        "option": "Phone",
-                        "required": true,
-                        "inputLabel1": "Phone number",
-                        "inputLabel2": "For example, 07700900457",
-                        "type": "number",
-                        "errorMsg": "Enter a valid phone number"
-                      }
-                    ],
-                    "id": "1"
+                    "id": "1",
+                    "name": "email",
+                    "errorMsg": "Email name is required"
                   }
                 ]
               },
@@ -1221,35 +1157,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -1385,35 +1305,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -1483,35 +1387,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -1581,35 +1469,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -1736,36 +1608,20 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
 
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -2011,35 +1867,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -2221,35 +2061,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -2417,35 +2241,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -2578,35 +2386,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -2782,35 +2574,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3059,35 +2835,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3156,35 +2916,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3352,35 +3096,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3469,35 +3197,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3710,35 +3422,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -3908,35 +3604,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -4100,35 +3780,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },
@@ -4249,35 +3913,19 @@
         {
           "sectionNum": 1,
           "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
+          "title": "What is your email?",
+          "answerTitle": "Email",
           "name": "contact",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
               "required": true,
-
-              "options": [
-                {
-                  "name": "email",
-                  "option": "Email",
-                  "required": true,
-                  "inputLabel1": "Email address",
-                  "inputLabel2": "For example, name@example.com",
-                  "type": "email",
-                  "errorMsg": "Enter a valid email address"
-                },
-                {
-                  "name": "phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputLabel1": "Phone number",
-                  "inputLabel2": "For example, 07700900457",
-                  "type": "number",
-                  "errorMsg": "Enter a valid phone number"
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
             }
           ]
         },

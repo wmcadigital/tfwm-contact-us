@@ -29,11 +29,11 @@ const Complaint = () => {
       {page === 'SUCCESS' && (
         <ReceivedForm
           successTitle="We’ve received your form"
-          successText={
-            content.warningText && content.warningText.includes('10')
-              ? ''
-              : 'Your reference number is <b>123456</b>'
-          }
+          // successText={
+          //   content.warningText && content.warningText.includes('10')
+          //     ? ''
+          //     : 'Your reference number is <b>123456</b>'
+          // }
           title="What happens next"
           text1="You’ll receive an email to confirm that we have received your enquiry."
           text2={

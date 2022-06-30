@@ -82,6 +82,12 @@ export const FormProvider = (props) => {
           stepNum: state.stepNum + 1,
         };
       }
+      case 'SKIP': {
+        return {
+          ...state,
+          stepNum: state.stepNum + 2,
+        };
+      }
       case 'PREV': {
         return {
           ...state,
