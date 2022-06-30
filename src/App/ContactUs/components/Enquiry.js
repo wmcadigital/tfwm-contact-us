@@ -52,6 +52,9 @@ const ContactUsForm = () => {
       payload: { formId },
     });
   };
+  useEffect(() => {
+    document.activeElement.blur();
+  }, [currentStep]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       {currentStep.heading === 'What is your enquiry about?' ? null : (

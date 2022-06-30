@@ -112,7 +112,9 @@ const Form = () => {
     }
     return '';
   };
-
+  useEffect(() => {
+    document.activeElement.blur();
+  }, [data]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
