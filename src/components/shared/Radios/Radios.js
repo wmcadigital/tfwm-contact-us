@@ -39,7 +39,7 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
             )}
             <div className="wmnds-fe-radios">
               {/* Loop through radios and display each radio button */}
-              {radios?.map((radio, idx) => (
+              {radios?.map((radio) => (
                 <Radio
                   key={radio.text}
                   name={name}
@@ -50,7 +50,6 @@ const Radios = ({ name, label, classes, radios, onChange, fieldValidation, regis
                   fieldValidation={fieldValidation}
                   defaultChecked={radio.selected}
                   register={register}
-                  tabIndex={idx + 1}
                 />
               ))}
             </div>

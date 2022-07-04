@@ -69,7 +69,9 @@ const ContactUsForm = () => {
       ) : (
         <form
           className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
-          onSubmit={handleSubmit(continueHandler)}
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
         >
           <>
             <Radios
@@ -83,7 +85,8 @@ const ContactUsForm = () => {
             />
             <Button
               text="Continue"
-              type="submit"
+              type="button"
+              onClick={handleSubmit(continueHandler)}
               btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
             >
               Continue
@@ -91,7 +94,7 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-update-DD')}>
+      <button type="button" onClick={() => fillFormHandler('step-help-olderpass-application')}>
         Fill in this Form
       </button>
     </div>

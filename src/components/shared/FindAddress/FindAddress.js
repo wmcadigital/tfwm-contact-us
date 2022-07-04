@@ -19,25 +19,7 @@ const FindAddress = ({
   const [hasError, setHasError] = useState(errors.includes(name));
   const [postcode, setPostcode] = useState(undefined);
   const [formState, setFormState] = useState('idle');
-  const [addresses, setAddresses] = useState([
-    'Arriva Midlands',
-    'Banga Buses',
-    'Chaserider',
-    'Coventry Minibuses',
-    'Diamond Bus',
-    'Discount Travel Solutions',
-    "Kev's Cars & Coaches",
-    'Landflight Travel Services',
-    "Let's Go",
-    'National Express Coventry',
-    'National Express West Midlands',
-    'Select Bus Services',
-    'Stagecoach Midlands',
-    'Thandi Transport',
-    'The Green Bus',
-    'The Green Transport Co',
-    'Walsall Community Transport',
-  ]);
+  const [addresses, setAddresses] = useState([]);
   useEffect(() => {
     if (errors.includes(name)) {
       setHasError(true);

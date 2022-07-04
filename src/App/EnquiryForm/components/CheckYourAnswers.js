@@ -51,7 +51,7 @@ const CheckYourAnswers = () => {
     {}
   );
   const formAnswers = Object.entries(groupBySection);
-
+  console.log(formAnswers);
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
@@ -81,13 +81,22 @@ const CheckYourAnswers = () => {
                         (data.value[0][1].length === 0 ? (
                           'None'
                         ) : (
-                          <img
-                            src={URL.createObjectURL(data.value[0][1][0])}
-                            alt="File"
-                            style={{ marginTop: 20 }}
-                            width={200}
-                            height={200}
-                          />
+                          <>
+                            {data.value[0][1][0].type === 'application/pdf' ? (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                <img src="/pdf-icon.svg" alt="pdf logo" width={20} height={20} />
+                                <p style={{ marginBottom: 0 }}>{data.value[0][1][0].name}</p>
+                              </div>
+                            ) : (
+                              <img
+                                src={URL.createObjectURL(data.value[0][1][0])}
+                                alt="File"
+                                style={{ marginTop: 20 }}
+                                width={200}
+                                height={200}
+                              />
+                            )}
+                          </>
                         ))}
                       {data.answerTitle === 'What was the date and time of the issue?' && (
                         <>

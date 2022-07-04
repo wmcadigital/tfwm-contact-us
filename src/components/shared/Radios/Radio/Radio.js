@@ -8,17 +8,7 @@ import dompurify from 'dompurify';
 const { sanitize } = dompurify;
 
 // eslint-disable-next-line react/prop-types
-const Radio = ({
-  name,
-  text,
-  value,
-  id,
-  onChange,
-  fieldValidation,
-  defaultChecked,
-  register,
-  tabIndex,
-}) => {
+const Radio = ({ name, text, value, id, onChange, fieldValidation, defaultChecked, register }) => {
   return (
     <>
       <label className="wmnds-fe-radios__container">
@@ -36,7 +26,6 @@ const Radio = ({
           onChange={onChange}
           value={value}
           defaultChecked={defaultChecked}
-          tabIndex={tabIndex}
         />
         <span className="wmnds-fe-radios__checkmark" />
       </label>
