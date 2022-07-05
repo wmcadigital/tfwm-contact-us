@@ -679,7 +679,7 @@
                       {
                         "name": "county",
 
-                        "required": true,
+                        "required": false,
                         "label": "County",
 
                         "type": "text",
@@ -1089,7 +1089,7 @@
                       {
                         "name": "county",
 
-                        "required": true,
+                        "required": false,
                         "label": "County",
 
                         "type": "text",
@@ -3260,7 +3260,7 @@
                 {
                   "name": "county",
 
-                  "required": true,
+                  "required": false,
                   "label": "County",
 
                   "type": "text",
@@ -3485,7 +3485,7 @@
                 {
                   "name": "county",
 
-                  "required": true,
+                  "required": false,
                   "label": "County",
 
                   "type": "text",

@@ -41,6 +41,7 @@ const Checkbox = ({
 
     return false;
   };
+
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
       <div className="wmnds-fe-checkboxes">
