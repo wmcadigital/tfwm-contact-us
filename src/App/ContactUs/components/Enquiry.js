@@ -54,8 +54,8 @@ const ContactUsForm = () => {
   };
   useEffect(() => {
     const skipContentEl = document.getElementById('first-tab');
-    skipContentEl.focus();
-    skipContentEl.blur();
+    skipContentEl?.focus();
+    skipContentEl?.blur();
   }, [currentStep]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
