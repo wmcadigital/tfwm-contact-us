@@ -44,7 +44,7 @@ const Form = () => {
   };
   const { register, handleSubmit, getValues, unregister } = useForm({
     shouldUnregister: true,
-    reValidateMode: 'onChange',
+    shouldUseNativeValidation: true,
   });
   const [formError, setFormError] = useState([]);
 
@@ -113,7 +113,9 @@ const Form = () => {
     return '';
   };
   useEffect(() => {
-    document.activeElement.blur();
+    const skipContentEl = document.getElementById('first-tab');
+    skipContentEl.focus();
+    skipContentEl.blur();
   }, [data]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>

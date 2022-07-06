@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint prefer-destructuring: ["error", {VariableDeclarator: {object: true}}] */
+
 import GetMap from 'components/shared/Map/Map';
-import React, { useContext, useState } from 'react';
+
+import React, { useContext, useState, useEffect, useRef } from 'react';
 
 import { FormDataContext } from '../../../globalState';
 
@@ -21,8 +24,36 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
+  // const userEmail = formData.email.value[0][1];
 
-  const checkCheckboxes = () => {
+  const sendEmailHandler = async () => {
+    const formatedData = {
+      to: ['test@gmail.com'],
+    };
+    Object.entries(formData).forEach((data) => {
+      if (data[1].answerTitle === 'Supporting documents') {
+        if (data[1].value[0][1].length > 0) {
+          formatedData.document = { file: data[1].value[0][1], name: data[1].value[0][1][0].name };
+        } else {
+          formatedData.document = 'None';
+        }
+        return;
+      }
+      const values = data[1].value.map((value) => value[1]);
+      formatedData[data[0]] = values.join(' ');
+    });
+
+    // let formData = new FormData();
+    // formData.append('file', formatedData.document[0]);
+    // formData.append('body', formatedData);
+
+    // const postData = await fetch(`url`, {
+    //   method: 'POST',
+    //   body: formData,
+    // });
+    // const postDataResponse = await postData.json();
+  };
+  const checkCheckboxes = async () => {
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
 
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
@@ -34,7 +65,7 @@ const CheckYourAnswers = () => {
         payload: { page: 'SUCCESS', stepNum },
       });
       setErrorMsg('');
-      // sendEmailHandler();
+      sendEmailHandler();
     }
   };
 
@@ -51,7 +82,7 @@ const CheckYourAnswers = () => {
     {}
   );
   const formAnswers = Object.entries(groupBySection);
-  console.log(formAnswers);
+
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">

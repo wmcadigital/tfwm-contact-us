@@ -53,7 +53,9 @@ const ContactUsForm = () => {
     });
   };
   useEffect(() => {
-    document.activeElement.blur();
+    const skipContentEl = document.getElementById('first-tab');
+    skipContentEl.focus();
+    skipContentEl.blur();
   }, [currentStep]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
@@ -94,7 +96,7 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-help-olderpass-application')}>
+      <button type="button" onClick={() => fillFormHandler('step-bus')}>
         Fill in this Form
       </button>
     </div>
