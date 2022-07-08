@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import MapView from 'components/shared/MapView/MapView';
 
 import { FormDataContext } from '../../../globalState';
 import Radios from '../../../components/shared/Radios/Radios';
@@ -52,11 +51,11 @@ const ContactUsForm = () => {
       payload: { formId },
     });
   };
-  useEffect(() => {
-    const skipContentEl = document.getElementById('first-tab');
-    skipContentEl.focus();
-    skipContentEl.blur();
-  }, [currentStep]);
+  // useEffect(() => {
+  //   const skipContentEl = document.getElementById('first-tab');
+  //   skipContentEl.focus();
+  //   skipContentEl.blur();
+  // }, [currentStep]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       {currentStep.heading === 'What is your enquiry about?' ? null : (
@@ -96,7 +95,7 @@ const ContactUsForm = () => {
           </>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-bus')}>
+      <button type="button" onClick={() => fillFormHandler('step-update-DD')}>
         Fill in this Form
       </button>
     </div>
