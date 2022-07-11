@@ -54,7 +54,6 @@ const Form = () => {
       setComponents(formComponents);
     }
   }, [page]);
-  console.log(formComponents);
   const prevStep = () => {
     formDispatch({
       type: 'PREV',
@@ -131,10 +130,11 @@ const Form = () => {
     return '';
   };
   useEffect(() => {
-    const skipContentEl = document.getElementById('first-tab');
-    skipContentEl.focus();
-    skipContentEl.blur();
+    const buttonFocusEl = document.getElementById('btn-focus');
+    buttonFocusEl.focus();
+    buttonFocusEl.blur();
   }, [data]);
+
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
@@ -144,6 +144,7 @@ const Form = () => {
           </button>
         )}
       </div>
+      <button type="button" style={{ opacity: '0', all: 'unset' }} id="btn-focus" tabIndex="-1" />
       {data && (
         <div
           className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
