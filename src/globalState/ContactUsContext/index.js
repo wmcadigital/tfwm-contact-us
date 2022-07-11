@@ -23,6 +23,7 @@ export const FormProvider = (props) => {
     formData: {},
     formId: '',
     pageType: '',
+    formComponents: [],
   };
   const ContactUsReducer = (state, action) => {
     switch (action.type) {
@@ -75,7 +76,12 @@ export const FormProvider = (props) => {
           formData: cloneState.formData,
         };
       }
-
+      case 'SET-COMPONENTS': {
+        return {
+          ...state,
+          formComponents: action.payload.formComponents,
+        };
+      }
       case 'NEXT': {
         return {
           ...state,

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import MapView from 'components/shared/MapView/MapView';
 
 import { FormDataContext } from '../../../globalState';
 import Radios from '../../../components/shared/Radios/Radios';
@@ -53,12 +52,18 @@ const ContactUsForm = () => {
     });
   };
   useEffect(() => {
-    const skipContentEl = document.getElementById('first-tab');
-    skipContentEl.focus();
-    skipContentEl.blur();
+    if (currentStep.currentStepId !== 'step-enquiry') {
+      const buttonFocusEl = document.getElementById('btn-focus');
+      buttonFocusEl.focus();
+      buttonFocusEl.blur();
+    }
   }, [currentStep]);
   return (
-    <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
+    <div
+      id="main-container"
+      className="wmnds-container wmnds-container--main"
+      style={{ padding: 0 }}
+    >
       {currentStep.heading === 'What is your enquiry about?' ? null : (
         <div style={{ paddingLeft: 16 }} className="wmnds-col-1 wmnds-m-b-md">
           <button type="button" className="wmnds-btn wmnds-btn--link" onClick={backHandler}>
@@ -66,39 +71,37 @@ const ContactUsForm = () => {
           </button>
         </div>
       )}
+      {/* button to skip focus */}
+      <button type="button" style={{ opacity: '0', all: 'unset' }} id="btn-focus" tabIndex="-1" />
       {currentStep.hasReachedConfirmation ? (
         <LastPage content={currentStep?.content} currentStep={currentStep} />
       ) : (
         <form
+          tabIndex="-1"
           className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <>
-            <Radios
-              name={currentStep?.heading}
-              label={currentStep.heading}
-              classes="wmnds-m-b-sm"
-              radios={currentStep.fields}
-              register={register}
-              onChange={handleRadioChange}
-              fieldValidation={formError}
-            />
-            <Button
-              text="Continue"
-              type="button"
-              onClick={handleSubmit(continueHandler)}
-              btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
-            >
-              Continue
-            </Button>
-          </>
+          <Radios
+            name={currentStep?.heading}
+            label={currentStep.heading}
+            classes="wmnds-m-b-sm"
+            radios={currentStep.fields}
+            register={register}
+            onChange={handleRadioChange}
+            fieldValidation={formError}
+          />
+          <Button
+            text="Continue"
+            type="button"
+            onClick={handleSubmit(continueHandler)}
+            btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
+          >
+            Continue
+          </Button>
         </form>
       )}
-      <button type="button" onClick={() => fillFormHandler('step-bus')}>
-        Fill in this Form
-      </button>
     </div>
   );
 };

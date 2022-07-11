@@ -428,12 +428,12 @@
               "required": true,
               "options": [
                 {
-                  "name": "bank-details-check",
+                  "name": "1",
                   "option": "Update my bank details",
                   "required": true
                 },
                 {
-                  "name": "contact-details-check",
+                  "name": "2",
                   "option": "Update my contact details",
                   "required": true
                 }

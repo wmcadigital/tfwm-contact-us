@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -29,14 +29,31 @@ import { FormDataContext } from '../../../globalState/ContactUsContext';
 import Data from '../../ContactUs/newData.json';
 
 const Form = () => {
-  const [{ stepNum, formData, formId, pageType }, formDispatch] = useContext(FormDataContext);
-  const findComponents = Data.pages.find((page) => page.currentStepId === formId).formComponents;
+  const [{ stepNum, formData, formId, pageType, page, formComponents }, formDispatch] =
+    useContext(FormDataContext);
+  const findComponents = Data.pages.find(
+    (pageData) => pageData.currentStepId === formId
+  ).formComponents;
 
   const [components, setComponents] = useState(findComponents);
+
   const [data, setData] = useState(components[stepNum]);
   useEffect(() => {
     setData(components[stepNum]);
   }, [stepNum, components]);
+  useEffect(() => {
+    formDispatch({
+      type: 'SET-COMPONENTS',
+      payload: {
+        formComponents: components,
+      },
+    });
+  }, [components]);
+  useLayoutEffect(() => {
+    if (formComponents.length > 1) {
+      setComponents(formComponents);
+    }
+  }, [page]);
   const prevStep = () => {
     formDispatch({
       type: 'PREV',
@@ -113,10 +130,11 @@ const Form = () => {
     return '';
   };
   useEffect(() => {
-    const skipContentEl = document.getElementById('first-tab');
-    skipContentEl.focus();
-    skipContentEl.blur();
+    const buttonFocusEl = document.getElementById('btn-focus');
+    buttonFocusEl.focus();
+    buttonFocusEl.blur();
   }, [data]);
+
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
       <div className="wmnds-col-1 wmnds-m-b-lg">
@@ -126,170 +144,173 @@ const Form = () => {
           </button>
         )}
       </div>
-      <div
-        className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
-        style={{ maxWidth: 608 }}
-      >
-        {data.sectionNum && (
-          <p className="wmnds-m-b-xs">
-            Section {data.sectionNum} of {data.sectionTotal || 2}
-          </p>
-        )}
-        {data.sectionDescription && (
-          <h4 className="wmnds-m-t-xs wmnds-m-b-lg">{data.sectionDescription}</h4>
-        )}
-
-        <h2 style={{ margin: 0, marginBottom: 30 }}>{data.title}</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
+      <button type="button" style={{ opacity: '0', all: 'unset' }} id="btn-focus" tabIndex="-1" />
+      {data && (
+        <div
+          className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
+          style={{ maxWidth: 608 }}
         >
-          {data.components.map((component) => (
-            <div key={component.id}>
-              {component.type === 'Dropdown' && (
-                <Dropdown
-                  label={component.label}
-                  details={component.details}
-                  errorMsg={component.errorMsg}
-                  required={component.required}
-                  options={component.options}
-                  name={component.name}
-                  defaultValue={formData[component.name]}
-                  register={register}
-                  errors={formError}
-                />
-              )}
+          {data.sectionNum && (
+            <p className="wmnds-m-b-xs">
+              Section {data.sectionNum} of {data.sectionTotal || 2}
+            </p>
+          )}
+          {data.sectionDescription && (
+            <h4 className="wmnds-m-t-xs wmnds-m-b-lg">{data.sectionDescription}</h4>
+          )}
 
-              {component.type === 'Textarea' && (
-                <Textarea
-                  title={component.title}
-                  text1={component.text1}
-                  required={component.required}
-                  text2={component.text2}
-                  name={component.name}
-                  errorMsg={component.errorMsg}
-                  defaultValue={getDefaultValue(component.name)}
-                  register={register}
-                  errors={formError}
-                />
-              )}
-
-              {component.type === 'Input' && (
-                <Input
-                  label={component.label}
-                  label2={component.label2}
-                  name={component.name}
-                  defaultValue={getDefaultValue(component.name)}
-                  errorMsg={component.errorMsg}
-                  required={component.required}
-                  register={register}
-                  errors={formError}
-                  unregister={unregister}
-                  type={component.inputType}
-                />
-              )}
-              {component.type === 'FindAddress' && (
-                <FindAddress
-                  label={component.label}
-                  name={component.name}
-                  defaultValue={formData[component.name]}
-                  errorMsg={component.errorMsg}
-                  required={component.required}
-                  allowMapView={component.allowMapView}
-                  register={register}
-                  errors={formError}
-                  inputs={component.inputs}
-                  unregister={unregister}
-                />
-              )}
-              {component.type === 'FileUpload' && (
-                <FileUpload
-                  label={component.label}
-                  details={component.details}
-                  name={component.name}
-                  defaultValue={formData[component.name]}
-                  errorMsg={component.errorMsg}
-                  required={component.required}
-                  register={register}
-                  errors={formError}
-                  unregister={unregister}
-                />
-              )}
-              {component.type === 'Checkbox' && (
-                <Checkbox
-                  label={component.label}
-                  options={component.options}
-                  name={component.name}
-                  defaultValues={getDefaultValue(component.name)}
-                  required={component.required}
-                  register={register}
-                  unregister={unregister}
-                  errors={formError}
-                />
-              )}
-              {component.type === 'YesOrNo' && (
-                <YesOrNo
-                  label={component.label}
-                  options={component.options}
-                  name={data.name}
-                  defaultValue={formData[data.name] ? formData[data.name].value : ''}
-                  required={component.required}
-                  register={register}
-                  errors={formError}
-                  unregister={unregister}
-                />
-              )}
-              {component.type === 'Radios' && (
-                <RadioOptions
-                  label={component.label}
-                  options={component.options}
-                  name={component.name}
-                  defaultValues={[formData.email, formData.phone]}
-                  required={component.required}
-                  register={register}
-                  errors={formError}
-                  unregister={unregister}
-                />
-              )}
-              {component.type === 'Date' && (
-                <Date
-                  name={component.name}
-                  defaultValues={[formData.email, formData.phone]}
-                  required={component.required}
-                  register={register}
-                  errors={formError}
-                  label={component.label}
-                  showTime={component.showTime}
-                />
-              )}
-              {component.type === 'Address' && (
-                <Address
-                  label={component.label}
-                  name={component.name}
-                  defaultValue={formData[component.name]}
-                  errorMsg={component.errorMsg}
-                  required={component.required}
-                  allowMapView={component.allowMapView}
-                  register={register}
-                  errors={formError}
-                  inputs={component.inputs}
-                  unregister={unregister}
-                />
-              )}
-            </div>
-          ))}
-
-          <button
-            onClick={handleSubmit(continueHandler)}
-            className="wmnds-btn"
-            style={{ margin: 0, marginTop: 10 }}
-            type="button"
+          <h2 style={{ margin: 0, marginBottom: 30 }}>{data.title}</h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
           >
-            Continue
-          </button>
-        </form>
-      </div>
+            {data.components.map((component) => (
+              <div key={component.id}>
+                {component.type === 'Dropdown' && (
+                  <Dropdown
+                    label={component.label}
+                    details={component.details}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    options={component.options}
+                    name={component.name}
+                    defaultValue={formData[component.name]}
+                    register={register}
+                    errors={formError}
+                  />
+                )}
+
+                {component.type === 'Textarea' && (
+                  <Textarea
+                    title={component.title}
+                    text1={component.text1}
+                    required={component.required}
+                    text2={component.text2}
+                    name={component.name}
+                    errorMsg={component.errorMsg}
+                    defaultValue={getDefaultValue(component.name)}
+                    register={register}
+                    errors={formError}
+                  />
+                )}
+
+                {component.type === 'Input' && (
+                  <Input
+                    label={component.label}
+                    label2={component.label2}
+                    name={component.name}
+                    defaultValue={getDefaultValue(component.name)}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    unregister={unregister}
+                    type={component.inputType}
+                  />
+                )}
+                {component.type === 'FindAddress' && (
+                  <FindAddress
+                    label={component.label}
+                    name={component.name}
+                    defaultValue={formData[component.name]}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    allowMapView={component.allowMapView}
+                    register={register}
+                    errors={formError}
+                    inputs={component.inputs}
+                    unregister={unregister}
+                  />
+                )}
+                {component.type === 'FileUpload' && (
+                  <FileUpload
+                    label={component.label}
+                    details={component.details}
+                    name={component.name}
+                    defaultValue={formData[component.name]}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    unregister={unregister}
+                  />
+                )}
+                {component.type === 'Checkbox' && (
+                  <Checkbox
+                    label={component.label}
+                    options={component.options}
+                    name={component.name}
+                    defaultValues={getDefaultValue(component.name)}
+                    required={component.required}
+                    register={register}
+                    unregister={unregister}
+                    errors={formError}
+                  />
+                )}
+                {component.type === 'YesOrNo' && (
+                  <YesOrNo
+                    label={component.label}
+                    options={component.options}
+                    name={data.name}
+                    defaultValue={formData[data.name] ? formData[data.name].value : ''}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    unregister={unregister}
+                  />
+                )}
+                {component.type === 'Radios' && (
+                  <RadioOptions
+                    label={component.label}
+                    options={component.options}
+                    name={component.name}
+                    defaultValues={[formData.email, formData.phone]}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    unregister={unregister}
+                  />
+                )}
+                {component.type === 'Date' && (
+                  <Date
+                    name={component.name}
+                    defaultValues={[formData.email, formData.phone]}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    label={component.label}
+                    showTime={component.showTime}
+                  />
+                )}
+                {component.type === 'Address' && (
+                  <Address
+                    label={component.label}
+                    name={component.name}
+                    defaultValue={formData[component.name]}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    allowMapView={component.allowMapView}
+                    register={register}
+                    errors={formError}
+                    inputs={component.inputs}
+                    unregister={unregister}
+                  />
+                )}
+              </div>
+            ))}
+
+            <button
+              onClick={handleSubmit(continueHandler)}
+              className="wmnds-btn"
+              style={{ margin: 0, marginTop: 10 }}
+              type="button"
+            >
+              Continue
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
