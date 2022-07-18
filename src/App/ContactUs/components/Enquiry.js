@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import MapView from 'components/shared/MapView/MapView';
 
 import { FormDataContext } from '../../../globalState';
 import Radios from '../../../components/shared/Radios/Radios';
@@ -45,23 +46,20 @@ const ContactUsForm = () => {
     });
     window.scrollTo(0, 0);
   };
-  const fillFormHandler = (formId) => {
-    formDispatch({
-      type: 'FORM-ID',
-      payload: { formId },
-    });
-  };
+
   useEffect(() => {
     if (currentStep.currentStepId !== 'step-enquiry') {
       const buttonFocusEl = document.getElementById('btn-focus');
+
       buttonFocusEl.focus();
       buttonFocusEl.blur();
     }
   }, [currentStep]);
+
   return (
     <div
-      id="main-container"
       className="wmnds-container wmnds-container--main"
+      id="main-container"
       style={{ padding: 0 }}
     >
       {currentStep.heading === 'What is your enquiry about?' ? null : (
@@ -83,23 +81,25 @@ const ContactUsForm = () => {
             e.preventDefault();
           }}
         >
-          <Radios
-            name={currentStep?.heading}
-            label={currentStep.heading}
-            classes="wmnds-m-b-sm"
-            radios={currentStep.fields}
-            register={register}
-            onChange={handleRadioChange}
-            fieldValidation={formError}
-          />
-          <Button
-            text="Continue"
-            type="button"
-            onClick={handleSubmit(continueHandler)}
-            btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
-          >
-            Continue
-          </Button>
+          <>
+            <Radios
+              name={currentStep?.heading}
+              label={currentStep.heading}
+              classes="wmnds-m-b-sm"
+              radios={currentStep.fields}
+              register={register}
+              onChange={handleRadioChange}
+              fieldValidation={formError}
+            />
+            <Button
+              text="Continue"
+              type="button"
+              onClick={handleSubmit(continueHandler)}
+              btnClass="wmnds-btn wmnds-col-1 wmnds-col-sm-auto"
+            >
+              Continue
+            </Button>
+          </>
         </form>
       )}
     </div>

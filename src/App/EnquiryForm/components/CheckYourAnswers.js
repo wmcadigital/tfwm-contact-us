@@ -24,35 +24,56 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
-  // const userEmail = formData.email.value[0][1];
 
-  const sendEmailHandler = async () => {
-    const formatedData = {
-      to: ['test@gmail.com'],
-    };
-    Object.entries(formData).forEach((data) => {
-      if (data[1].answerTitle === 'Supporting documents') {
-        if (data[1].value[0][1].length > 0) {
-          formatedData.document = { file: data[1].value[0][1], name: data[1].value[0][1][0].name };
-        } else {
-          formatedData.document = 'None';
-        }
-        return;
-      }
-      const values = data[1].value.map((value) => value[1]);
-      formatedData[data[0]] = values.join(' ');
+  // returns the base64 string of files
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
     });
+  console.log(formData);
+  const sendEmailHandler = async () => {
+    const checkAnswersEl = document.getElementById('answers-container');
 
-    // let formData = new FormData();
-    // formData.append('file', formatedData.document[0]);
-    // formData.append('body', formatedData);
+    // replace map with google maps link
+    if (formData.address && formData.address.value[0][1].indexOf('www.google.com') !== -1) {
+      document.getElementById('answerMapDiv').replaceWith(formData.address.value[0][1]);
+    }
+    // remove change button
+    const editedText = checkAnswersEl.outerHTML.replaceAll(
+      '<td data-header="Header 2" style="vertical-align: top; width: 70px; text-align: right;"><button type="button" class="wmnds-btn wmnds-btn--link">Change</button></td>',
+      ''
+    );
 
-    // const postData = await fetch(`url`, {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-    // const postDataResponse = await postData.json();
+    const base64Content = btoa(editedText);
+    const file = formData.file ? formData.file.value[0][1][0] : undefined;
+    let base64File;
+    let fileData;
+
+    if (file) {
+      base64File = await toBase64(file);
+      fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
+    }
+
+    const postData = await fetch(
+      `https://notifying7irie3hwphseg.azurewebsites.net/api/EmailSender`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          to: 5,
+          subject: 'This is a Campaign Test',
+          body: base64Content,
+          from: 0,
+          files: file ? fileData : [],
+        }),
+      }
+    );
+    const postDataResponse = await postData.json();
+    console.log(postDataResponse);
   };
+
   const checkCheckboxes = async () => {
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
 
@@ -60,12 +81,13 @@ const CheckYourAnswers = () => {
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg('Please select both options');
     } else {
+      await sendEmailHandler();
+
       formDispatch({
         type: 'CHANGE-PAGE',
         payload: { page: 'SUCCESS', stepNum },
       });
       setErrorMsg('');
-      sendEmailHandler();
     }
   };
 
@@ -90,112 +112,124 @@ const CheckYourAnswers = () => {
           &lt; Back
         </button>
       </div>
-      <div className="bg-white wmnds-p-lg" style={{ maxWidth: '40rem', backgroundColor: 'white' }}>
+      <div
+        className="bg-white wmnds-p-lg"
+        id="check-your-answers"
+        style={{ maxWidth: '40rem', backgroundColor: 'white' }}
+      >
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
-
-        {formAnswers.map((answers) => (
-          <>
-            <h3>{answers[0]}</h3>
-            <table className="wmnds-table wmnds-table--without-header">
-              <tbody>
-                {answers[1].map((data) => (
-                  <tr>
-                    <th
-                      scope="row"
-                      data-header="Header 1"
-                      style={{ verticalAlign: 'top', width: 192 }}
-                    >
-                      {data.answerTitle || 'Answer'}
-                    </th>
-                    <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
-                      {data.answerTitle === 'Supporting documents' &&
-                        (data.value[0][1].length === 0 ? (
-                          'None'
-                        ) : (
+        <div id="answers-container">
+          {formAnswers.map((answers) => (
+            <>
+              <h3>{answers[0]}</h3>
+              <table className="wmnds-table wmnds-table--without-header">
+                <tbody>
+                  {answers[1].map((data) => (
+                    <tr>
+                      <th
+                        scope="row"
+                        data-header="Header 1"
+                        style={{ verticalAlign: 'top', width: 192 }}
+                      >
+                        {data.answerTitle || 'Answer'}
+                      </th>
+                      <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
+                        {data.answerTitle === 'Supporting documents' &&
+                          (data.value[0][1].length === 0 ? (
+                            'None'
+                          ) : (
+                            <>
+                              {data.value[0][1][0].type === 'application/pdf' ? (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                  <img src="/pdf-icon.svg" alt="pdf logo" width={20} height={20} />
+                                  <p style={{ marginBottom: 0 }}>{data.value[0][1][0].name}</p>
+                                </div>
+                              ) : (
+                                <img
+                                  src={URL.createObjectURL(data.value[0][1][0])}
+                                  alt="File"
+                                  style={{ marginTop: 20 }}
+                                  width={200}
+                                  height={200}
+                                />
+                              )}
+                            </>
+                          ))}
+                        {data.answerTitle === 'What was the date and time of the issue?' && (
                           <>
-                            {data.value[0][1][0].type === 'application/pdf' ? (
-                              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                <img src="/pdf-icon.svg" alt="pdf logo" width={20} height={20} />
-                                <p style={{ marginBottom: 0 }}>{data.value[0][1][0].name}</p>
-                              </div>
-                            ) : (
-                              <img
-                                src={URL.createObjectURL(data.value[0][1][0])}
-                                alt="File"
-                                style={{ marginTop: 20 }}
-                                width={200}
-                                height={200}
-                              />
-                            )}
-                          </>
-                        ))}
-                      {data.answerTitle === 'What was the date and time of the issue?' && (
-                        <>
-                          {data.value[0][1]}:{data.value[1][1]}
-                          <br />
-                          {data.value[2][1]}/{data.value[3][1]}/{data.value[4][1]}
-                        </>
-                      )}
-                      {data.answerTitle === 'Date of birth' && (
-                        <>
-                          {data.value[0][1]}/{data.value[1][1]}/{data.value[2][1]}
-                        </>
-                      )}
-                      {data.answerTitle === 'Name' && (
-                        <>
-                          {data.value[0][1]} {data.value[1][1]}
-                        </>
-                      )}
-                      {data.value[0][0] === 'postcode' && (
-                        <>
-                          {data.value[1][1]}
-                          <br />
-
-                          <GetMap
-                            lat={getCoords(data.value[0][1])[1]}
-                            lang={getCoords(data.value[0][1])[0]}
-                          />
-                        </>
-                      )}
-                      {data.answerTitle !== 'Name' &&
-                        data.answerTitle !== 'Date of birth' &&
-                        data.answerTitle !== 'Supporting documents' &&
-                        data.answerTitle !== 'What was the date and time of the issue?' &&
-                        data.value[0][0] !== 'postcode' && (
-                          <>
-                            {data.value.map((value) => (
-                              <>
-                                {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
-                                  ''
-                                ) : (
-                                  <>
-                                    {value[1]} <br />
-                                  </>
-                                )}
-                              </>
-                            ))}
+                            {data.value[0][1]}:{data.value[1][1]}
+                            <br />
+                            {data.value[2][1]}/{data.value[3][1]}/{data.value[4][1]}
                           </>
                         )}
-                    </td>
-                    <td
-                      data-header="Header 2"
-                      style={{ verticalAlign: 'top', width: 70 }}
-                      className={classes.textAlign}
-                    >
-                      <button
-                        type="button"
-                        className="wmnds-btn wmnds-btn--link"
-                        onClick={() => changeForm(data.stepNum)}
+                        {data.answerTitle === 'Date of birth' && (
+                          <>
+                            {data.value[0][1]}/{data.value[1][1]}/{data.value[2][1]}
+                          </>
+                        )}
+                        {data.answerTitle === 'Name' && (
+                          <>
+                            {data.value[0][1]} {data.value[1][1]}
+                          </>
+                        )}
+                        {data.value[0][0] === 'postcode' && (
+                          <>
+                            {data.value[1][1]}
+                            <br />
+
+                            <GetMap
+                              lat={getCoords(data.value[0][1])[1]}
+                              lang={getCoords(data.value[0][1])[0]}
+                            />
+                          </>
+                        )}
+                        {data.answerTitle !== 'Name' &&
+                          data.answerTitle !== 'Date of birth' &&
+                          data.answerTitle !== 'Supporting documents' &&
+                          data.answerTitle !== 'What was the date and time of the issue?' &&
+                          data.value[0][0] !== 'postcode' && (
+                            <>
+                              {data.value.map((value) => (
+                                <>
+                                  {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
+                                    ''
+                                  ) : (
+                                    <>
+                                      {value[1]} <br />
+                                    </>
+                                  )}
+                                </>
+                              ))}
+                            </>
+                          )}
+                      </td>
+                      <td
+                        data-header="Header 2"
+                        style={{
+                          verticalAlign: 'top',
+                          width: 70,
+                          textAlign: 'right',
+                          '@media (max-width: 768)': {
+                            textAlign: 'left',
+                          },
+                        }}
                       >
-                        Change
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        ))}
+                        <button
+                          type="button"
+                          className="wmnds-btn wmnds-btn--link"
+                          onClick={() => changeForm(data.stepNum)}
+                        >
+                          Change
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ))}
+        </div>
+
         <h3>Now send your request</h3>
         <p>
           By submitting this request you are confirming that, to the best of your knowledge, the
