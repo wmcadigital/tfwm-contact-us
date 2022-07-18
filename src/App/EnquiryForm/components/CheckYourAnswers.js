@@ -8,10 +8,18 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { FormDataContext } from '../../../globalState';
 
 import classes from '../../App.module.scss';
+import Data from '../../ContactUs/newData.json';
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
   const [errorMsg, setErrorMsg] = useState('');
+  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formId);
+  const emails = [
+    'swiftsupport@tfwm.org.uk',
+    'ticketing@tfwm.org.uk',
+    'customerservices@tfwm.org.uk',
+    'swiftcorporate@tfwm.org.uk',
+  ];
   const prevStep = () => {
     formDispatch({
       type: 'CHANGE-PAGE',
@@ -33,7 +41,7 @@ const CheckYourAnswers = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-  console.log(formData);
+
   const sendEmailHandler = async () => {
     const checkAnswersEl = document.getElementById('answers-container');
 
@@ -62,7 +70,7 @@ const CheckYourAnswers = () => {
       {
         method: 'POST',
         body: JSON.stringify({
-          to: 5,
+          to: emailIndex,
           subject: 'This is a Campaign Test',
           body: base64Content,
           from: 0,
@@ -71,7 +79,7 @@ const CheckYourAnswers = () => {
       }
     );
     const postDataResponse = await postData.json();
-    console.log(postDataResponse);
+    console.log(emails[emailIndex]);
   };
 
   const checkCheckboxes = async () => {

@@ -211,6 +211,7 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 0,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -410,6 +411,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formStartContent": {
         "title": "Update my Direct Debit",
         "serviceUse": "Update your contact/bank account details for your Direct Debit",
@@ -1128,6 +1131,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1276,6 +1281,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 3,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1358,6 +1365,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1440,6 +1449,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1569,6 +1580,7 @@
       "currentStepId": "step-bus",
       "prevStepId": "step-bus-train-tram",
       "heading": "Bus",
+
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -1578,6 +1590,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1838,6 +1852,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2032,6 +2048,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2212,6 +2230,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2357,6 +2377,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2545,6 +2567,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2801,6 +2825,8 @@
         "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'> make a complaint online</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form."
       },
+      "emailIndex": 2,
+
       "formStartContent": {
         "title": "Leave feedback",
         "serviceUse": "Leave feedback about our services",
@@ -2887,6 +2913,8 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3067,6 +3095,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3168,6 +3198,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3393,6 +3425,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3575,6 +3609,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
+
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3750,6 +3786,7 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 1,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3883,6 +3920,8 @@
         "customerService": true,
         "showChat": true
       },
+      "emailIndex": 2,
+
       "formComponents": [
         {
           "sectionNum": 1,
