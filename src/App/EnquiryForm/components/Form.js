@@ -38,9 +38,11 @@ const Form = () => {
   const [components, setComponents] = useState(findComponents);
 
   const [data, setData] = useState(components[stepNum]);
+
   useEffect(() => {
     setData(components[stepNum]);
   }, [stepNum, components]);
+
   useEffect(() => {
     formDispatch({
       type: 'SET-COMPONENTS',
@@ -49,6 +51,7 @@ const Form = () => {
       },
     });
   }, [components]);
+
   useLayoutEffect(() => {
     if (formComponents.length > 1) {
       setComponents(formComponents);
@@ -60,10 +63,12 @@ const Form = () => {
       type: 'PREV',
     });
   };
+
   const { register, handleSubmit, getValues, unregister } = useForm({
     shouldUnregister: true,
     shouldUseNativeValidation: true,
   });
+
   const [formError, setFormError] = useState([]);
 
   const continueHandler = () => {
@@ -84,6 +89,7 @@ const Form = () => {
       }
       return;
     }
+
     if (!isEmpty) {
       formDispatch({
         type: 'ADD-DATA',

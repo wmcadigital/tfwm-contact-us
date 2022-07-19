@@ -12,8 +12,6 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <Route path="/form/:formId" render={({ match }) => <Form formId={match.params.formId} />} /> */}
-
         <Route path="/">{formId ? <EnquiryForm /> : <ContactUsForm />}</Route>
       </Switch>
     </Router>

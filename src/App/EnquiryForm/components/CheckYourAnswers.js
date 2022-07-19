@@ -79,10 +79,10 @@ const CheckYourAnswers = () => {
       }
     );
     const postDataResponse = await postData.json();
-    console.log(emails[emailIndex]);
   };
 
-  const checkCheckboxes = async () => {
+  const checkboxHandler = async () => {
+    console.log(emails[emailIndex]);
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
 
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
@@ -332,7 +332,7 @@ const CheckYourAnswers = () => {
             </label>
           </div>
         </div>
-        <button className="wmnds-btn wmnds-btn--start" type="button" onClick={checkCheckboxes}>
+        <button className="wmnds-btn wmnds-btn--start" type="button" onClick={checkboxHandler}>
           Accept and send
           <svg className="wmnds-btn__icon wmnds-btn__icon--right ">
             <use xlinkHref="#wmnds-general-chevron-right" href="#wmnds-general-chevron-right" />

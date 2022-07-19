@@ -44,6 +44,7 @@ const FindAddress = ({
     //   `https://apis.networkwestmidlands.com/Addresses/AddressByPostcode/WV81BY`
     // );
     // const findAddressRes = await fetchFindAddress.json();
+    // setAddresses(findAddressRes);
   };
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
