@@ -92,8 +92,8 @@
         {
           "id": "workwise-general-enquiry",
           "type": "radio",
-          "text": "Workwise general enquiry",
-          "value": "Workwise general enquiry"
+          "text": "Discounted tickets through Workwise",
+          "value": "Discounted tickets through Workwise"
         },
         {
           "id": "paper-ticket",
@@ -162,7 +162,8 @@
         "insetText": "If you bought your Swift card from National Express, you need to <a href='https://www.tfwm.org.uk/get-help/contact-us/contact-national-express-west-midlands-about-your-swift-card/' title='replace-card' target='_blank'> contact them to replace it</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
 
-        "customerService": true
+        "customerService": true,
+        "showChat": true
       }
     },
     {
@@ -405,8 +406,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Please <a href='https://legacy.wmnetwork.co.uk/forms/contact-us/' id='formId' title='other'>fill in this form</a>.",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
+        "details": "Please contact us.",
+
         "formId": "step-update-DD",
         "customerService": true,
         "showChat": true
@@ -1353,7 +1354,7 @@
       "currentStepId": "step-workwise-general-enquiry",
       "prevStepId": "step-swift-tickets-passes",
       "parentId": "workwise-general-enquiry",
-      "heading": "Workwise general enquiry",
+      "heading": "Discounted tickets through Workwise",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -2714,9 +2715,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can request an accessible product online.",
-        "actionText": "Request an accessible product",
-        "actionLink": "https://legacy.wmnetwork.co.uk/forms/accessibility-products/",
+        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/accessibility-products/'>request an accessible product online.</a>",
+
         "callHelp": "If you need help requesting an accessible product, you can give us a call.",
         "customerService": true
       }
@@ -3601,11 +3601,11 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='' target='_blank'>apply online for a Disabled Person’s Pass</a>. You can also <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
+        "details": "You can <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
         "details2": "It can take us up to 6 weeks to process an application. We’ll be in touch if we need any more information from you.",
         "callHelp": "If you need help with completing the application, please <a href='https://legacy.wmnetwork.co.uk/forms/contact-us/' id='formId' >fill in this form</a>.",
         "formId": "step-help-disabledpass-application",
-
+        "warningText": "If you haven’t heard from us 6 weeks before your pass expires,  call or chat to us.",
         "customerService": true,
         "showChat": true
       },
@@ -3782,7 +3782,7 @@
         "type": "text",
         "details": "Please <a href='https://legacy.wmnetwork.co.uk/forms/contact-us/' title='other' id='formId'>fill in this form</a>.",
         "formId": "help-other-pass-disabled",
-
+        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -3917,8 +3917,7 @@
         "details": "Please <a href='https://legacy.wmnetwork.co.uk/forms/contact-us/' id='formId'>fill in this form</a>.",
         "formId": "step-enquiry-other",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
-        "customerService": true,
-        "showChat": true
+        "customerService": true
       },
       "emailIndex": 2,
 

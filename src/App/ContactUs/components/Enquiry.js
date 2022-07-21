@@ -75,7 +75,6 @@ const ContactUsForm = () => {
         <LastPage content={currentStep?.content} currentStep={currentStep} />
       ) : (
         <form
-          tabIndex="-1"
           className="wmnds-bg-white wmnds-p-md wmnds-col-1 wmnds-col-md-3-4"
           onSubmit={(e) => {
             e.preventDefault();
