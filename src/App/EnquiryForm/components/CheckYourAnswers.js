@@ -4,7 +4,6 @@
 import GetMap from 'components/shared/Map/Map';
 
 import React, { useContext, useState, useEffect, useRef } from 'react';
-
 import { FormDataContext } from '../../../globalState';
 
 import classes from '../../App.module.scss';
