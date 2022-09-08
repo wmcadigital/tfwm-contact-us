@@ -14,6 +14,7 @@ const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
   const [errorMsg, setErrorMsg] = useState('');
   const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formId);
+  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formId);
   const emails = [
     'swiftsupport@tfwm.org.uk',
     'ticketing@tfwm.org.uk',
@@ -65,19 +66,16 @@ const CheckYourAnswers = () => {
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
 
-    const postData = await fetch(
-      `https://notifying7irie3hwphseg.azurewebsites.net/api/EmailSender`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          to: emailIndex,
-          subject: 'This is a Campaign Test',
-          body: base64Content,
-          from: 0,
-          files: file ? fileData : [],
-        }),
-      }
-    );
+    const postData = await fetch(`http://caslintdev02/emails/api/email`, {
+      method: 'POST',
+      body: JSON.stringify({
+        to: 6,
+        subject: emailHeader,
+        body: base64Content,
+        from: 0,
+        files: file ? fileData : [],
+      }),
+    });
     const postDataResponse = await postData.json();
   };
 

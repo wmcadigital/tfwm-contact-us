@@ -8,17 +8,17 @@ const { sanitize } = dompurify;
 const LastPage = ({ content, currentStep }) => {
   const [, formDispatch] = useContext(FormDataContext);
 
-  // useEffect(() => {
-  //   const fillFormEl = document.querySelector('#formId');
-  //   if (fillFormEl) {
-  //     fillFormEl.addEventListener('click', () => {
-  //       formDispatch({
-  //         type: 'FORM-ID',
-  //         payload: { formId: content.formId },
-  //       });
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    const fillFormEl = document.querySelector('#formId');
+    if (fillFormEl) {
+      fillFormEl.addEventListener('click', () => {
+        formDispatch({
+          type: 'FORM-ID',
+          payload: { formId: content.formId },
+        });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     /* eslint no-underscore-dangle: 0 */
