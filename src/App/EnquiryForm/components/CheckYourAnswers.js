@@ -66,7 +66,7 @@ const CheckYourAnswers = () => {
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
 
-    const postData = await fetch(`http://caslintdev02/emails/api/email`, {
+    const postData = await fetch(`https://caslintdev02/emails/api/email`, {
       method: 'POST',
       body: JSON.stringify({
         to: 6,
