@@ -10,6 +10,7 @@ const LastPage = ({ content, currentStep }) => {
 
   useEffect(() => {
     const fillFormEl = document.querySelector('#formId');
+    console.log('fill', fillFormEl);
     if (fillFormEl) {
       fillFormEl.addEventListener('click', () => {
         formDispatch({
@@ -19,7 +20,6 @@ const LastPage = ({ content, currentStep }) => {
       });
     }
   }, []);
-
   useEffect(() => {
     /* eslint no-underscore-dangle: 0 */
 

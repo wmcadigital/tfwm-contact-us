@@ -31,8 +31,10 @@ import Data from '../../ContactUs/newData.json';
 const Form = () => {
   const [{ stepNum, formData, formId, pageType, page, formComponents }, formDispatch] =
     useContext(FormDataContext);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
   const findComponents = Data.pages.find(
-    (pageData) => pageData.currentStepId === formId
+    (pageData) => pageData.currentStepId === formToLoad
   ).formComponents;
 
   const [components, setComponents] = useState(findComponents);

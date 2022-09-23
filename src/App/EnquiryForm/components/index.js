@@ -13,12 +13,14 @@ import Data from '../../ContactUs/newData.json';
 
 const Complaint = () => {
   const [{ page, formId }] = useContext(FormDataContext);
-  const { content } = Data.pages.find((data) => data.currentStepId === formId);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
+  const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
   useEffect(() => {
     const headerTitleEl = document.getElementById('formClicked');
-    if (formId === 'step-update-DD') {
+    if (formToLoad === 'step-update-DD') {
       headerTitleEl.innerText = 'Update my Direct Debit';
-    } else if (formId === 'step-leave-feedback-or-complaint') {
+    } else if (formToLoad === 'step-leave-feedback-or-complaint') {
       headerTitleEl.innerText = 'Leave feedback';
     } else {
       headerTitleEl.innerText = 'Submit an enquiry';

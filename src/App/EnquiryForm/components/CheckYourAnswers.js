@@ -12,9 +12,11 @@ import Data from '../../ContactUs/newData.json';
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
-  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formId);
-  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formId);
+  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
   const emails = [
     'swiftsupport@tfwm.org.uk',
     'ticketing@tfwm.org.uk',
@@ -60,19 +62,41 @@ const CheckYourAnswers = () => {
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
-
     if (file) {
       base64File = await toBase64(file);
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
+    const answerObject = {};
+    const dataMap = formData;
+    delete dataMap.file;
+    const extract = Object.keys(formData).map((key) => {
+      let sectionTitle = '';
+      sectionTitle = formData[key].answerTitle;
+      const sectionValues =
+        formData[key].value.length < 2
+          ? formData[key].value[0][1]
+          : `${formData[key].value[0][1]} ${formData[key].value[1][1]}`;
+      formData[key].value.map((i) => {
+        return i;
+      });
+      let sectionValuesEdited = sectionValues.toString();
+      if (sectionValuesEdited.includes('Yes')) {
+        sectionValuesEdited = sectionValuesEdited.substring(4);
+      }
+      answerObject[sectionTitle] = sectionValuesEdited;
+      return answerObject;
+    });
 
-    const postData = await fetch(`https://caslintdev02/emails/api/email`, {
+    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
       body: JSON.stringify({
         to: 6,
         subject: emailHeader,
-        body: base64Content,
-        from: 0,
+        body: JSON.stringify(answerObject),
+        from: formData.contact.value[0][1],
         files: file ? fileData : [],
       }),
     });
@@ -80,7 +104,6 @@ const CheckYourAnswers = () => {
   };
 
   const checkboxHandler = async () => {
-    console.log(emails[emailIndex]);
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
 
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
@@ -245,7 +268,7 @@ const CheckYourAnswers = () => {
         <div className="wmnds-fe-group">
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
-            {formId === 'step-update-DD' && (
+            {formToLoad === 'step-update-DD' && (
               <div style={{ display: 'flex', gap: '.5rem' }}>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
