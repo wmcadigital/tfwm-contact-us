@@ -62,6 +62,7 @@ const CheckYourAnswers = () => {
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
+
     if (file) {
       base64File = await toBase64(file);
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
@@ -86,7 +87,6 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-
     const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
       method: 'POST',
       headers: {
@@ -99,8 +99,15 @@ const CheckYourAnswers = () => {
         from: formData.contact.value[0][1],
         files: file ? fileData : [],
       }),
+    }).then((response) => {
+      // If the response is successful(200: OK)
+      if (response.status === 200) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'SUCCESS', stepNum },
+        });
+      }
     });
-    const postDataResponse = await postData.json();
   };
 
   const checkboxHandler = async () => {
@@ -268,7 +275,7 @@ const CheckYourAnswers = () => {
         <div className="wmnds-fe-group">
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
-            {formToLoad === 'step-update-DD' && (
+            {formId === 'step-update-DD' && (
               <div style={{ display: 'flex', gap: '.5rem' }}>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
