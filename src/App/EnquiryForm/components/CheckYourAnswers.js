@@ -58,7 +58,7 @@ const CheckYourAnswers = () => {
       ''
     );
 
-    const base64Content = btoa(editedText);
+    const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
@@ -96,6 +96,7 @@ const CheckYourAnswers = () => {
         to: 6,
         subject: emailHeader,
         body: JSON.stringify(answerObject),
+        bodyHtml: base64Content,
         from: formData.contact.value[0][1],
         files: file ? fileData : [],
       }),
@@ -154,7 +155,7 @@ const CheckYourAnswers = () => {
         style={{ maxWidth: '40rem', backgroundColor: 'white' }}
       >
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
-        <div id="answers-container">
+        <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (
             <>
               <h3>{answers[0]}</h3>

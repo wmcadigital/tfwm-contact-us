@@ -411,7 +411,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Please contact us.",
+        "details": "Please <a href='#?step-update-DD' title='other' id='formId'>contact us</a>.",
 
         "formId": "step-update-DD",
         "customerService": true,
@@ -1132,7 +1132,7 @@
       "emailHeader": "Direct Debit enquiry",
       "content": {
         "type": "text",
-        "details": "Please <a href=#' id='formId'>fill in this form</a>.",
+        "details": "Please <a href='#?step-other-DD' id='formId'>fill in this form</a>.",
         "formId": "step-other-DD",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
@@ -1284,7 +1284,7 @@
       "content": {
         "type": "text",
         "warningText": "If your enquiry is urgent, please call us. It will take 2 working days if you use an online form.",
-        "details": "Please <a href=#' id='formId'>fill in this form</a>.",
+        "details": "Please <a href=#?step-corporate-ticketing id='formId'>fill in this form</a>.",
         "formId": "step-corporate-ticketing",
         "customerService": true,
         "showChat": true
@@ -1367,7 +1367,7 @@
       "content": {
         "type": "text",
 
-        "details": "Please call us or <a href=#' id='formId'>fill in this form</a>.",
+        "details": "Please call us or <a href='#?step-workwise-general-enquiry' id='formId'>fill in this form</a>.",
         "formId": "step-workwise-general-enquiry",
 
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
@@ -1452,7 +1452,7 @@
       "emailHeader": "Transport for West Midlands app enquiry",
       "content": {
         "type": "text",
-        "details": "Please <a href=#' title='step-swift-parking-app' id='formId' target='_blank'>fill in this form</a>.",
+        "details": "Please <a href='#?step-transport-west-midland-app' title='step-swift-parking-app' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-transport-west-midland-app",
 
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
@@ -1596,7 +1596,7 @@
       "content": {
         "type": "text",
         "details": "Contact the <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
-        "details2": "For all other enquiries, please <a href=#' id='formId' target='_blank'>fill in this form</a>.",
+        "details2": "For all other enquiries, please <a href='#?step-bus' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-bus",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
@@ -1858,7 +1858,7 @@
             "ph": "0845 606 1660"
           }
         ],
-        "details2": "For all other enquiries, please <a href=#' id='formId' target='_blank'>fill in this form</a>.",
+        "details2": "For all other enquiries, please <a href='#?step-train' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-train",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -2056,7 +2056,7 @@
       "content": {
         "type": "text",
         "details": "You can view <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/park-and-ride/' title='new-request-card' target='_blank'> park and ride information including maintenance here</a>.",
-        "details2": "For all other park and ride enquiries, please <a href=#' id='formId'>fill in this form</a>.",
+        "details2": "For all other park and ride enquiries, please <a href='#?step-park-ride' id='formId'>fill in this form</a>.",
         "formId": "step-park-ride",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -2239,7 +2239,7 @@
       "content": {
         "type": "text",
         "details": "You can find information about our <a href='https://www.tfwm.org.uk/who-we-are/what-we-do/sprint-priority-bus-corridor/' title='sprint-bus-info' target='_blank'>Sprint bus service including frequently asked questions here</a>.",
-        "details2": "For all other Sprint bus service enquiries, please <a href=#' id='formId' >fill in this form</a>.",
+        "details2": "For all other Sprint bus service enquiries, please <a href='#?step-sprint-bus' id='formId' >fill in this form</a>.",
         "formId": "step-sprint-bus",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -2389,7 +2389,7 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/find-bike-storage-at-a-station/' title='cancel-bank-mandate' target='_blank'>apply or renew bus, rail and cycle hub storage online</a>.",
-        "details2": "For all other cycle storage enquiries, please <a href=#' id='formId' >fill in this form</a>.",
+        "details2": "For all other cycle storage enquiries, please <a href='#?step-cycle-storage' id='formId' >fill in this form</a>.",
         "formId": "step-cycle-storage",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -2580,7 +2580,7 @@
       "content": {
         "type": "text",
         "details": "You can find information about cycling in the <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/' title='cancel-bank-mandate' target='_blank'>West Midlands including cycle routes here</a>.",
-        "details2": "For all other cycling enquiries, please <a href=#' id='formId'>fill in this form</a>.",
+        "details2": "For all other cycling enquiries, please <a href='#?step-other-cycle' id='formId'>fill in this form</a>.",
         "formId": "step-other-cycle",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -2838,7 +2838,7 @@
         "type": "text",
         "details": "You can help us improve our services by sending us feedback. This includes suggestions and concerns.",
         "details2": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
-        "callHelp": "To leave feedback for anything else, please <a href=#' id='formId'>fill in this form</a>.",
+        "callHelp": "To leave feedback for anything else, please <a href='#?step-leave-feedback-or-complaint' id='formId'>fill in this form</a>.",
         "formId": "step-leave-feedback-or-complaint",
 
         "customerService": true,
@@ -2928,7 +2928,7 @@
       "content": {
         "type": "text",
 
-        "details": "Please <a href=#' id='formId' title='other'>fill in this form</a>.",
+        "details": "Please <a href='#?step-other-report' id='formId' title='other'>fill in this form</a>.",
         "formId": "step-other-report",
 
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
@@ -3110,7 +3110,7 @@
       "content": {
         "type": "text",
         "details": "If you paper ticket is paid by Direct Debit, you can <a href='https://refund.tfwm.org.uk/' title='cancel-bank-mandate' target='_blank'>cancel your Direct Debit online</a>. ",
-        "details2": "If you need help with your paper ticket, please <a href=#' id='formId' >fill in this form</a>.",
+        "details2": "If you need help with your paper ticket, please <a href='#?step-paper-ticket' id='formId' >fill in this form</a>.",
         "formId": "step-paper-ticket",
 
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
@@ -3397,7 +3397,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='cancel-bank-mandate' target='_blank'>update the details on your older person’s pass online</a>.",
+        "details": "You can <a href='#?step-change-details-older' title='other' id='formId'>update the details on your older person’s pass online</a>.",
+        "formId": "step-change-details-older",
         "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call or chat to us.",
         "customerService": true,
         "showChat": true
@@ -3628,7 +3629,7 @@
         "type": "text",
         "details": "You can <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
         "details2": "It can take us up to 6 weeks to process an application. We’ll be in touch if we need any more information from you.",
-        "callHelp": "If you need help with completing the application, please <a href=#' id='formId' >fill in this form</a>.",
+        "callHelp": "If you need help with completing the application, please <a href='#?step-help-disabledpass-application' id='formId' >fill in this form</a>.",
         "formId": "step-help-disabledpass-application",
         "warningText": "If you haven’t heard from us 6 weeks before your pass expires,  call or chat to us.",
         "customerService": true,
