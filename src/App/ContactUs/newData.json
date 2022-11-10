@@ -3394,6 +3394,7 @@
       "currentStepId": "step-change-details-older",
       "prevStepId": "step-older-person-pass",
       "heading": "Change my older person’s pass details",
+      "emailHeader": "Change older person’s pass details enquiry",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -3401,8 +3402,297 @@
         "formId": "step-change-details-older",
         "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call or chat to us.",
         "customerService": true,
-        "showChat": true
-      }
+        "showChat": true,
+        "emailIndex": 1
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "What is your concessionary pass number?",
+          "answerTitle": "Concessionary pass number",
+          "name": "pass-number",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "18 digit pass number",
+              "required": true,
+              "id": "1",
+              "name": "pass-number",
+              "errorMsg": "Pass number is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update the name on your concessionary pass?",
+          "answerTitle": "Your updated name",
+          "name": "update-name",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "name-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "First Name",
+                      "name": "CC-first-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid name"
+                    },
+                    {
+                      "inputLabel1": "Last Name",
+                      "name": "CC-last-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid name"
+                    }
+                  ]
+                },
+                {
+                  "name": "name-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your address?",
+          "answerTitle": "Your updated address",
+          "name": "update-address",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+              "options": [
+                {
+                  "name": "address-yes",
+                  "option": "Yes",
+                  "required": true
+                },
+                {
+                  "name": "address-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your contact details",
+          "title": "What is your updated address?",
+          "answerTitle": "Address",
+          "name": "address",
+
+          "components": [
+            {
+              "type": "FindAddress",
+              "required": true,
+              "id": "1",
+              "name": "find-address-postcode",
+              "allowMapView": false,
+              "errorMsg": "Field is required",
+              "inputs": [
+                {
+                  "name": "building",
+
+                  "required": false,
+                  "label": "Building and street",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid building"
+                },
+                {
+                  "name": "street",
+
+                  "required": true,
+                  "label": "",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid street name"
+                },
+                {
+                  "name": "town-or-city",
+
+                  "required": true,
+                  "label": "Town or city",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid direction of travel"
+                },
+                {
+                  "name": "county",
+
+                  "required": false,
+                  "label": "County",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid county"
+                },
+                {
+                  "name": "address-postcode",
+
+                  "required": true,
+                  "label": "Postcode",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid postcode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your email address?",
+          "answerTitle": "Your updated email address",
+          "name": "update-email",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Email address For example, name@example.com",
+                      "name": "CC-email-address",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid email address"
+                    }
+                  ]
+                },
+                {
+                  "name": "email-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your phone number?",
+          "answerTitle": "Your updated phone number",
+          "name": "update-phone",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "phone-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Phone number For example, 07700900457",
+                      "name": "CC-phone-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid phone number"
+                    }
+                  ]
+                },
+                {
+                  "name": "phone-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+          "answerTitle": "Contact preference",
+          "name": "contact-preference",
+          
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "CC-pref-phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Phone number For example, 07700900457",
+                      "name": "CC-pref-phone-name",
+                      "type": "text",
+                      "errorMsg": "Enter a valid phone number"
+                    }
+                  ]
+                },
+                {
+                  "name": "CC-pref-email",
+                  "option": "Email",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Email address For example, name@example.com",
+                      "name": "CC-pref-email-address",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid email address"
+                    }
+                  ]
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "renew-pass-older",
@@ -3760,14 +4050,306 @@
       "currentStepId": "help-change-details-disabled",
       "prevStepId": "step-disabled-person-pass",
       "heading": "Change my disabled person’s pass details",
+      "emailheader": "Change disabled person’s pass details enquiry",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/concessionary-updates/' title='disabled-pass-details' target='_blank'>update the details on your disabled person’s pass online</a>.",
+        "details": "You can <a href='#?help-change-details-disabled' title='other' id='formId'>update the details on your disabled person’s pass online</a>.",
         "callHelp": "If you need help changing the details on your disabled person’s pass, you can call or chat to us.",
         "customerService": true,
+        "formId": "help-change-details-disabled",
         "showChat": true
-      }
+      },
+      "emailIndex": 1,
+
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "What is your concessionary pass number?",
+          "answerTitle": "Concessionary pass number",
+          "name": "pass-number",
+
+          "components": [
+            {
+              "type": "Input",
+              "label": "18 digit pass number",
+              "required": true,
+              "id": "1",
+              "name": "pass-number",
+              "errorMsg": "Pass number is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update the name on your concessionary pass?",
+          "answerTitle": "Your updated name",
+          "name": "update-name",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "name-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "First Name",
+                      "name": "CC-first-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid name"
+                    },
+                    {
+                      "inputLabel1": "Last Name",
+                      "name": "CC-last-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid name"
+                    }
+                  ]
+                },
+                {
+                  "name": "name-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your address?",
+          "answerTitle": "Your updated address",
+          "name": "update-address",
+
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+              "options": [
+                {
+                  "name": "address-yes",
+                  "option": "Yes",
+                  "required": true
+                },
+                {
+                  "name": "address-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your contact details",
+          "title": "What is your updated address?",
+          "answerTitle": "Address",
+          "name": "address",
+
+          "components": [
+            {
+              "type": "FindAddress",
+              "required": true,
+              "id": "1",
+              "name": "find-address-postcode",
+              "allowMapView": false,
+              "errorMsg": "Field is required",
+              "inputs": [
+                {
+                  "name": "building",
+
+                  "required": false,
+                  "label": "Building and street",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid building"
+                },
+                {
+                  "name": "street",
+
+                  "required": true,
+                  "label": "",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid street name"
+                },
+                {
+                  "name": "town-or-city",
+
+                  "required": true,
+                  "label": "Town or city",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid direction of travel"
+                },
+                {
+                  "name": "county",
+
+                  "required": false,
+                  "label": "County",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid county"
+                },
+                {
+                  "name": "address-postcode",
+
+                  "required": true,
+                  "label": "Postcode",
+
+                  "type": "text",
+                  "errorMsg": "Enter a valid postcode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your email address?",
+          "answerTitle": "Your updated email address",
+          "name": "update-email",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "email-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Email address For example, name@example.com",
+                      "name": "CC-email-address",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid email address"
+                    }
+                  ]
+                },
+                {
+                  "name": "email-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "Your travel pass",
+          "title": "Do you need to update your phone number?",
+          "answerTitle": "Your updated phone number",
+          "name": "update-phone",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "phone-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Phone number For example, 07700900457",
+                      "name": "CC-phone-name",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid phone number"
+                    }
+                  ]
+                },
+                {
+                  "name": "phone-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "About you",
+          "title": "How would you like to be contacted?",
+          "answerTitle": "Contact preference",
+          "name": "contact-preference",
+          
+          "components": [
+            {
+              "type": "Checkbox",
+              "required": true,
+
+              "options": [
+                {
+                  "name": "CC-pref-phone",
+                  "option": "Phone",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Phone number For example, 07700900457",
+                      "name": "CC-pref-phone-name",
+                      "type": "text",
+                      "errorMsg": "Enter a valid phone number"
+                    }
+                  ]
+                },
+                {
+                  "name": "CC-pref-email",
+                  "option": "Email",
+                  "required": true,
+                  "inputs": [
+                    {
+                      "inputLabel1": "Email address For example, name@example.com",
+                      "name": "CC-pref-email-address",
+
+                      "type": "text",
+                      "errorMsg": "Enter a valid email address"
+                    }
+                  ]
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "renew-pass-disabled",

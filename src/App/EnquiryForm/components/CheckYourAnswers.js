@@ -35,7 +35,7 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
-
+  console.log(formData);
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -95,9 +95,9 @@ const CheckYourAnswers = () => {
       body: JSON.stringify({
         to: 6,
         subject: emailHeader,
-        body: JSON.stringify(answerObject),
+        body: '{"M":"j"}',
         bodyHtml: base64Content,
-        from: formData.contact.value[0][1],
+        from: formData.contact ? formData.contact.value[0][1] : 'test@test.com',
         files: file ? fileData : [],
       }),
     }).then((response) => {
@@ -223,6 +223,7 @@ const CheckYourAnswers = () => {
                         {data.answerTitle !== 'Name' &&
                           data.answerTitle !== 'Date of birth' &&
                           data.answerTitle !== 'Supporting documents' &&
+                          data.answerTitle !== 'Contact preference' &&
                           data.answerTitle !== 'What was the date and time of the issue?' &&
                           data.value[0][0] !== 'postcode' && (
                             <>
@@ -239,6 +240,22 @@ const CheckYourAnswers = () => {
                               ))}
                             </>
                           )}
+                        {data.answerTitle === 'Contact preference' && (
+                          <>
+                            {data.value.map((value) => (
+                              <>
+                                {value[0] !== 'CC-pref-phone-name' &&
+                                value[0] !== 'CC-pref-email-address' ? (
+                                  ''
+                                ) : (
+                                  <>
+                                    {value[1]} <br />
+                                  </>
+                                )}
+                              </>
+                            ))}
+                          </>
+                        )}
                       </td>
                       <td
                         data-header="Header 2"
