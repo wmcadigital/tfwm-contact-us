@@ -317,8 +317,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Swift card number",
-                  "inputLabel2": "",
-
+                  "inputLabel2": "This is the long number on the front of the card. It begins with 633597",
                   "errorMsg": "Enter a valid Swift number"
                 },
                 {
@@ -352,7 +351,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Direct Debit number",
-                  "inputLabel2": " You can find it on your bank statement or a letter from us about your ticket",
+                  "inputLabel2": "You can find it on your bank statement or a letter from us about your ticket",
                   "type": "number",
                   "errorMsg": "Enter a valid direct debit number"
                 },
@@ -411,7 +410,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Please <a href='#?step-update-DD' title='other' id='formId'>contact us</a>.",
+        "details": "You can <a href='#?step-update-DD' title='other' id='formId'>update your Direct Debit online</a>.",
 
         "formId": "step-update-DD",
         "customerService": true,
@@ -1760,7 +1759,8 @@
                 "Thandi Transport",
                 "The Green Bus",
                 "The Green Transport Co",
-                "Walsall Community Transport"
+                "Walsall Community Transport",
+                "I dont't know the bus company"
               ]
             }
           ]
@@ -2001,7 +2001,8 @@
                 "Cross Country",
                 "Chiltern Railways",
                 "London Northwestern Railway",
-                "Transport for Wales"
+                "Transport for Wales",
+                "I dont't know the train company"
               ]
             }
           ]
@@ -3352,7 +3353,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Older person’s pass number",
-                  "inputLabel2": "",
+                  "inputLabel2": "This is the 18 digit number on the front of the card",
                   "type": "number",
                   "errorMsg": "Enter a valid older person’s pass number"
                 },
@@ -3871,7 +3872,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Older person’s pass number",
-                  "inputLabel2": "",
+                  "inputLabel2": "This is the 18 digit number on the front of the card",
                   "type": "number",
                   "errorMsg": "Enter a valid older person’s pass number"
                 },
@@ -3990,7 +3991,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Disabled person’s pass number",
-                  "inputLabel2": "",
+                  "inputLabel2": "This is the 18 digit number on the front of the card",
                   "type": "number",
                   "errorMsg": "Enter a valid disabled person’s pass number"
                 },
@@ -4459,7 +4460,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Disabled person’s pass number",
-                  "inputLabel2": "",
+                  "inputLabel2": "This is the 18 digit number on the front of the card",
                   "type": "number",
                   "errorMsg": "Enter a valid disabled person’s pass number"
                 },

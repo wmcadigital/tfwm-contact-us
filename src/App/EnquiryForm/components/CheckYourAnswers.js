@@ -35,7 +35,6 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
-  console.log(formData);
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -116,7 +115,7 @@ const CheckYourAnswers = () => {
 
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
     if (findCheckedBoxes.length < checkboxes.length) {
-      setErrorMsg('Please select both options');
+      setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
     } else {
       await sendEmailHandler();
 
@@ -293,7 +292,7 @@ const CheckYourAnswers = () => {
         <div className="wmnds-fe-group">
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
-            {formId === 'step-update-DD' && (
+            {params === 'step-update-DD' && (
               <div style={{ display: 'flex', gap: '.5rem' }}>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
@@ -336,6 +335,7 @@ const CheckYourAnswers = () => {
                   src="/direct-debit-logo.png"
                   alt="direct debit logo"
                   className={classes.ddLogo}
+                  style={{ transform: 'scale(0.6)' }}
                 />
               </div>
             )}
