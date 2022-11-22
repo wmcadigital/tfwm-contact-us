@@ -14,7 +14,6 @@ const ContactUsForm = () => {
 
   const [selectedVal, setSelectedVal] = useState();
   const [formError, setFormError] = useState(false);
-  console.log('contact');
   useEffect(() => {
     const selectedRadio = currentStep.fields?.find((item) => item.selected);
     setSelectedVal(selectedRadio?.id);

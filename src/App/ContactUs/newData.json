@@ -3416,7 +3416,7 @@
 
           "components": [
             {
-              "type": "Input",
+              "type": "Number",
               "label": "18 digit pass number",
               "required": true,
               "id": "1",
@@ -4073,7 +4073,7 @@
 
           "components": [
             {
-              "type": "Input",
+              "type": "Number",
               "label": "18 digit pass number",
               "required": true,
               "id": "1",
