@@ -351,7 +351,7 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Direct Debit number",
-                  "inputLabel2": "You can find it on your bank statement or a letter from us about your ticket",
+                  "inputLabel2": "You can find it on your bank statement or a letter from us about your ticket. It is a 6 digit number beginning with a 6.",
                   "type": "number",
                   "errorMsg": "Enter a valid direct debit number"
                 },
@@ -1196,7 +1196,7 @@
             {
               "type": "YesOrNo",
               "required": true,
-              "label": "You can find it on your bank statement or a letter from us about your ticket",
+              "label": "You can find it on your bank statement or a letter from us about your ticket. It is a 6 digit number beginning with a 6.",
               "options": [
                 {
                   "name": "yes",
