@@ -38,8 +38,9 @@ const Dropdown = ({
   return (
     <div className={`wmnds-fe-group wmnds-m-b-lg  ${hasError && 'wmnds-fe-group--error'}`}>
       <div
+        // eslint-disable-next-line jam3/no-sanitizer-with-danger
         dangerouslySetInnerHTML={{
-          __html: sanitize(details),
+          __html: details,
         }}
         style={{ marginBottom: 30 }}
       />

@@ -92,7 +92,7 @@ const CheckYourAnswers = () => {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        to: 6,
+        to: emailIndex,
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: base64Content,

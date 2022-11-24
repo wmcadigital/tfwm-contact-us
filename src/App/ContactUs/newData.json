@@ -1735,7 +1735,7 @@
           "components": [
             {
               "type": "Dropdown",
-              "details": "<a href='https://find-bus-company.tfwm.org.uk/?ticketSearch=true&modes=bus' target='_blank'>I don’t know the bus company I travelled with</a>",
+              "details": "<a target='blank' href='https://find-bus-company.tfwm.org.uk/?ticketSearch=true&modes=bus'>I don’t know the bus company I travelled with</a>",
               "label": "Please choose a company",
               "errorMsg": "Please select a bus company",
 
