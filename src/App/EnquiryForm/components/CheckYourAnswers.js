@@ -293,7 +293,7 @@ const CheckYourAnswers = () => {
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
             {params === 'step-update-DD' && (
-              <div style={{ display: 'flex', gap: '.5rem' }}>
+              <div>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
                   detailed in this Instruction subject to the safeguards assured by the
@@ -335,7 +335,7 @@ const CheckYourAnswers = () => {
                   src="/direct-debit-logo.png"
                   alt="direct debit logo"
                   className={classes.ddLogo}
-                  style={{ transform: 'scale(0.6)' }}
+                  style={{ transform: 'scale(0.6)', marginLeft: '30px', marginBottom: '20px' }}
                 />
               </div>
             )}
