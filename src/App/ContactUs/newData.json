@@ -217,7 +217,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 0,
+      "emailIndex": 1,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1282,13 +1282,13 @@
       "emailHeader": "Corporate ticketing enquiry",
       "content": {
         "type": "text",
-        "warningText": "If your enquiry is urgent, please call us. It will take 2 working days if you use an online form.",
+        "warningText": "If your enquiry is urgent, please call us. It will take 5 working days if you use an online form.",
         "details": "Please <a href=#?step-corporate-ticketing id='formId'>fill in this form</a>.",
         "formId": "step-corporate-ticketing",
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 3,
+      "emailIndex": 4,
 
       "formComponents": [
         {
@@ -1600,7 +1600,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
 
       "formComponents": [
         {
@@ -2393,7 +2393,7 @@
         "details2": "For all other cycle storage enquiries, please <a href='#?step-cycle-storage' id='formId' >fill in this form</a>.",
         "formId": "step-cycle-storage",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -2838,12 +2838,12 @@
       "content": {
         "type": "text",
         "details": "You can help us improve our services by sending us feedback. This includes suggestions and concerns.",
-        "details2": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
-        "callHelp": "To leave feedback for anything else, please <a href='#?step-leave-feedback-or-complaint' id='formId'>fill in this form</a>.",
+        "details2": "To leave feedback or to make a complaint, please <a href='#?step-leave-feedback-or-complaint' id='formId'>fill in this form</a>.",
+        "callHelp": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
         "formId": "step-leave-feedback-or-complaint",
 
         "customerService": true,
-        "complaint": "If you are dissatisfied with a service and want a response, you can <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'> make a complaint online</a>.",
+        "complaint": "For information about how we handle complaints, you can view our <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'>complaints handling procedure online.</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form."
       },
       "emailIndex": 2,
@@ -3118,7 +3118,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
 
       "formComponents": [
         {
@@ -3213,7 +3213,7 @@
       "content": {
         "type": "text",
         "details": "You can <a href='http://freetravelwm.org.uk/BeforeYouApply_input.action' title='cancel-bank-mandate' target='_blank'>apply for an older person’s pass online</a>.",
-        "details2": "You can also <a href='https://www.tfwm.org.uk/media/fmbkmzmf/oapapplication_form.pdf' title='download-application' target='_blank'> download the application</a> form to print out and send in the post.",
+        "details2": "If you prefer, you can also <a href='https://www.tfwm.org.uk/media/fmbkmzmf/oapapplication_form.pdf' title='download-application' target='_blank'> download the application</a> form to print out and send in the post.",
         "details3": "Find more <a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> information about the older person’s pass </a> including eligibility criteria.",
         "callHelp": "For help with completing your application, please <a href='#?step-help-olderpass-application' id='formId' title='info-older-pass' > fill in this form</a>.",
         "formId": "step-help-olderpass-application",
@@ -3222,7 +3222,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
 
       "formComponents": [
         {
@@ -3354,8 +3354,9 @@
                   "required": true,
                   "inputLabel1": "Older person’s pass number",
                   "inputLabel2": "This is the 18 digit number on the front of the card",
-                  "type": "number",
-                  "errorMsg": "Enter a valid older person’s pass number"
+                  "type": "NumberFormat",
+                  "errorMsg": "Enter a valid disabled person’s pass number",
+                  "maxLength": "21"
                 },
                 {
                   "name": "no",
@@ -3404,7 +3405,7 @@
         "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call or chat to us.",
         "customerService": true,
         "showChat": true,
-        "emailIndex": 1
+        "emailIndex": 2
       },
       "formStartContent": {
         "title": "Update your concessionary travel pass",
@@ -3747,7 +3748,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
 
       "formComponents": [
         {
@@ -3879,8 +3880,9 @@
                   "required": true,
                   "inputLabel1": "Older person’s pass number",
                   "inputLabel2": "This is the 18 digit number on the front of the card",
-                  "type": "number",
-                  "errorMsg": "Enter a valid older person’s pass number"
+                  "type": "NumberFormat",
+                  "errorMsg": "Enter a valid disabled person’s pass number",
+                  "maxLength": "21"
                 },
                 {
                   "name": "no",
@@ -3924,7 +3926,7 @@
       "emailHeader": "Request for help with a disabled person’s pass application",
       "content": {
         "type": "text",
-        "details": "You can <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
+        "details": "You can <a href='http://apply-disabled-persons-pass.tfwm.org.uk/' title='applu-bnd' target='_blank'>apply for an disabled person’s pass online</a>. <br/> <br/>If you prefer, you can <a href='https://www.tfwm.org.uk/media/qeaj3ema/application-form.pdf' title='disabled-person-pass' target='_blank'>download an application form</a> to print out and send in the post.",
         "details2": "It can take us up to 6 weeks to process an application. We’ll be in touch if we need any more information from you.",
         "callHelp": "If you need help with completing the application, please <a href='#?step-help-disabledpass-application' id='formId' >fill in this form</a>.",
         "formId": "step-help-disabledpass-application",
@@ -3932,7 +3934,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
 
       "formComponents": [
         {
@@ -3998,8 +4000,9 @@
                   "required": true,
                   "inputLabel1": "Disabled person’s pass number",
                   "inputLabel2": "This is the 18 digit number on the front of the card",
-                  "type": "number",
-                  "errorMsg": "Enter a valid disabled person’s pass number"
+                  "type": "NumberFormat",
+                  "errorMsg": "Enter a valid disabled person’s pass number",
+                  "maxLength": "21"
                 },
                 {
                   "name": "no",
@@ -4067,7 +4070,7 @@
         "formId": "help-change-details-disabled",
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formStartContent": {
         "title": "Update your concessionary travel pass",
         "serviceUse": "Update your concessionary travel pass details",
@@ -4407,7 +4410,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -4472,8 +4475,9 @@
                   "required": true,
                   "inputLabel1": "Disabled person’s pass number",
                   "inputLabel2": "This is the 18 digit number on the front of the card",
-                  "type": "number",
-                  "errorMsg": "Enter a valid disabled person’s pass number"
+                  "type": "NumberFormat",
+                  "errorMsg": "Enter a valid disabled person’s pass number",
+                  "maxLength": "21"
                 },
                 {
                   "name": "no",
