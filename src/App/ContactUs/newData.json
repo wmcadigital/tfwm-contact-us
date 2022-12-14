@@ -1597,7 +1597,7 @@
         "details": "Contact the <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
         "details2": "For all other enquiries, please <a href='#?step-bus' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-bus",
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 3,
@@ -1861,7 +1861,7 @@
         "details2": "For all other enquiries, please <a href='#?step-train' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-train",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -1915,7 +1915,7 @@
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
-          "title": "What was the date and time of  the issue?",
+          "title": "What was the date and time of the issue?",
           "answerTitle": "What was the date and time of the issue?",
           "name": "date",
           "components": [
@@ -2060,7 +2060,7 @@
         "details2": "For all other park and ride enquiries, please <a href='#?step-park-ride' id='formId'>fill in this form</a>.",
         "formId": "step-park-ride",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -2243,7 +2243,7 @@
         "details2": "For all other Sprint bus service enquiries, please <a href='#?step-sprint-bus' id='formId' >fill in this form</a>.",
         "formId": "step-sprint-bus",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -2393,7 +2393,7 @@
         "details2": "For all other cycle storage enquiries, please <a href='#?step-cycle-storage' id='formId' >fill in this form</a>.",
         "formId": "step-cycle-storage",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 2 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 2 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -2584,7 +2584,7 @@
         "details2": "For all other cycling enquiries, please <a href='#?step-other-cycle' id='formId'>fill in this form</a>.",
         "formId": "step-other-cycle",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -2844,7 +2844,7 @@
 
         "customerService": true,
         "complaint": "For information about how we handle complaints, you can view our <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'>complaints handling procedure online</a>.",
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form."
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form."
       },
       "emailIndex": 2,
 
@@ -2932,7 +2932,7 @@
         "details": "Please <a href='#?step-other-report' id='formId' title='other'>fill in this form</a>.",
         "formId": "step-other-report",
 
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
@@ -4542,7 +4542,7 @@
         "type": "text",
         "details": "Please <a href='#?step-enquiry-other' id='formId'>fill in this form</a>.",
         "formId": "step-enquiry-other",
-        "warningText": "If your enquiry is urgent, please call us on the details below.  It can take up to 10 working days for a response if you use the online form.",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
