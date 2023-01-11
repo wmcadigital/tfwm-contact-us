@@ -2684,8 +2684,8 @@
         {
           "id": "Book-Ring-journey",
           "type": "radio",
-          "text": "Book a Ring and Ride journey",
-          "value": "Book a Ring and Ride journey"
+          "text": "Ring and Ride or West Midland Bus on demand",
+          "value": "Ring and Ride or West Midland Bus on demand"
         },
         {
           "id": "request-accessible-product",
@@ -2705,26 +2705,129 @@
       "parentId": "Book-Ring-journey",
       "currentStepId": "step-Ring-journey",
       "prevStepId": "step-accessible-travel",
-      "heading": "Book a Ring and Ride journey",
+      "heading": "Ring and Ride or West Midland Bus on demand",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "heading": "Book a journey online",
+        "heading": "Book a Ring and Ride journey online",
+        "subheading": "Ring and Ride",
         "details": "You can book a Ring and Ride journey using the online form.",
         "ringRideInfo": [
           "to use this service <a href='https://ringandride.org/register/regonline.html' title='cancel-bank-mandate' target='_blank'>you need to register online</a> or by phone.",
 
           "see <a href='https://ringandride.org/service/index.html' title='cancel-bank-mandate' target='_blank'>Ring and Ride fare Prices</a>."
         ],
-        "heading2": "Book a journey by phone",
+        "heading2": "Book a Ring and Ride journey by phone",
         "actionText": "Book now",
         "actionLink": "https://ringandride.org/booking/bookonline.html",
         "callHelp": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
         "customerServiceInfo": "Ring and Ride",
         "ph": "Phone: 0330 053 8141",
         "timings": "Mondays to Saturdays, 9:30am to 2:30pm",
-        "customerService": true
-      }
+        "customerService": true,
+        "subheading1": "West Midlands Bus On Demand",
+        "subtext": "If you live in Coventry, West Midlands Bus On Demand has replaced Ring and Ride services",
+        "heading4": "Book a journey on the app",
+        "details4": "You can book a journey using the WM On Demand app. It's available on:",
+        "ringRideInfo1": [
+          "<a href='https://play.google.com/store/apps/details?id=warwick.uni&pli=1' title='google-play' target='_blank'>Google Play for Android phones</a>",
+
+          "<a href='https://apps.apple.com/gb/app/wm-on-demand/id1557659235' title='app-store' target='_blank'>App Store for iPhone</a>."
+        ],
+        "heading5": "Book a journey by phone",
+        "details5": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
+        "details6": "If you still need help with West Midland Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
+      },
+      "emailIndex": 13,
+
+      "formStartContent": {
+        "title": "Submit an enquiry",
+        "serviceUse": "Contact customer services",
+        "processTime": "This process takes around 5 minutes."
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+          "answerTitle": "Name",
+          "name": "name",
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your email?",
+          "answerTitle": "Email",
+          "name": "contact",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "required": true,
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
+            }
+          ]
+        },
+
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "What is your enquiry?",
+          "answerTitle": "Your enquiry",
+          "name": "about",
+          "components": [
+            {
+              "type": "Textarea",
+
+              "required": true,
+
+              "id": "1",
+              "name": "about"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+          "answerTitle": "Supporting documents",
+          "name": "file",
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "Document is required"
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "request-accessible-product",
