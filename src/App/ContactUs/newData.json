@@ -132,7 +132,6 @@
           "text": "Request a refund or cancel your card",
           "value": "Request a refund or cancel your card"
         },
-
         {
           "id": "paying-cycle-hire-with-swift",
           "type": "radio",
@@ -162,10 +161,8 @@
         "heading2": "If your card does not have a Direct Debit ticket on",
         "details2": "If you do not use Direct Debit to pay for your Swift card, call us on 0345 075 6006 as soon as possible.",
         "callHelp": "If you need help replacing your card, get in touch.",
-
         "insetText": "If you bought your Swift card from National Express, you need to <a href='https://www.tfwm.org.uk/get-help/contact-us/contact-national-express-west-midlands-about-your-swift-card/' title='replace-card' target='_blank'> contact them to replace it</a>.",
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
-
         "customerService": true,
         "showChat": true
       }
@@ -185,7 +182,6 @@
         "showChat": true
       }
     },
-
     {
       "id": "step-4",
       "parentId": "paying-cycle-hire-with-swift",
@@ -212,7 +208,6 @@
         "type": "text",
         "details": "Please <a href='#?step-other' title='other' id='formId'>fill in this form</a>.",
         "formId": "step-other",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
@@ -225,7 +220,6 @@
           "title": "What is your name?",
           "answerTitle": "Name",
           "name": "name",
-
           "components": [
             {
               "type": "Input",
@@ -239,7 +233,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -274,9 +267,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -310,7 +301,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "swift-yes",
@@ -344,7 +334,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "debit-yes",
@@ -371,7 +360,6 @@
         }
       ]
     },
-
     {
       "id": "step-3",
       "currentStepId": "step-direct-debit",
@@ -400,7 +388,6 @@
         }
       ]
     },
-
     {
       "id": "step-4",
       "parentId": "update-DD",
@@ -411,20 +398,17 @@
       "content": {
         "type": "text",
         "details": "You can <a href='#?step-update-DD' title='other' id='formId'>update your Direct Debit online</a>.",
-
         "formId": "step-update-DD",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 1,
-
       "formStartContent": {
         "title": "Update my Direct Debit",
         "serviceUse": "Update your contact/bank account details for your Direct Debit",
         "processTime": "This process takes around 15 minutes.",
         "children": "<h2>Before you start</h2><ul><li>You will need your Direct Debit reference number. This begins with <b>6</b> and is shown next to every payment to WMCA on your bank statement</li></ul>"
       },
-
       "formComponents": [
         {
           "title": "What do you need to update?",
@@ -453,7 +437,6 @@
             [
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your name?",
@@ -472,7 +455,6 @@
                     "type": "Input",
                     "label": "Last Name",
                     "required": true,
-
                     "id": "2",
                     "name": "last-name",
                     "errorMsg": "Last name is required"
@@ -481,7 +463,6 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your date of birth?",
@@ -499,7 +480,6 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your postcode?",
@@ -518,7 +498,6 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your Direct Debit number?",
@@ -538,7 +517,6 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 1,
                 "sectionDescription": "About you",
                 "title": "What is your email?",
@@ -559,13 +537,11 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 2,
                 "sectionDescription": "Your contact details",
                 "title": "Do you need to change the name on the Direct Debit ticket?",
                 "answerTitle": "Name on the Direct Debit ticket",
                 "name": "direct_debit_ticket",
-
                 "components": [
                   {
                     "type": "YesOrNo",
@@ -579,14 +555,12 @@
                           {
                             "inputLabel1": "First Name",
                             "name": "DD-first-name",
-
                             "type": "text",
                             "errorMsg": "Enter a valid name"
                           },
                           {
                             "inputLabel1": "Last Name",
                             "name": "DD-last-name",
-
                             "type": "text",
                             "errorMsg": "Enter a valid name"
                           }
@@ -608,13 +582,11 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 2,
                 "sectionDescription": "Your contact details",
                 "title": "Do you need to update your address?",
                 "answerTitle": "Do you need to update your address?",
                 "name": "direct_debit_address",
-
                 "components": [
                   {
                     "type": "YesOrNo",
@@ -641,13 +613,11 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 2,
                 "sectionDescription": "Your contact details",
                 "title": "What is your updated address?",
                 "answerTitle": "Address",
                 "name": "address",
-
                 "components": [
                   {
                     "type": "FindAddress",
@@ -659,46 +629,36 @@
                     "inputs": [
                       {
                         "name": "building",
-
                         "required": false,
                         "label": "Building and street",
-
                         "type": "text",
                         "errorMsg": "Enter a valid building"
                       },
                       {
                         "name": "street",
-
                         "required": true,
                         "label": "",
-
                         "type": "text",
                         "errorMsg": "Enter a valid street name"
                       },
                       {
                         "name": "town-or-city",
-
                         "required": true,
                         "label": "Town or city",
-
                         "type": "text",
                         "errorMsg": "Enter a valid direction of travel"
                       },
                       {
                         "name": "county",
-
                         "required": false,
                         "label": "County",
-
                         "type": "text",
                         "errorMsg": "Enter a valid county"
                       },
                       {
                         "name": "address-postcode",
-
                         "required": true,
                         "label": "Postcode",
-
                         "type": "text",
                         "errorMsg": "Enter a valid postcode"
                       }
@@ -708,7 +668,6 @@
               },
               {
                 "sectionTotal": 3,
-
                 "sectionNum": 3,
                 "sectionDescription": "Your bank details",
                 "title": "What are your updated bank account details?",
@@ -764,7 +723,6 @@
                     "type": "Input",
                     "label": "Last Name",
                     "required": true,
-
                     "id": "2",
                     "name": "last-name",
                     "errorMsg": "Last name is required"
@@ -841,7 +799,6 @@
                   }
                 ]
               },
-
               {
                 "sectionNum": 2,
                 "sectionDescription": "Your bank details",
@@ -898,7 +855,6 @@
                     "type": "Input",
                     "label": "Last Name",
                     "required": true,
-
                     "id": "2",
                     "name": "last-name",
                     "errorMsg": "Last name is required"
@@ -981,7 +937,6 @@
                 "title": "Do you need to change the name on the Direct Debit ticket?",
                 "answerTitle": "Name on the Direct Debit ticket",
                 "name": "direct_debit_ticket",
-
                 "components": [
                   {
                     "type": "YesOrNo",
@@ -1026,7 +981,6 @@
                 "title": "Do you need to update your address?",
                 "answerTitle": "Do you need to update your address?",
                 "name": "direct_debit_address",
-
                 "components": [
                   {
                     "type": "YesOrNo",
@@ -1057,7 +1011,6 @@
                 "title": "What is your updated address?",
                 "answerTitle": "Address",
                 "name": "address",
-
                 "components": [
                   {
                     "type": "FindAddress",
@@ -1069,46 +1022,36 @@
                     "inputs": [
                       {
                         "name": "building",
-
                         "required": false,
                         "label": "Building and street",
-
                         "type": "text",
                         "errorMsg": "Enter a valid building"
                       },
                       {
                         "name": "street",
-
                         "required": true,
                         "label": "",
-
                         "type": "text",
                         "errorMsg": "Enter a valid street name"
                       },
                       {
                         "name": "town-or-city",
-
                         "required": true,
                         "label": "Town or city",
-
                         "type": "text",
                         "errorMsg": "Enter a valid direction of travel"
                       },
                       {
                         "name": "county",
-
                         "required": false,
                         "label": "County",
-
                         "type": "text",
                         "errorMsg": "Enter a valid county"
                       },
                       {
                         "name": "address-postcode",
-
                         "required": true,
                         "label": "Postcode",
-
                         "type": "text",
                         "errorMsg": "Enter a valid postcode"
                       }
@@ -1138,7 +1081,6 @@
         "showChat": true
       },
       "emailIndex": 1,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1159,7 +1101,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1191,7 +1132,6 @@
           "title": "Do you have a Direct Debit number?",
           "answerTitle": "Direct Debit",
           "name": "direct_debit_number",
-
           "components": [
             {
               "type": "YesOrNo",
@@ -1229,9 +1169,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -1289,7 +1227,6 @@
         "showChat": true
       },
       "emailIndex": 4,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1310,7 +1247,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1345,9 +1281,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -1365,16 +1299,13 @@
       "emailHeader": "Workwise enquiry",
       "content": {
         "type": "text",
-
         "details": "Please call us or <a href='#?step-workwise-general-enquiry' id='formId'>fill in this form</a>.",
         "formId": "step-workwise-general-enquiry",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 1,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1395,7 +1326,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1430,9 +1360,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -1440,7 +1368,6 @@
         }
       ]
     },
-
     {
       "id": "step-4",
       "parentId": "swift-parking-or-transport",
@@ -1453,13 +1380,11 @@
         "type": "text",
         "details": "Please <a href='#?step-transport-west-midland-app' title='step-swift-parking-app' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-transport-west-midland-app",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 1,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1480,7 +1405,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1515,9 +1439,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -1590,7 +1512,6 @@
       "emailHeader": "Bus enquiry",
       "prevStepId": "step-bus-train-tram",
       "heading": "Bus",
-
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -1601,7 +1522,6 @@
         "customerService": true
       },
       "emailIndex": 3,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1609,7 +1529,6 @@
           "title": "What is your name?",
           "answerTitle": "Name",
           "name": "name",
-
           "components": [
             {
               "type": "Input",
@@ -1623,7 +1542,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1636,7 +1554,6 @@
           "title": "What is your email?",
           "answerTitle": "Email",
           "name": "contact",
-
           "components": [
             {
               "type": "Input",
@@ -1662,7 +1579,6 @@
               "required": true,
               "showTime": true,
               "label": "Date",
-
               "id": "1",
               "name": "date"
             }
@@ -1674,7 +1590,6 @@
           "title": "Where did the issue happen?",
           "answerTitle": "Where did the issue happen?",
           "name": "address",
-
           "components": [
             {
               "type": "Address",
@@ -1682,11 +1597,9 @@
               "id": "1",
               "name": "address",
               "allowMapView": true,
-
               "inputs": [
                 {
                   "name": "area-or-town",
-
                   "required": true,
                   "label": "Town or area *",
                   "label2": "For example, Halesowen",
@@ -1695,16 +1608,13 @@
                 },
                 {
                   "name": "street",
-
                   "required": true,
                   "label": "Street name *",
-
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "direction-of-travel",
-
                   "required": false,
                   "label": "Direction of travel",
                   "label2": "For example, towards Birmingham",
@@ -1713,10 +1623,8 @@
                 },
                 {
                   "name": "bus-or-pole",
-
                   "required": false,
                   "label": "Bus shelter or pole number",
-
                   "type": "text",
                   "errorMsg": "Enter a valid bus shelter or pole number"
                 }
@@ -1724,21 +1632,18 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "Who was the bus company?",
           "answerTitle": "Bus company",
           "name": "bus_company",
-
           "components": [
             {
               "type": "Dropdown",
               "details": "<a target='blank' href='https://find-bus-company.tfwm.org.uk/?ticketSearch=true&modes=bus'>I don’t know the bus company I travelled with</a>",
               "label": "Please choose a company",
               "errorMsg": "Please select a bus company",
-
               "required": true,
               "id": "1",
               "name": "date",
@@ -1771,7 +1676,6 @@
           "title": "Do you know the service number?",
           "answerTitle": "Service number",
           "name": "service_number",
-
           "components": [
             {
               "type": "YesOrNo",
@@ -1800,20 +1704,16 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
           "title": "Is there any other information to add to your enquiry?",
           "answerTitle": "Is there any other information to add to your enquiry?",
           "name": "about",
-
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -1860,12 +1760,10 @@
         ],
         "details2": "For all other enquiries, please <a href='#?step-train' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-train",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1886,7 +1784,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -1924,7 +1821,6 @@
               "required": true,
               "showTime": true,
               "label": "Date",
-
               "id": "1",
               "name": "date"
             }
@@ -1943,11 +1839,9 @@
               "id": "1",
               "name": "address",
               "allowMapView": false,
-
               "inputs": [
                 {
                   "name": "area-or-town",
-
                   "required": true,
                   "label": "Town or area *",
                   "label2": "For example, Halesowen",
@@ -2016,9 +1910,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2041,7 +1933,6 @@
         "details2": "You can also contact West Midlands Metro by phone",
         "actionText": "Contact West Midlands Metro",
         "actionLink": "https://westmidlandsmetro.com/contact/customerservices/",
-
         "customerService": true,
         "customerServiceInfo": "West Midlands Metro Customer Services",
         "ph": "Phone: 0345 835 8181"
@@ -2059,12 +1950,10 @@
         "details": "You can view <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/park-and-ride/' title='new-request-card' target='_blank'> park and ride information including maintenance here</a>.",
         "details2": "For all other park and ride enquiries, please <a href='#?step-park-ride' id='formId'>fill in this form</a>.",
         "formId": "step-park-ride",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2085,7 +1974,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -2121,7 +2009,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -2202,9 +2089,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2242,12 +2127,10 @@
         "details": "You can find information about our <a href='https://www.tfwm.org.uk/who-we-are/what-we-do/sprint-priority-bus-corridor/' title='sprint-bus-info' target='_blank'>Sprint bus service including frequently asked questions here</a>.",
         "details2": "For all other Sprint bus service enquiries, please <a href='#?step-sprint-bus' id='formId' >fill in this form</a>.",
         "formId": "step-sprint-bus",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2268,7 +2151,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -2294,7 +2176,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -2304,9 +2185,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2392,12 +2271,10 @@
         "details": "You can <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/find-bike-storage-at-a-station/' title='cancel-bank-mandate' target='_blank'>apply or renew bus, rail and cycle hub storage online</a>.",
         "details2": "For all other cycle storage enquiries, please <a href='#?step-cycle-storage' id='formId' >fill in this form</a>.",
         "formId": "step-cycle-storage",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 2 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2418,7 +2295,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -2454,7 +2330,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -2486,7 +2361,6 @@
             {
               "type": "Radios",
               "required": true,
-
               "options": [
                 {
                   "name": "cycle-hubs",
@@ -2543,9 +2417,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2583,12 +2455,10 @@
         "details": "You can find information about cycling in the <a href='https://www.tfwm.org.uk/plan-your-journey/ways-to-travel/cycling-in-the-west-midlands/' title='cancel-bank-mandate' target='_blank'>West Midlands including cycle routes here</a>.",
         "details2": "For all other cycling enquiries, please <a href='#?step-other-cycle' id='formId'>fill in this form</a>.",
         "formId": "step-other-cycle",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2609,7 +2479,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -2635,7 +2504,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -2645,9 +2513,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2684,8 +2550,8 @@
         {
           "id": "Book-Ring-journey",
           "type": "radio",
-          "text": "Ring and Ride or West Midland Bus on demand",
-          "value": "Ring and Ride or West Midland Bus on demand"
+          "text": "Ring and Ride or West Midland Bus On Demand",
+          "value": "Ring and Ride or West Midland Bus On Demand"
         },
         {
           "id": "request-accessible-product",
@@ -2714,7 +2580,6 @@
         "details": "You can book a Ring and Ride journey using the online form.",
         "ringRideInfo": [
           "to use this service <a href='https://ringandride.org/register/regonline.html' title='cancel-bank-mandate' target='_blank'>you need to register online</a> or by phone.",
-
           "see <a href='https://ringandride.org/service/index.html' title='cancel-bank-mandate' target='_blank'>Ring and Ride fare Prices</a>."
         ],
         "heading2": "Book a Ring and Ride journey by phone",
@@ -2731,7 +2596,6 @@
         "details4": "You can book a journey using the WM On Demand app. It's available on:",
         "ringRideInfo1": [
           "<a href='https://play.google.com/store/apps/details?id=warwick.uni&pli=1' title='google-play' target='_blank'>Google Play for Android phones</a>",
-
           "<a href='https://apps.apple.com/gb/app/wm-on-demand/id1557659235' title='app-store' target='_blank'>App Store for iPhone</a>."
         ],
         "heading5": "Book a journey by phone",
@@ -2739,7 +2603,6 @@
         "details6": "If you still need help with West Midland Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
-
       "formStartContent": {
         "title": "Submit an enquiry",
         "serviceUse": "Contact customer services",
@@ -2765,7 +2628,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -2791,7 +2653,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -2801,9 +2662,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -2838,7 +2697,6 @@
       "content": {
         "type": "text",
         "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/accessibility-products/'>request an accessible product online.</a>",
-
         "callHelp": "If you need help requesting an accessible product, you can give us a call.",
         "customerService": true
       }
@@ -2917,7 +2775,6 @@
         "customerService": true
       }
     },
-
     {
       "parentId": "issue-with-payzone",
       "currentStepId": "step-issue-with-payzone",
@@ -2944,13 +2801,11 @@
         "details2": "To leave feedback or to make a complaint, please <a href='#?step-leave-feedback-or-complaint' id='formId'>fill in this form</a>.",
         "callHelp": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
         "formId": "step-leave-feedback-or-complaint",
-
         "customerService": true,
         "complaint": "For information about how we handle complaints, you can view our <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'>complaints handling procedure online</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form."
       },
       "emailIndex": 2,
-
       "formStartContent": {
         "title": "Leave feedback",
         "serviceUse": "Leave feedback about our services",
@@ -2976,7 +2831,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -3002,7 +2856,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -3012,9 +2865,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -3031,15 +2882,12 @@
       "emailHeader": "Report an issue enquiry",
       "content": {
         "type": "text",
-
         "details": "Please <a href='#?step-other-report' id='formId' title='other'>fill in this form</a>.",
         "formId": "step-other-report",
-
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3060,7 +2908,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -3086,7 +2933,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -3096,9 +2942,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -3216,13 +3060,11 @@
         "details": "If you paper ticket is paid by Direct Debit, you can <a href='https://refund.tfwm.org.uk/' title='cancel-bank-mandate' target='_blank'>cancel your Direct Debit online</a>. ",
         "details2": "If you need help with your paper ticket, please <a href='#?step-paper-ticket' id='formId' >fill in this form</a>.",
         "formId": "step-paper-ticket",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3243,7 +3085,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -3278,9 +3119,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -3320,13 +3159,11 @@
         "details3": "Find more <a href='https://www.tfwm.org.uk/swift-and-tickets/discounts-and-free-travel-passes/get-an-older-person-s-travel-pass/' title='info-older-pass' target='_blank'> information about the older person’s pass </a> including eligibility criteria.",
         "callHelp": "For help with completing your application, please <a href='#?step-help-olderpass-application' id='formId' title='info-older-pass' > fill in this form</a>.",
         "formId": "step-help-olderpass-application",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3347,7 +3184,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -3379,7 +3215,6 @@
           "title": "What is your address?",
           "answerTitle": "Address",
           "name": "address",
-
           "components": [
             {
               "type": "FindAddress",
@@ -3391,46 +3226,36 @@
               "inputs": [
                 {
                   "name": "building",
-
                   "required": false,
                   "label": "Building and street",
-
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
-
                   "required": true,
                   "label": "",
-
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
-
                   "required": true,
                   "label": "Town or city",
-
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
-
                   "required": false,
                   "label": "County",
-
                   "type": "text",
                   "errorMsg": "Enter a valid county"
                 },
                 {
                   "name": "address-postcode",
-
                   "required": true,
                   "label": "Postcode",
-
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -3444,12 +3269,10 @@
           "title": "Do you have an olders person’s pass?",
           "answerTitle": "Older person’s pass",
           "name": "older_pass",
-
           "components": [
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -3484,9 +3307,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -3523,7 +3344,6 @@
           "title": "What is your concessionary pass number?",
           "answerTitle": "Concessionary pass number",
           "name": "pass-number",
-
           "components": [
             {
               "type": "Number",
@@ -3545,7 +3365,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "name-yes",
@@ -3555,14 +3374,12 @@
                     {
                       "inputLabel1": "First Name",
                       "name": "CC-first-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid name"
                     },
                     {
                       "inputLabel1": "Last Name",
                       "name": "CC-last-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid name"
                     }
@@ -3588,7 +3405,6 @@
           "title": "Do you need to update your address?",
           "answerTitle": "Your updated address",
           "name": "update-address",
-
           "components": [
             {
               "type": "YesOrNo",
@@ -3619,7 +3435,6 @@
           "title": "What is your updated address?",
           "answerTitle": "Address",
           "name": "address",
-
           "components": [
             {
               "type": "FindAddress",
@@ -3631,46 +3446,36 @@
               "inputs": [
                 {
                   "name": "building",
-
                   "required": false,
                   "label": "Building and street",
-
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
-
                   "required": true,
                   "label": "",
-
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
-
                   "required": true,
                   "label": "Town or city",
-
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
-
                   "required": false,
                   "label": "County",
-
                   "type": "text",
                   "errorMsg": "Enter a valid county"
                 },
                 {
                   "name": "address-postcode",
-
                   "required": true,
                   "label": "Postcode",
-
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -3688,7 +3493,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "email-yes",
@@ -3698,7 +3502,6 @@
                     {
                       "inputLabel1": "Email address For example, name@example.com",
                       "name": "CC-email-address",
-
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -3728,7 +3531,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "phone-yes",
@@ -3738,7 +3540,6 @@
                     {
                       "inputLabel1": "Phone number For example, 07700900457",
                       "name": "CC-phone-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid phone number"
                     }
@@ -3764,12 +3565,10 @@
           "title": "How would you like to be contacted?",
           "answerTitle": "Contact preference",
           "name": "contact-preference",
-          
           "components": [
             {
               "type": "Checkbox",
               "required": true,
-
               "options": [
                 {
                   "name": "CC-pref-phone",
@@ -3792,7 +3591,6 @@
                     {
                       "inputLabel1": "Email address For example, name@example.com",
                       "name": "CC-pref-email-address",
-
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -3846,13 +3644,11 @@
         "type": "text",
         "details": "Please <a href='#?step-other-pass-older' title='other' id='formId'>fill in this form</a>.",
         "formId": "step-other-pass-older",
-
         "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3873,7 +3669,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -3905,7 +3700,6 @@
           "title": "What is your address?",
           "answerTitle": "Address",
           "name": "address",
-
           "components": [
             {
               "type": "FindAddress",
@@ -3917,46 +3711,36 @@
               "inputs": [
                 {
                   "name": "building",
-
                   "required": false,
                   "label": "Building and street",
-
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
-
                   "required": true,
                   "label": "",
-
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
-
                   "required": true,
                   "label": "Town or city",
-
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
-
                   "required": false,
                   "label": "County",
-
                   "type": "text",
                   "errorMsg": "Enter a valid county"
                 },
                 {
                   "name": "address-postcode",
-
                   "required": true,
                   "label": "Postcode",
-
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -3970,12 +3754,10 @@
           "title": "Do you have an olders person’s pass?",
           "answerTitle": "Older person’s pass",
           "name": "older_pass",
-
           "components": [
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -4010,9 +3792,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -4038,7 +3818,6 @@
         "showChat": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -4059,7 +3838,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -4095,7 +3873,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -4130,9 +3907,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -4187,7 +3962,6 @@
           "title": "What is your concessionary pass number?",
           "answerTitle": "Concessionary pass number",
           "name": "pass-number",
-
           "components": [
             {
               "type": "Number",
@@ -4209,7 +3983,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "name-yes",
@@ -4219,14 +3992,12 @@
                     {
                       "inputLabel1": "First Name",
                       "name": "CC-first-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid name"
                     },
                     {
                       "inputLabel1": "Last Name",
                       "name": "CC-last-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid name"
                     }
@@ -4252,7 +4023,6 @@
           "title": "Do you need to update your address?",
           "answerTitle": "Your updated address",
           "name": "update-address",
-
           "components": [
             {
               "type": "YesOrNo",
@@ -4283,7 +4053,6 @@
           "title": "What is your updated address?",
           "answerTitle": "Address",
           "name": "address",
-
           "components": [
             {
               "type": "FindAddress",
@@ -4295,46 +4064,36 @@
               "inputs": [
                 {
                   "name": "building",
-
                   "required": false,
                   "label": "Building and street",
-
                   "type": "text",
                   "errorMsg": "Enter a valid building"
                 },
                 {
                   "name": "street",
-
                   "required": true,
                   "label": "",
-
                   "type": "text",
                   "errorMsg": "Enter a valid street name"
                 },
                 {
                   "name": "town-or-city",
-
                   "required": true,
                   "label": "Town or city",
-
                   "type": "text",
                   "errorMsg": "Enter a valid direction of travel"
                 },
                 {
                   "name": "county",
-
                   "required": false,
                   "label": "County",
-
                   "type": "text",
                   "errorMsg": "Enter a valid county"
                 },
                 {
                   "name": "address-postcode",
-
                   "required": true,
                   "label": "Postcode",
-
                   "type": "text",
                   "errorMsg": "Enter a valid postcode"
                 }
@@ -4352,7 +4111,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "email-yes",
@@ -4362,7 +4120,6 @@
                     {
                       "inputLabel1": "Email address For example, name@example.com",
                       "name": "CC-email-address",
-
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -4392,7 +4149,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "phone-yes",
@@ -4402,7 +4158,6 @@
                     {
                       "inputLabel1": "Phone number For example, 07700900457",
                       "name": "CC-phone-name",
-
                       "type": "text",
                       "errorMsg": "Enter a valid phone number"
                     }
@@ -4428,12 +4183,10 @@
           "title": "How would you like to be contacted?",
           "answerTitle": "Contact preference",
           "name": "contact-preference",
-          
           "components": [
             {
               "type": "Checkbox",
               "required": true,
-
               "options": [
                 {
                   "name": "CC-pref-phone",
@@ -4456,7 +4209,6 @@
                     {
                       "inputLabel1": "Email address For example, name@example.com",
                       "name": "CC-pref-email-address",
-
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -4534,7 +4286,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -4570,7 +4321,6 @@
             {
               "type": "YesOrNo",
               "required": true,
-
               "options": [
                 {
                   "name": "yes",
@@ -4605,9 +4355,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
@@ -4649,7 +4397,6 @@
         "customerService": true
       },
       "emailIndex": 2,
-
       "formComponents": [
         {
           "sectionNum": 1,
@@ -4670,7 +4417,6 @@
               "type": "Input",
               "label": "Last Name",
               "required": true,
-
               "id": "2",
               "name": "last-name",
               "errorMsg": "Last name is required"
@@ -4696,7 +4442,6 @@
             }
           ]
         },
-
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
@@ -4706,9 +4451,7 @@
           "components": [
             {
               "type": "Textarea",
-
               "required": true,
-
               "id": "1",
               "name": "about"
             }
