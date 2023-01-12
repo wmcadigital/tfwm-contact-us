@@ -2550,8 +2550,8 @@
         {
           "id": "Book-Ring-journey",
           "type": "radio",
-          "text": "Ring and Ride or West Midland Bus On Demand",
-          "value": "Ring and Ride or West Midland Bus On Demand"
+          "text": "Ring and Ride or West Midlands Bus On Demand",
+          "value": "Ring and Ride or West Midlands Bus On Demand"
         },
         {
           "id": "request-accessible-product",
@@ -2571,7 +2571,7 @@
       "parentId": "Book-Ring-journey",
       "currentStepId": "step-Ring-journey",
       "prevStepId": "step-accessible-travel",
-      "heading": "Ring and Ride or West Midland Bus on demand",
+      "heading": "Ring and Ride or West Midlands Bus on demand",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -2600,7 +2600,7 @@
         ],
         "heading5": "Book a journey by phone",
         "details5": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
-        "details6": "If you still need help with West Midland Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
+        "details6": "If you still need help with West Midlands Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
       "formStartContent": {
