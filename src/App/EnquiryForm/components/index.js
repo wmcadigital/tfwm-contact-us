@@ -36,7 +36,11 @@ const Complaint = () => {
           title="What happens next"
           text1="You’ll receive an email to confirm that we have received your enquiry."
           text2={`It can take ${days} working days to process your enquiry. It may take longer if we need more information from you.`}
-          text3={`If you’ve not received a response after ${days} days contact our Customer Services team on 0345 303 6760.`}
+          text3={`If you’ve not received a response after ${days} days contact our ${
+            formToLoad === 'step-Ring-journey'
+              ? 'West Midlands Bus On Demand team on 0345 034 8670.'
+              : 'Customer Services team on 0345 303 6760.'
+          }`}
         />
       )}
       {page === 'SUBMIT' && <SubmitAnEnquiry />}

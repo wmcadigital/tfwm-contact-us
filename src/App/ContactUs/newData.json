@@ -2571,7 +2571,7 @@
       "parentId": "Book-Ring-journey",
       "currentStepId": "step-Ring-journey",
       "prevStepId": "step-accessible-travel",
-      "heading": "Ring and Ride or West Midlands Bus on demand",
+      "heading": "Ring and Ride or West Midlands Bus On Demand",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -2599,6 +2599,7 @@
           "<a href='https://apps.apple.com/gb/app/wm-on-demand/id1557659235' title='app-store' target='_blank'>App Store for iPhone</a>."
         ],
         "heading5": "Book a journey by phone",
+        "warningText": "10",
         "details5": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
         "details6": "If you still need help with West Midlands Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
