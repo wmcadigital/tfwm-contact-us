@@ -2604,6 +2604,7 @@
         "details6": "If you still need help with West Midlands Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
+      "emailHeader": "West Midlands Bus On Demand enquiry",
       "formStartContent": {
         "title": "Submit an enquiry",
         "serviceUse": "Contact customer services",
