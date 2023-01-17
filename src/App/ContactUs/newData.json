@@ -2575,33 +2575,32 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "heading": "Book a Ring and Ride journey online",
         "subheading": "Ring and Ride",
         "details": "You can book a Ring and Ride journey using the online form.",
         "ringRideInfo": [
           "to use this service <a href='https://ringandride.org/register/regonline.html' title='cancel-bank-mandate' target='_blank'>you need to register online</a> or by phone.",
           "see <a href='https://ringandride.org/service/index.html' title='cancel-bank-mandate' target='_blank'>Ring and Ride fare Prices</a>."
         ],
-        "heading2": "Book a Ring and Ride journey by phone",
         "actionText": "Book now",
         "actionLink": "https://ringandride.org/booking/bookonline.html",
-        "callHelp": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
+        "callHelp": "You can also call the following number to register and get advice on how to use the service.",
         "customerServiceInfo": "Ring and Ride",
         "ph": "Phone: 0330 053 8141",
         "timings": "Mondays to Saturdays, 9:30am to 2:30pm",
         "customerService": true,
         "subheading1": "West Midlands Bus On Demand",
-        "subtext": "If you live in Coventry, West Midlands Bus On Demand has replaced Ring and Ride services",
-        "heading4": "Book a journey on the app",
+        "subtext": "If you live in Coventry, West Midlands Bus On Demand has replaced Ring and Ride services.",
         "details4": "You can book a journey using the WM On Demand app. It's available on:",
         "ringRideInfo1": [
           "<a href='https://play.google.com/store/apps/details?id=warwick.uni&pli=1' title='google-play' target='_blank'>Google Play for Android phones</a>",
           "<a href='https://apps.apple.com/gb/app/wm-on-demand/id1557659235' title='app-store' target='_blank'>App Store for iPhone</a>."
         ],
-        "heading5": "Book a journey by phone",
         "warningText": "10",
-        "details5": "Call the following number where we will take your details over the phone and advise you on how to start using the service.",
-        "details6": "If you still need help with West Midlands Bus On Demand <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
+        "details5": "You can also call the following number to:",
+        "detailsList": ["get more information",
+          "register for the service",
+          "book a journey"],
+        "details6": "If you still need help with West Midlands Bus On Demand, <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
       "emailHeader": "West Midlands Bus On Demand enquiry",

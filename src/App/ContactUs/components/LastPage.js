@@ -10,7 +10,6 @@ const LastPage = ({ content, currentStep }) => {
 
   useEffect(() => {
     const fillFormEl = document.querySelector('#formId');
-    console.log('fill', fillFormEl);
     if (fillFormEl) {
       fillFormEl.addEventListener('click', () => {
         formDispatch({
@@ -125,7 +124,7 @@ const LastPage = ({ content, currentStep }) => {
           href={content.actionLink}
           title={content.actionText}
           target="_self"
-          className="wmnds-btn wmnds-btn--start"
+          className="wmnds-btn wmnds-btn--start wmnds-m-t-md wmnds-m-b-md"
         >
           {content.actionText}
           <svg className="wmnds-btn__icon wmnds-btn__icon--right">
@@ -181,7 +180,7 @@ const LastPage = ({ content, currentStep }) => {
           __html: sanitize(content.complaint),
         }}
       />
-      {content.warningText && (
+      {content.warningText && !content.ringRideInfo && (
         <div className="wmnds-warning-text wmnds-p-b-xs">
           <svg className="wmnds-warning-text__icon">
             <use xlinkHref="#wmnds-general-warning-circle" href="#wmnds-general-warning-circle" />
@@ -232,7 +231,9 @@ const LastPage = ({ content, currentStep }) => {
         </div>
       )}
       {content.subheading1 && <h3 style={{ color: '#3C1053' }}>{content.subheading1}</h3>}
-
+      <div className="wmnds-inset-text wmnds-m-t-md wmnds-m-b-md" aria-label="subtext">
+        {content.subtext && <p>{content.subtext}</p>}
+      </div>
       {content.heading4 && <h3>{content.heading4}</h3>}
       {content.details4 && (
         <p
@@ -260,6 +261,17 @@ const LastPage = ({ content, currentStep }) => {
             __html: sanitize(content.details5),
           }}
         />
+      )}
+      {content.detailsList && (
+        <ul className="wmnds-unordered-list">
+          {content.detailsList.map((item) => (
+            <li
+              dangerouslySetInnerHTML={{
+                __html: sanitize(item),
+              }}
+            />
+          ))}
+        </ul>
       )}
       {content.details6 && (
         <>
