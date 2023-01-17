@@ -56,7 +56,11 @@ const LastPage = ({ content, currentStep }) => {
       style={{ maxWidth: 640, paddingLeft: 16, paddingRight: 16 }}
     >
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
-      {content.subheading && <h3 style={{ color: '#3C1053' }}>{content.subheading}</h3>}
+      {content.subheading && (
+        <h3 className="wmnds-m-b-lg" style={{ color: '#3C1053' }}>
+          {content.subheading}
+        </h3>
+      )}
       {content.heading && <h3>{content.heading}</h3>}
       {content.details?.includes('<a href=') ? (
         <div
@@ -203,7 +207,7 @@ const LastPage = ({ content, currentStep }) => {
         />
       )}
       {content.customerService && (
-        <div className="wmnds-inset-text" aria-label="customer services">
+        <div className="wmnds-inset-text wmnds-m-t-md wmnds-m-b-md" aria-label="customer services">
           <h4>{content.customerServiceInfo ? content.customerServiceInfo : 'Customer Services'}</h4>
           {content.showChat && (
             <>
@@ -231,7 +235,7 @@ const LastPage = ({ content, currentStep }) => {
         </div>
       )}
       {content.subheading1 && <h3 style={{ color: '#3C1053' }}>{content.subheading1}</h3>}
-      <div className="wmnds-inset-text wmnds-m-t-md wmnds-m-b-md" aria-label="subtext">
+      <div className="wmnds-inset-text wmnds-m-t-lg wmnds-m-b-lg" aria-label="subtext">
         {content.subtext && <p>{content.subtext}</p>}
       </div>
       {content.heading4 && <h3>{content.heading4}</h3>}
@@ -243,7 +247,7 @@ const LastPage = ({ content, currentStep }) => {
         />
       )}
       {content.ringRideInfo1 && (
-        <ul className="wmnds-unordered-list">
+        <ul className="wmnds-unordered-list wmnds-m-b-lg">
           {content.ringRideInfo1.map((item) => (
             <li
               dangerouslySetInnerHTML={{
@@ -263,7 +267,7 @@ const LastPage = ({ content, currentStep }) => {
         />
       )}
       {content.detailsList && (
-        <ul className="wmnds-unordered-list">
+        <ul className="wmnds-unordered-list wmnds-m-b-lg">
           {content.detailsList.map((item) => (
             <li
               dangerouslySetInnerHTML={{
@@ -275,7 +279,7 @@ const LastPage = ({ content, currentStep }) => {
       )}
       {content.details6 && (
         <>
-          <div className="wmnds-inset-text" aria-label="customer services">
+          <div className="wmnds-inset-text wmnds-m-b-lg" aria-label="customer services">
             <h4>West Midlands Bus On Demand</h4>
             <p>Phone: 0345 034 8670</p>
             <>
@@ -284,8 +288,6 @@ const LastPage = ({ content, currentStep }) => {
               <p>Sundays and Bank Holidays, Closed</p>
             </>
           </div>
-          <br />
-          <br />
         </>
       )}
       {content.details6 && (
