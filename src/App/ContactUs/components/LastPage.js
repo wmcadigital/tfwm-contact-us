@@ -283,7 +283,7 @@ const LastPage = ({ content, currentStep }) => {
             <h4>West Midlands Bus On Demand</h4>
             <p>Phone: 0345 034 8670</p>
             <>
-              <p>Monday to Friday, 8am to 4pm</p>
+              <p>Monday to Friday, 8am to 6pm</p>
               <p>Saturdays, 9am to 1pm</p>
               <p>Sundays and Bank Holidays, Closed</p>
             </>
