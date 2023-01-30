@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Contexts
 import ContactUsForm from './ContactUs/components/Enquiry';
@@ -8,11 +8,11 @@ import './map.css';
 
 function App() {
   const [{ formId }] = useContext(FormDataContext);
-
+  const params = window.location.hash.slice(2);
   return (
     <Router>
       <Switch>
-        <Route path="/">{formId ? <EnquiryForm /> : <ContactUsForm />}</Route>
+        <Route path="/">{formId || params ? <EnquiryForm /> : <ContactUsForm />}</Route>
       </Switch>
     </Router>
   );

@@ -8,18 +8,17 @@ const { sanitize } = dompurify;
 const LastPage = ({ content, currentStep }) => {
   const [, formDispatch] = useContext(FormDataContext);
 
-  // useEffect(() => {
-  //   const fillFormEl = document.querySelector('#formId');
-  //   if (fillFormEl) {
-  //     fillFormEl.addEventListener('click', () => {
-  //       formDispatch({
-  //         type: 'FORM-ID',
-  //         payload: { formId: content.formId },
-  //       });
-  //     });
-  //   }
-  // }, []);
-
+  useEffect(() => {
+    const fillFormEl = document.querySelector('#formId');
+    if (fillFormEl) {
+      fillFormEl.addEventListener('click', () => {
+        formDispatch({
+          type: 'FORM-ID',
+          payload: { formId: content.formId },
+        });
+      });
+    }
+  }, []);
   useEffect(() => {
     /* eslint no-underscore-dangle: 0 */
 
@@ -57,6 +56,11 @@ const LastPage = ({ content, currentStep }) => {
       style={{ maxWidth: 640, paddingLeft: 16, paddingRight: 16 }}
     >
       <h2 className="wmnds-m-t-sm">{currentStep?.heading}</h2>
+      {content.subheading && (
+        <h3 className="wmnds-m-b-lg" style={{ color: '#3C1053' }}>
+          {content.subheading}
+        </h3>
+      )}
       {content.heading && <h3>{content.heading}</h3>}
       {content.details?.includes('<a href=') ? (
         <div
@@ -124,7 +128,7 @@ const LastPage = ({ content, currentStep }) => {
           href={content.actionLink}
           title={content.actionText}
           target="_self"
-          className="wmnds-btn wmnds-btn--start"
+          className="wmnds-btn wmnds-btn--start wmnds-m-t-md wmnds-m-b-md"
         >
           {content.actionText}
           <svg className="wmnds-btn__icon wmnds-btn__icon--right">
@@ -180,7 +184,7 @@ const LastPage = ({ content, currentStep }) => {
           __html: sanitize(content.complaint),
         }}
       />
-      {content.warningText && (
+      {content.warningText && !content.ringRideInfo && (
         <div className="wmnds-warning-text wmnds-p-b-xs">
           <svg className="wmnds-warning-text__icon">
             <use xlinkHref="#wmnds-general-warning-circle" href="#wmnds-general-warning-circle" />
@@ -203,7 +207,7 @@ const LastPage = ({ content, currentStep }) => {
         />
       )}
       {content.customerService && (
-        <div className="wmnds-inset-text" aria-label="customer services">
+        <div className="wmnds-inset-text wmnds-m-t-md wmnds-m-b-md" aria-label="customer services">
           <h4>{content.customerServiceInfo ? content.customerServiceInfo : 'Customer Services'}</h4>
           {content.showChat && (
             <>
@@ -216,7 +220,7 @@ const LastPage = ({ content, currentStep }) => {
             </>
           )}
 
-          <h4>Telephone</h4>
+          {!content.ringRideInfo && <h4>Telephone</h4>}
           <p>{content.ph ? content.ph : 'Phone: 0345 303 6760'}</p>
           {content.timings ? (
             <p>{content.timings}</p>
@@ -229,6 +233,69 @@ const LastPage = ({ content, currentStep }) => {
             </>
           )}
         </div>
+      )}
+      {content.subheading1 && <h3 style={{ color: '#3C1053' }}>{content.subheading1}</h3>}
+      <div className="wmnds-inset-text wmnds-m-t-lg wmnds-m-b-lg" aria-label="subtext">
+        {content.subtext && <p>{content.subtext}</p>}
+      </div>
+      {content.heading4 && <h3>{content.heading4}</h3>}
+      {content.details4 && (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.details4),
+          }}
+        />
+      )}
+      {content.ringRideInfo1 && (
+        <ul className="wmnds-unordered-list wmnds-m-b-lg">
+          {content.ringRideInfo1.map((item) => (
+            <li
+              dangerouslySetInnerHTML={{
+                __html: sanitize(item),
+              }}
+            />
+          ))}
+        </ul>
+      )}
+
+      {content.heading5 && <h3>{content.heading5}</h3>}
+      {content.details5 && (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.details5),
+          }}
+        />
+      )}
+      {content.detailsList && (
+        <ul className="wmnds-unordered-list wmnds-m-b-lg">
+          {content.detailsList.map((item) => (
+            <li
+              dangerouslySetInnerHTML={{
+                __html: sanitize(item),
+              }}
+            />
+          ))}
+        </ul>
+      )}
+      {content.details6 && (
+        <>
+          <div className="wmnds-inset-text wmnds-m-b-lg" aria-label="customer services">
+            <h4>West Midlands Bus On Demand</h4>
+            <p>Phone: 0345 034 8670</p>
+            <>
+              <p>Monday to Friday, 8am to 6pm</p>
+              <p>Saturdays, 9am to 1pm</p>
+              <p>Sundays and Bank Holidays, Closed</p>
+            </>
+          </div>
+        </>
+      )}
+      {content.details6 && (
+        <p
+          dangerouslySetInnerHTML={{
+            __html: sanitize(content.details6),
+          }}
+        />
       )}
 
       <br />

@@ -19,6 +19,7 @@ import Textarea from '../../../components/shared/Textarea/Textarea';
 import Checkbox from '../../../components/shared/Checkbox/Checkbox';
 
 import Input from '../../../components/shared/Input/Input';
+import Number from '../../../components/shared/Number/Number';
 
 import Date from '../../../components/shared/Date/Date';
 
@@ -31,8 +32,10 @@ import Data from '../../ContactUs/newData.json';
 const Form = () => {
   const [{ stepNum, formData, formId, pageType, page, formComponents }, formDispatch] =
     useContext(FormDataContext);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
   const findComponents = Data.pages.find(
-    (pageData) => pageData.currentStepId === formId
+    (pageData) => pageData.currentStepId === formToLoad
   ).formComponents;
 
   const [components, setComponents] = useState(findComponents);
@@ -203,6 +206,20 @@ const Form = () => {
 
                 {component.type === 'Input' && (
                   <Input
+                    label={component.label}
+                    label2={component.label2}
+                    name={component.name}
+                    defaultValue={getDefaultValue(component.name)}
+                    errorMsg={component.errorMsg}
+                    required={component.required}
+                    register={register}
+                    errors={formError}
+                    unregister={unregister}
+                    type={component.inputType}
+                  />
+                )}
+                {component.type === 'Number' && (
+                  <Number
                     label={component.label}
                     label2={component.label2}
                     name={component.name}

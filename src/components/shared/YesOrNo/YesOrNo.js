@@ -25,7 +25,15 @@ const YesOrNo = ({
     }
     setCheckedRadio(idx);
   };
-
+  const inputChageHandler = (event) => {
+    const regex = /^(\d{0,6})(\d{0,4})(\d{0,4})(\d{0,4})$/g;
+    const onlyNumbers = event.target.value.replace(/[^\d]/g, '');
+    const filtered = onlyNumbers.replace(regex, (_regex, $1, $2, $3, $4) =>
+      [$1, $2, $3, $4].filter((group) => !!group).join(' ')
+    );
+    // eslint-disable-next-line no-param-reassign
+    event.target.value = filtered;
+  };
   useEffect(() => {
     if (errors.includes('yes-or-no') || errors.includes('yes-or-no-skip')) {
       setHasError(true);
@@ -116,6 +124,8 @@ const YesOrNo = ({
                             style={{ maxWidth: '20rem' }}
                             // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
                             ref={register}
+                            onChange={option.type === 'NumberFormat' && inputChageHandler}
+                            maxLength={option.maxLength}
                           />
                         </div>
                       )}

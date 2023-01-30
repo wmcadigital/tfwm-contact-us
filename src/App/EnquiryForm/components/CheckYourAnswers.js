@@ -12,8 +12,11 @@ import Data from '../../ContactUs/newData.json';
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
-  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formId);
+  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
   const emails = [
     'swiftsupport@tfwm.org.uk',
     'ticketing@tfwm.org.uk',
@@ -32,7 +35,6 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
-
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -55,7 +57,7 @@ const CheckYourAnswers = () => {
       ''
     );
 
-    const base64Content = btoa(editedText);
+    const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
@@ -64,30 +66,56 @@ const CheckYourAnswers = () => {
       base64File = await toBase64(file);
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
-
-    const postData = await fetch(
-      `https://notifying7irie3hwphseg.azurewebsites.net/api/EmailSender`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          to: emailIndex,
-          subject: 'This is a Campaign Test',
-          body: base64Content,
-          from: 0,
-          files: file ? fileData : [],
-        }),
+    const answerObject = {};
+    const dataMap = formData;
+    delete dataMap.file;
+    const extract = Object.keys(formData).map((key) => {
+      let sectionTitle = '';
+      sectionTitle = formData[key].answerTitle;
+      const sectionValues =
+        formData[key].value.length < 2
+          ? formData[key].value[0][1]
+          : `${formData[key].value[0][1]} ${formData[key].value[1][1]}`;
+      formData[key].value.map((i) => {
+        return i;
+      });
+      let sectionValuesEdited = sectionValues.toString();
+      if (sectionValuesEdited.includes('Yes')) {
+        sectionValuesEdited = sectionValuesEdited.substring(4);
       }
-    );
-    const postDataResponse = await postData.json();
+      answerObject[sectionTitle] = sectionValuesEdited;
+      return answerObject;
+    });
+    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify({
+        to: emailIndex,
+        subject: emailHeader,
+        body: '{"M":"j"}',
+        bodyHtml: base64Content,
+        from: formData.contact ? formData.contact.value[0][1] : 'test@test.com',
+        files: file ? fileData : [],
+      }),
+    }).then((response) => {
+      // If the response is successful(200: OK)
+      if (response.status === 200) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'SUCCESS', stepNum },
+        });
+      }
+    });
   };
 
   const checkboxHandler = async () => {
-    console.log(emails[emailIndex]);
     const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
 
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
     if (findCheckedBoxes.length < checkboxes.length) {
-      setErrorMsg('Please select both options');
+      setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
     } else {
       await sendEmailHandler();
 
@@ -126,7 +154,7 @@ const CheckYourAnswers = () => {
         style={{ maxWidth: '40rem', backgroundColor: 'white' }}
       >
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
-        <div id="answers-container">
+        <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (
             <>
               <h3>{answers[0]}</h3>
@@ -194,6 +222,7 @@ const CheckYourAnswers = () => {
                         {data.answerTitle !== 'Name' &&
                           data.answerTitle !== 'Date of birth' &&
                           data.answerTitle !== 'Supporting documents' &&
+                          data.answerTitle !== 'Contact preference' &&
                           data.answerTitle !== 'What was the date and time of the issue?' &&
                           data.value[0][0] !== 'postcode' && (
                             <>
@@ -210,6 +239,22 @@ const CheckYourAnswers = () => {
                               ))}
                             </>
                           )}
+                        {data.answerTitle === 'Contact preference' && (
+                          <>
+                            {data.value.map((value) => (
+                              <>
+                                {value[0] !== 'CC-pref-phone-name' &&
+                                value[0] !== 'CC-pref-email-address' ? (
+                                  ''
+                                ) : (
+                                  <>
+                                    {value[1]} <br />
+                                  </>
+                                )}
+                              </>
+                            ))}
+                          </>
+                        )}
                       </td>
                       <td
                         data-header="Header 2"
@@ -247,8 +292,8 @@ const CheckYourAnswers = () => {
         <div className="wmnds-fe-group">
           <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
             {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
-            {formId === 'step-update-DD' && (
-              <div style={{ display: 'flex', gap: '.5rem' }}>
+            {params === 'step-update-DD' && (
+              <div>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
                   detailed in this Instruction subject to the safeguards assured by the
@@ -290,6 +335,7 @@ const CheckYourAnswers = () => {
                   src="/direct-debit-logo.png"
                   alt="direct debit logo"
                   className={classes.ddLogo}
+                  style={{ transform: 'scale(0.6)', marginLeft: '30px', marginBottom: '20px' }}
                 />
               </div>
             )}

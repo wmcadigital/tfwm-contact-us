@@ -40,12 +40,13 @@ const FindAddress = ({
   const findAddressHandler = async (postcodeValue) => {
     setFormState('find-address');
 
-    // const fetchFindAddress = await fetch(
-    //   `https://apis.networkwestmidlands.com/Addresses/AddressByPostcode/WV81BY`
-    // );
-    // const findAddressRes = await fetchFindAddress.json();
-    // setAddresses(findAddressRes);
+    const fetchFindAddress = await fetch(
+      `https://api.wmnetwork.co.uk/address/v1/AddressByPostcode/${encodeURI(postcodeValue)}`
+    );
+    const findAddressRes = await fetchFindAddress.json();
+    setAddresses(findAddressRes);
   };
+  console.log(postcode, addresses);
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {formState === 'idle' && (
@@ -112,8 +113,8 @@ const FindAddress = ({
               >
                 <option value="">Choose from list</option>
                 {addresses.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.guid} value={option.summary_line}>
+                    {option.summary_line}
                   </option>
                 ))}
               </select>
@@ -157,7 +158,6 @@ FindAddress.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.objectOf.isRequired,
 };
 
 export default FindAddress;
