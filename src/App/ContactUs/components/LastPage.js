@@ -235,9 +235,11 @@ const LastPage = ({ content, currentStep }) => {
         </div>
       )}
       {content.subheading1 && <h3 style={{ color: '#3C1053' }}>{content.subheading1}</h3>}
-      <div className="wmnds-inset-text wmnds-m-t-lg wmnds-m-b-lg" aria-label="subtext">
-        {content.subtext && <p>{content.subtext}</p>}
-      </div>
+      {content.subtext && (
+        <div className="wmnds-inset-text wmnds-m-t-lg wmnds-m-b-lg" aria-label="subtext">
+          <p>{content.subtext}</p>
+        </div>
+      )}
       {content.heading4 && <h3>{content.heading4}</h3>}
       {content.details4 && (
         <p
