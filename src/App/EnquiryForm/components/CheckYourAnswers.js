@@ -342,7 +342,11 @@ const CheckYourAnswers = () => {
 
             <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option1">
               Agree to the{' '}
-              <a href="https://www.tfwm.org.uk/terms-and-conditions/transport-for-west-midlands-website/">
+              <a
+                href="https://www.tfwm.org.uk/terms-and-conditions/transport-for-west-midlands-website/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 terms and conditions
               </a>
               <input
@@ -360,7 +364,11 @@ const CheckYourAnswers = () => {
             </label>
             <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option2">
               Agree to the{' '}
-              <a href="https://www.tfwm.org.uk/policies/privacy-and-cookies-policy/">
+              <a
+                href="https://www.tfwm.org.uk/policies/privacy-and-cookies-policy/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 privacy policy
               </a>
               <input
