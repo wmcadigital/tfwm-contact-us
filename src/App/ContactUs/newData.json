@@ -401,7 +401,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formStartContent": {
         "title": "Update my Direct Debit",
         "serviceUse": "Update your contact/bank account details for your Direct Debit",
@@ -1303,7 +1303,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1761,7 +1761,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1951,7 +1951,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2128,7 +2128,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -4393,7 +4393,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
