@@ -206,9 +206,8 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Please <a href='#?step-other' title='other' id='formId'>fill in this form</a>.",
+        "details": "Please call us if you need help with something else.",
         "formId": "step-other",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -402,7 +401,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formStartContent": {
         "title": "Update my Direct Debit",
         "serviceUse": "Update your contact/bank account details for your Direct Debit",
@@ -1074,9 +1073,8 @@
       "emailHeader": "Direct Debit enquiry",
       "content": {
         "type": "text",
-        "details": "Please <a href='#?step-other-DD' id='formId'>fill in this form</a>.",
+        "details": "Please call us if you need help with something else.",
         "formId": "step-other-DD",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -1305,7 +1303,7 @@
         "customerService": true,
         "showChat": true
       },
-      "emailIndex": 1,
+      "emailIndex": 2,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1763,7 +1761,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -1953,7 +1951,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2130,7 +2128,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -2806,7 +2804,7 @@
         "complaint": "For information about how we handle complaints, you can view our <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'>complaints handling procedure online</a>.",
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form."
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formStartContent": {
         "title": "Leave feedback",
         "serviceUse": "Leave feedback about our services",
@@ -2888,7 +2886,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
@@ -3643,9 +3641,8 @@
       "emailHeader": "Older person’s pass enquiry",
       "content": {
         "type": "text",
-        "details": "Please <a href='#?step-other-pass-older' title='other' id='formId'>fill in this form</a>.",
+        "details": "Please call us if you need help with something else.",
         "formId": "step-other-pass-older",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -4260,9 +4257,8 @@
       "emailHeader": "Disabled person’s pass enquiry",
       "content": {
         "type": "text",
-        "details": "Please <a href='#?help-other-pass-disabled' title='other' id='formId'>fill in this form</a>.",
+        "details": "Please call us if you need help with something else.",
         "formId": "help-other-pass-disabled",
-        "warningText": "If your enquiry is urgent, please call or chat to us. It will take 2 working days if you use an online form.",
         "customerService": true,
         "showChat": true
       },
@@ -4397,7 +4393,7 @@
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
         "customerService": true
       },
-      "emailIndex": 2,
+      "emailIndex": 3,
       "formComponents": [
         {
           "sectionNum": 1,
