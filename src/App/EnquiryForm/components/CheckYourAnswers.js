@@ -98,6 +98,9 @@ const CheckYourAnswers = () => {
         bodyHtml: base64Content,
         from: formData.contact ? formData.contact.value[0][1] : 'test@test.com',
         files: file ? fileData : [],
+        displayName: formData.name
+          ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+          : 'No Name',
       }),
     }).then((response) => {
       // If the response is successful(200: OK)
