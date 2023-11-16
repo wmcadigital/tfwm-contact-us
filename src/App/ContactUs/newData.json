@@ -1435,19 +1435,35 @@
           ]
         },
         {
-          "sectionNum": 1,
-          "sectionDescription": "About you",
-          "title": "Swift Account Number",
-          "answerTitle": "Swift Account Number",
-          "name": "account",
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Do you have a Swift card?",
+          "answerTitle": "Swift card",
+          "name": "swift_card",
           "components": [
             {
-              "type": "Input",
-              "label": "If you have a Swift account, please enter your account number. This can be found on your Swift card.",
-              "label2": "18 digit Swift account number",
-              "required": false,
-              "id": "1",
-              "name": "Swift Account Number"
+              "type": "YesOrNo",
+              "required": true,
+              "options": [
+                {
+                  "name": "swift-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Swift card number",
+                  "inputLabel2": "This is the long number on the front of the card. It begins with 633597",
+                  "errorMsg": "Enter a valid Swift number"
+                },
+                {
+                  "name": "swift-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "1"
             }
           ]
         },
