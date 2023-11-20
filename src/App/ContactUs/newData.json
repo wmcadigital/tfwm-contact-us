@@ -1512,7 +1512,7 @@
               "label": "Please enter your voucher code.",
               "label2": "Voucher code",
               "required": true,
-              "id": "1",
+              "id": "3",
               "name": "Voucher Code",
               "errorMsg": "Voucher is required"
             }
@@ -1528,7 +1528,7 @@
             {
               "type": "Textarea",
               "required": true,
-              "id": "1",
+              "id": "4",
               "name": "about"
             }
           ]
