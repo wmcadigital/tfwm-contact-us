@@ -1450,8 +1450,8 @@
                   "option": "Yes",
                   "required": true,
                   "inputLabel1": "Swift card number",
-                  "inputLabel2": "This is the long number on the front of the card. It begins with 633597",
-                  "errorMsg": "Enter a valid Swift number"
+                  "inputLabel2": "This is the long number on the front of your Swift card. It begins with 633597. If you have bought your Swift card from National Express, please contact National Express in relation to this scheme.",
+                  "errorMsg": "Enter your Swift card number"
                 },
                 {
                   "name": "swift-no",
@@ -1470,6 +1470,39 @@
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
+          "title": "Do you have a Swift account number?",
+          "answerTitle": "Swift account",
+          "name": "swift_account",
+          "components": [
+            {
+              "type": "YesOrNo",
+              "required": true,
+              "options": [
+                {
+                  "name": "swift-account-yes",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Swift account number",
+                  "inputLabel2": "You can find this on your confirmation email.",
+                  "errorMsg": "Enter your Swift account number"
+                },
+                {
+                  "name": "swift-account-no",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": "",
+                  "type": "",
+                  "errorMsg": ""
+                }
+              ],
+              "id": "2"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
           "title": "Voucher Code",
           "answerTitle": "Voucher Code",
           "name": "voucher",
@@ -1479,7 +1512,7 @@
               "label": "Please enter your voucher code.",
               "label2": "Voucher code",
               "required": true,
-              "id": "1",
+              "id": "3",
               "name": "Voucher Code",
               "errorMsg": "Voucher is required"
             }
@@ -1495,25 +1528,8 @@
             {
               "type": "Textarea",
               "required": true,
-              "id": "1",
+              "id": "4",
               "name": "about"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "Your enquiry",
-          "title": "Supporting documents",
-          "answerTitle": "Supporting documents",
-          "name": "file",
-          "components": [
-            {
-              "type": "FileUpload",
-              "details": "Do you have any documents or evidence that supports your enquiry?",
-              "label": "Files must be jpeg, png or pdf file format",
-              "required": true,
-              "id": "1",
-              "name": "supporting-documents"
             }
           ]
         }
