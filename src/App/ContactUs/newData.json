@@ -115,6 +115,12 @@
           "type": "radio",
           "text": "West Midlands Bus Scheme",
           "value": "West Midlands Bus Scheme"
+        },
+        {
+          "id": "close-my-swift-account",
+          "type": "radio",
+          "text": "Close my Swift account",
+          "value": "Close my Swift account"
         }
       ]
     },
@@ -1530,6 +1536,104 @@
               "required": true,
               "id": "4",
               "name": "about"
+            }
+          ]
+        }
+      ]
+    },
+    { 
+      "id": "step-3",
+      "currentStepId": "step-close-my-swift-account",
+      "prevStepId": "step-swift-tickets-passes",
+      "parentId": "close-my-swift-account",
+      "heading": "Close my Swift account",
+      "hasReachedConfirmation": true,
+      "emailHeader": "Close my Swift account",
+      "content": {
+        "type": "text",
+        "details": "If you wish for your account to be closed, please fill in the form below. Please note, any outstanding debt should be cleared before your request and any valid tickets will need to be cancelled and settled before we can close your account. As this request is actioned, we will update you via your provided email address. It is important to fill in all the information requested as failure to do so, may mean we cannot close your account.",
+        "details2": "Please <a href='#?step-close-my-swift-account' title='close-my-swift-account' id='formId' target='_blank'>fill in this form</a>.",
+        "formId": "step-close-my-swift-account",
+        "warningText": "It is important to fill in all the information requested as failure to do so, may mean we cannot close your account.",
+        "customerService": true,
+        "showChat": true
+      },
+      "emailIndex": 1,
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+          "answerTitle": "Name",
+          "name": "name",
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your email address?",
+          "answerTitle": "Email",
+          "name": "contact",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "required": true,
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Please enter your Swift card number",
+          "answerTitle": "Swift card number",
+          "name": "swift-card-number",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Please enter the full number on your Swift card",
+              "inputType": "number",
+              "required": true,
+              "id": "1",
+              "name": "swift-card-number",
+              "errorMsg": "Swift card number is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your enquiry",
+          "title": "Please enter any other relevant comments",
+          "answerTitle": "Relevant comments",
+          "name": "relevant-comments",
+          "components": [
+            {
+              "type": "Textarea",
+              "required": false,
+              "id": "1",
+              "name": "relevant-comments"
             }
           ]
         }
