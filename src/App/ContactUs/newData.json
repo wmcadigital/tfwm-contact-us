@@ -1631,7 +1631,6 @@
           "components": [
             {
               "type": "Textarea",
-              "required": false,
               "id": "1",
               "name": "relevant-comments"
             }
