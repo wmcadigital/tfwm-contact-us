@@ -70,11 +70,8 @@
       content="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/config/wmn-share.png"
     />
 
-    <!-- WMN design system CSS -->
-    <link
-      rel="stylesheet"
-      href="//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/css/wmnds.min.css"
-    />
+    <!-- wmca design system CSS -->
+    <link rel="stylesheet" href="assets/css/wmnds.min.css" />
     <!-- maps api scripts -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/css/main.css" />
 
@@ -138,8 +135,8 @@
           >
             <img
               class="wmnds-header__logo"
-              alt="West Midlands Network logo"
-              src="//wmnetwork.netlify.com/img/logo.svg"
+              alt="Transport for West Midlands logo"
+              src="assets/img/logo.svg"
             />
           </a>
         </div>
@@ -233,7 +230,7 @@
       const ajax = new XMLHttpRequest();
       ajax.open(
         'GET',
-        '//unpkg.com/wmn-design-system@%REACT_APP_WMNDS_VERSION%/build/img/wmnds-icons.min.svg',
+        'assets/img/wmnds-icons.min.svg',
         true
       );
       ajax.send();
