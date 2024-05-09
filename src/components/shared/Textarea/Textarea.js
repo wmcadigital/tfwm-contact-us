@@ -22,8 +22,8 @@ const Textarea = ({ title, text1, text2, name, defaultValue, required, register,
   //  }
   // }, [errors]);
 
-  console.log(required);
-  console.log(hasError);
+  // console.log(required);
+  // console.log(hasError);
 
   return (
     <div className="wmnds-m-t-lg">
