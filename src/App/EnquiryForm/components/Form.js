@@ -29,8 +29,6 @@ const Form = () => {
     (pageData) => pageData.currentStepId === formToLoad
   ).formComponents;
 
-  console.log(formData);
-
   const [components, setComponents] = useState(findComponents);
 
   const [data, setData] = useState(components[stepNum]);
