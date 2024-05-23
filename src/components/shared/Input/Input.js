@@ -38,7 +38,7 @@ const Input = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
 
   return (
     <div
