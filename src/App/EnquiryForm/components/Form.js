@@ -5,24 +5,15 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
 import FileUpload from 'components/shared/FileUpload/FileUpload';
-
 import YesOrNo from 'components/shared/YesOrNo/YesOrNo';
-
 import RadioOptions from 'components/shared/RadioOptions/RadioOptions';
-
 import FindAddress from 'components/shared/FindAddress/FindAddress';
-
 import Dropdown from '../../../components/shared/Dropdown/Dropdown';
-
 import Textarea from '../../../components/shared/Textarea/Textarea';
-
 import Checkbox from '../../../components/shared/Checkbox/Checkbox';
-
 import Input from '../../../components/shared/Input/Input';
 import Number from '../../../components/shared/Number/Number';
-
 import Date from '../../../components/shared/Date/Date';
-
 import Address from '../../../components/shared/Address/Address';
 
 import { FormDataContext } from '../../../globalState/ContactUsContext';
@@ -53,13 +44,13 @@ const Form = () => {
         formComponents: components,
       },
     });
-  }, [components]);
+  }, [components, formDispatch]);
 
   useLayoutEffect(() => {
     if (formComponents.length > 1) {
       setComponents(formComponents);
     }
-  }, [page]);
+  }, [formComponents, page]);
 
   const prevStep = () => {
     formDispatch({

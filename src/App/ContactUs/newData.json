@@ -1607,18 +1607,18 @@
         {
           "sectionNum": 2,
           "sectionDescription": "Your enquiry",
-          "title": "Please enter your Swift card number",
-          "answerTitle": "Swift card number",
+          "title": "Please enter your Swift card or account number",
+          "answerTitle": "Swift card / Account number",
           "name": "swift-card-number",
           "components": [
             {
               "type": "Input",
-              "label": "Please enter the full number on your Swift card",
+              "label": "Please enter the full number on your Swift card or account number",
               "inputType": "number",
-              "required": true,
+              "required": false,
               "id": "1",
               "name": "swift-card-number",
-              "errorMsg": "Swift card number is required"
+              "errorMsg": "Swift card number / Account number is required"
             }
           ]
         },
