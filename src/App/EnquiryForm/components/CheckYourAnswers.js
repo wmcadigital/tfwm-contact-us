@@ -17,12 +17,8 @@ const CheckYourAnswers = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
   const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const emails = [
-    'swiftsupport@tfwm.org.uk',
-    'ticketing@tfwm.org.uk',
-    'customerservices@tfwm.org.uk',
-    'swiftcorporate@tfwm.org.uk',
-  ];
+  const { text } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+  const [subject, setSubject] = useState('');
   const prevStep = () => {
     formDispatch({
       type: 'CHANGE-PAGE',
@@ -86,6 +82,7 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
+    console.log(emailIndex);
     const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
       method: 'POST',
       headers: {
@@ -96,7 +93,7 @@ const CheckYourAnswers = () => {
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'test@test.com',
+        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
         files: file ? fileData : [],
         displayName: formData.name
           ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
@@ -156,6 +153,11 @@ const CheckYourAnswers = () => {
         id="check-your-answers"
         style={{ maxWidth: '40rem', backgroundColor: 'white' }}
       >
+        {emailHeader !== '' && (
+          <p>
+            <strong>{emailHeader}</strong>
+          </p>
+        )}
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
         <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (

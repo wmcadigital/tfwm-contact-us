@@ -4,17 +4,7 @@ import PropTypes from 'prop-types';
 import classes from '../../../App/App.module.scss';
 
 /* eslint-disable react/prop-types */
-const Textarea = ({
-  title = '',
-  errorMsg = '',
-  text1 = '',
-  text2 = '',
-  name = '',
-  defaultValue = undefined,
-  required = false,
-  register,
-  errors,
-}) => {
+const Textarea = ({ title, text1, text2, name, defaultValue, required, register, errors }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
   const textChageHandler = (event) => {
@@ -24,13 +14,16 @@ const Textarea = ({
       setHasError(false);
     }
   };
-  useEffect(() => {
-    if (errors.includes(name)) {
-      setHasError(true);
-    } else {
-      setHasError(false);
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //  if (errors.includes(name)) {
+  //    setHasError(true);
+  //  } else {
+  //    setHasError(false);
+  //  }
+  // }, [errors]);
+
+  // console.log(required);
+  // console.log(hasError);
 
   return (
     <div className="wmnds-m-t-lg">
@@ -46,7 +39,8 @@ const Textarea = ({
         <textarea
           // defaultValue={defaultValue ? defaultValue.value : ''}
           className={`wmnds-fe-textarea ${classes.textArea}`}
-          id={required ? 'required' : ''}
+          // id={required ? 'required' : ''}
+          required={required}
           name={name}
           rows="2"
           placeholder=""
@@ -62,13 +56,22 @@ const Textarea = ({
 
 // PropTypes
 Textarea.propTypes = {
-  title: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
-  errorMsg: PropTypes.string.isRequired,
-  text1: PropTypes.string.isRequired,
-  text2: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  required: PropTypes.bool,
+  text1: PropTypes.string,
+  text2: PropTypes.string,
+  name: PropTypes.string,
+  defaultValue: PropTypes.string,
+};
+
+// DefaultPropTypes
+Textarea.defaultProps = {
+  required: false,
+  title: '',
+  text1: '',
+  text2: '',
+  name: '',
+  defaultValue: '',
 };
 
 export default Textarea;
