@@ -2967,7 +2967,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "You can <a href='https://legacy.wmnetwork.co.uk/forms/accessibility-products/'>request an accessible product online.</a>",
+        "details": "You can <a href='https://www.tfwm.org.uk/plan-your-journey/travel-information/how-to-travel-with-accessibility-needs/get-help-if-you-have-a-disability-or-accessibility-need/#getting-around-access-guide'>request an accessible product online.</a>",
         "callHelp": "If you need help requesting an accessible product, you can give us a call.",
         "customerService": true
       }
