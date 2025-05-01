@@ -113,8 +113,8 @@
         {
           "id": "west-midlands-bus-scheme",
           "type": "radio",
-          "text": "West Midlands Bus Scheme",
-          "value": "West Midlands Bus Scheme"
+          "text": "Free Bus Travel (Offered by TfWM)",
+          "value": "Free Bus Travel (Offered by TfWM)"
         },
         {
           "id": "close-my-swift-account",
@@ -1383,9 +1383,9 @@
       "currentStepId": "step-west-midlands-bus-scheme",
       "prevStepId": "step-swift-tickets-passes",
       "parentId": "west-midlands-bus-scheme",
-      "heading": "West Midlands Bus Scheme",
+      "heading": "Free Bus Travel (Offered by TfWM)",
       "hasReachedConfirmation": true,
-      "emailHeader": "West Midlands Bus Scheme enquiry",
+      "emailHeader": "Free Bus Travel (Offered by TfWM) enquiry",
       "content": {
         "type": "text",
         "details": "Please <a href='#?step-west-midlands-bus-scheme' title='west-midlands-bus-scheme' id='formId' target='_blank'>fill in this form</a>.",
