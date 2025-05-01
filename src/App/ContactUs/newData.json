@@ -113,7 +113,6 @@
         {
           "id": "west-midlands-bus-scheme",
           "type": "radio",
-
           "text": "Free Bus Travel (Offered by TfWM)",
           "value": "Free Bus Travel (Offered by TfWM)"
         },
