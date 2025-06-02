@@ -17,7 +17,7 @@ const MaintenancePage = () => (
 
 function App() {
   // Uncomment the next line to enable maintenance mode
-  const maintenanceMode = true; // Set to true to show maintenance page
+  const maintenanceMode = false; // Set to true to show maintenance page
 
   if (maintenanceMode) {
     return <MaintenancePage />;
