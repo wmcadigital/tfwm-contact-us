@@ -31,6 +31,7 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
+  // const emailIndex = 7;
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -82,32 +83,58 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-    console.log(emailIndex);
-    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify({
-        to: emailIndex,
-        subject: emailHeader,
-        body: '{"M":"j"}',
-        bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
-        files: file ? fileData : [],
-        displayName: formData.name
-          ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
-          : 'No Name',
-      }),
-    }).then((response) => {
-      // If the response is successful(200: OK)
+
+    // create base64 of the form data (useful for sending/storing full structured answers)
+    const formDataBase64 = formData
+      ? btoa(unescape(encodeURIComponent(JSON.stringify(formData))))
+      : '';
+
+    // Map the complex `formData` structure to a simple, flat object
+    // Example output: { firstName, lastName, emailAddress, enquiry }
+    const formattedFormData = {
+      firstName: formData?.name?.value?.[0]?.[1] || '',
+      lastName: formData?.name?.value?.[1]?.[1] || '',
+      emailAddress: formData?.contact?.value?.[0]?.[1] || '',
+      enquiry: formData?.about?.value?.[0]?.[1] || '',
+    };
+
+    // Base64-encode the flattened form object for transport/storage
+    const formattedFormDataBase64 = formattedFormData
+      ? btoa(unescape(encodeURIComponent(JSON.stringify(formattedFormData))))
+      : '';
+
+    const endpoint = process.env.REACT_APP_EMAIL_API;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({
+          to: emailIndex,
+          subject: emailHeader,
+          body: '',
+          bodyHtml: formattedFormDataBase64,
+          from: 'DoNotReply@tfwm.org.uk',
+          files: file ? fileData : [],
+          displayName: formData.name
+            ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+            : 'No Name',
+        }),
+      });
+
       if (response.status === 200) {
         formDispatch({
           type: 'CHANGE-PAGE',
           payload: { page: 'SUCCESS', stepNum },
         });
+      } else {
+        console.error('Email API responded with', response.status, await response.text());
       }
-    });
+    } catch (err) {
+      console.error('Failed to send email', err);
+    }
   };
 
   const checkboxHandler = async () => {
