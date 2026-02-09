@@ -226,10 +226,9 @@ const LastPage = ({ content, currentStep }) => {
             <p>{content.timings}</p>
           ) : (
             <>
-              <div>Mondays, Tuesdays, Thursdays and Fridays, 8am to 6pm</div>
-              <div>Wednesdays, 10am to 6pm</div>
-              <div>Saturdays, 9am to 1pm</div>
-              <div>Sundays and Bank Holidays, Closed</div>
+              <div>Monday, Tuesday, Thursday, Friday 9am-5pm</div>
+              <div>Wednesday 10am to 5pm</div>
+              <div>Saturday, Sunday & bank holidays: Closed</div>
             </>
           )}
         </div>
@@ -286,7 +285,7 @@ const LastPage = ({ content, currentStep }) => {
             <p>Phone: 0345 034 8670</p>
             <>
               <p>Monday to Friday, 8am to 6pm</p>
-              <p>Saturdays, 9am to 1pm</p>
+              <p>Saturday, Sunday & bank holidays: Closed</p>
               <p>Sundays and Bank Holidays, Closed</p>
             </>
           </div>
