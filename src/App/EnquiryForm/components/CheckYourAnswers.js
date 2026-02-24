@@ -12,6 +12,100 @@ import Data from '../../ContactUs/newData.json';
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
+  // JSON-schema-like representation derived from `formData`
+  const formDataSchema = {
+    type: 'object',
+    properties: {
+      firstName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's first name"
+            : "The person's first name",
+      },
+      lastName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's last name"
+            : "The person's last name",
+      },
+      emailAddress: {
+        type: 'string',
+        format: 'email',
+        description:
+          formData && formData.email
+            ? formData.email.answerTitle || "The person's email address"
+            : "The person's email address",
+      },
+    },
+  };
+  // Normalize `formData` into a flat object with camelCase keys
+  const toCamel = (str = '') =>
+    String(str)
+      .replace(/[^a-zA-Z0-9 ]+/g, ' ')
+      .trim()
+      .split(/[\s-_]+/)
+      .map((s, i) => (i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1)))
+      .join('');
+
+  const buildNormalizedData = (data) => {
+    if (!data || typeof data !== 'object') return {};
+
+    return Object.keys(data).reduce((acc, key) => {
+      const item = data[key];
+      if (!item || !Array.isArray(item.value)) return acc;
+
+      // Handle name specially (firstName / lastName)
+      if (/name/i.test(item.answerTitle || key) && item.value.length >= 2) {
+        acc.firstName = item.value[0][1] || acc.firstName;
+        acc.lastName = item.value[1][1] || acc.lastName;
+        return acc;
+      }
+      // Handle email specially
+      if (/email/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        acc.emailAddress = item.value[0][1] || acc.emailAddress;
+        return acc;
+      }
+      // Handle file uploader specially
+      if (/file|upload|document/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        const fileArray = item.value[0][1];
+        if (fileArray && Array.isArray(fileArray) && fileArray.length > 0) {
+          acc.files = fileArray.map((file) => ({
+            name: file.name,
+            type: file.type,
+            content: file, // will be converted to base64 later
+          }));
+        }
+        return acc;
+      }
+
+      item.value.forEach((pair) => {
+        const subKey = pair[0];
+        const val = pair[1];
+        if (!subKey || subKey === 'yes-or-no-skip') return;
+
+        const prop = toCamel(subKey) || toCamel(item.answerTitle || key);
+
+        if (acc[prop]) {
+          if (Array.isArray(acc[prop])) acc[prop].push(val);
+          else acc[prop] = [acc[prop], val];
+        } else {
+          acc[prop] = val;
+        }
+      });
+
+      return acc;
+    }, {});
+  };
+
+  const normalizedDataToBase64 = (data) => {
+    const jsonString = JSON.stringify(data);
+    return btoa(unescape(encodeURIComponent(jsonString)));
+  };
+
+  const normalizedFormData = buildNormalizedData(formData);
+  const normalizedFormData2 = normalizedDataToBase64(normalizedFormData);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
@@ -31,6 +125,7 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
+
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -53,7 +148,8 @@ const CheckYourAnswers = () => {
       ''
     );
 
-    const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    // const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    const base64Content = normalizedDataToBase64(normalizedFormData);
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
@@ -82,8 +178,8 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-    console.log(emailIndex);
-    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
+
+    const postData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -92,8 +188,8 @@ const CheckYourAnswers = () => {
         to: emailIndex,
         subject: emailHeader,
         body: '{"M":"j"}',
-        bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
+        bodyHtml: normalizedFormData2,
+        from: 'donoreply@tfwm.org.uk',
         files: file ? fileData : [],
         displayName: formData.name
           ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
