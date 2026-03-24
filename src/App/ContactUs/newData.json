@@ -406,6 +406,7 @@
       "prevStepId": "step-direct-debit",
       "heading": "Update my Direct Debit",
       "hasReachedConfirmation": true,
+      "emailHeader": "Update Direct Debit enquiry",
       "content": {
         "type": "text",
         "details": "You can <a href='#?step-update-DD' title='other' id='formId'>update your Direct Debit online</a>.",
