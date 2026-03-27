@@ -49,6 +49,19 @@ const CheckYourAnswers = () => {
       .map((s, i) => (i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1)))
       .join('');
 
+  // Helper function to format phone numbers with +44
+  const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') return phoneNumber;
+
+    const trimmed = phoneNumber.trim();
+    // If it already starts with +44 or +, return as is
+    if (trimmed.startsWith('+')) return trimmed;
+    // If it starts with 0, replace with +44
+    if (trimmed.startsWith('0')) return `+44${trimmed.substring(1)}`;
+    // Otherwise, prepend +44
+    return `+44${trimmed}`;
+  };
+
   const buildNormalizedData = (data) => {
     if (!data || typeof data !== 'object') return {};
 
@@ -82,8 +95,13 @@ const CheckYourAnswers = () => {
 
       item.value.forEach((pair) => {
         const subKey = pair[0];
-        const val = pair[1];
+        let val = pair[1];
         if (!subKey || subKey === 'yes-or-no-skip') return;
+
+        // Format phone numbers with +44
+        if (/phone/i.test(subKey) || /phone/i.test(item.answerTitle || key)) {
+          val = formatPhoneNumber(val);
+        }
 
         const prop = toCamel(subKey) || toCamel(item.answerTitle || key);
 
@@ -185,7 +203,7 @@ const CheckYourAnswers = () => {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        to: emailIndex,
+        to: 8,
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: normalizedFormData2,
