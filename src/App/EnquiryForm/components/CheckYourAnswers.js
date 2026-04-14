@@ -127,9 +127,9 @@ const CheckYourAnswers = () => {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
-  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { text } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+
+  const currentPage = Data.pages.find((pageData) => pageData.currentStepId === formToLoad) || {};
+  const { emailIndex = '', emailHeader = '', text = '' } = currentPage;
   const [subject, setSubject] = useState('');
   const prevStep = () => {
     formDispatch({
