@@ -58,7 +58,7 @@ const Form = () => {
     });
   };
 
-  const { register, handleSubmit, getValues, unregister } = useForm({
+  const { register, handleSubmit, getValues, unregister, setValue } = useForm({
     shouldUnregister: true,
     shouldUseNativeValidation: true,
   });
@@ -235,6 +235,7 @@ const Form = () => {
                     errors={formError}
                     inputs={component.inputs}
                     unregister={unregister}
+                    setValue={setValue}
                   />
                 )}
                 {component.type === 'FileUpload' && (

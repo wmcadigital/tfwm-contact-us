@@ -203,7 +203,7 @@ const CheckYourAnswers = () => {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        to: 8,
+        to: 7,
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: normalizedFormData2,
