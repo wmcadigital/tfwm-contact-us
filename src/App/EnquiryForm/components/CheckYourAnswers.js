@@ -128,7 +128,19 @@ const CheckYourAnswers = () => {
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
 
-  const currentPage = Data.pages.find((pageData) => pageData.currentStepId === formToLoad) || {};
+  // Debug logging for Netlify production issues
+  useEffect(() => {
+    console.log('Debug Info:', {
+      formToLoad,
+      formId,
+      params,
+      dataAvailable: !!Data,
+      dataPages: Data?.pages?.length || 0,
+      matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
+    });
+  }, [formToLoad, formId, params]);
+
+  const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
   const { emailIndex = '', emailHeader = '', text = '' } = currentPage;
   const [subject, setSubject] = useState('');
   const prevStep = () => {
