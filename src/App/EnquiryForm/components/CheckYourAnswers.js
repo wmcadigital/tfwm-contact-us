@@ -62,6 +62,14 @@ const CheckYourAnswers = () => {
     return `+44${trimmed}`;
   };
 
+  // Helper function to format value for display if it's a phone field
+  const formatDisplayValue = (value, fieldKey = '', answerTitle = '') => {
+    if (typeof value !== 'string') return value;
+    const isPhoneField =
+      /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(answerTitle);
+    return isPhoneField ? formatPhoneNumber(value) : value;
+  };
+
   const buildNormalizedData = (data) => {
     if (!data || typeof data !== 'object') return {};
 
@@ -99,7 +107,11 @@ const CheckYourAnswers = () => {
         if (!subKey || subKey === 'yes-or-no-skip') return;
 
         // Format phone numbers with +44
-        if (/phone/i.test(subKey) || /phone/i.test(item.answerTitle || key)) {
+        // Matches: phone, telephone, mobile, pref-phone, CC-phone-name, CC-pref-phone-name, etc.
+        const isPhoneField =
+          /phone|telephone|mobile/i.test(subKey) ||
+          /phone|telephone|mobile/i.test(item.answerTitle || key);
+        if (isPhoneField && typeof val === 'string') {
           val = formatPhoneNumber(val);
         }
 
@@ -215,7 +227,7 @@ const CheckYourAnswers = () => {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        to: 7,
+        to: 8,
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: normalizedFormData2,
@@ -363,7 +375,8 @@ const CheckYourAnswers = () => {
                                     ''
                                   ) : (
                                     <>
-                                      {value[1]} <br />
+                                      {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                      <br />
                                     </>
                                   )}
                                 </>
@@ -379,7 +392,8 @@ const CheckYourAnswers = () => {
                                   ''
                                 ) : (
                                   <>
-                                    {value[1]} <br />
+                                    {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                    <br />
                                   </>
                                 )}
                               </>
