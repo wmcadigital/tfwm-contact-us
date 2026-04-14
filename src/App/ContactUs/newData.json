@@ -4209,7 +4209,7 @@
       "currentStepId": "help-change-details-disabled",
       "prevStepId": "step-disabled-person-pass",
       "heading": "Change my disabled person’s pass details",
-      "emailheader": "Change disabled person’s pass details enquiry",
+      "emailHeader": "Change disabled person’s pass details enquiry",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
