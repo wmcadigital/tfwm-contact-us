@@ -8,6 +8,7 @@ import Dropdown from '../Dropdown/Dropdown';
 const RadioOptions = ({
   label = '',
   options = [],
+  defaultValue = '',
   defaultValues = [],
   required = false,
   register,
@@ -16,7 +17,7 @@ const RadioOptions = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  const [checkedRadio, setCheckedRadio] = useState();
+  const [checkedRadio, setCheckedRadio] = useState(defaultValue);
   const checkBoxesChangeHandler = (e) => {
     if (e.target.value) {
       setHasError(false);
@@ -50,6 +51,7 @@ const RadioOptions = ({
                 value={option.option}
                 register={register}
                 onChange={checkBoxesChangeHandler}
+                defaultChecked={defaultValue === option.option}
               />
               {option.type && checkedRadio === option.option && (
                 <>
@@ -68,7 +70,7 @@ const RadioOptions = ({
                   ) : (
                     <div
                       style={{ marginLeft: 60 }}
-                      className={` ${errors.includes('yes') && 'wmnds-fe-group--error'}`}
+                      className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
                     >
                       <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                         {option.inputLabel1}
@@ -76,7 +78,7 @@ const RadioOptions = ({
                       <label className="wmnds-fe-label" htmlFor="input">
                         {option.inputLabel2}
                       </label>{' '}
-                      {errors.includes('yes') && (
+                      {errors.includes(option.name) && (
                         <span className="wmnds-fe-error-message">{option.errorMsg}</span>
                       )}
                       <input
@@ -101,11 +103,29 @@ const RadioOptions = ({
 
 // PropTypes
 RadioOptions.propTypes = {
-  label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  required: PropTypes.bool.isRequired,
+  label: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      option: PropTypes.string.isRequired,
+      required: PropTypes.bool,
+      inputLabel1: PropTypes.string,
+      inputLabel2: PropTypes.string,
+      type: PropTypes.string,
+      errorMsg: PropTypes.string,
+      options: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
+  required: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  defaultValues: PropTypes.arrayOf(PropTypes.string),
+};
 
-  defaultValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+RadioOptions.defaultProps = {
+  label: '',
+  required: false,
+  defaultValue: '',
+  defaultValues: [],
 };
 
 export default RadioOptions;

@@ -61,7 +61,7 @@ Textarea.propTypes = {
   text1: PropTypes.string,
   text2: PropTypes.string,
   name: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 // DefaultPropTypes

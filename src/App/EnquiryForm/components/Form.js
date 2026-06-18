@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -31,11 +31,7 @@ const Form = () => {
 
   const [components, setComponents] = useState(findComponents);
 
-  const [data, setData] = useState(components[stepNum]);
-
-  useEffect(() => {
-    setData(components[stepNum]);
-  }, [stepNum, components]);
+  const data = components[stepNum];
 
   useEffect(() => {
     formDispatch({
@@ -62,6 +58,8 @@ const Form = () => {
     shouldUnregister: true,
     shouldUseNativeValidation: true,
   });
+
+  const fileDataRef = useRef({});
 
   const [formError, setFormError] = useState([]);
 
@@ -95,10 +93,67 @@ const Form = () => {
   const continueHandler = () => {
     const values = getValues();
 
+    Object.keys(fileDataRef.current).forEach((key) => {
+      values[key] = fileDataRef.current[key];
+    });
+
     const entries = Object.entries(values);
 
     const isEmpty = Object.keys(values).length === 0;
     const errors = entries.filter((val) => !val[1]).map((val) => val[0]);
+
+    const emailPattern = /^[\w.%+-]+@[\w.-]+\.[a-z]{2,4}$/;
+    entries.forEach(([key, value]) => {
+      if (key === 'email' && value && !emailPattern.test(value) && !errors.includes(key)) {
+        errors.push(key);
+      }
+    });
+
+    if (values.day || values.month || values.year) {
+      const day = parseInt(values.day, 10);
+      const month = parseInt(values.month, 10);
+      const year = parseInt(values.year, 10);
+
+      const isDayValid = day >= 1 && day <= 31;
+      const isMonthValid = month >= 1 && month <= 12;
+      const isYearValid = year >= 1900 && year <= 2100;
+
+      if (values.day && !isDayValid && !errors.includes('day')) errors.push('day');
+      if (values.month && !isMonthValid && !errors.includes('month')) errors.push('month');
+      if (values.year && !isYearValid && !errors.includes('year')) errors.push('year');
+
+      if (isDayValid && isMonthValid && isYearValid) {
+        const parsed = new window.Date(year, month - 1, day);
+        if (
+          parsed.getFullYear() !== year ||
+          parsed.getMonth() !== month - 1 ||
+          parsed.getDate() !== day
+        ) {
+          if (!errors.includes('day')) errors.push('day');
+          if (!errors.includes('month')) errors.push('month');
+          if (!errors.includes('year')) errors.push('year');
+        }
+      }
+    }
+
+    if (values.hour !== undefined || values.minute !== undefined) {
+      if ((values.hour === '' || values.hour === undefined) && !errors.includes('hour'))
+        errors.push('hour');
+      if ((values.minute === '' || values.minute === undefined) && !errors.includes('minute'))
+        errors.push('minute');
+    }
+
+    const postcodePattern = /^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$/;
+    entries.forEach(([key, value]) => {
+      if (
+        key.includes('postcode') &&
+        value &&
+        !postcodePattern.test(value) &&
+        !errors.includes(key)
+      ) {
+        errors.push(key);
+      }
+    });
 
     setFormError(errors);
 
@@ -167,17 +222,17 @@ const Form = () => {
   }, [data]);
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>
-      <div className="wmnds-col-1 wmnds-m-b-lg">
-        {stepNum !== 0 && (
+      {stepNum !== 0 && (
+        <div className="wmnds-col-1 wmnds-m-b-lg">
           <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
             &lt; Back
           </button>
-        )}
-      </div>
+        </div>
+      )}
       <button type="button" style={{ opacity: '0', all: 'unset' }} id="btn-focus" tabIndex="-1" />
       {data && (
         <div
-          className="wmnds-bg-white wmnds-p-lg wmnds-p-l-md wmnds-col-1 wmnds-col-md-3-4"
+          className="wmnds-bg-white wmnds-p-lg wmnds-col-1 wmnds-col-md-3-4"
           style={{ maxWidth: 608 }}
         >
           {data.sectionNum && (
@@ -205,7 +260,7 @@ const Form = () => {
                     required={component.required}
                     options={component.options}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={getDefaultValue(component.name)?.[1] || ''}
                     register={register}
                     errors={formError}
                   />
@@ -273,12 +328,16 @@ const Form = () => {
                     label={component.label}
                     details={component.details}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={formData[data.name]?.value?.[0]?.[1] || ''}
                     errorMsg={component.errorMsg}
                     required={component.required}
                     register={register}
                     errors={formError}
                     unregister={unregister}
+                    setValue={setValue}
+                    onFileChange={(name, files) => {
+                      fileDataRef.current[name] = files;
+                    }}
                   />
                 )}
                 {component.type === 'Checkbox' && (
@@ -310,7 +369,10 @@ const Form = () => {
                     label={component.label}
                     options={component.options}
                     name={component.name}
-                    defaultValues={[formData.email, formData.phone]}
+                    defaultValue={getDefaultValue('radio')?.[1] || ''}
+                    defaultValues={component.options?.map(
+                      (opt) => getDefaultValue(opt.name)?.[1] || ''
+                    )}
                     required={component.required}
                     register={register}
                     errors={formError}
@@ -320,7 +382,9 @@ const Form = () => {
                 {component.type === 'Date' && (
                   <Date
                     name={component.name}
-                    defaultValues={[formData.email, formData.phone]}
+                    dayDefaultValue={getDefaultValue('day')?.[1] || ''}
+                    monthDefaultValue={getDefaultValue('month')?.[1] || ''}
+                    yearDefaultValue={getDefaultValue('year')?.[1] || ''}
                     required={component.required}
                     register={register}
                     errors={formError}

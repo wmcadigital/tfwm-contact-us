@@ -14,6 +14,12 @@
           "value": "Swift, tickets and passes"
         },
         {
+          "id": "submit-evidence",
+          "type": "radio",
+          "text": "Submit requested evidence or documentation",
+          "value": "Submit requested evidence or documentation"
+        },
+        {
           "id": "bus-train-tram",
           "type": "radio",
           "text": "Bus, train or tram services",
@@ -1379,7 +1385,7 @@
         }
       ]
     },
-    { 
+    {
       "id": "step-3",
       "currentStepId": "step-west-midlands-bus-scheme",
       "prevStepId": "step-swift-tickets-passes",
@@ -1542,7 +1548,7 @@
         }
       ]
     },
-    { 
+    {
       "id": "step-3",
       "currentStepId": "step-close-my-swift-account",
       "prevStepId": "step-swift-tickets-passes",
@@ -2868,9 +2874,7 @@
         ],
         "warningText": "10",
         "details5": "You can also call the following number to:",
-        "detailsList": ["get more information",
-          "register for the service",
-          "book a journey"],
+        "detailsList": ["get more information", "register for the service", "book a journey"],
         "details6": "If you still need help with West Midlands Bus On Demand, <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
@@ -4742,6 +4746,186 @@
               "id": "1",
               "name": "supporting-documents",
               "errorMsg": "First name is required"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "step-2",
+      "parentId": "submit-evidence",
+      "currentStepId": "step-submit-evidence",
+      "prevStepId": "step-enquiry",
+      "heading": "Contact Us",
+      "hasReachedConfirmation": true,
+      "emailHeader": "Contact us Submit evidence enquiry",
+      "content": {
+        "type": "text",
+        "details": "Please <a href='#?step-submit-evidence' id='formId'>fill in this form</a>.",
+        "formId": "step-submit-evidence",
+        "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
+        "customerService": true
+      },
+      "emailIndex": 3,
+      "formStartContent": {
+        "title": "Submit requested evidence or documentation",
+        "serviceUse": "Provide supporting evidence or documentation requested by Customer Services",
+        "processTime": "This process takes around 5 minutes."
+      },
+      "formComponents": [
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your name?",
+          "answerTitle": "Name",
+          "name": "name",
+          "components": [
+            {
+              "type": "Input",
+              "label": "First Name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "First name is required"
+            },
+            {
+              "type": "Input",
+              "label": "Last Name",
+              "required": true,
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Last name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your email?",
+          "answerTitle": "Email",
+          "name": "contact",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "required": true,
+              "id": "1",
+              "name": "email",
+              "errorMsg": "Email name is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "About you",
+          "title": "What is your date of birth?",
+          "answerTitle": "Date of birth",
+          "name": "contact-dob",
+          "components": [
+            {
+              "type": "Date",
+              "label": "Date of birth, for example",
+              "label2": "DD/MM/YYYY",
+              "inputType": "date",
+              "required": true,
+              "id": "1",
+              "name": "date-of-birth",
+              "errorMsg": "Date of birth is required"
+            }
+          ]
+        },
+        {
+          "sectionTotal": 3,
+          "sectionNum": 1,
+          "sectionDescription": "About you",
+          "title": "What is your postcode?",
+          "answerTitle": "Postcode",
+          "name": "postcode",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Postcode",
+              "required": true,
+              "id": "1",
+              "name": "postcode-input",
+              "errorMsg": "Postcode is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 4,
+          "sectionDescription": "Your evidence",
+          "title": "What is the reason you're submitting this evidence?",
+          "answerTitle": "Reason for submitting evidence",
+          "name": "evidence-reason",
+          "components": [
+            {
+              "type": "Dropdown",
+              "label": "Reason for submitting evidence",
+              "required": true,
+              "id": "1",
+              "name": "evidence-reason",
+              "options": [
+                "Disabled person’s pass application",
+                "Student travel card application",
+                "Older person’s pass application",
+                "Workwise travel card application",
+                "Refund request",
+                "Other"
+              ],
+              "errorMsg": "Reason for submitting evidence is required"
+            }
+          ]
+        },
+        {
+          "sectionNum": 5,
+          "sectionDescription": "Your evidence",
+          "title": "Do you have an application reference number?",
+          "answerTitle": "Application reference number",
+          "name": "reference-number",
+          "components": [
+            {
+              "type": "Radios",
+              "required": true,
+              "options": [
+                {
+                  "name": "cycle-hubs",
+                  "option": "Yes",
+                  "required": true,
+                  "inputLabel1": "Application reference number",
+                  "inputLabel2": "",
+                  "type": "Input",
+                  "errorMsg": "Please enter a reference number"
+                },
+                {
+                  "name": "cycle-lockers",
+                  "option": "No",
+                  "required": true,
+                  "inputLabel1": "",
+                  "inputLabel2": ""
+                }
+              ],
+              "id": "1"
+            }
+          ]
+        },
+        {
+          "sectionNum": 6,
+          "sectionDescription": "Your enquiry",
+          "title": "Supporting documents",
+          "answerTitle": "Supporting documents",
+          "name": "file",
+          "components": [
+            {
+              "type": "FileUpload",
+              "details": "Do you have any documents or evidence that supports your enquiry?",
+              "label": "Files must be jpeg, png or pdf file format",
+              "required": true,
+              "id": "1",
+              "name": "supporting-documents",
+              "errorMsg": "Supporting documents are required"
             }
           ]
         }
