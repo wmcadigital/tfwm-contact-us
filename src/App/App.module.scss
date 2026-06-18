@@ -54,3 +54,13 @@ th {
   width: 138px;
   height: 44px !important;
 }
+
+.changeCell {
+  width: 70px;
+  text-align: right;
+  vertical-align: top;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
+}
