@@ -19,10 +19,12 @@ const Input = ({
   const [hasError, setHasError] = useState(errors.includes(name));
   const [patternMismatch, setPatternMismatch] = useState(false);
 
+  const isEmail = name === 'email';
+  const isPostcode = name.includes('postcode');
+
   const inputChageHandler = (event) => {
     const isEmpty = event.target.value === '';
-    const isPatternMismatch =
-      name === 'email' && event.target.validity && event.target.validity.patternMismatch;
+    const isPatternMismatch = event.target.validity && event.target.validity.patternMismatch;
     setHasError(isEmpty || isPatternMismatch);
     setPatternMismatch(isPatternMismatch);
   };
@@ -34,8 +36,15 @@ const Input = ({
     }
   }, [errors, name]);
 
-  const errorMessage =
-    patternMismatch && name === 'email' ? 'Enter a valid email address' : errorMsg;
+  let errorMessage = errorMsg;
+  if (patternMismatch) {
+    if (isEmail) errorMessage = 'Enter a valid email address';
+    else if (isPostcode) errorMessage = 'Enter a valid postcode';
+  }
+
+  let pattern;
+  if (isEmail) pattern = '[\\w.%+\\-]+@[\\w.\\-]+\\.[a-z]{2,4}$';
+  else if (isPostcode) pattern = '[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\\s?[0-9][A-Za-z]{2}';
 
   return (
     <div
@@ -63,12 +72,12 @@ const Input = ({
         name={name}
         key={name}
         required={required}
-        type={name === 'email' ? 'email' : type || 'text'}
+        type={type || 'text'}
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={register}
-        pattern={name === 'email' ? '[\\w.%+\\-]+@[\\w.\\-]+\\.[a-z]{2,4}$' : undefined}
+        pattern={pattern}
       />
     </div>
   );

@@ -65,7 +65,7 @@ const Number = ({
         name={name}
         key={name}
         required={required}
-        type={name === 'email' ? 'email' : type || 'text'}
+        type={type || 'text'}
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}

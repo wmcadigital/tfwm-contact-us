@@ -95,7 +95,7 @@ const CheckYourAnswers = () => {
           acc.files = fileArray.map((file) => ({
             name: file.name,
             type: file.type,
-            content: file, // will be converted to base64 later
+            content: file,
           }));
         }
         return acc;
@@ -141,16 +141,16 @@ const CheckYourAnswers = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   // Debug logging for Netlify production issues
-  useEffect(() => {
-    console.log('Debug Info:', {
-      formToLoad,
-      formId,
-      params,
-      dataAvailable: !!Data,
-      dataPages: Data?.pages?.length || 0,
-      matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
-    });
-  }, [formToLoad, formId, params]);
+  // useEffect(() => {
+  //   console.log('Debug Info:', {
+  //     formToLoad,
+  //     formId,
+  //     params,
+  //     dataAvailable: !!Data,
+  //     dataPages: Data?.pages?.length || 0,
+  //     matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
+  //   });
+  // }, [formToLoad, formId, params]);
 
   const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
   const { emailIndex = '', emailHeader = '', text = '' } = currentPage;
@@ -192,13 +192,16 @@ const CheckYourAnswers = () => {
 
     // const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
     const base64Content = normalizedDataToBase64(normalizedFormData);
-    const file = formData.file ? formData.file.value[0][1][0] : undefined;
-    let base64File;
-    let fileData;
+    const files = formData.file ? formData.file.value[0][1] : undefined;
+    let fileData = [];
 
-    if (file) {
-      base64File = await toBase64(file);
-      fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
+    if (files && Array.isArray(files) && files.length > 0) {
+      fileData = await Promise.all(
+        files.map(async (file) => {
+          const base64File = await toBase64(file);
+          return { name: file.name, type: file.type, content: base64File.split('base64,')[1] };
+        })
+      );
     }
     const answerObject = {};
     const dataMap = formData;
@@ -221,31 +224,34 @@ const CheckYourAnswers = () => {
       return answerObject;
     });
 
-    const postData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
+    const bodyData = {
+      to: 8,
+      subject: emailHeader,
+      body: '{"M":"j"}',
+      bodyHtml: normalizedFormData2,
+      from: 'donoreply@tfwm.org.uk',
+      files: files ? fileData : [],
+      displayName: formData.name
+        ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+        : 'No Name',
+    };
+
+    console.log('Form submission:', JSON.stringify(bodyData, null, 2));
+
+    const responseData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify({
-        to: 8,
-        subject: emailHeader,
-        body: '{"M":"j"}',
-        bodyHtml: normalizedFormData2,
-        from: 'donoreply@tfwm.org.uk',
-        files: file ? fileData : [],
-        displayName: formData.name
-          ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
-          : 'No Name',
-      }),
-    }).then((response) => {
-      // If the response is successful(200: OK)
-      if (response.status === 200) {
-        formDispatch({
-          type: 'CHANGE-PAGE',
-          payload: { page: 'SUCCESS', stepNum },
-        });
-      }
+      body: JSON.stringify(bodyData),
     });
+
+    if (responseData.status === 200) {
+      formDispatch({
+        type: 'CHANGE-PAGE',
+        payload: { page: 'SUCCESS', stepNum },
+      });
+    }
   };
 
   const checkboxHandler = async () => {
@@ -254,15 +260,28 @@ const CheckYourAnswers = () => {
     const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
-    } else {
-      await sendEmailHandler();
-
-      formDispatch({
-        type: 'CHANGE-PAGE',
-        payload: { page: 'SUCCESS', stepNum },
-      });
-      setErrorMsg('');
+      return;
     }
+
+    const files = formData.file ? formData.file.value[0][1] : [];
+    if (Array.isArray(files) && files.length > 0) {
+      const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+      const estimatedPayloadMB = ((totalBytes * 4) / 3 / (1024 * 1024)).toFixed(1);
+      if (totalBytes * (4 / 3) > 10 * 1024 * 1024) {
+        setErrorMsg(
+          `Total file size (${estimatedPayloadMB}MB estimated) exceeds the 10MB payload limit. Please remove some files.`
+        );
+        return;
+      }
+    }
+
+    await sendEmailHandler();
+
+    formDispatch({
+      type: 'CHANGE-PAGE',
+      payload: { page: 'SUCCESS', stepNum },
+    });
+    setErrorMsg('');
   };
 
   const getCoords = (value) => {
@@ -299,12 +318,12 @@ const CheckYourAnswers = () => {
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
         <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (
-            <>
+            <React.Fragment key={answers[0]}>
               <h3>{answers[0]}</h3>
               <table className="wmnds-table wmnds-table--without-header">
                 <tbody>
                   {answers[1].map((data) => (
-                    <tr>
+                    <tr key={data.answerTitle}>
                       <th
                         scope="row"
                         data-header="Header 1"
@@ -314,25 +333,46 @@ const CheckYourAnswers = () => {
                       </th>
                       <td data-header="Header 2" style={{ verticalAlign: 'top' }}>
                         {data.answerTitle === 'Supporting documents' &&
-                          (data.value[0][1].length === 0 ? (
+                          (!Array.isArray(data.value[0]?.[1]) || data.value[0][1].length === 0 ? (
                             'None'
                           ) : (
-                            <>
-                              {data.value[0][1][0].type === 'application/pdf' ? (
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                  <img src="/pdf-icon.svg" alt="pdf logo" width={20} height={20} />
-                                  <p style={{ marginBottom: 0 }}>{data.value[0][1][0].name}</p>
-                                </div>
-                              ) : (
-                                <img
-                                  src={URL.createObjectURL(data.value[0][1][0])}
-                                  alt="File"
-                                  style={{ marginTop: 20 }}
-                                  width={200}
-                                  height={200}
-                                />
-                              )}
-                            </>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                              {data.value[0][1].map((file, idx) => (
+                                <React.Fragment
+                                  key={`${file.name}-${file.size}-${file.lastModified}`}
+                                >
+                                  {(() => {
+                                    if (file.type === 'application/pdf') {
+                                      return (
+                                        <div
+                                          style={{ display: 'flex', alignItems: 'center', gap: 10 }}
+                                        >
+                                          <img
+                                            src="/pdf-icon.svg"
+                                            alt="pdf logo"
+                                            width={20}
+                                            height={20}
+                                          />
+                                          <p style={{ marginBottom: 0 }}>{file.name}</p>
+                                        </div>
+                                      );
+                                    }
+                                    if (file instanceof Blob) {
+                                      return (
+                                        <img
+                                          src={URL.createObjectURL(file)}
+                                          alt={file.name}
+                                          style={{ marginTop: 20 }}
+                                          width={200}
+                                          height={200}
+                                        />
+                                      );
+                                    }
+                                    return <p style={{ marginBottom: 0 }}>{file.name}</p>;
+                                  })()}
+                                </React.Fragment>
+                              ))}
+                            </div>
                           ))}
                         {data.answerTitle === 'What was the date and time of the issue?' && (
                           <>
@@ -351,7 +391,7 @@ const CheckYourAnswers = () => {
                             {data.value[0][1]} {data.value[1][1]}
                           </>
                         )}
-                        {data.value[0][0] === 'postcode' && (
+                        {data.value[0][0] === 'postcode' && data.value[1] && (
                           <>
                             {data.value[1][1]}
                             <br />
@@ -362,6 +402,9 @@ const CheckYourAnswers = () => {
                             />
                           </>
                         )}
+                        {data.value[0][0] === 'postcode' && !data.value[1] && (
+                          <>{data.value[0][1]}</>
+                        )}
                         {data.answerTitle !== 'Name' &&
                           data.answerTitle !== 'Date of birth' &&
                           data.answerTitle !== 'Supporting documents' &&
@@ -369,49 +412,36 @@ const CheckYourAnswers = () => {
                           data.answerTitle !== 'What was the date and time of the issue?' &&
                           data.value[0][0] !== 'postcode' && (
                             <>
-                              {data.value.map((value) => (
-                                <>
-                                  {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
-                                    ''
-                                  ) : (
-                                    <>
-                                      {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
-                                      <br />
-                                    </>
-                                  )}
-                                </>
-                              ))}
+                              {data.value.map((value) => {
+                                if (value[0] !== 'yes-or-no-skip' && value[1] === 'Yes')
+                                  return null;
+                                return (
+                                  <span key={value[0]}>
+                                    {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                    <br />
+                                  </span>
+                                );
+                              })}
                             </>
                           )}
                         {data.answerTitle === 'Contact preference' && (
                           <>
-                            {data.value.map((value) => (
-                              <>
-                                {value[0] !== 'CC-pref-phone-name' &&
-                                value[0] !== 'CC-pref-email-address' ? (
-                                  ''
-                                ) : (
-                                  <>
-                                    {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
-                                    <br />
-                                  </>
-                                )}
-                              </>
-                            ))}
+                            {data.value.map((value) => {
+                              if (
+                                value[0] !== 'CC-pref-phone-name' &&
+                                value[0] !== 'CC-pref-email-address'
+                              )
+                                return null;
+                              return (
+                                <span key={value[0]}>
+                                  {formatDisplayValue(value[1], value[0], data.answerTitle)} <br />
+                                </span>
+                              );
+                            })}
                           </>
                         )}
                       </td>
-                      <td
-                        data-header="Header 2"
-                        style={{
-                          verticalAlign: 'top',
-                          width: 70,
-                          textAlign: 'right',
-                          '@media (max-width: 768)': {
-                            textAlign: 'left',
-                          },
-                        }}
-                      >
+                      <td data-header="Header 2" className={classes.changeCell}>
                         <button
                           type="button"
                           className="wmnds-btn wmnds-btn--link"
@@ -424,7 +454,7 @@ const CheckYourAnswers = () => {
                   ))}
                 </tbody>
               </table>
-            </>
+            </React.Fragment>
           ))}
         </div>
 

@@ -77,14 +77,20 @@ const Dropdown = ({
 // PropTypes
 Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
-  details: PropTypes.string.isRequired,
+  details: PropTypes.string,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   required: PropTypes.bool.isRequired,
 
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+Dropdown.defaultProps = {
+  details: '',
+  defaultValue: '',
+  onChange: () => {},
 };
 
 export default Dropdown;

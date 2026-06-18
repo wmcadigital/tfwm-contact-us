@@ -10,7 +10,7 @@ const Calendar = ({
   required = false,
   name = '',
   register,
-  errors,
+  errors = [],
   label,
   showTime,
 }) => {
@@ -124,10 +124,17 @@ const Calendar = ({
 // PropTypes
 Calendar.propTypes = {
   name: PropTypes.string.isRequired,
-  required: PropTypes.string.isRequired,
-  dayDefaultValue: PropTypes.string.isRequired,
-  monthDefaultValue: PropTypes.string.isRequired,
-  yearDefaultValue: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  dayDefaultValue: PropTypes.string,
+  monthDefaultValue: PropTypes.string,
+  yearDefaultValue: PropTypes.string,
+};
+
+Calendar.defaultProps = {
+  required: false,
+  dayDefaultValue: '',
+  monthDefaultValue: '',
+  yearDefaultValue: '',
 };
 
 export default Calendar;
