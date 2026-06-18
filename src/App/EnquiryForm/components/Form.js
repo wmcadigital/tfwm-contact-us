@@ -58,12 +58,39 @@ const Form = () => {
     });
   };
 
-  const { register, handleSubmit, getValues, unregister } = useForm({
+  const { register, handleSubmit, getValues, unregister, setValue } = useForm({
     shouldUnregister: true,
     shouldUseNativeValidation: true,
   });
 
   const [formError, setFormError] = useState([]);
+
+  // Helper function to format phone numbers with +44
+  const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') return phoneNumber;
+
+    const trimmed = phoneNumber.trim();
+    // If it already starts with +44 or +, return as is
+    if (trimmed.startsWith('+')) return trimmed;
+    // If it starts with 0, replace with +44
+    if (trimmed.startsWith('0')) return `+44${trimmed.substring(1)}`;
+    // Otherwise, prepend +44
+    return `+44${trimmed}`;
+  };
+
+  // Helper function to format phone fields in form entries
+  const formatPhoneFieldsInEntries = (entries, dataFieldName = '') => {
+    return entries.map(([fieldKey, value]) => {
+      // Check if this is a phone field based on key name or data field name
+      const isPhoneField =
+        /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(dataFieldName);
+      // Only format if: it's a phone field AND it's a string AND contains digits (not just "Yes"/"No")
+      if (isPhoneField && typeof value === 'string' && /\d/.test(value)) {
+        return [fieldKey, formatPhoneNumber(value)];
+      }
+      return [fieldKey, value];
+    });
+  };
 
   const continueHandler = () => {
     const values = getValues();
@@ -85,11 +112,14 @@ const Form = () => {
     }
 
     if (!isEmpty) {
+      // Format phone numbers in form entries before storing
+      const formattedEntries = formatPhoneFieldsInEntries(entries, data.name);
+
       formDispatch({
         type: 'ADD-DATA',
         payload: {
           name: data.name,
-          value: entries,
+          value: formattedEntries,
           stepNum,
           answerTitle: data.answerTitle,
           section: data.sectionDescription,
@@ -235,6 +265,7 @@ const Form = () => {
                     errors={formError}
                     inputs={component.inputs}
                     unregister={unregister}
+                    setValue={setValue}
                   />
                 )}
                 {component.type === 'FileUpload' && (

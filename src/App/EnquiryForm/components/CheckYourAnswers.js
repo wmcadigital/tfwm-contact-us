@@ -12,12 +12,148 @@ import Data from '../../ContactUs/newData.json';
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
+  // JSON-schema-like representation derived from `formData`
+  const formDataSchema = {
+    type: 'object',
+    properties: {
+      firstName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's first name"
+            : "The person's first name",
+      },
+      lastName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's last name"
+            : "The person's last name",
+      },
+      emailAddress: {
+        type: 'string',
+        format: 'email',
+        description:
+          formData && formData.email
+            ? formData.email.answerTitle || "The person's email address"
+            : "The person's email address",
+      },
+    },
+  };
+  // Normalize `formData` into a flat object with camelCase keys
+  const toCamel = (str = '') =>
+    String(str)
+      .replace(/[^a-zA-Z0-9 ]+/g, ' ')
+      .trim()
+      .split(/[\s-_]+/)
+      .map((s, i) => (i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1)))
+      .join('');
+
+  // Helper function to format phone numbers with +44
+  const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') return phoneNumber;
+
+    const trimmed = phoneNumber.trim();
+    // If it already starts with +44 or +, return as is
+    if (trimmed.startsWith('+')) return trimmed;
+    // If it starts with 0, replace with +44
+    if (trimmed.startsWith('0')) return `+44${trimmed.substring(1)}`;
+    // Otherwise, prepend +44
+    return `+44${trimmed}`;
+  };
+
+  // Helper function to format value for display if it's a phone field
+  const formatDisplayValue = (value, fieldKey = '', answerTitle = '') => {
+    if (typeof value !== 'string') return value;
+    const isPhoneField =
+      /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(answerTitle);
+    return isPhoneField ? formatPhoneNumber(value) : value;
+  };
+
+  const buildNormalizedData = (data) => {
+    if (!data || typeof data !== 'object') return {};
+
+    return Object.keys(data).reduce((acc, key) => {
+      const item = data[key];
+      if (!item || !Array.isArray(item.value)) return acc;
+
+      // Handle name specially (firstName / lastName)
+      if (/name/i.test(item.answerTitle || key) && item.value.length >= 2) {
+        acc.firstName = item.value[0][1] || acc.firstName;
+        acc.lastName = item.value[1][1] || acc.lastName;
+        return acc;
+      }
+      // Handle email specially
+      if (/email/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        acc.emailAddress = item.value[0][1] || acc.emailAddress;
+        return acc;
+      }
+      // Handle file uploader specially
+      if (/file|upload|document/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        const fileArray = item.value[0][1];
+        if (fileArray && Array.isArray(fileArray) && fileArray.length > 0) {
+          acc.files = fileArray.map((file) => ({
+            name: file.name,
+            type: file.type,
+            content: file, // will be converted to base64 later
+          }));
+        }
+        return acc;
+      }
+
+      item.value.forEach((pair) => {
+        const subKey = pair[0];
+        let val = pair[1];
+        if (!subKey || subKey === 'yes-or-no-skip') return;
+
+        // Format phone numbers with +44
+        // Matches: phone, telephone, mobile, pref-phone, CC-phone-name, CC-pref-phone-name, etc.
+        const isPhoneField =
+          /phone|telephone|mobile/i.test(subKey) ||
+          /phone|telephone|mobile/i.test(item.answerTitle || key);
+        if (isPhoneField && typeof val === 'string') {
+          val = formatPhoneNumber(val);
+        }
+
+        const prop = toCamel(subKey) || toCamel(item.answerTitle || key);
+
+        if (acc[prop]) {
+          if (Array.isArray(acc[prop])) acc[prop].push(val);
+          else acc[prop] = [acc[prop], val];
+        } else {
+          acc[prop] = val;
+        }
+      });
+
+      return acc;
+    }, {});
+  };
+
+  const normalizedDataToBase64 = (data) => {
+    const jsonString = JSON.stringify(data);
+    return btoa(unescape(encodeURIComponent(jsonString)));
+  };
+
+  const normalizedFormData = buildNormalizedData(formData);
+  const normalizedFormData2 = normalizedDataToBase64(normalizedFormData);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
-  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { text } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+
+  // Debug logging for Netlify production issues
+  useEffect(() => {
+    console.log('Debug Info:', {
+      formToLoad,
+      formId,
+      params,
+      dataAvailable: !!Data,
+      dataPages: Data?.pages?.length || 0,
+      matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
+    });
+  }, [formToLoad, formId, params]);
+
+  const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
+  const { emailIndex = '', emailHeader = '', text = '' } = currentPage;
   const [subject, setSubject] = useState('');
   const prevStep = () => {
     formDispatch({
@@ -31,6 +167,7 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
+
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -53,7 +190,8 @@ const CheckYourAnswers = () => {
       ''
     );
 
-    const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    // const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    const base64Content = normalizedDataToBase64(normalizedFormData);
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
@@ -82,18 +220,18 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-    console.log(emailIndex);
-    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
+
+    const postData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        to: emailIndex,
+        to: 8,
         subject: emailHeader,
         body: '{"M":"j"}',
-        bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
+        bodyHtml: normalizedFormData2,
+        from: 'donoreply@tfwm.org.uk',
         files: file ? fileData : [],
         displayName: formData.name
           ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
@@ -237,7 +375,8 @@ const CheckYourAnswers = () => {
                                     ''
                                   ) : (
                                     <>
-                                      {value[1]} <br />
+                                      {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                      <br />
                                     </>
                                   )}
                                 </>
@@ -253,7 +392,8 @@ const CheckYourAnswers = () => {
                                   ''
                                 ) : (
                                   <>
-                                    {value[1]} <br />
+                                    {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                    <br />
                                   </>
                                 )}
                               </>
