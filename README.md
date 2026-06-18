@@ -2,6 +2,11 @@
 
 ## Get started
 
+### Runtime requirements
+
+- Node.js 22 LTS (recommended: v22.22.3 from `.nvmrc`)
+- npm 10+
+
 ### Installation
 
 - Click `Use this template` in the top right hand corner of Github
