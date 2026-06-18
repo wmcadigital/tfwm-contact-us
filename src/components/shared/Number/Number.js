@@ -65,12 +65,12 @@ const Number = ({
         name={name}
         key={name}
         required={required}
-        type={type || 'text'}
+        type={name === 'email' ? 'email' : type || 'text'}
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={register}
-        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.\\-]+\\.[a-z]{2,4}$' : undefined}
+        pattern={name === 'email' ? '[\\w.%+\\-]+@[\\w.\\-]+\\.[a-z]{2,4}$' : undefined}
         maxLength={21}
       />
     </div>

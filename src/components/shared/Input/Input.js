@@ -17,13 +17,14 @@ const Input = ({
   type,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
+  const [patternMismatch, setPatternMismatch] = useState(false);
 
   const inputChageHandler = (event) => {
-    if (event.target.value === '') {
-      setHasError(true);
-    } else {
-      setHasError(false);
-    }
+    const isEmpty = event.target.value === '';
+    const isPatternMismatch =
+      name === 'email' && event.target.validity && event.target.validity.patternMismatch;
+    setHasError(isEmpty || isPatternMismatch);
+    setPatternMismatch(isPatternMismatch);
   };
   useEffect(() => {
     if (errors.includes(name)) {
@@ -32,6 +33,9 @@ const Input = ({
       setHasError(false);
     }
   }, [errors, name]);
+
+  const errorMessage =
+    patternMismatch && name === 'email' ? 'Enter a valid email address' : errorMsg;
 
   return (
     <div
@@ -52,19 +56,19 @@ const Input = ({
           {label2}
         </label>
       )}
-      {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+      {hasError && required && <span className="wmnds-fe-error-message">{errorMessage}</span>}
       <input
         className={`wmnds-fe-input ${hasError && required && 'wmnds-fe-input--error'}`}
         id={name}
         name={name}
         key={name}
         required={required}
-        type={type || 'text'}
+        type={name === 'email' ? 'email' : type || 'text'}
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={register}
-        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.\\-]+\\.[a-z]{2,4}$' : undefined}
+        pattern={name === 'email' ? '[\\w.%+\\-]+@[\\w.\\-]+\\.[a-z]{2,4}$' : undefined}
       />
     </div>
   );
