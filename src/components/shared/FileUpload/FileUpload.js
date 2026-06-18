@@ -94,7 +94,11 @@ FileUpload.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
+};
+
+FileUpload.defaultProps = {
+  defaultValue: '',
 };
 
 export default FileUpload;
