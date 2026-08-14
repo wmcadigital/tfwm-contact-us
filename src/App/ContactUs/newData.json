@@ -3839,37 +3839,14 @@
           "name": "contact-preference",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "name": "CC-pref-email-address",
               "required": true,
-              "options": [
-                {
-                  "name": "CC-pref-phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Phone number For example, 07700900457",
-                      "name": "CC-pref-phone-name",
-                      "type": "text",
-                      "errorMsg": "Enter a valid phone number"
-                    }
-                  ]
-                },
-                {
-                  "name": "CC-pref-email",
-                  "option": "Email",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-pref-email-address",
-                      "type": "text",
-                      "errorMsg": "Enter a valid email address"
-                    }
-                  ]
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "errorMsg": "Enter a valid email address"
             }
           ]
         }
@@ -4456,37 +4433,14 @@
           "name": "contact-preference",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "name": "CC-pref-email-address",
               "required": true,
-              "options": [
-                {
-                  "name": "CC-pref-phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Phone number For example, 07700900457",
-                      "name": "CC-pref-phone-name",
-                      "type": "text",
-                      "errorMsg": "Enter a valid phone number"
-                    }
-                  ]
-                },
-                {
-                  "name": "CC-pref-email",
-                  "option": "Email",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-pref-email-address",
-                      "type": "text",
-                      "errorMsg": "Enter a valid email address"
-                    }
-                  ]
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "errorMsg": "Enter a valid email address"
             }
           ]
         }

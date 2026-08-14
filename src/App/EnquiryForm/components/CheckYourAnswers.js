@@ -67,7 +67,7 @@ const CheckYourAnswers = () => {
     if (typeof value !== 'string') return value;
     const isPhoneField =
       /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(answerTitle);
-    return isPhoneField ? formatPhoneNumber(value) : value;
+    return isPhoneField && /\d/.test(value) ? formatPhoneNumber(value) : value;
   };
 
   const buildNormalizedData = (data) => {
@@ -78,14 +78,31 @@ const CheckYourAnswers = () => {
       if (!item || !Array.isArray(item.value)) return acc;
 
       // Handle name specially (firstName / lastName)
-      if (/name/i.test(item.answerTitle || key) && item.value.length >= 2) {
-        acc.firstName = item.value[0][1] || acc.firstName;
-        acc.lastName = item.value[1][1] || acc.lastName;
+      const nameKeys = item.value.map((pair) => pair[0]);
+      const isNameSection =
+        nameKeys.some((k) => /^first[-_]?name$/i.test(k)) &&
+        nameKeys.some((k) => /^last[-_]?name$/i.test(k));
+      if (isNameSection && item.value.length >= 2) {
+        const firstNamePair = item.value.find((pair) => /^first[-_]?name$/i.test(pair[0]));
+        const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(pair[0]));
+        acc.firstName = (firstNamePair && firstNamePair[1]) || acc.firstName;
+        acc.lastName = (lastNamePair && lastNamePair[1]) || acc.lastName;
         return acc;
       }
       // Handle email specially
-      if (/email/i.test(item.answerTitle || key) && item.value.length >= 1) {
-        acc.emailAddress = item.value[0][1] || acc.emailAddress;
+      const emailKeyMatch = (pair) => {
+        const k = pair[0].replace(/^CC-/i, '');
+        return /email/i.test(k) && !/^pref-?email$/i.test(k);
+      };
+      if (
+        (/email/i.test(item.answerTitle || key) || item.value.some(emailKeyMatch)) &&
+        item.value.length >= 1
+      ) {
+        const emailPair =
+          item.value.find(emailKeyMatch) || item.value.find((pair) => pair[0] !== 'yes-or-no-skip');
+        if (emailPair) {
+          acc.emailAddress = emailPair[1] || acc.emailAddress;
+        }
         return acc;
       }
       // Handle file uploader specially
@@ -111,11 +128,15 @@ const CheckYourAnswers = () => {
         const isPhoneField =
           /phone|telephone|mobile/i.test(subKey) ||
           /phone|telephone|mobile/i.test(item.answerTitle || key);
-        if (isPhoneField && typeof val === 'string') {
+        if (isPhoneField && typeof val === 'string' && /\d/.test(val)) {
           val = formatPhoneNumber(val);
         }
 
-        const prop = toCamel(subKey) || toCamel(item.answerTitle || key);
+        // Strip the "CC-" prefix (used for "updated" details on pass forms)
+        // so the API receives e.g. firstName, not ccFirstName.
+        const cleanSubKey = subKey.replace(/^CC-/i, '');
+
+        const prop = toCamel(cleanSubKey) || toCamel(item.answerTitle || key);
 
         if (acc[prop]) {
           if (Array.isArray(acc[prop])) acc[prop].push(val);
