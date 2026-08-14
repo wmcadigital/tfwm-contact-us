@@ -82,18 +82,18 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-    console.log(emailIndex);
-    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
+    // console.log(emailIndex);
+    const postData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        to: emailIndex,
+        to: 7,
         subject: emailHeader,
         body: '{"M":"j"}',
         bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
+        from: 'donoreply@tfwm.org.uk',
         files: file ? fileData : [],
         displayName: formData.name
           ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
