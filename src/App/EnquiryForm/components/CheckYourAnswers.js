@@ -83,31 +83,31 @@ const CheckYourAnswers = () => {
       return answerObject;
     });
     // console.log(emailIndex);
-    const postData = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: 7,
-        subject: emailHeader,
-        body: '{"M":"j"}',
-        bodyHtml: base64Content,
-        from: 'donoreply@tfwm.org.uk',
-        files: file ? fileData : [],
-        displayName: formData.name
-          ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
-          : 'No Name',
-      }),
-    }).then((response) => {
-      // If the response is successful(200: OK)
-      if (response.status === 200) {
-        formDispatch({
-          type: 'CHANGE-PAGE',
-          payload: { page: 'SUCCESS', stepNum },
-        });
-      }
-    });
+    let response;
+    try {
+      response = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 7,
+          subject: emailHeader,
+          body: '{"M":"j"}',
+          bodyHtml: base64Content,
+          from: 'donoreply@tfwm.org.uk',
+          files: file ? fileData : [],
+          displayName: formData.name
+            ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+            : 'No Name',
+        }),
+      });
+    } catch (e) {
+      return false;
+    }
+
+    // Only succeed if the response is successful (200: OK)
+    return response.status === 200;
   };
 
   const checkboxHandler = async () => {
@@ -117,13 +117,16 @@ const CheckYourAnswers = () => {
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
     } else {
-      await sendEmailHandler();
-
-      formDispatch({
-        type: 'CHANGE-PAGE',
-        payload: { page: 'SUCCESS', stepNum },
-      });
-      setErrorMsg('');
+      const success = await sendEmailHandler();
+      if (success) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'SUCCESS', stepNum },
+        });
+        setErrorMsg('');
+      } else {
+        setErrorMsg('Sorry, there was a problem sending your form. Please try again.');
+      }
     }
   };
 
@@ -295,8 +298,7 @@ const CheckYourAnswers = () => {
         </p>
 
         <div className="wmnds-fe-group">
-          <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
-            {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+          <div className="wmnds-fe-checkboxes">
             {params === 'step-update-DD' && (
               <div>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
@@ -391,6 +393,7 @@ const CheckYourAnswers = () => {
             </label>
           </div>
         </div>
+        {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
         <button className="wmnds-btn wmnds-btn--start" type="button" onClick={checkboxHandler}>
           Accept and send
           <svg className="wmnds-btn__icon wmnds-btn__icon--right ">

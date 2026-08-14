@@ -18,7 +18,10 @@ const Input = ({
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
-  const [registerRef, setRegisterRef] = useState(required);
+  const [registerRef, setRegisterRef] = useState(
+    required ||
+      (Array.isArray(defaultValue) && defaultValue[1] !== undefined && defaultValue[1] !== '')
+  );
   const inputChageHandler = (event) => {
     if (!required && event.target.value) {
       setRegisterRef(true);

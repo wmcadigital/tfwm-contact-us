@@ -121,6 +121,7 @@ const Address = ({
               label={input.label}
               label2={input.label2}
               name={input.name}
+              defaultValue={input.defaultValue}
               errorMsg={input.errorMsg}
               required={input.required}
               unregister={unregister}
