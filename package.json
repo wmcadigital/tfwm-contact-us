@@ -10,7 +10,7 @@
   },
   "copyright": "WMCA",
   "scripts": {
-    "start": "NODE_OPTIONS=--openssl-legacy-provider react-app-rewired start",
+    "start": "react-app-rewired start",
     "lint:styles": "sass-lint '**/*.scss'",
     "update-packages": "ncu",
     "localBuild": "react-app-rewired --openssl-legacy-provider build",
