@@ -73,9 +73,60 @@ const CheckYourAnswers = () => {
   const buildNormalizedData = (data) => {
     if (!data || typeof data !== 'object') return {};
 
+    // Aliases for the "change" questions: when answered "Yes", the section's data
+    // is sent under the alias (e.g. update-name -> changeName) instead of the
+    // generic keys.
+    const CHANGE_ALIASES = {
+      'update-name': 'changeName',
+      'update-address': 'changeAddress',
+      'update-email': 'changeEmail',
+      'update-phone': 'changePhone',
+    };
+    const isYes = (item) =>
+      Array.isArray(item.value) &&
+      item.value.some((pair) => pair[0] === 'yes-or-no-skip' && pair[1] === 'Yes');
+    const changedSections = Object.keys(data).reduce((acc, key) => {
+      if (CHANGE_ALIASES[key] && isYes(data[key])) acc[key] = CHANGE_ALIASES[key];
+      return acc;
+    }, {});
+
     return Object.keys(data).reduce((acc, key) => {
       const item = data[key];
       if (!item || !Array.isArray(item.value)) return acc;
+
+      const stripCC = (k) => k.replace(/^CC-/i, '');
+
+      // "Change" questions answered "Yes" are emitted under their alias
+      if (changedSections[key]) {
+        if (key === 'update-name') {
+          const firstNamePair = item.value.find((pair) =>
+            /^first[-_]?name$/i.test(stripCC(pair[0]))
+          );
+          const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(stripCC(pair[0])));
+          if (firstNamePair && lastNamePair && firstNamePair[1] && lastNamePair[1]) {
+            acc.changeName = { firstName: firstNamePair[1], lastName: lastNamePair[1] };
+          }
+        } else if (key === 'update-email') {
+          const emailPair = item.value.find((pair) =>
+            /^email[-_]?address$/i.test(stripCC(pair[0]))
+          );
+          if (emailPair && emailPair[1]) acc.changeEmail = emailPair[1];
+        } else if (key === 'update-phone') {
+          const phonePair = item.value.find((pair) => /^phone[-_]?name$/i.test(stripCC(pair[0])));
+          if (phonePair && phonePair[1]) acc.changePhone = formatPhoneNumber(phonePair[1]);
+        }
+        return acc;
+      }
+
+      // The updated address is collected in the separate `address` section
+      if (key === 'address' && changedSections['update-address']) {
+        const addr = {};
+        item.value.forEach((pair) => {
+          if (pair[0]) addr[toCamel(pair[0])] = pair[1];
+        });
+        if (Object.keys(addr).length > 0) acc.changeAddress = addr;
+        return acc;
+      }
 
       // Handle name specially (firstName / lastName)
       const nameKeys = item.value.map((pair) => pair[0]);
