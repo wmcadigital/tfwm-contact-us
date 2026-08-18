@@ -1379,7 +1379,7 @@
         }
       ]
     },
-    { 
+    {
       "id": "step-3",
       "currentStepId": "step-west-midlands-bus-scheme",
       "prevStepId": "step-swift-tickets-passes",
@@ -1542,7 +1542,7 @@
         }
       ]
     },
-    { 
+    {
       "id": "step-3",
       "currentStepId": "step-close-my-swift-account",
       "prevStepId": "step-swift-tickets-passes",
@@ -2868,9 +2868,11 @@
         ],
         "warningText": "10",
         "details5": "You can also call the following number to:",
-        "detailsList": ["get more information",
+        "detailsList": [
+          "get more information",
           "register for the service",
-          "book a journey"],
+          "book a journey"
+        ],
         "details6": "If you still need help with West Midlands Bus On Demand, <a href='#?step-Ring-journey' id='formId'>fill in this form</a>."
       },
       "emailIndex": 13,
@@ -3612,6 +3614,50 @@
       "formComponents": [
         {
           "sectionNum": 1,
+          "sectionDescription": "Your details",
+          "title": "What is your name?",
+          "answerTitle": "Current name",
+          "name": "current-name",
+          "components": [
+            {
+              "type": "Input",
+              "label": "First name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "Enter your first name"
+            },
+            {
+              "type": "Input",
+              "label": "Last name",
+              "required": true,
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Enter your last name"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your details",
+          "title": "What is your email?",
+          "answerTitle": "Current email",
+          "name": "current-email",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "required": true,
+              "id": "1",
+              "name": "email-address",
+              "errorMsg": "Enter a valid email address"
+            }
+          ]
+        },
+        {
+          "sectionNum": 3,
           "sectionDescription": "Your travel pass",
           "title": "What is your concessionary pass number?",
           "answerTitle": "Concessionary pass number",
@@ -3628,7 +3674,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 4,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update the name on your concessionary pass?",
           "answerTitle": "Your updated name",
@@ -3672,7 +3718,7 @@
           ]
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your address?",
           "answerTitle": "Your updated address",
@@ -3702,7 +3748,7 @@
           ]
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your contact details",
           "title": "What is your updated address?",
           "answerTitle": "Address",
@@ -3756,7 +3802,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 7,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your email address?",
           "answerTitle": "Your updated email address",
@@ -3794,7 +3840,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 8,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your phone number?",
           "answerTitle": "Your updated phone number",
@@ -3828,25 +3874,6 @@
                 }
               ],
               "id": "1"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
-          "name": "contact-preference",
-          "components": [
-            {
-              "type": "Input",
-              "label": "Email address, for example",
-              "label2": "name@example.com",
-              "inputType": "email",
-              "name": "CC-pref-email-address",
-              "required": true,
-              "id": "1",
-              "errorMsg": "Enter a valid email address"
             }
           ]
         }
@@ -4206,6 +4233,50 @@
       "formComponents": [
         {
           "sectionNum": 1,
+          "sectionDescription": "Your details",
+          "title": "What is your name?",
+          "answerTitle": "Current name",
+          "name": "current-name",
+          "components": [
+            {
+              "type": "Input",
+              "label": "First name",
+              "required": true,
+              "id": "1",
+              "name": "first-name",
+              "errorMsg": "Enter your first name"
+            },
+            {
+              "type": "Input",
+              "label": "Last name",
+              "required": true,
+              "id": "2",
+              "name": "last-name",
+              "errorMsg": "Enter your last name"
+            }
+          ]
+        },
+        {
+          "sectionNum": 2,
+          "sectionDescription": "Your details",
+          "title": "What is your email?",
+          "answerTitle": "Current email",
+          "name": "current-email",
+          "components": [
+            {
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "required": true,
+              "id": "1",
+              "name": "email-address",
+              "errorMsg": "Enter a valid email address"
+            }
+          ]
+        },
+        {
+          "sectionNum": 3,
           "sectionDescription": "Your travel pass",
           "title": "What is your concessionary pass number?",
           "answerTitle": "Concessionary pass number",
@@ -4222,7 +4293,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 4,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update the name on your concessionary pass?",
           "answerTitle": "Your updated name",
@@ -4266,7 +4337,7 @@
           ]
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your address?",
           "answerTitle": "Your updated address",
@@ -4296,7 +4367,7 @@
           ]
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your contact details",
           "title": "What is your updated address?",
           "answerTitle": "Address",
@@ -4350,7 +4421,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 7,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your email address?",
           "answerTitle": "Your updated email address",
@@ -4388,7 +4459,7 @@
           ]
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 8,
           "sectionDescription": "Your travel pass",
           "title": "Do you need to update your phone number?",
           "answerTitle": "Your updated phone number",
@@ -4422,25 +4493,6 @@
                 }
               ],
               "id": "1"
-            }
-          ]
-        },
-        {
-          "sectionNum": 2,
-          "sectionDescription": "About you",
-          "title": "How would you like to be contacted?",
-          "answerTitle": "Contact preference",
-          "name": "contact-preference",
-          "components": [
-            {
-              "type": "Input",
-              "label": "Email address, for example",
-              "label2": "name@example.com",
-              "inputType": "email",
-              "name": "CC-pref-email-address",
-              "required": true,
-              "id": "1",
-              "errorMsg": "Enter a valid email address"
             }
           ]
         }

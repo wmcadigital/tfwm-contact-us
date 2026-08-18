@@ -63,6 +63,8 @@ const Form = () => {
     shouldUseNativeValidation: true,
   });
 
+  const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
   const [formError, setFormError] = useState([]);
 
   const continueHandler = () => {
@@ -71,7 +73,13 @@ const Form = () => {
     const entries = Object.entries(values);
 
     const isEmpty = Object.keys(values).length === 0;
-    const errors = entries.filter((val) => !val[1]).map((val) => val[0]);
+    const errors = entries
+      .filter((val) => {
+        if (!val[1]) return true;
+        if (/email/i.test(val[0]) && val[1] !== '' && !EMAIL_REGEX.test(val[1])) return true;
+        return false;
+      })
+      .map((val) => val[0]);
 
     setFormError(errors);
 

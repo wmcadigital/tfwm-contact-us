@@ -84,7 +84,7 @@ const CheckYourAnswers = () => {
     };
     const isYes = (item) =>
       Array.isArray(item.value) &&
-      item.value.some((pair) => pair[0] === 'yes-or-no-skip' && pair[1] === 'Yes');
+      item.value.some((pair) => /^yes-or-no(-skip)?$/.test(pair[0]) && pair[1] === 'Yes');
     const changedSections = Object.keys(data).reduce((acc, key) => {
       if (CHANGE_ALIASES[key] && isYes(data[key])) acc[key] = CHANGE_ALIASES[key];
       return acc;
@@ -103,9 +103,8 @@ const CheckYourAnswers = () => {
             /^first[-_]?name$/i.test(stripCC(pair[0]))
           );
           const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(stripCC(pair[0])));
-          if (firstNamePair && lastNamePair && firstNamePair[1] && lastNamePair[1]) {
-            acc.changeName = { firstName: firstNamePair[1], lastName: lastNamePair[1] };
-          }
+          if (firstNamePair && firstNamePair[1]) acc.newFirstName = firstNamePair[1];
+          if (lastNamePair && lastNamePair[1]) acc.newLastName = lastNamePair[1];
         } else if (key === 'update-email') {
           const emailPair = item.value.find((pair) =>
             /^email[-_]?address$/i.test(stripCC(pair[0]))

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 import Radio from '../Radios/Radio/Radio';
@@ -18,7 +18,26 @@ const YesOrNo = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  const [checkedRadio, setCheckedRadio] = useState();
+  const getSavedValue = (key) => {
+    if (Array.isArray(defaultValue)) {
+      const pair = defaultValue.find((p) => p[0] === key);
+      return pair ? pair[1] : '';
+    }
+    return '';
+  };
+
+  const savedYesNo = getSavedValue(
+    `yes-or-no${options[0].inputLabel1 || options[0].inputs ? '' : '-skip'}`
+  );
+
+  const getInitialRadio = () => {
+    if (savedYesNo === 'Yes') return 0;
+    if (savedYesNo === 'No') return 1;
+    return undefined;
+  };
+
+  const [checkedRadio, setCheckedRadio] = useState(getInitialRadio());
+  const isFirstRender = useRef(true);
   const checkBoxesChangeHandler = (e, idx) => {
     if (e.target.value) {
       setHasError(false);
@@ -43,6 +62,10 @@ const YesOrNo = ({
   }, [errors]);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     setCheckedRadio(undefined);
   }, [name]);
 
@@ -66,6 +89,7 @@ const YesOrNo = ({
                 id={option.name}
                 value={option.option}
                 register={register}
+                defaultChecked={savedYesNo === option.option}
                 onChange={(e) => checkBoxesChangeHandler(e, idx)}
               />
               {(option.inputLabel1 || option.inputs) && checkedRadio === 0 && (
@@ -95,6 +119,7 @@ const YesOrNo = ({
                               label={input.inputLabel1}
                               label2={input.inputLabel2}
                               name={input.name}
+                              defaultValue={[input.name, getSavedValue(input.name)]}
                               errorMsg={input.errorMsg}
                               required={option.required}
                               unregister={unregister}

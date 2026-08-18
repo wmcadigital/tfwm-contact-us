@@ -77,7 +77,7 @@ const Number = ({
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
-        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$' : undefined}
+        pattern={/email/i.test(name) ? '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$' : undefined}
         maxLength={21}
       />
     </div>

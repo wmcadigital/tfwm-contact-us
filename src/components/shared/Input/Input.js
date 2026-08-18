@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
+const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
 const Input = ({
   label = '',
   label2 = '',
@@ -12,14 +14,17 @@ const Input = ({
   required,
   register,
   unregister,
-
+  emailValidation = false,
   errors,
   type,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
   const inputChageHandler = (event) => {
-    if (event.target.value === '') {
+    const { value } = event.target;
+    if (value === '') {
+      setHasError(true);
+    } else if (emailValidation && !EMAIL_REGEX.test(value)) {
       setHasError(true);
     } else {
       setHasError(false);
@@ -64,7 +69,7 @@ const Input = ({
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={register}
-        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$' : undefined}
+        pattern={/email/i.test(name) ? '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$' : undefined}
       />
     </div>
   );
