@@ -228,17 +228,17 @@
     <!-- Ajax SVG in, SVGS are referenced in app (Icon component) -->
     <!-- Ajax SVGs from WMN Design System -->
     <script>
-      const ajax = new XMLHttpRequest();
-      ajax.open(
+      const icons = new XMLHttpRequest();
+      icons.open(
         'GET',
         'assets/img/wmnds-icons.min.svg',
         true
       );
-      ajax.send();
-      ajax.onload = function () {
+      icons.send();
+      icons.onload = function () {
         const div = document.createElement('div');
         div.style.display = 'none';
-        div.innerHTML = ajax.responseText;
+        div.innerHTML = icons.responseText;
         document.body.insertBefore(div, document.body.childNodes[0]);
       };
     </script>

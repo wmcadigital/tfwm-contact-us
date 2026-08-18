@@ -77,7 +77,7 @@ const Number = ({
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
-        pattern={name === 'email' && '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'}
+        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$' : undefined}
         maxLength={21}
       />
     </div>
@@ -90,7 +90,11 @@ Number.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.objectOf.isRequired,
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+};
+
+Number.defaultProps = {
+  defaultValue: '',
 };
 
 export default Number;

@@ -225,7 +225,8 @@ const CheckYourAnswers = () => {
   }, [formToLoad, formId, params]);
 
   const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
-  const { emailIndex = '', emailHeader = '', text = '' } = currentPage;
+  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+  const { emailHeader = '', text = '' } = currentPage;
   const [subject, setSubject] = useState('');
   const prevStep = () => {
     formDispatch({
@@ -294,6 +295,7 @@ const CheckYourAnswers = () => {
     });
 
     let response;
+    console.log(emailIndex);
     try {
       response = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
         method: 'POST',
@@ -373,12 +375,12 @@ const CheckYourAnswers = () => {
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
         <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (
-            <>
+            <React.Fragment key={answers[0]}>
               <h3>{answers[0]}</h3>
               <table className="wmnds-table wmnds-table--without-header">
                 <tbody>
                   {answers[1].map((data) => (
-                    <tr>
+                    <tr key={data.answerTitle}>
                       <th
                         scope="row"
                         data-header="Header 1"
@@ -444,7 +446,7 @@ const CheckYourAnswers = () => {
                           data.value[0][0] !== 'postcode' && (
                             <>
                               {data.value.map((value) => (
-                                <>
+                                <React.Fragment key={value[0]}>
                                   {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
                                     ''
                                   ) : (
@@ -453,14 +455,14 @@ const CheckYourAnswers = () => {
                                       <br />
                                     </>
                                   )}
-                                </>
+                                </React.Fragment>
                               ))}
                             </>
                           )}
                         {data.answerTitle === 'Contact preference' && (
                           <>
                             {data.value.map((value) => (
-                              <>
+                              <React.Fragment key={value[0]}>
                                 {value[0] !== 'CC-pref-phone-name' &&
                                 value[0] !== 'CC-pref-email-address' ? (
                                   ''
@@ -470,7 +472,7 @@ const CheckYourAnswers = () => {
                                     <br />
                                   </>
                                 )}
-                              </>
+                              </React.Fragment>
                             ))}
                           </>
                         )}
@@ -481,9 +483,6 @@ const CheckYourAnswers = () => {
                           verticalAlign: 'top',
                           width: 70,
                           textAlign: 'right',
-                          '@media (max-width: 768)': {
-                            textAlign: 'left',
-                          },
                         }}
                       >
                         <button
@@ -498,7 +497,7 @@ const CheckYourAnswers = () => {
                   ))}
                 </tbody>
               </table>
-            </>
+            </React.Fragment>
           ))}
         </div>
 
