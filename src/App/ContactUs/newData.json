@@ -3669,7 +3669,7 @@
               "required": true,
               "id": "1",
               "name": "pass-number",
-              "errorMsg": "Pass number is required"
+              "errorMsg": "Pass number is invalid"
             }
           ]
         },
@@ -4288,7 +4288,7 @@
               "required": true,
               "id": "1",
               "name": "pass-number",
-              "errorMsg": "Pass number is required"
+              "errorMsg": "Pass number is invalid"
             }
           ]
         },

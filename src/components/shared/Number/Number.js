@@ -17,17 +17,23 @@ const Number = ({
   type,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
+  const [dynamicErrorMsg, setDynamicErrorMsg] = useState(errorMsg);
 
   const [registerRef, setRegisterRef] = useState(required);
   const inputChageHandler = (event) => {
-    if (!required && event.target.value) {
+    const { value } = event.target;
+    if (!required && value) {
       setRegisterRef(true);
     }
-    if (!required && !event.target.value) {
+    if (!required && !value) {
       setRegisterRef(false);
     }
-    if (event.target.value === '') {
+    if (value === '') {
       setHasError(true);
+      setDynamicErrorMsg(errorMsg);
+    } else if (name === 'pass-number' && /^6335970112/.test(value)) {
+      setHasError(true);
+      setDynamicErrorMsg('Please Contact National Express: ');
     } else {
       setHasError(false);
     }
@@ -42,6 +48,11 @@ const Number = ({
   useEffect(() => {
     if (errors.includes(name)) {
       setHasError(true);
+      if (name === 'pass-number') {
+        const inputEl = document.getElementById(name);
+        const val = inputEl ? inputEl.value : '';
+        setDynamicErrorMsg(/^6335970112/.test(val) ? 'Please Contact National Express: ' : errorMsg);
+      }
     } else {
       setHasError(false);
     }
@@ -65,7 +76,7 @@ const Number = ({
           {label2}
         </label>
       )}
-      {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+      {hasError && required && <span className="wmnds-fe-error-message">{dynamicErrorMsg}</span>}
       <input
         className={`wmnds-fe-input ${hasError && required && 'wmnds-fe-input--error'}`}
         id={name}
