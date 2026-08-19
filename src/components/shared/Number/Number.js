@@ -31,9 +31,9 @@ const Number = ({
     if (value === '') {
       setHasError(true);
       setDynamicErrorMsg(errorMsg);
-    } else if (name === 'pass-number' && /^6335970112/.test(value)) {
+    } else if (name === 'pass-number' && /^6335970112/.test(value.replace(/\s/g, ''))) {
       setHasError(true);
-      setDynamicErrorMsg('Please Contact National Express: ');
+      setDynamicErrorMsg('Please Contact National Express');
     } else {
       setHasError(false);
     }
@@ -52,7 +52,7 @@ const Number = ({
         const inputEl = document.getElementById(name);
         const val = inputEl ? inputEl.value : '';
         setDynamicErrorMsg(
-          /^6335970112/.test(val) ? 'Please Contact National Express: ' : errorMsg
+          /^6335970112/.test(val.replace(/\s/g, '')) ? 'Please Contact National Express' : errorMsg
         );
       }
     } else {

@@ -77,7 +77,11 @@ const Form = () => {
       .filter((val) => {
         if (!val[1]) return true;
         if (/email/i.test(val[0]) && val[1] !== '' && !EMAIL_REGEX.test(val[1])) return true;
-        if (val[0] === 'pass-number' && val[1] !== '' && !/^6335970(107|114)/.test(val[1]))
+        if (
+          val[0] === 'pass-number' &&
+          val[1] !== '' &&
+          !/^6335970(107|114)\d{8}$/.test(val[1].replace(/\s/g, ''))
+        )
           return true;
         return false;
       })
