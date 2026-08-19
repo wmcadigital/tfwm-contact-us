@@ -248,10 +248,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -267,10 +268,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your Swift card and photocard enquiry?",
           "answerTitle": "What is your Swift card and photocard enquiry?",
@@ -282,10 +284,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -300,10 +303,11 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Do you have a Swift card?",
           "answerTitle": "Swift card",
@@ -333,10 +337,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your enquiry",
           "title": "Do you have a Direct Debit number?",
           "answerTitle": "Direct debit",
@@ -367,7 +372,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 6
         }
       ]
     },
@@ -1072,7 +1078,9 @@
                 ]
               }
             ]
-          ]
+          ],
+          "sectionNum": 1,
+          "sectionTotal": 1
         }
       ]
     },
@@ -1116,10 +1124,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1135,10 +1144,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Do you have a Direct Debit number?",
           "answerTitle": "Direct Debit",
@@ -1169,10 +1179,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "What is your Direct Debit enquiry about?",
           "answerTitle": "What is your Direct Debit enquiry about?",
@@ -1184,10 +1195,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -1202,7 +1214,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -1262,10 +1275,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1281,10 +1295,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your corporate ticketing enquiry about?",
           "answerTitle": "What is your corporate ticketing enquiry about?",
@@ -1296,7 +1311,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 3
         }
       ]
     },
@@ -1341,10 +1357,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1360,10 +1377,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your Workwise enquiry about?",
           "answerTitle": "What is your Workwise enquiry about?",
@@ -1375,7 +1393,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 3
         }
       ]
     },
@@ -1420,10 +1439,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1439,10 +1459,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Do you have a Swift card?",
           "answerTitle": "Swift card",
@@ -1472,10 +1493,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Do you have a Swift account number?",
           "answerTitle": "Swift account",
@@ -1505,10 +1527,11 @@
               ],
               "id": "2"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Voucher Code",
           "answerTitle": "Voucher Code",
@@ -1523,10 +1546,11 @@
               "name": "Voucher Code",
               "errorMsg": "Voucher is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your enquiry",
           "title": "What is your enquiry?",
           "answerTitle": "Your enquiry",
@@ -1538,7 +1562,8 @@
               "id": "4",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 6
         }
       ]
     },
@@ -1584,10 +1609,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email address?",
           "answerTitle": "Email",
@@ -1603,10 +1629,11 @@
               "name": "email",
               "errorMsg": "Email is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Please enter your Swift card or account number",
           "answerTitle": "Swift card / Account number",
@@ -1621,10 +1648,11 @@
               "name": "swift-card-number",
               "errorMsg": "Swift card number / Account number is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Please enter any other relevant comments",
           "answerTitle": "Relevant comments",
@@ -1635,7 +1663,8 @@
               "id": "1",
               "name": "relevant-comments"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -1680,10 +1709,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1699,10 +1729,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your app enquiry?",
           "answerTitle": "Your app enquiry",
@@ -1714,10 +1745,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -1732,7 +1764,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -1817,10 +1850,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -1836,10 +1870,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What was the date and time of the issue?",
           "answerTitle": "What was the date and time of the issue?",
@@ -1853,10 +1888,11 @@
               "id": "1",
               "name": "date"
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Where did the issue happen?",
           "answerTitle": "Where did the issue happen?",
@@ -1901,10 +1937,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Who was the bus company?",
           "answerTitle": "Bus company",
@@ -1939,10 +1976,11 @@
                 "I don't know the bus company"
               ]
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your enquiry",
           "title": "Do you know the service number?",
           "answerTitle": "Service number",
@@ -1973,10 +2011,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 7
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 7,
           "sectionDescription": "Your enquiry",
           "title": "Is there any other information to add to your enquiry?",
           "answerTitle": "Is there any other information to add to your enquiry?",
@@ -1988,7 +2027,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 7
         }
       ]
     },
@@ -2059,10 +2099,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2078,10 +2119,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What was the date and time of the issue?",
           "answerTitle": "What was the date and time of the issue?",
@@ -2095,10 +2137,11 @@
               "id": "1",
               "name": "date"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Where did the issue happen?",
           "answerTitle": "Where did the issue happen?",
@@ -2144,10 +2187,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Who was the train company?",
           "answerTitle": "Operator",
@@ -2170,10 +2214,11 @@
                 "I don't know the train company"
               ]
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your enquiry",
           "title": "Is there any other information to add to your enquiry?",
           "answerTitle": "Is there any other information to add to your enquiry?",
@@ -2185,7 +2230,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 6
         }
       ]
     },
@@ -2249,10 +2295,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2268,10 +2315,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Is your enquiry about a specific park and ride location?",
           "answerTitle": "Your park and ride enquiry",
@@ -2349,10 +2397,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "What is your park and ride enquiry?",
           "answerTitle": "Your park and ride enquiry",
@@ -2364,10 +2413,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -2382,7 +2432,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -2426,10 +2477,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2445,10 +2497,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your sprint bus enquiry?",
           "answerTitle": "Your sprint bus enquiry",
@@ -2460,10 +2513,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -2478,7 +2532,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -2570,10 +2625,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2589,10 +2645,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Is your enquiry about a specific cycle storage location?",
           "answerTitle": "Specific cycle storage location?",
@@ -2620,10 +2677,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Which cycle storage location is your enquiry about?",
           "answerTitle": "Cycle storage location",
@@ -2677,10 +2735,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "What is your cycle storage enquiry?",
           "answerTitle": "Your cycle storage enquiry",
@@ -2692,10 +2751,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 6
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 6,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -2710,7 +2770,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 6
         }
       ]
     },
@@ -2754,10 +2815,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2773,10 +2835,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your cycling enquiry?",
           "answerTitle": "Your cycling enquiry",
@@ -2788,10 +2851,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -2806,7 +2870,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -2906,10 +2971,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -2925,10 +2991,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your enquiry?",
           "answerTitle": "Your enquiry",
@@ -2940,10 +3007,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -2958,7 +3026,8 @@
               "name": "supporting-documents",
               "errorMsg": "Document is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -3109,10 +3178,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -3128,10 +3198,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 3
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your feedback?",
           "answerTitle": "Your feedback",
@@ -3143,7 +3214,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 3
         }
       ]
     },
@@ -3186,10 +3258,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -3205,10 +3278,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What problem would you like to report?",
           "answerTitle": "What problem would you like to report?",
@@ -3220,10 +3294,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -3238,7 +3313,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -3363,10 +3439,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -3382,10 +3459,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your paper ticket enquiry about?",
           "answerTitle": "What is your paper ticket enquiry about?",
@@ -3397,10 +3475,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -3415,7 +3494,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     },
@@ -3462,10 +3542,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -3481,10 +3562,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 3,
           "sectionDescription": "About you",
           "title": "What is your address?",
           "answerTitle": "Address",
@@ -3535,10 +3617,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Do you have an olders person’s pass?",
           "answerTitle": "Older person’s pass",
@@ -3570,10 +3653,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "What assistance do you require with your older person's pass application?",
           "answerTitle": "What assistance do you require?",
@@ -3585,7 +3669,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -3635,7 +3720,8 @@
               "name": "last-name",
               "errorMsg": "Enter your last name"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 2,
@@ -3654,7 +3740,8 @@
               "name": "email-address",
               "errorMsg": "Enter a valid email address"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 3,
@@ -3671,7 +3758,8 @@
               "name": "pass-number",
               "errorMsg": "Pass number is invalid"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 4,
@@ -3715,7 +3803,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 5,
@@ -3745,7 +3834,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 6,
@@ -3799,7 +3889,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 7,
@@ -3837,7 +3928,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 8,
@@ -3875,7 +3967,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         }
       ]
     },
@@ -3948,10 +4041,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -3967,10 +4061,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 3,
           "sectionDescription": "About you",
           "title": "What is your address?",
           "answerTitle": "Address",
@@ -4021,10 +4116,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Do you have an olders person’s pass?",
           "answerTitle": "Older person’s pass",
@@ -4056,10 +4152,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "What assistance do you require with your older person's pass application?",
           "answerTitle": "What assistance do you require?",
@@ -4071,7 +4168,8 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -4117,10 +4215,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -4136,10 +4235,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Do you already have a disabled person’s pass?",
           "answerTitle": "Disabled person’s pass",
@@ -4171,10 +4271,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "What assistance do you require with your disabled person’s pass application?",
           "answerTitle": "What assistance do you require?",
@@ -4186,10 +4287,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -4204,7 +4306,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -4254,7 +4357,8 @@
               "name": "last-name",
               "errorMsg": "Enter your last name"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 2,
@@ -4273,7 +4377,8 @@
               "name": "email-address",
               "errorMsg": "Enter a valid email address"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 3,
@@ -4290,7 +4395,8 @@
               "name": "pass-number",
               "errorMsg": "Pass number is invalid"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 4,
@@ -4334,7 +4440,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 5,
@@ -4364,7 +4471,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 6,
@@ -4418,7 +4526,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 7,
@@ -4456,7 +4565,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         },
         {
           "sectionNum": 8,
@@ -4494,7 +4604,8 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 8
         }
       ]
     },
@@ -4566,10 +4677,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -4585,10 +4697,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "Do you already have a disabled person’s pass?",
           "answerTitle": "Disabled person’s pass",
@@ -4620,10 +4733,11 @@
               ],
               "id": "1"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "What assistance do you require with your disabled person’s pass application?",
           "answerTitle": "What assistance do you require?",
@@ -4635,10 +4749,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 5
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 5,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -4653,7 +4768,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 5
         }
       ]
     },
@@ -4697,10 +4813,11 @@
               "name": "last-name",
               "errorMsg": "Last name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 1,
+          "sectionNum": 2,
           "sectionDescription": "About you",
           "title": "What is your email?",
           "answerTitle": "Email",
@@ -4716,10 +4833,11 @@
               "name": "email",
               "errorMsg": "Email name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 3,
           "sectionDescription": "Your enquiry",
           "title": "What is your enquiry?",
           "answerTitle": "Your enquiry",
@@ -4731,10 +4849,11 @@
               "id": "1",
               "name": "about"
             }
-          ]
+          ],
+          "sectionTotal": 4
         },
         {
-          "sectionNum": 2,
+          "sectionNum": 4,
           "sectionDescription": "Your enquiry",
           "title": "Supporting documents",
           "answerTitle": "Supporting documents",
@@ -4749,7 +4868,8 @@
               "name": "supporting-documents",
               "errorMsg": "First name is required"
             }
-          ]
+          ],
+          "sectionTotal": 4
         }
       ]
     }
