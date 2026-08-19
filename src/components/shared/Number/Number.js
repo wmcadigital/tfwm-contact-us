@@ -51,7 +51,9 @@ const Number = ({
       if (name === 'pass-number') {
         const inputEl = document.getElementById(name);
         const val = inputEl ? inputEl.value : '';
-        setDynamicErrorMsg(/^6335970112/.test(val) ? 'Please Contact National Express: ' : errorMsg);
+        setDynamicErrorMsg(
+          /^6335970112/.test(val) ? 'Please Contact National Express: ' : errorMsg
+        );
       }
     } else {
       setHasError(false);
