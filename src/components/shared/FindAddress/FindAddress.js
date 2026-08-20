@@ -19,6 +19,7 @@ const FindAddress = ({
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
   const [postcode, setPostcode] = useState(undefined);
+  const isValidPostcode = postcode && /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d[A-Za-z]{2}$/.test(postcode);
   const [formState, setFormState] = useState(
     typeof defaultValue === 'object' && defaultValue['find-address-state']
       ? defaultValue['find-address-state']
@@ -194,6 +195,7 @@ const FindAddress = ({
               onChange={(e) => setPostcode(e.target.value)}
               type="text"
               style={{ maxWidth: '20rem' }}
+              required={required}
               ref={register}
             />
           </label>
@@ -205,6 +207,7 @@ const FindAddress = ({
             }}
             className="wmnds-btn wmnds-btn--primary"
             type="button"
+            disabled={!isValidPostcode}
           >
             Find Address
           </button>

@@ -69,6 +69,9 @@ const Form = () => {
   const getRequiredFieldNames = () => {
     const names = [];
     (data.components || []).forEach((comp) => {
+      if (comp.type === 'FindAddress' && comp.required) {
+        names.push(comp.name);
+      }
       if (comp.type === 'YesOrNo' && comp.required) {
         const hasInputs = comp.options && comp.options.some((o) => o.inputLabel1 || o.inputs);
         names.push(`yes-or-no${hasInputs ? '' : '-skip'}`);
