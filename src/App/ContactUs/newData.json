@@ -266,7 +266,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 6
@@ -549,7 +549,7 @@
                     "required": true,
                     "id": "1",
                     "name": "email",
-                    "errorMsg": "Email name is required"
+                    "errorMsg": "Email is required"
                   }
                 ]
               },
@@ -813,7 +813,7 @@
                     "required": true,
                     "id": "1",
                     "name": "email",
-                    "errorMsg": "Email name is required"
+                    "errorMsg": "Email is required"
                   }
                 ]
               },
@@ -945,7 +945,7 @@
                     "required": true,
                     "id": "1",
                     "name": "email",
-                    "errorMsg": "Email name is required"
+                    "errorMsg": "Email is required"
                   }
                 ]
               },
@@ -1142,7 +1142,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -1293,7 +1293,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 3
@@ -1375,7 +1375,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 3
@@ -1457,7 +1457,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 6
@@ -1727,7 +1727,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -1868,7 +1868,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 7
@@ -2023,7 +2023,7 @@
           "components": [
             {
               "type": "Textarea",
-              "required": true,
+              "required": false,
               "id": "1",
               "name": "about"
             }
@@ -2117,7 +2117,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 6
@@ -2226,7 +2226,7 @@
           "components": [
             {
               "type": "Textarea",
-              "required": true,
+              "required": false,
               "id": "1",
               "name": "about"
             }
@@ -2313,7 +2313,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -2495,7 +2495,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -2643,7 +2643,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 6
@@ -2833,7 +2833,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -2989,7 +2989,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -3196,7 +3196,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 3
@@ -3276,7 +3276,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -3457,7 +3457,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4
@@ -3560,7 +3560,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -3737,7 +3737,7 @@
               "inputType": "email",
               "required": true,
               "id": "1",
-              "name": "email-address",
+              "name": "email",
               "errorMsg": "Enter a valid email address"
             }
           ],
@@ -3910,7 +3910,7 @@
                   "inputs": [
                     {
                       "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-email-address",
+                      "name": "email",
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -4059,7 +4059,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -4233,7 +4233,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -4374,7 +4374,7 @@
               "inputType": "email",
               "required": true,
               "id": "1",
-              "name": "email-address",
+              "name": "email",
               "errorMsg": "Enter a valid email address"
             }
           ],
@@ -4547,7 +4547,7 @@
                   "inputs": [
                     {
                       "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-email-address",
+                      "name": "email",
                       "type": "text",
                       "errorMsg": "Enter a valid email address"
                     }
@@ -4695,7 +4695,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 5
@@ -4831,7 +4831,7 @@
               "required": true,
               "id": "1",
               "name": "email",
-              "errorMsg": "Email name is required"
+              "errorMsg": "Email is required"
             }
           ],
           "sectionTotal": 4

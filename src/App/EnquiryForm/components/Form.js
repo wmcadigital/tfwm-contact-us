@@ -60,22 +60,47 @@ const Form = () => {
 
   const { register, handleSubmit, getValues, unregister } = useForm({
     shouldUnregister: true,
-    shouldUseNativeValidation: true,
   });
 
   const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
 
   const [formError, setFormError] = useState([]);
 
+  const getRequiredFieldNames = () => {
+    const names = [];
+    (data.components || []).forEach((comp) => {
+      if (comp.type === 'YesOrNo' && comp.required) {
+        const hasInputs = comp.options && comp.options.some((o) => o.inputLabel1 || o.inputs);
+        names.push(`yes-or-no${hasInputs ? '' : '-skip'}`);
+      }
+      if (comp.type === 'Date' && comp.required) {
+        names.push('day', 'month', 'year');
+        if (comp.showTime) names.push('hour', 'minute');
+      }
+      if (comp.inputs) {
+        comp.inputs.forEach((input) => {
+          if (input.required) names.push(input.name);
+        });
+      }
+      if (comp.options) {
+        comp.options.forEach((opt) => {
+          if (opt.required) names.push(opt.name);
+        });
+      }
+    });
+    return names;
+  };
+
   const continueHandler = () => {
     const values = getValues();
+    const requiredFields = getRequiredFieldNames();
 
     const entries = Object.entries(values);
 
     const isEmpty = Object.keys(values).length === 0;
     const errors = entries
       .filter((val) => {
-        if (!val[1]) return true;
+        if (requiredFields.includes(val[0]) && !val[1]) return true;
         if (/email/i.test(val[0]) && val[1] !== '' && !EMAIL_REGEX.test(val[1])) return true;
         if (
           val[0] === 'pass-number' &&
@@ -139,8 +164,9 @@ const Form = () => {
   };
 
   const getDefaultValue = (name) => {
-    if (formData[data.name]) {
-      return formData[data.name].value.find((value) => value[0] === name);
+    if (formData[data.name] && Array.isArray(formData[data.name].value)) {
+      const entry = formData[data.name].value.find((value) => value[0] === name);
+      return entry ? entry[1] : '';
     }
     return '';
   };
@@ -175,6 +201,7 @@ const Form = () => {
 
           <h2 style={{ margin: 0, marginBottom: 30 }}>{data.title}</h2>
           <form
+            noValidate
             onSubmit={(e) => {
               e.preventDefault();
             }}
@@ -189,7 +216,7 @@ const Form = () => {
                     required={component.required}
                     options={component.options}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={getDefaultValue(component.name)}
                     register={register}
                     errors={formError}
                   />
@@ -241,7 +268,7 @@ const Form = () => {
                   <FindAddress
                     label={component.label}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={getDefaultValue(component.name)}
                     errorMsg={component.errorMsg}
                     required={component.required}
                     allowMapView={component.allowMapView}
@@ -256,7 +283,7 @@ const Form = () => {
                     label={component.label}
                     details={component.details}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={getDefaultValue(component.name)}
                     errorMsg={component.errorMsg}
                     required={component.required}
                     register={register}
@@ -303,7 +330,31 @@ const Form = () => {
                 {component.type === 'Date' && (
                   <Date
                     name={component.name}
-                    defaultValues={[formData.email, formData.phone]}
+                    dayDefaultValue={
+                      formData[data.name]
+                        ? formData[data.name].value.find((v) => v[0] === 'day')?.[1]
+                        : undefined
+                    }
+                    monthDefaultValue={
+                      formData[data.name]
+                        ? formData[data.name].value.find((v) => v[0] === 'month')?.[1]
+                        : undefined
+                    }
+                    yearDefaultValue={
+                      formData[data.name]
+                        ? formData[data.name].value.find((v) => v[0] === 'year')?.[1]
+                        : undefined
+                    }
+                    hourDefaultValue={
+                      formData[data.name]
+                        ? formData[data.name].value.find((v) => v[0] === 'hour')?.[1]
+                        : undefined
+                    }
+                    minuteDefaultValue={
+                      formData[data.name]
+                        ? formData[data.name].value.find((v) => v[0] === 'minute')?.[1]
+                        : undefined
+                    }
                     required={component.required}
                     register={register}
                     errors={formError}
@@ -329,7 +380,7 @@ const Form = () => {
             ))}
 
             <button
-              onClick={handleSubmit(continueHandler)}
+              onClick={continueHandler}
               className="wmnds-btn"
               style={{ margin: 0, marginTop: 10 }}
               type="button"

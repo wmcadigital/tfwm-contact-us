@@ -10,6 +10,8 @@ import { FormDataContext } from '../../../globalState';
 import classes from '../../App.module.scss';
 import Data from '../../ContactUs/newData.json';
 
+const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
   // JSON-schema-like representation derived from `formData`
@@ -106,9 +108,7 @@ const CheckYourAnswers = () => {
           if (firstNamePair && firstNamePair[1]) acc.newFirstName = firstNamePair[1];
           if (lastNamePair && lastNamePair[1]) acc.newLastName = lastNamePair[1];
         } else if (key === 'update-email') {
-          const emailPair = item.value.find((pair) =>
-            /^email[-_]?address$/i.test(stripCC(pair[0]))
-          );
+          const emailPair = item.value.find((pair) => /^email$/i.test(stripCC(pair[0])));
           if (emailPair && emailPair[1]) acc.changeEmail = emailPair[1];
         } else if (key === 'update-phone') {
           const phonePair = item.value.find((pair) => /^phone[-_]?name$/i.test(stripCC(pair[0])));
@@ -142,7 +142,7 @@ const CheckYourAnswers = () => {
       // Handle email specially
       const emailKeyMatch = (pair) => {
         const k = pair[0].replace(/^CC-/i, '');
-        return /email/i.test(k) && !/^pref-?email$/i.test(k);
+        return /email/i.test(k) && !/^pref-?email(-address)?$/i.test(k);
       };
       if (
         (/email/i.test(item.answerTitle || key) || item.value.some(emailKeyMatch)) &&
@@ -150,7 +150,7 @@ const CheckYourAnswers = () => {
       ) {
         const emailPair =
           item.value.find(emailKeyMatch) || item.value.find((pair) => pair[0] !== 'yes-or-no-skip');
-        if (emailPair) {
+        if (emailPair && EMAIL_REGEX.test(emailPair[1])) {
           acc.emailAddress = emailPair[1] || acc.emailAddress;
         }
         return acc;

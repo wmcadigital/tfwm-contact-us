@@ -86,11 +86,10 @@ const Number = ({
         key={name}
         required={required}
         type={type || 'text'}
-        defaultValue={defaultValue ? defaultValue[1] : ''}
+        defaultValue={defaultValue || ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={registerRef ? register : unregister(name)}
-        pattern={/email/i.test(name) ? '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$' : undefined}
         maxLength={21}
       />
     </div>

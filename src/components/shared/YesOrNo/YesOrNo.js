@@ -38,6 +38,7 @@ const YesOrNo = ({
 
   const [checkedRadio, setCheckedRadio] = useState(getInitialRadio());
   const isFirstRender = useRef(true);
+  const prevNameRef = useRef(name);
   const checkBoxesChangeHandler = (e, idx) => {
     if (e.target.value) {
       setHasError(false);
@@ -66,7 +67,10 @@ const YesOrNo = ({
       isFirstRender.current = false;
       return;
     }
-    setCheckedRadio(undefined);
+    if (prevNameRef.current !== name) {
+      prevNameRef.current = name;
+      setCheckedRadio(undefined);
+    }
   }, [name]);
 
   return (
@@ -92,72 +96,79 @@ const YesOrNo = ({
                 defaultChecked={savedYesNo === option.option}
                 onChange={(e) => checkBoxesChangeHandler(e, idx)}
               />
-              {(option.inputLabel1 || option.inputs) && checkedRadio === 0 && (
-                <>
-                  {option.type === 'Dropdown' ? (
-                    <div style={{ marginLeft: 40 }}>
-                      <Dropdown
-                        label={option.inputLabel1}
-                        errorMsg={option.errorMsg}
-                        required={option.required}
-                        options={option.options}
-                        name={option.name}
-                        register={register}
-                        errors={errors}
-                      />
-                    </div>
-                  ) : (
-                    <>
-                      {option.inputs ? (
-                        <div
-                          style={{ marginLeft: 60 }}
-                          className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
-                        >
-                          {option.inputs.map((input) => (
-                            <Input
-                              key={input.name}
-                              label={input.inputLabel1}
-                              label2={input.inputLabel2}
-                              name={input.name}
-                              defaultValue={[input.name, getSavedValue(input.name)]}
-                              errorMsg={input.errorMsg}
-                              required={option.required}
-                              unregister={unregister}
-                              register={register}
-                              errors={errors}
+              {(option.inputLabel1 || option.inputs) &&
+                (checkedRadio === 0 || (!checkedRadio && savedYesNo === 'Yes')) && (
+                  <>
+                    {option.type === 'Dropdown' ? (
+                      <div style={{ marginLeft: 40 }}>
+                        <Dropdown
+                          label={option.inputLabel1}
+                          errorMsg={option.errorMsg}
+                          required={option.required}
+                          options={option.options}
+                          name={option.name}
+                          register={register}
+                          errors={errors}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        {option.inputs ? (
+                          <div
+                            style={{ marginLeft: 60 }}
+                            className={` ${
+                              errors.includes(option.name) && 'wmnds-fe-group--error'
+                            }`}
+                          >
+                            {option.inputs.map((input) => (
+                              <Input
+                                key={input.name}
+                                label={input.inputLabel1}
+                                label2={input.inputLabel2}
+                                name={input.name}
+                                defaultValue={[input.name, getSavedValue(input.name)]}
+                                errorMsg={input.errorMsg}
+                                required={option.required}
+                                unregister={unregister}
+                                register={register}
+                                errors={errors}
+                              />
+                            ))}
+                          </div>
+                        ) : (
+                          <div
+                            style={{ marginLeft: 60 }}
+                            className={` ${
+                              errors.includes(option.name) && 'wmnds-fe-group--error'
+                            }`}
+                          >
+                            <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
+                              {option.inputLabel1}
+                            </label>
+                            <label className="wmnds-fe-label" htmlFor="input">
+                              {option.inputLabel2}
+                            </label>{' '}
+                            {errors.includes(option.name) && (
+                              <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                            )}
+                            <input
+                              name={option.name}
+                              className="wmnds-fe-input"
+                              type={option.type}
+                              style={{ maxWidth: '20rem' }}
+                              // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
+                              ref={register}
+                              onChange={
+                                option.type === 'NumberFormat' ? inputChageHandler : undefined
+                              }
+                              maxLength={option.maxLength}
                             />
-                          ))}
-                        </div>
-                      ) : (
-                        <div
-                          style={{ marginLeft: 60 }}
-                          className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
-                        >
-                          <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
-                            {option.inputLabel1}
-                          </label>
-                          <label className="wmnds-fe-label" htmlFor="input">
-                            {option.inputLabel2}
-                          </label>{' '}
-                          {errors.includes(option.name) && (
-                            <span className="wmnds-fe-error-message">{option.errorMsg}</span>
-                          )}
-                          <input
-                            name={option.name}
-                            className="wmnds-fe-input"
-                            type={option.type}
-                            style={{ maxWidth: '20rem' }}
-                            // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
-                            ref={register}
-                            onChange={option.type === 'NumberFormat' && inputChageHandler}
-                            maxLength={option.maxLength}
-                          />
-                        </div>
-                      )}
-                    </>
-                  )}
-                </>
-              )}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
             </div>
           ))}
         </fieldset>

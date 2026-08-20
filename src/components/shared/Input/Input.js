@@ -65,11 +65,10 @@ const Input = ({
         key={name}
         required={required}
         type={type || 'text'}
-        defaultValue={defaultValue ? defaultValue[1] : ''}
+        defaultValue={Array.isArray(defaultValue) ? defaultValue[1] || '' : defaultValue || ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
         ref={register}
-        pattern={/email/i.test(name) ? '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$' : undefined}
       />
     </div>
   );

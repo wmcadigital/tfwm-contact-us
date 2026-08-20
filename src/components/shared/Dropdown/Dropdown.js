@@ -80,11 +80,16 @@ Dropdown.propTypes = {
   details: PropTypes.string.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   required: PropTypes.bool.isRequired,
 
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+Dropdown.defaultProps = {
+  defaultValue: undefined,
+  onChange: undefined,
 };
 
 export default Dropdown;
