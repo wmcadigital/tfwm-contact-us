@@ -226,8 +226,8 @@ const LastPage = ({ content, currentStep }) => {
             <p>{content.timings}</p>
           ) : (
             <>
-              <div>Monday, Tuesday, Thursday, Friday 9am-5pm</div>
-              <div>Wednesday 10am to 5pm</div>
+              <div>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</div>
+              <div>Wednesday: 10am - 5.30pm</div>
               <div>Saturday, Sunday & bank holidays: Closed</div>
             </>
           )}
@@ -284,9 +284,9 @@ const LastPage = ({ content, currentStep }) => {
             <h4>West Midlands Bus On Demand</h4>
             <p>Phone: 0345 034 8670</p>
             <>
-              <p>Monday to Friday, 8am to 6pm</p>
+              <p>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</p>
+              <p>Wednesday: 10am - 5.30pm</p>
               <p>Saturday, Sunday & bank holidays: Closed</p>
-              <p>Sundays and Bank Holidays, Closed</p>
             </>
           </div>
         </>
