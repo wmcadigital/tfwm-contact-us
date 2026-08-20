@@ -18,7 +18,14 @@ const Number = ({
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
+  const [registerRef, setRegisterRef] = useState(required);
   const inputChageHandler = (event) => {
+    if (!required && event.target.value) {
+      setRegisterRef(true);
+    }
+    if (!required && !event.target.value) {
+      setRegisterRef(false);
+    }
     if (event.target.value === '') {
       setHasError(true);
     } else {
@@ -69,8 +76,8 @@ const Number = ({
         defaultValue={defaultValue ? defaultValue[1] : ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
-        ref={register}
-        pattern={name === 'email' ? '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$' : undefined}
+        ref={registerRef ? register : unregister(name)}
+        pattern={name === 'email' && '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'}
         maxLength={21}
       />
     </div>
@@ -83,11 +90,7 @@ Number.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
-};
-
-Number.defaultProps = {
-  defaultValue: '',
+  defaultValue: PropTypes.objectOf.isRequired,
 };
 
 export default Number;

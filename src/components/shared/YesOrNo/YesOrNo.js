@@ -143,17 +143,11 @@ const YesOrNo = ({
 
 // PropTypes
 YesOrNo.propTypes = {
-  label: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object),
-  required: PropTypes.bool,
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
-};
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  required: PropTypes.bool.isRequired,
 
-YesOrNo.defaultProps = {
-  label: '',
-  options: [],
-  required: false,
-  defaultValue: '',
+  defaultValue: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default YesOrNo;
