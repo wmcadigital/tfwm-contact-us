@@ -406,6 +406,7 @@
       "prevStepId": "step-direct-debit",
       "heading": "Update my Direct Debit",
       "hasReachedConfirmation": true,
+      "emailHeader": "Update Direct Debit enquiry",
       "content": {
         "type": "text",
         "details": "You can <a href='#?step-update-DD' title='other' id='formId'>update your Direct Debit online</a>.",
@@ -1785,7 +1786,7 @@
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
-        "details": "Contact the <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
+        "details": "Contact the <a href='https://journeyplanner.tfwm.org.uk/operator' title='new-request-card' target='_blank'>bus company</a> if your enquiry is about operational issues, lost property or staff.",
         "details2": "For all other enquiries, please <a href='#?step-bus' id='formId' target='_blank'>fill in this form</a>.",
         "formId": "step-bus",
         "warningText": "If your enquiry is urgent, please call us on the details below. It can take up to 10 working days for a response if you use the online form.",
@@ -3070,7 +3071,7 @@
         "type": "text",
         "details": "You can help us improve our services by sending us feedback. This includes suggestions and concerns.",
         "details2": "To leave feedback or to make a complaint, please <a href='#?step-leave-feedback-or-complaint' id='formId'>fill in this form</a>.",
-        "callHelp": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.wmnetwork.co.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
+        "callHelp": "To leave feedback for a bus or train service, you’ll need to <a href='https://journeyplanner.tfwm.org.uk/operator' title='new-request-card' target='_blank'>contact the operator</a>.<br /><br />You can leave feedback for tram services on the <a href='https://westmidlandsmetro.com/contact/customerservices/' title='new-request-card' target='_blank'>West Midlands Metro website</a>.",
         "formId": "step-leave-feedback-or-complaint",
         "customerService": true,
         "complaint": "For information about how we handle complaints, you can view our <a href='https://www.tfwm.org.uk/policies/how-we-handle-complaints/'>complaints handling procedure online</a>.",
@@ -3838,37 +3839,14 @@
           "name": "contact-preference",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "name": "CC-pref-email-address",
               "required": true,
-              "options": [
-                {
-                  "name": "CC-pref-phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Phone number For example, 07700900457",
-                      "name": "CC-pref-phone-name",
-                      "type": "text",
-                      "errorMsg": "Enter a valid phone number"
-                    }
-                  ]
-                },
-                {
-                  "name": "CC-pref-email",
-                  "option": "Email",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-pref-email-address",
-                      "type": "text",
-                      "errorMsg": "Enter a valid email address"
-                    }
-                  ]
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "errorMsg": "Enter a valid email address"
             }
           ]
         }
@@ -4208,7 +4186,7 @@
       "currentStepId": "help-change-details-disabled",
       "prevStepId": "step-disabled-person-pass",
       "heading": "Change my disabled person’s pass details",
-      "emailheader": "Change disabled person’s pass details enquiry",
+      "emailHeader": "Change disabled person’s pass details enquiry",
       "hasReachedConfirmation": true,
       "content": {
         "type": "text",
@@ -4455,37 +4433,14 @@
           "name": "contact-preference",
           "components": [
             {
-              "type": "Checkbox",
+              "type": "Input",
+              "label": "Email address, for example",
+              "label2": "name@example.com",
+              "inputType": "email",
+              "name": "CC-pref-email-address",
               "required": true,
-              "options": [
-                {
-                  "name": "CC-pref-phone",
-                  "option": "Phone",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Phone number For example, 07700900457",
-                      "name": "CC-pref-phone-name",
-                      "type": "text",
-                      "errorMsg": "Enter a valid phone number"
-                    }
-                  ]
-                },
-                {
-                  "name": "CC-pref-email",
-                  "option": "Email",
-                  "required": true,
-                  "inputs": [
-                    {
-                      "inputLabel1": "Email address For example, name@example.com",
-                      "name": "CC-pref-email-address",
-                      "type": "text",
-                      "errorMsg": "Enter a valid email address"
-                    }
-                  ]
-                }
-              ],
-              "id": "1"
+              "id": "1",
+              "errorMsg": "Enter a valid email address"
             }
           ]
         }

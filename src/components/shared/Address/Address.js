@@ -123,6 +123,7 @@ const Address = ({
               name={input.name}
               errorMsg={input.errorMsg}
               required={input.required}
+              defaultValue={input.defaultValue}
               unregister={unregister}
               register={register}
               errors={errors}
