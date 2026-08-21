@@ -26,7 +26,7 @@ const FindAddress = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
   useEffect(() => {
     if (postcode !== undefined) {
       if (!postcode) {
@@ -46,7 +46,7 @@ const FindAddress = ({
     const findAddressRes = await fetchFindAddress.json();
     setAddresses(findAddressRes);
   };
-  console.log(postcode, addresses);
+  // console.log(postcode, addresses);
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {formState === 'idle' && (

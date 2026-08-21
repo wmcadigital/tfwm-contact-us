@@ -82,7 +82,7 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
-    console.log(emailIndex);
+    // console.log(emailIndex);
     const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
       method: 'POST',
       headers: {

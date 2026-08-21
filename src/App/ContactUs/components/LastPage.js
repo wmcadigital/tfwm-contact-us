@@ -18,7 +18,7 @@ const LastPage = ({ content, currentStep }) => {
         });
       });
     }
-  }, []);
+  }, [content.formId, formDispatch]);
   useEffect(() => {
     /* eslint no-underscore-dangle: 0 */
 

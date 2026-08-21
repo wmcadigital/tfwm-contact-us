@@ -30,6 +30,7 @@ const Checkbox = ({
   };
   useEffect(() => {
     checkBoxesChangeHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
   const registerRef = (checkboxName) => {

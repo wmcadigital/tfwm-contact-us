@@ -27,7 +27,7 @@ const Complaint = () => {
     } else {
       headerTitleEl.innerText = 'Submit an enquiry';
     }
-  }, []);
+  }, [formToLoad]);
   return (
     <>
       {page === 'SUCCESS' && (
