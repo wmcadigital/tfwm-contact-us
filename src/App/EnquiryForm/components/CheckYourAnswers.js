@@ -10,14 +10,222 @@ import { FormDataContext } from '../../../globalState';
 import classes from '../../App.module.scss';
 import Data from '../../ContactUs/newData.json';
 
+const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
+  // JSON-schema-like representation derived from `formData`
+  const formDataSchema = {
+    type: 'object',
+    properties: {
+      firstName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's first name"
+            : "The person's first name",
+      },
+      lastName: {
+        type: 'string',
+        description:
+          formData && formData.name
+            ? formData.name.answerTitle || "The person's last name"
+            : "The person's last name",
+      },
+      emailAddress: {
+        type: 'string',
+        format: 'email',
+        description:
+          formData && formData.email
+            ? formData.email.answerTitle || "The person's email address"
+            : "The person's email address",
+      },
+    },
+  };
+  // Normalize `formData` into a flat object with camelCase keys
+  const toCamel = (str = '') =>
+    String(str)
+      .replace(/[^a-zA-Z0-9 ]+/g, ' ')
+      .trim()
+      .split(/[\s-_]+/)
+      .map((s, i) => (i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1)))
+      .join('');
+
+  // Helper function to format phone numbers with +44
+  const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') return phoneNumber;
+
+    const trimmed = phoneNumber.trim();
+    // If it already starts with +44 or +, return as is
+    if (trimmed.startsWith('+')) return trimmed;
+    // If it starts with 0, replace with +44
+    if (trimmed.startsWith('0')) return `+44${trimmed.substring(1)}`;
+    // Otherwise, prepend +44
+    return `+44${trimmed}`;
+  };
+
+  // Helper function to format value for display if it's a phone field
+  const formatDisplayValue = (value, fieldKey = '', answerTitle = '') => {
+    if (typeof value !== 'string') return value;
+    const isPhoneField =
+      /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(answerTitle);
+    return isPhoneField && /\d/.test(value) ? formatPhoneNumber(value) : value;
+  };
+
+  const buildNormalizedData = (data) => {
+    if (!data || typeof data !== 'object') return {};
+
+    // Aliases for the "change" questions: when answered "Yes", the section's data
+    // is sent under the alias (e.g. update-name -> changeName) instead of the
+    // generic keys.
+    const CHANGE_ALIASES = {
+      'update-name': 'changeName',
+      'update-address': 'changeAddress',
+      'update-email': 'changeEmail',
+      'update-phone': 'changePhone',
+    };
+    const isYes = (item) =>
+      Array.isArray(item.value) &&
+      item.value.some((pair) => /^yes-or-no(-skip)?$/.test(pair[0]) && pair[1] === 'Yes');
+    const changedSections = Object.keys(data).reduce((acc, key) => {
+      if (CHANGE_ALIASES[key] && isYes(data[key])) acc[key] = CHANGE_ALIASES[key];
+      return acc;
+    }, {});
+
+    return Object.keys(data).reduce((acc, key) => {
+      const item = data[key];
+      if (!item || !Array.isArray(item.value)) return acc;
+
+      const stripCC = (k) => k.replace(/^CC-/i, '');
+
+      // "Change" questions answered "Yes" are emitted under their alias
+      if (changedSections[key]) {
+        if (key === 'update-name') {
+          const firstNamePair = item.value.find((pair) =>
+            /^first[-_]?name$/i.test(stripCC(pair[0]))
+          );
+          const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(stripCC(pair[0])));
+          if (firstNamePair && firstNamePair[1]) acc.newFirstName = firstNamePair[1];
+          if (lastNamePair && lastNamePair[1]) acc.newLastName = lastNamePair[1];
+        } else if (key === 'update-email') {
+          const emailPair = item.value.find((pair) => /^email$/i.test(stripCC(pair[0])));
+          if (emailPair && emailPair[1]) acc.changeEmail = emailPair[1];
+        } else if (key === 'update-phone') {
+          const phonePair = item.value.find((pair) => /^phone[-_]?name$/i.test(stripCC(pair[0])));
+          if (phonePair && phonePair[1]) acc.changePhone = formatPhoneNumber(phonePair[1]);
+        }
+        return acc;
+      }
+
+      // The updated address is collected in the separate `address` section
+      if (key === 'address' && changedSections['update-address']) {
+        const addr = {};
+        item.value.forEach((pair) => {
+          if (pair[0]) addr[toCamel(pair[0])] = pair[1];
+        });
+        if (Object.keys(addr).length > 0) acc.changeAddress = addr;
+        return acc;
+      }
+
+      // Handle name specially (firstName / lastName)
+      const nameKeys = item.value.map((pair) => pair[0]);
+      const isNameSection =
+        nameKeys.some((k) => /^first[-_]?name$/i.test(k)) &&
+        nameKeys.some((k) => /^last[-_]?name$/i.test(k));
+      if (isNameSection && item.value.length >= 2) {
+        const firstNamePair = item.value.find((pair) => /^first[-_]?name$/i.test(pair[0]));
+        const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(pair[0]));
+        acc.firstName = (firstNamePair && firstNamePair[1]) || acc.firstName;
+        acc.lastName = (lastNamePair && lastNamePair[1]) || acc.lastName;
+        return acc;
+      }
+      // Handle email specially
+      const emailKeyMatch = (pair) => {
+        const k = pair[0].replace(/^CC-/i, '');
+        return /email/i.test(k) && !/^pref-?email(-address)?$/i.test(k);
+      };
+      if (
+        (/email/i.test(item.answerTitle || key) || item.value.some(emailKeyMatch)) &&
+        item.value.length >= 1
+      ) {
+        const emailPair =
+          item.value.find(emailKeyMatch) || item.value.find((pair) => pair[0] !== 'yes-or-no-skip');
+        if (emailPair && EMAIL_REGEX.test(emailPair[1])) {
+          acc.emailAddress = emailPair[1] || acc.emailAddress;
+        }
+        return acc;
+      }
+      // Handle file uploader specially
+      if (/file|upload|document/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        const fileArray = item.value[0][1];
+        if (fileArray && Array.isArray(fileArray) && fileArray.length > 0) {
+          acc.files = fileArray.map((file) => ({
+            name: file.name,
+            type: file.type,
+            content: file, // will be converted to base64 later
+          }));
+        }
+        return acc;
+      }
+
+      item.value.forEach((pair) => {
+        const subKey = pair[0];
+        let val = pair[1];
+        if (!subKey || subKey === 'yes-or-no-skip') return;
+
+        // Format phone numbers with +44
+        // Matches: phone, telephone, mobile, pref-phone, CC-phone-name, CC-pref-phone-name, etc.
+        const isPhoneField =
+          /phone|telephone|mobile/i.test(subKey) ||
+          /phone|telephone|mobile/i.test(item.answerTitle || key);
+        if (isPhoneField && typeof val === 'string' && /\d/.test(val)) {
+          val = formatPhoneNumber(val);
+        }
+
+        // Strip the "CC-" prefix (used for "updated" details on pass forms)
+        // so the API receives e.g. firstName, not ccFirstName.
+        const cleanSubKey = subKey.replace(/^CC-/i, '');
+
+        const prop = toCamel(cleanSubKey) || toCamel(item.answerTitle || key);
+
+        if (acc[prop]) {
+          if (Array.isArray(acc[prop])) acc[prop].push(val);
+          else acc[prop] = [acc[prop], val];
+        } else {
+          acc[prop] = val;
+        }
+      });
+
+      return acc;
+    }, {});
+  };
+
+  const normalizedDataToBase64 = (data) => {
+    const jsonString = JSON.stringify(data);
+    return btoa(unescape(encodeURIComponent(jsonString)));
+  };
+
+  const normalizedFormData = buildNormalizedData(formData);
+  const normalizedFormData2 = normalizedDataToBase64(normalizedFormData);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
+
+  // Debug logging for Netlify production issues
+  // useEffect(() => {
+  //   console.log('Debug Info:', {
+  //     formToLoad,
+  //     formId,
+  //     params,
+  //     dataAvailable: !!Data,
+  //     dataPages: Data?.pages?.length || 0,
+  //     matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
+  //   });
+  // }, [formToLoad, formId, params]);
+
+  const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
   const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { emailHeader } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
-  const { text } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
+  const { emailHeader = '', text = '' } = currentPage;
   const [subject, setSubject] = useState('');
   const prevStep = () => {
     formDispatch({
@@ -31,6 +239,7 @@ const CheckYourAnswers = () => {
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
     });
   };
+
   // returns the base64 string of files
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -53,7 +262,8 @@ const CheckYourAnswers = () => {
       ''
     );
 
-    const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    // const base64Content = editedText && btoa(unescape(encodeURIComponent(editedText)));
+    const base64Content = normalizedDataToBase64(normalizedFormData);
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
     let fileData;
@@ -82,32 +292,32 @@ const CheckYourAnswers = () => {
       answerObject[sectionTitle] = sectionValuesEdited;
       return answerObject;
     });
+
+    let response;
     // console.log(emailIndex);
-    const postData = await fetch(`https://internal-api.wmca.org.uk/emails/api/email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify({
-        to: emailIndex,
-        subject: emailHeader,
-        body: '{"M":"j"}',
-        bodyHtml: base64Content,
-        from: formData.contact ? formData.contact.value[0][1] : 'noreply@tfwm.org.uk',
-        files: file ? fileData : [],
-        displayName: formData.name
-          ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
-          : 'No Name',
-      }),
-    }).then((response) => {
-      // If the response is successful(200: OK)
-      if (response.status === 200) {
-        formDispatch({
-          type: 'CHANGE-PAGE',
-          payload: { page: 'SUCCESS', stepNum },
-        });
-      }
-    });
+    try {
+      response = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: emailIndex,
+          subject: emailHeader,
+          body: '{"M":"j"}',
+          bodyHtml: normalizedFormData2,
+          from: 'donoreply@tfwm.org.uk',
+          files: file ? fileData : [],
+          displayName: formData.name
+            ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+            : 'No Name',
+        }),
+      });
+    } catch (e) {
+      return false;
+    }
+
+    return response.status === 200;
   };
 
   const checkboxHandler = async () => {
@@ -117,13 +327,16 @@ const CheckYourAnswers = () => {
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
     } else {
-      await sendEmailHandler();
-
-      formDispatch({
-        type: 'CHANGE-PAGE',
-        payload: { page: 'SUCCESS', stepNum },
-      });
-      setErrorMsg('');
+      const success = await sendEmailHandler();
+      if (success) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'SUCCESS', stepNum },
+        });
+        setErrorMsg('');
+      } else {
+        setErrorMsg('Sorry, there was a problem sending your form. Please try again.');
+      }
     }
   };
 
@@ -161,12 +374,12 @@ const CheckYourAnswers = () => {
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
         <div id="answers-container" style={{ textAlign: 'left' }}>
           {formAnswers.map((answers) => (
-            <>
+            <React.Fragment key={answers[0]}>
               <h3>{answers[0]}</h3>
               <table className="wmnds-table wmnds-table--without-header">
                 <tbody>
                   {answers[1].map((data) => (
-                    <tr>
+                    <tr key={data.answerTitle}>
                       <th
                         scope="row"
                         data-header="Header 1"
@@ -232,31 +445,33 @@ const CheckYourAnswers = () => {
                           data.value[0][0] !== 'postcode' && (
                             <>
                               {data.value.map((value) => (
-                                <>
+                                <React.Fragment key={value[0]}>
                                   {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
                                     ''
                                   ) : (
                                     <>
-                                      {value[1]} <br />
+                                      {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                      <br />
                                     </>
                                   )}
-                                </>
+                                </React.Fragment>
                               ))}
                             </>
                           )}
                         {data.answerTitle === 'Contact preference' && (
                           <>
                             {data.value.map((value) => (
-                              <>
+                              <React.Fragment key={value[0]}>
                                 {value[0] !== 'CC-pref-phone-name' &&
                                 value[0] !== 'CC-pref-email-address' ? (
                                   ''
                                 ) : (
                                   <>
-                                    {value[1]} <br />
+                                    {formatDisplayValue(value[1], value[0], data.answerTitle)}{' '}
+                                    <br />
                                   </>
                                 )}
-                              </>
+                              </React.Fragment>
                             ))}
                           </>
                         )}
@@ -267,9 +482,6 @@ const CheckYourAnswers = () => {
                           verticalAlign: 'top',
                           width: 70,
                           textAlign: 'right',
-                          '@media (max-width: 768)': {
-                            textAlign: 'left',
-                          },
                         }}
                       >
                         <button
@@ -284,7 +496,7 @@ const CheckYourAnswers = () => {
                   ))}
                 </tbody>
               </table>
-            </>
+            </React.Fragment>
           ))}
         </div>
 
@@ -295,8 +507,7 @@ const CheckYourAnswers = () => {
         </p>
 
         <div className="wmnds-fe-group">
-          <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
-            {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
+          <div className="wmnds-fe-checkboxes">
             {params === 'step-update-DD' && (
               <div>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
@@ -391,6 +602,7 @@ const CheckYourAnswers = () => {
             </label>
           </div>
         </div>
+        {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
         <button className="wmnds-btn wmnds-btn--start" type="button" onClick={checkboxHandler}>
           Accept and send
           <svg className="wmnds-btn__icon wmnds-btn__icon--right ">

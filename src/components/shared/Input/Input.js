@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
+const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
 const Input = ({
   label = '',
   label2 = '',
@@ -12,21 +14,17 @@ const Input = ({
   required,
   register,
   unregister,
-
+  emailValidation = false,
   errors,
   type,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
 
-  const [registerRef, setRegisterRef] = useState(required);
   const inputChageHandler = (event) => {
-    if (!required && event.target.value) {
-      setRegisterRef(true);
-    }
-    if (!required && !event.target.value) {
-      setRegisterRef(false);
-    }
-    if (event.target.value === '') {
+    const { value } = event.target;
+    if (value === '') {
+      setHasError(true);
+    } else if (emailValidation && !EMAIL_REGEX.test(value)) {
       setHasError(true);
     } else {
       setHasError(false);
@@ -67,11 +65,10 @@ const Input = ({
         key={name}
         required={required}
         type={type || 'text'}
-        defaultValue={defaultValue ? defaultValue[1] : ''}
+        defaultValue={Array.isArray(defaultValue) ? defaultValue[1] || '' : defaultValue || ''}
         style={{ maxWidth: '20rem', marginBottom: 10 }}
         onChange={inputChageHandler}
-        ref={registerRef ? register : unregister(name)}
-        pattern={name === 'email' && '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'}
+        ref={register}
       />
     </div>
   );
@@ -83,7 +80,11 @@ Input.propTypes = {
   required: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.objectOf.isRequired,
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+};
+
+Input.defaultProps = {
+  defaultValue: '',
 };
 
 export default Input;

@@ -7,6 +7,8 @@ const Calendar = ({
   dayDefaultValue = undefined,
   monthDefaultValue = undefined,
   yearDefaultValue = undefined,
+  hourDefaultValue = undefined,
+  minuteDefaultValue = undefined,
   required = false,
   name = '',
   register,
@@ -30,12 +32,13 @@ const Calendar = ({
                 name="hour"
                 style={{ width: 100, marginRight: 20 }}
                 ref={register}
+                defaultValue={hourDefaultValue || ''}
               >
-                <option value="" selected="true">
-                  --
-                </option>
+                <option value="">--</option>
                 {Array.from(Array(24).keys()).map((val) => (
-                  <option value={val}>{val}</option>
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
                 ))}
               </select>
 
@@ -46,12 +49,13 @@ const Calendar = ({
                 style={{ width: 100 }}
                 placeholder="00"
                 ref={register}
+                defaultValue={minuteDefaultValue || ''}
               >
-                <option value="" selected="true">
-                  --
-                </option>
+                <option value="">--</option>
                 {Array.from(Array(60).keys()).map((val) => (
-                  <option value={val}>{val}</option>
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
                 ))}
               </select>
             </label>
@@ -124,10 +128,20 @@ const Calendar = ({
 // PropTypes
 Calendar.propTypes = {
   name: PropTypes.string.isRequired,
-  required: PropTypes.string.isRequired,
-  dayDefaultValue: PropTypes.string.isRequired,
-  monthDefaultValue: PropTypes.string.isRequired,
-  yearDefaultValue: PropTypes.string.isRequired,
+  required: PropTypes.bool.isRequired,
+  dayDefaultValue: PropTypes.string,
+  monthDefaultValue: PropTypes.string,
+  yearDefaultValue: PropTypes.string,
+  hourDefaultValue: PropTypes.string,
+  minuteDefaultValue: PropTypes.string,
+};
+
+Calendar.defaultProps = {
+  dayDefaultValue: undefined,
+  monthDefaultValue: undefined,
+  yearDefaultValue: undefined,
+  hourDefaultValue: undefined,
+  minuteDefaultValue: undefined,
 };
 
 export default Calendar;
