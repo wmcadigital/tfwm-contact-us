@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 import Radio from '../Radios/Radio/Radio';
@@ -18,7 +18,27 @@ const YesOrNo = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  const [checkedRadio, setCheckedRadio] = useState();
+  const getSavedValue = (key) => {
+    if (Array.isArray(defaultValue)) {
+      const pair = defaultValue.find((p) => p[0] === key);
+      return pair ? pair[1] : '';
+    }
+    return '';
+  };
+
+  const savedYesNo = getSavedValue(
+    `yes-or-no${options[0].inputLabel1 || options[0].inputs ? '' : '-skip'}`
+  );
+
+  const getInitialRadio = () => {
+    if (savedYesNo === 'Yes') return 0;
+    if (savedYesNo === 'No') return 1;
+    return undefined;
+  };
+
+  const [checkedRadio, setCheckedRadio] = useState(getInitialRadio());
+  const isFirstRender = useRef(true);
+  const prevNameRef = useRef(name);
   const checkBoxesChangeHandler = (e, idx) => {
     if (e.target.value) {
       setHasError(false);
@@ -43,7 +63,14 @@ const YesOrNo = ({
   }, [errors]);
 
   useEffect(() => {
-    setCheckedRadio(undefined);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (prevNameRef.current !== name) {
+      prevNameRef.current = name;
+      setCheckedRadio(undefined);
+    }
   }, [name]);
 
   return (
@@ -66,73 +93,82 @@ const YesOrNo = ({
                 id={option.name}
                 value={option.option}
                 register={register}
+                defaultChecked={savedYesNo === option.option}
                 onChange={(e) => checkBoxesChangeHandler(e, idx)}
               />
-              {(option.inputLabel1 || option.inputs) && checkedRadio === 0 && (
-                <>
-                  {option.type === 'Dropdown' ? (
-                    <div style={{ marginLeft: 40 }}>
-                      <Dropdown
-                        label={option.inputLabel1}
-                        errorMsg={option.errorMsg}
-                        required={option.required}
-                        options={option.options}
-                        name={option.name}
-                        register={register}
-                        errors={errors}
-                      />
-                    </div>
-                  ) : (
-                    <>
-                      {option.inputs ? (
-                        <div
-                          style={{ marginLeft: 60 }}
-                          className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
-                        >
-                          {option.inputs.map((input) => (
-                            <Input
-                              key={input.name}
-                              label={input.inputLabel1}
-                              label2={input.inputLabel2}
-                              name={input.name}
-                              errorMsg={input.errorMsg}
-                              required={option.required}
-                              unregister={unregister}
-                              register={register}
-                              errors={errors}
+              {(option.inputLabel1 || option.inputs) &&
+                (checkedRadio === 0 || (!checkedRadio && savedYesNo === 'Yes')) && (
+                  <>
+                    {option.type === 'Dropdown' ? (
+                      <div style={{ marginLeft: 40 }}>
+                        <Dropdown
+                          label={option.inputLabel1}
+                          errorMsg={option.errorMsg}
+                          required={option.required}
+                          options={option.options}
+                          name={option.name}
+                          register={register}
+                          errors={errors}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        {option.inputs ? (
+                          <div
+                            style={{ marginLeft: 60 }}
+                            className={` ${
+                              errors.includes(option.name) && 'wmnds-fe-group--error'
+                            }`}
+                          >
+                            {option.inputs.map((input) => (
+                              <Input
+                                key={input.name}
+                                label={input.inputLabel1}
+                                label2={input.inputLabel2}
+                                name={input.name}
+                                defaultValue={[input.name, getSavedValue(input.name)]}
+                                errorMsg={input.errorMsg}
+                                required={option.required}
+                                unregister={unregister}
+                                register={register}
+                                errors={errors}
+                              />
+                            ))}
+                          </div>
+                        ) : (
+                          <div
+                            style={{ marginLeft: 60 }}
+                            className={` ${
+                              errors.includes(option.name) && 'wmnds-fe-group--error'
+                            }`}
+                          >
+                            <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
+                              {option.inputLabel1}
+                            </label>
+                            <label className="wmnds-fe-label" htmlFor="input">
+                              {option.inputLabel2}
+                            </label>{' '}
+                            {errors.includes(option.name) && (
+                              <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                            )}
+                            <input
+                              name={option.name}
+                              className="wmnds-fe-input"
+                              type={option.type}
+                              style={{ maxWidth: '20rem' }}
+                              // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
+                              ref={register}
+                              onChange={
+                                option.type === 'NumberFormat' ? inputChageHandler : undefined
+                              }
+                              maxLength={option.maxLength}
                             />
-                          ))}
-                        </div>
-                      ) : (
-                        <div
-                          style={{ marginLeft: 60 }}
-                          className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
-                        >
-                          <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
-                            {option.inputLabel1}
-                          </label>
-                          <label className="wmnds-fe-label" htmlFor="input">
-                            {option.inputLabel2}
-                          </label>{' '}
-                          {errors.includes(option.name) && (
-                            <span className="wmnds-fe-error-message">{option.errorMsg}</span>
-                          )}
-                          <input
-                            name={option.name}
-                            className="wmnds-fe-input"
-                            type={option.type}
-                            style={{ maxWidth: '20rem' }}
-                            // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
-                            ref={register}
-                            onChange={option.type === 'NumberFormat' && inputChageHandler}
-                            maxLength={option.maxLength}
-                          />
-                        </div>
-                      )}
-                    </>
-                  )}
-                </>
-              )}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
             </div>
           ))}
         </fieldset>
@@ -143,11 +179,20 @@ const YesOrNo = ({
 
 // PropTypes
 YesOrNo.propTypes = {
-  label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  label: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, option: PropTypes.string }))
+    .isRequired,
   required: PropTypes.bool.isRequired,
 
-  defaultValue: PropTypes.arrayOf(PropTypes.string).isRequired,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+    PropTypes.string,
+  ]),
+};
+
+YesOrNo.defaultProps = {
+  label: '',
+  defaultValue: [],
 };
 
 export default YesOrNo;

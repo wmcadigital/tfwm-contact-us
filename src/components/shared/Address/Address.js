@@ -115,19 +115,26 @@ const Address = ({
       )}
       {!mapView && (
         <>
-          {inputs.map((input) => (
-            <Input
-              key={input.name}
-              label={input.label}
-              label2={input.label2}
-              name={input.name}
-              errorMsg={input.errorMsg}
-              required={input.required}
-              unregister={unregister}
-              register={register}
-              errors={errors}
-            />
-          ))}
+          {inputs.map((input) => {
+            const entries = defaultValue?.value;
+            const storedEntry = Array.isArray(entries)
+              ? entries.find((v) => v[0] === input.name)
+              : null;
+            return (
+              <Input
+                key={input.name}
+                label={input.label}
+                label2={input.label2}
+                name={input.name}
+                errorMsg={input.errorMsg}
+                required={input.required}
+                defaultValue={storedEntry || input.defaultValue}
+                unregister={unregister}
+                register={register}
+                errors={errors}
+              />
+            );
+          })}
         </>
       )}
     </div>

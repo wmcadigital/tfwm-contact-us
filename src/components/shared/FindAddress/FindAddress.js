@@ -15,11 +15,23 @@ const FindAddress = ({
   inputs,
   unregister,
   allowMapView,
+  setValue,
 }) => {
   const [hasError, setHasError] = useState(errors.includes(name));
   const [postcode, setPostcode] = useState(undefined);
-  const [formState, setFormState] = useState('idle');
+  const isValidPostcode = postcode && /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d[A-Za-z]{2}$/.test(postcode);
+  const [formState, setFormState] = useState(
+    typeof defaultValue === 'object' && defaultValue['find-address-state']
+      ? defaultValue['find-address-state']
+      : 'idle'
+  );
   const [addresses, setAddresses] = useState([]);
+  const [add, setAdd] = useState({});
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [populatedInputs, setPopulatedInputs] = useState(inputs);
+  const [addressSet, setAddressSet] = useState(false);
+  const [pendingValues, setPendingValues] = useState(null);
+
   useEffect(() => {
     if (errors.includes(name)) {
       setHasError(true);
@@ -37,26 +49,136 @@ const FindAddress = ({
     }
   }, [postcode]);
 
+  useEffect(() => {
+    setPopulatedInputs(inputs);
+  }, [inputs]);
+
+  useEffect(() => {
+    if (setValue) {
+      setValue(`${name}-state`, formState);
+    }
+  }, [formState, setValue, name]);
+
+  useEffect(() => {
+    if (pendingValues && setValue) {
+      Object.entries(pendingValues).forEach(([key, value]) => {
+        setValue(key, value);
+      });
+      setPendingValues(null);
+    }
+  }, [pendingValues, setValue]);
+
   const findAddressHandler = async (postcodeValue) => {
     setFormState('find-address');
-    const baseUrl = process.env.REACT_APP_ADDRESS_API_URL;
-    if (!baseUrl) {
-      // Env var not set — avoid embedding secret values in source.
-      // Fail gracefully and return no addresses.
-      // Runtime should provide `REACT_APP_ADDRESS_API_URL` from environment.
-      // eslint-disable-next-line no-console
-      console.error('Missing REACT_APP_ADDRESS_API_URL environment variable');
-      setAddresses([]);
-      return;
-    }
 
     const fetchFindAddress = await fetch(
-      `${baseUrl}/AddressByPostcode/${encodeURI(postcodeValue)}`
+      `${process.env.REACT_APP_ADDRESS_API_URL}/${encodeURI(postcodeValue)}`,
+      {
+        headers: {
+          'power-automate': process.env.REACT_APP_ADDRESS_API_KEY,
+        },
+      }
     );
     const findAddressRes = await fetchFindAddress.json();
+    const line1 = findAddressRes?.[0]?.line_1;
+    const line2 = findAddressRes?.[0]?.line_2;
+    const line3 = findAddressRes?.[0]?.line_3;
+    const postTown = findAddressRes?.[0]?.post_town;
+    const county = findAddressRes?.[0]?.county;
+    const addressPostcode = findAddressRes?.[0]?.postcode;
+
     setAddresses(findAddressRes);
+    setAdd([line1, line2, line3, postTown, addressPostcode]);
+
+    // If only one address found, auto-populate the form
+    if (findAddressRes.length === 1) {
+      const populated = inputs.map((input) => {
+        let fieldDefaultValue = '';
+        switch (input.name) {
+          case 'building':
+            fieldDefaultValue = line1 || '';
+            break;
+          case 'street':
+            fieldDefaultValue = line2 || '';
+            break;
+          case 'town-or-city':
+            fieldDefaultValue = postTown || '';
+            break;
+          case 'county':
+            fieldDefaultValue = county || '';
+            break;
+          case 'address-postcode':
+            fieldDefaultValue = addressPostcode || '';
+            break;
+          default:
+            break;
+        }
+        return {
+          ...input,
+          defaultValue: fieldDefaultValue ? [input.name, fieldDefaultValue] : input.defaultValue,
+        };
+      });
+      setPopulatedInputs(populated);
+      setFormState('manual-address');
+
+      // Queue values to be set after inputs register
+      setPendingValues({
+        building: line1 || '',
+        street: line2 || '',
+        'town-or-city': postTown || '',
+        county: county || '',
+        'address-postcode': addressPostcode || '',
+      });
+    }
   };
-  // console.log(postcode, addresses);
+
+  const handleAddressSelection = (event) => {
+    const selectedGuid = event.target.value;
+    const address = addresses.find((addr) => addr.guid === selectedGuid);
+
+    if (address) {
+      setSelectedAddress(address);
+      // Prepare inputs with populated defaults
+      const prepared = inputs.map((input) => {
+        let defaultValues = '';
+        switch (input.name) {
+          case 'building':
+            defaultValues = address.line_1 || '';
+            break;
+          case 'street':
+            defaultValues = address.line_2 || '';
+            break;
+          case 'town-or-city':
+            defaultValues = address.post_town || '';
+            break;
+          case 'county':
+            defaultValues = address.county || '';
+            break;
+          case 'address-postcode':
+            defaultValues = postcode || '';
+            break;
+          default:
+            break;
+        }
+        return {
+          ...input,
+          defaultValue: defaultValues ? [input.name, defaultValues] : input.defaultValue,
+        };
+      });
+      setPopulatedInputs(prepared);
+      setFormState('manual-address');
+
+      // Queue values to be set after inputs register
+      setPendingValues({
+        building: address.line_1 || '',
+        street: address.line_2 || '',
+        'town-or-city': address.post_town || '',
+        county: address.county || '',
+        'address-postcode': postcode || '',
+      });
+    }
+  };
+
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {formState === 'idle' && (
@@ -73,6 +195,7 @@ const FindAddress = ({
               onChange={(e) => setPostcode(e.target.value)}
               type="text"
               style={{ maxWidth: '20rem' }}
+              required={required}
               ref={register}
             />
           </label>
@@ -84,6 +207,7 @@ const FindAddress = ({
             }}
             className="wmnds-btn wmnds-btn--primary"
             type="button"
+            disabled={!isValidPostcode}
           >
             Find Address
           </button>
@@ -120,10 +244,11 @@ const FindAddress = ({
                 style={{ maxWidth: '20rem' }}
                 name="find-address"
                 ref={register}
+                onChange={handleAddressSelection}
               >
                 <option value="">Choose from list</option>
                 {addresses.map((option) => (
-                  <option key={option.guid} value={option.summary_line}>
+                  <option key={option.guid} value={option.guid}>
                     {option.summary_line}
                   </option>
                 ))}
@@ -139,25 +264,48 @@ const FindAddress = ({
                 marginTop: 20,
               }}
               type="button"
-              onClick={() => setFormState('manuel-address')}
+              onClick={() => setFormState('manual-address')}
             >
               I can’t find my address in the list
             </button>
           </div>
         </>
       )}
-      {formState === 'manuel-address' && (
-        <Address
-          label={label}
-          name={name}
-          errorMsg={errorMsg}
-          required={required}
-          allowMapView={allowMapView}
-          register={register}
-          errors={errors}
-          inputs={inputs}
-          unregister={unregister}
-        />
+      {formState === 'manual-address' && (
+        <>
+          {populatedInputs.some((input) => {
+            const value = Array.isArray(input.defaultValue)
+              ? input.defaultValue[1]
+              : input.defaultValue;
+            return value && value !== '';
+          }) && (
+            <button
+              style={{
+                all: 'unset',
+                cursor: 'pointer',
+                color: '#1d7bbf',
+                fontWeight: 'bold',
+                textDecoration: 'underline',
+                marginBottom: 20,
+              }}
+              type="button"
+              onClick={() => setFormState('find-address')}
+            >
+              Back
+            </button>
+          )}
+          <Address
+            label={label}
+            name={name}
+            errorMsg={errorMsg}
+            required={required}
+            allowMapView={allowMapView}
+            register={register}
+            errors={errors}
+            inputs={populatedInputs}
+            unregister={unregister}
+          />
+        </>
       )}
     </div>
   );
