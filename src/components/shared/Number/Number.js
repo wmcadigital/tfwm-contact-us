@@ -45,7 +45,7 @@ const Number = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
   return (
     <div
       className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}

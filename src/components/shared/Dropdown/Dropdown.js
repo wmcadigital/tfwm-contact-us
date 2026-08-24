@@ -34,7 +34,7 @@ const Dropdown = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
   return (
     <div className={`wmnds-fe-group wmnds-m-b-lg  ${hasError && 'wmnds-fe-group--error'}`}>
       <div

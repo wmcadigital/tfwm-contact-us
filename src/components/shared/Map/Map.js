@@ -62,7 +62,7 @@ const GetMap = ({ lat, lang }) => {
       symbol: simpleMarkerSymbol,
     });
     graphicsLayer.add(pointGraphic);
-  }, []);
+  }, [lang, lat]);
 
   return (
     <>

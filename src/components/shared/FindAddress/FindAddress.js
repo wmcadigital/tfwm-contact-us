@@ -26,7 +26,7 @@ const FindAddress = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
   useEffect(() => {
     if (postcode !== undefined) {
       if (!postcode) {
@@ -39,14 +39,24 @@ const FindAddress = ({
 
   const findAddressHandler = async (postcodeValue) => {
     setFormState('find-address');
+    const baseUrl = process.env.REACT_APP_ADDRESS_API_URL;
+    if (!baseUrl) {
+      // Env var not set — avoid embedding secret values in source.
+      // Fail gracefully and return no addresses.
+      // Runtime should provide `REACT_APP_ADDRESS_API_URL` from environment.
+      // eslint-disable-next-line no-console
+      console.error('Missing REACT_APP_ADDRESS_API_URL environment variable');
+      setAddresses([]);
+      return;
+    }
 
     const fetchFindAddress = await fetch(
-      `https://api.wmnetwork.co.uk/address/v1/AddressByPostcode/${encodeURI(postcodeValue)}`
+      `${baseUrl}/AddressByPostcode/${encodeURI(postcodeValue)}`
     );
     const findAddressRes = await fetchFindAddress.json();
     setAddresses(findAddressRes);
   };
-  console.log(postcode, addresses);
+  // console.log(postcode, addresses);
   return (
     <div className={`wmnds-fe-group ${hasError && required && 'wmnds-fe-group--error'}`}>
       {formState === 'idle' && (

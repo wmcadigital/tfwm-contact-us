@@ -136,7 +136,7 @@ const MapViewContent = () => {
       });
     });
     // Hide the loading indicator when the view stops updating
-    watchUtils.whenFalse(view, 'updating', function (evt) {
+    watchUtils.whenFalse(view, 'updating', function handleViewUpdate() {
       // search input style
       const searchContainer = document.querySelector('.esri-search__input-container');
       const searchInput = document.querySelector('#searchWidget-input');

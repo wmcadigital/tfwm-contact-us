@@ -9,11 +9,13 @@
     "url": "https://github.com/wmcadigital/wmn-create-react-app-template/issues"
   },
   "copyright": "WMCA",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "react-app-rewired start",
     "lint:styles": "sass-lint '**/*.scss'",
     "update-packages": "ncu",
-    "localBuild": "react-app-rewired --openssl-legacy-provider build",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
@@ -24,18 +26,17 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.41",
+    "@types/node": "^22.0.0",
     "@types/react": "^17.0.21",
     "@types/react-dom": "^17.0.2",
     "axios": "^0.21.1",
     "dompurify": "^2.3.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.11.5",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.2",
+    "react-scripts": "5.0.1",
     "sass": "^1.32.8",
     "typescript": "^4.6.4"
   },
@@ -43,29 +44,32 @@
     "@types/dompurify": "^2.3.1",
     "@types/react": "^17.0.35",
     "@types/react-router-dom": "^5.1.9",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-jam3": "^0.2.3",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "npm-check-updates": "^11.1.4",
     "prettier": "^2.8.4",
     "react-app-rewired": "^2.1.8",
-    "sass-lint": "^1.13.1",
-    "sass-lint-webpack": "^1.0.3"
+    "sass-lint": "^1.13.1"
   },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all",
-      "ie 11"
+      "not op_mini all"
     ],
     "development": [
       ">0.2%",
       "not dead",
-      "not op_mini all",
-      "ie 11"
+      "not op_mini all"
     ]
   },
-  "sasslintConfig": ".sass-lint.yml"
+  "sasslintConfig": ".sass-lint.yml",
+  "overrides": {
+    "ajv-keywords@5": {
+      "ajv": "^8.0.0"
+    }
+  }
 }
