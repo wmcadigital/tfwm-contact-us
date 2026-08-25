@@ -3681,14 +3681,14 @@
       "heading": "Change my older person’s pass details",
       "emailHeader": "Change older person’s pass details enquiry",
       "hasReachedConfirmation": true,
+      "emailIndex": 2,
       "content": {
         "type": "text",
-        "details": "You can <a href='#?step-change-details-older' title='other' id='formId'>update the details on your older person’s pass online</a>.",
+        "details": "You can <a href='#?step-change-details-older' title='other' id='formId'>update the details on your older person's pass online</a>.",
         "formId": "step-change-details-older",
-        "callHelp": "If you need help changing the details on your older person’s pass, you can give us a call or chat to us.",
+        "callHelp": "If you need help changing the details on your older person's pass, you can give us a call or chat to us.",
         "customerService": true,
-        "showChat": true,
-        "emailIndex": 2
+        "showChat": true
       },
       "formStartContent": {
         "title": "Update your concessionary travel pass",
