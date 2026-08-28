@@ -306,7 +306,7 @@ const CheckYourAnswers = () => {
           subject: emailHeader,
           body: '{"M":"j"}',
           bodyHtml: normalizedFormData2,
-          from: 'donoreply@tfwm.org.uk',
+          from: 'donotreply@tfwm.org.uk',
           files: file ? fileData : [],
           displayName: formData.name
             ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
