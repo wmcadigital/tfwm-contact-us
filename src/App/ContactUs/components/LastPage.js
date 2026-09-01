@@ -228,7 +228,8 @@ const LastPage = ({ content, currentStep }) => {
             <>
               <div>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</div>
               <div>Wednesday: 10am - 5.30pm</div>
-              <div>Saturday, Sunday & bank holidays: Closed</div>
+              <div>Saturday: 9am - 1pm</div>
+              <div>Sunday & bank holidays: Closed</div>
             </>
           )}
         </div>
@@ -286,7 +287,8 @@ const LastPage = ({ content, currentStep }) => {
             <>
               <p>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</p>
               <p>Wednesday: 10am - 5.30pm</p>
-              <p>Saturday, Sunday & bank holidays: Closed</p>
+              <p>Saturday: 9am - 1pm</p>
+              <p>Sunday & bank holidays: Closed</p>
             </>
           </div>
         </>
