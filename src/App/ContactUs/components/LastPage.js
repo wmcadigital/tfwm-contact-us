@@ -5,7 +5,7 @@ import { FormDataContext } from 'globalState';
 
 const { sanitize } = dompurify;
 // eslint-disable-next-line react/prop-types
-const LastPage = ({ content, currentStep }) => {
+function LastPage({ content, currentStep }) {
   const [, formDispatch] = useContext(FormDataContext);
 
   useEffect(() => {
@@ -280,18 +280,14 @@ const LastPage = ({ content, currentStep }) => {
         </ul>
       )}
       {content.details6 && (
-        <>
-          <div className="wmnds-inset-text wmnds-m-b-lg" aria-label="customer services">
-            <h4>West Midlands Bus On Demand</h4>
-            <p>Phone: 0345 034 8670</p>
-            <>
-              <p>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</p>
-              <p>Wednesday: 10am - 5.30pm</p>
-              <p>Saturday: 9am - 1pm</p>
-              <p>Sunday & bank holidays: Closed</p>
-            </>
-          </div>
-        </>
+        <div className="wmnds-inset-text wmnds-m-b-lg" aria-label="customer services">
+          <h4>West Midlands Bus On Demand</h4>
+          <p>Phone: 0345 034 8670</p>
+          <p>Monday, Tuesday, Thursday, Friday: 8am - 5.30pm</p>
+          <p>Wednesday: 10am - 5.30pm</p>
+          <p>Saturday: 9am - 1pm</p>
+          <p>Sunday & bank holidays: Closed</p>
+        </div>
       )}
       {content.details6 && (
         <p
@@ -305,6 +301,6 @@ const LastPage = ({ content, currentStep }) => {
       <br />
     </div>
   );
-};
+}
 
 export default LastPage;
