@@ -18,7 +18,10 @@ const Complaint = () => {
   const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
   let days = content.warningText && content.warningText.includes('5') ? 5 : 2;
 
-  if (formToLoad === 'step-cycle-storage' || (content.warningText && content.warningText.includes('10'))) {
+  if (
+    formToLoad === 'step-cycle-storage' ||
+    (content.warningText && content.warningText.includes('10'))
+  ) {
     days = 10;
   }
 
