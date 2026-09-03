@@ -16,9 +16,15 @@ const Complaint = () => {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
-  const day1 = content.warningText && content.warningText.includes('5') ? 5 : 2;
-  const days = content.warningText && content.warningText.includes('10') ? 10 : day1;
-  // const days = 10;
+  let days = content.warningText && content.warningText.includes('5') ? 5 : 2;
+
+  if (
+    formToLoad === 'step-cycle-storage' ||
+    (content.warningText && content.warningText.includes('10'))
+  ) {
+    days = 10;
+  }
+
   useEffect(() => {
     const headerTitleEl = document.getElementById('formClicked');
     if (formToLoad === 'step-update-DD') {
