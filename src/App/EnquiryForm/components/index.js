@@ -16,7 +16,7 @@ const Complaint = () => {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
-  let days = 2;
+  let days = 10;
 
   if (
     formToLoad === 'step-cycle-storage' ||
