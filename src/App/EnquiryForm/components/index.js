@@ -11,35 +11,57 @@ import DirectDebitGuarantee from './DirectDebitGuarantee';
 
 import Data from '../../ContactUs/newData.json';
 
+export const getResponseDays = (formToLoad) => {
+  const page = Data.pages.find((data) => data.currentStepId === formToLoad);
+
+  const hasAncestorStep = (currentPage, targetStepId) => {
+    let current = currentPage;
+
+    while (current) {
+      if (current.currentStepId === targetStepId) {
+        return true;
+      }
+
+      current = current.prevStepId
+        ? Data.pages.find((data) => data.currentStepId === current.prevStepId)
+        : null;
+    }
+
+    return false;
+  };
+
+  const isSwiftBranch = page && hasAncestorStep(page, 'step-swift-tickets-passes');
+  const isCorporateTicketing =
+    formToLoad === 'step-corporate-ticketing' ||
+    (page && page.parentId === 'corporate-ticketing');
+  const isOlderPassHelp =
+    formToLoad === 'step-help-olderpass-application' ||
+    (page && page.parentId === 'older-persons-pass');
+  const isDisabledPassHelp =
+    formToLoad === 'step-help-disabledpass-application' ||
+    (page && page.parentId === 'disabled-persons-pass');
+
+  if (formToLoad === 'step-cycle-storage' || isCorporateTicketing) {
+    return 10;
+  }
+
+  if (isOlderPassHelp || isDisabledPassHelp) {
+    return 30;
+  }
+
+  if (isSwiftBranch) {
+    return 5;
+  }
+
+  return 10;
+};
+
 const Complaint = () => {
   const [{ page, formId }] = useContext(FormDataContext);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
-  const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
-  const isSwiftBranch =
-    formToLoad === 'step-swift-tickets-passes' ||
-    formToLoad === 'step-direct-debit' ||
-    formToLoad === 'step-update-DD' ||
-    formToLoad === 'step-cancel-DD' ||
-    formToLoad === 'step-other-DD' ||
-    (content && content.prevStepId === 'step-swift-tickets-passes');
-
-  let days = 10;
-
-  if (
-    formToLoad === 'step-cycle-storage' ||
-    formToLoad === 'step-corporate-ticketing' ||
-    (content.warningText && content.warningText.includes('10'))
-  ) {
-    days = 10;
-  } else if (
-    formToLoad === 'step-help-olderpass-application' ||
-    formToLoad === 'step-help-disabledpass-application'
-  ) {
-    days = 30;
-  } else if (isSwiftBranch) {
-    days = 5;
-  }
+  const { content } = Data.pages.find((data) => data.currentStepId === formToLoad) || {};
+  const days = getResponseDays(formToLoad);
 
   useEffect(() => {
     const headerTitleEl = document.getElementById('formClicked');
