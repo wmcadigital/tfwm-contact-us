@@ -16,13 +16,24 @@ const Complaint = () => {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
-  let days = content.warningText && content.warningText.includes('5') ? 5 : 2;
+  let days = 10;
 
   if (
     formToLoad === 'step-cycle-storage' ||
+    formToLoad === 'step-corporate-ticketing' ||
     (content.warningText && content.warningText.includes('10'))
   ) {
     days = 10;
+  } else if (
+    formToLoad === 'step-help-olderpass-application' ||
+    formToLoad === 'step-help-disabledpass-application'
+  ) {
+    days = 30;
+  } else if (
+    formToLoad === 'step-swift-tickets-passes' ||
+    (content.warningText && content.warningText.includes('5'))
+  ) {
+    days = 5;
   }
 
   useEffect(() => {
