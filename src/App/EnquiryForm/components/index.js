@@ -16,6 +16,14 @@ const Complaint = () => {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const { content } = Data.pages.find((data) => data.currentStepId === formToLoad);
+  const isSwiftBranch =
+    formToLoad === 'step-swift-tickets-passes' ||
+    formToLoad === 'step-direct-debit' ||
+    formToLoad === 'step-update-DD' ||
+    formToLoad === 'step-cancel-DD' ||
+    formToLoad === 'step-other-DD' ||
+    (content && content.prevStepId === 'step-swift-tickets-passes');
+
   let days = 10;
 
   if (
@@ -29,10 +37,7 @@ const Complaint = () => {
     formToLoad === 'step-help-disabledpass-application'
   ) {
     days = 30;
-  } else if (
-    formToLoad === 'step-swift-tickets-passes' ||
-    (content.warningText && content.warningText.includes('5'))
-  ) {
+  } else if (isSwiftBranch) {
     days = 5;
   }
 
