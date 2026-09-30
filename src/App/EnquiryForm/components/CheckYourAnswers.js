@@ -246,7 +246,7 @@ const CheckYourAnswers = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: 7,
+          to: emailIndex,
           subject: emailHeader,
           body: '{"M":"j"}',
           bodyHtml: submissionDataBase64,
