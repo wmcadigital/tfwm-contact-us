@@ -34,12 +34,13 @@ const Dropdown = ({
     } else {
       setHasError(false);
     }
-  }, [errors]);
+  }, [errors, name]);
   return (
     <div className={`wmnds-fe-group wmnds-m-b-lg  ${hasError && 'wmnds-fe-group--error'}`}>
       <div
+        // eslint-disable-next-line jam3/no-sanitizer-with-danger
         dangerouslySetInnerHTML={{
-          __html: sanitize(details),
+          __html: details,
         }}
         style={{ marginBottom: 30 }}
       />
@@ -79,11 +80,16 @@ Dropdown.propTypes = {
   details: PropTypes.string.isRequired,
   errorMsg: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   required: PropTypes.bool.isRequired,
 
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+Dropdown.defaultProps = {
+  defaultValue: undefined,
+  onChange: undefined,
 };
 
 export default Dropdown;

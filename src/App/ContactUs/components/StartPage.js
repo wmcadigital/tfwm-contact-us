@@ -72,12 +72,10 @@ function StartPage() {
         <div className="wmnds-inset-text" aria-label="call us">
           <h4>Customer Services</h4>
           <p>Phone: 0345 303 6760</p>
-          Mondays, Tuesdays, Thursdays and Fridays, 8am to 6pm <br />
-           Wednesdays, 10am to 6pm
+          Monday, Tuesday, Thursday, Friday 9am-5pm <br />
+          Wednesday 10am to 5pm
           <br />
-          Saturdays, 9am to 1pm
-          <br />
-          Sundays and Bank Holidays, Closed
+          Saturday, Sunday & bank holidays: Closed
         </div>
       </div>
     </div>

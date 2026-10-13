@@ -8,7 +8,9 @@ const { sanitize } = dompurify;
 
 const SubmitAnEnquiry = () => {
   const [{ formId }, formDispatch] = useContext(FormDataContext);
-  const { formStartContent } = Data.pages.find((page) => page.currentStepId === formId);
+  const params = window.location.hash.slice(2);
+  const formToLoad = formId || params;
+  const { formStartContent } = Data.pages.find((page) => page.currentStepId === formToLoad);
 
   return (
     <div className="wmnds-container wmnds-container--main" style={{ padding: 0 }}>

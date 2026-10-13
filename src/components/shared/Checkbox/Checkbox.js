@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 /* eslint-disable react/prop-types */
+import Input from '../Input/Input';
 
 const Checkbox = ({
   label = '',
@@ -29,6 +30,7 @@ const Checkbox = ({
   };
   useEffect(() => {
     checkBoxesChangeHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
   const registerRef = (checkboxName) => {
@@ -41,7 +43,6 @@ const Checkbox = ({
 
     return false;
   };
-
   return (
     <div className={`wmnds-fe-group ${hasError && 'wmnds-fe-group--error'}`}>
       <div className="wmnds-fe-checkboxes">
@@ -98,6 +99,53 @@ const Checkbox = ({
                   ref={register}
                 />
               </div>
+            )}
+            {option.inputs && checkedBoxes.includes(option.name) && (
+              <>
+                {option.inputs ? (
+                  <div
+                    style={{ marginLeft: 60 }}
+                    className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
+                  >
+                    {option.inputs.map((input) => (
+                      <Input
+                        key={input.name}
+                        label={input.inputLabel1}
+                        label2={input.inputLabel2}
+                        name={input.name}
+                        errorMsg={input.errorMsg}
+                        required={option.required}
+                        unregister={unregister}
+                        register={register}
+                        errors={errors}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div
+                    style={{ marginLeft: 60 }}
+                    className={` ${errors.includes(option.name) && 'wmnds-fe-group--error'}`}
+                  >
+                    <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
+                      {option.inputLabel1}
+                    </label>
+                    <label className="wmnds-fe-label" htmlFor="input">
+                      {option.inputLabel2}
+                    </label>{' '}
+                    {errors.includes(option.name) && (
+                      <span className="wmnds-fe-error-message">{option.errorMsg}</span>
+                    )}
+                    <input
+                      name={option.name}
+                      className="wmnds-fe-input"
+                      type={option.type}
+                      style={{ maxWidth: '20rem' }}
+                      // defaultValue={defaultValue[idx] ? defaultValue[idx] : ''}
+                      ref={register}
+                    />
+                  </div>
+                )}
+              </>
             )}
           </div>
         ))}

@@ -3,22 +3,203 @@
 
 import GetMap from 'components/shared/Map/Map';
 
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { FormDataContext } from '../../../globalState';
 
 import classes from '../../App.module.scss';
+import Data from '../../ContactUs/newData.json';
+
+const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
-  const [errorMsg, setErrorMsg] = useState('');
-  const prevStep = () => {
+  // Normalize `formData` into a flat object with camelCase keys
+  const toCamelCase = (str = '') =>
+    String(str)
+      .replace(/[^a-zA-Z0-9 ]+/g, ' ')
+      .trim()
+      .split(/[\s-_]+/)
+      .map((s, i) => (i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1)))
+      .join('');
+
+  // Helper function to format phone numbers with +44
+  const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber || typeof phoneNumber !== 'string') return phoneNumber;
+
+    const trimmed = phoneNumber.trim();
+    // If it already starts with +44 or +, return as is
+    if (trimmed.startsWith('+')) return trimmed;
+    // If it starts with 0, replace with +44
+    if (trimmed.startsWith('0')) return `+44${trimmed.substring(1)}`;
+    // Otherwise, prepend +44
+    return `+44${trimmed}`;
+  };
+
+  // Helper function to format value for display if it's a phone field
+  const formatDisplayValueForField = (value, fieldKey = '', answerTitle = '') => {
+    if (typeof value !== 'string') return value;
+    const isPhoneField =
+      /phone|telephone|mobile/i.test(fieldKey) || /phone|telephone|mobile/i.test(answerTitle);
+    return isPhoneField && /\d/.test(value) ? formatPhoneNumber(value) : value;
+  };
+
+  const buildSubmissionData = (data) => {
+    if (!data || typeof data !== 'object') return {};
+
+    // Aliases for the "change" questions: when answered "Yes", the section's data
+    // is sent under the alias (e.g. update-name -> changeName) instead of the
+    // generic keys.
+    const CHANGE_ALIAS_MAP = {
+      'update-name': 'changeName',
+      'update-address': 'changeAddress',
+      'update-email': 'changeEmail',
+      'update-phone': 'changePhone',
+    };
+    const isYesAnswer = (item) =>
+      Array.isArray(item.value) &&
+      item.value.some((pair) => /^yes-or-no(-skip)?$/.test(pair[0]) && pair[1] === 'Yes');
+    const changedSectionAliases = Object.keys(data).reduce((accumulator, key) => {
+      if (CHANGE_ALIAS_MAP[key] && isYesAnswer(data[key])) accumulator[key] = CHANGE_ALIAS_MAP[key];
+      return accumulator;
+    }, {});
+
+    return Object.keys(data).reduce((accumulator, key) => {
+      const item = data[key];
+      if (!item || !Array.isArray(item.value)) return accumulator;
+
+      const stripCcPrefix = (k) => k.replace(/^CC-/i, '');
+
+      // "Change" questions answered "Yes" are emitted under their alias
+      if (changedSectionAliases[key]) {
+        if (key === 'update-name') {
+          const firstNamePair = item.value.find((pair) =>
+            /^first[-_]?name$/i.test(stripCcPrefix(pair[0]))
+          );
+          const lastNamePair = item.value.find((pair) =>
+            /^last[-_]?name$/i.test(stripCcPrefix(pair[0]))
+          );
+          if (firstNamePair && firstNamePair[1]) accumulator.newFirstName = firstNamePair[1];
+          if (lastNamePair && lastNamePair[1]) accumulator.newLastName = lastNamePair[1];
+        } else if (key === 'update-email') {
+          const emailPair = item.value.find((pair) => /^email$/i.test(stripCcPrefix(pair[0])));
+          if (emailPair && emailPair[1]) accumulator.changeEmail = emailPair[1];
+        } else if (key === 'update-phone') {
+          const phonePair = item.value.find((pair) =>
+            /^phone[-_]?name$/i.test(stripCcPrefix(pair[0]))
+          );
+          if (phonePair && phonePair[1]) accumulator.changePhone = formatPhoneNumber(phonePair[1]);
+        }
+        return accumulator;
+      }
+
+      // The updated address is collected in the separate `address` section
+      if (key === 'address' && changedSectionAliases['update-address']) {
+        const addr = {};
+        item.value.forEach((pair) => {
+          if (pair[0]) addr[toCamelCase(pair[0])] = pair[1];
+        });
+        if (Object.keys(addr).length > 0) accumulator.changeAddress = addr;
+        return accumulator;
+      }
+
+      // Handle name specially (firstName / lastName)
+      const nameFieldKeys = item.value.map((pair) => pair[0]);
+      const isNameSection =
+        nameFieldKeys.some((k) => /^first[-_]?name$/i.test(k)) &&
+        nameFieldKeys.some((k) => /^last[-_]?name$/i.test(k));
+      if (isNameSection && item.value.length >= 2) {
+        const firstNamePair = item.value.find((pair) => /^first[-_]?name$/i.test(pair[0]));
+        const lastNamePair = item.value.find((pair) => /^last[-_]?name$/i.test(pair[0]));
+        accumulator.firstName = (firstNamePair && firstNamePair[1]) || accumulator.firstName;
+        accumulator.lastName = (lastNamePair && lastNamePair[1]) || accumulator.lastName;
+        return accumulator;
+      }
+      // Handle email specially
+      const isEmailKey = (pair) => {
+        const k = pair[0].replace(/^CC-/i, '');
+        return /email/i.test(k) && !/^pref-?email(-address)?$/i.test(k);
+      };
+      if (
+        (/email/i.test(item.answerTitle || key) || item.value.some(isEmailKey)) &&
+        item.value.length >= 1
+      ) {
+        const emailPair =
+          item.value.find(isEmailKey) || item.value.find((pair) => pair[0] !== 'yes-or-no-skip');
+        if (emailPair && EMAIL_REGEX.test(emailPair[1])) {
+          accumulator.emailAddress = emailPair[1] || accumulator.emailAddress;
+        }
+        return accumulator;
+      }
+      // Handle file uploader specially
+      if (/file|upload|document/i.test(item.answerTitle || key) && item.value.length >= 1) {
+        const uploadedFilesArray = item.value[0][1];
+        if (
+          uploadedFilesArray &&
+          Array.isArray(uploadedFilesArray) &&
+          uploadedFilesArray.length > 0
+        ) {
+          accumulator.files = uploadedFilesArray.map((file) => ({
+            name: file.name,
+            type: file.type,
+            content: file, // will be converted to base64 later
+          }));
+        }
+        return accumulator;
+      }
+
+      item.value.forEach((pair) => {
+        const fieldKey = pair[0];
+        let value = pair[1];
+        if (!fieldKey || fieldKey === 'yes-or-no-skip') return;
+
+        // Format phone numbers with +44
+        // Matches: phone, telephone, mobile, pref-phone, CC-phone-name, CC-pref-phone-name, etc.
+        const isPhoneField =
+          /phone|telephone|mobile/i.test(fieldKey) ||
+          /phone|telephone|mobile/i.test(item.answerTitle || key);
+        if (isPhoneField && typeof value === 'string' && /\d/.test(value)) {
+          value = formatPhoneNumber(value);
+        }
+
+        // Strip the "CC-" prefix (used for "updated" details on pass forms)
+        // so the API receives e.g. firstName, not ccFirstName.
+        const cleanFieldKey = fieldKey.replace(/^CC-/i, '');
+
+        const propertyName = toCamelCase(cleanFieldKey) || toCamelCase(item.answerTitle || key);
+
+        if (accumulator[propertyName]) {
+          if (Array.isArray(accumulator[propertyName])) accumulator[propertyName].push(value);
+          else accumulator[propertyName] = [accumulator[propertyName], value];
+        } else {
+          accumulator[propertyName] = value;
+        }
+      });
+      return accumulator;
+    }, {});
+  };
+
+  const encodeDataToBase64 = (data) => {
+    const jsonString = JSON.stringify(data);
+    return btoa(unescape(encodeURIComponent(jsonString)));
+  };
+  const submissionData = buildSubmissionData(formData);
+  const submissionDataBase64 = encodeDataToBase64(submissionData);
+  const urlHashParams = window.location.hash.slice(2);
+  const targetStepId = formId || urlHashParams;
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const currentPage =
+    Data?.pages?.find((pageData) => pageData.currentStepId === targetStepId) || {};
+  const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === targetStepId);
+  const { emailHeader = '', text = '' } = currentPage;
+  const goBack = () => {
     formDispatch({
       type: 'CHANGE-PAGE',
       payload: { page: 'COMPLAINT', stepNum, pageType: '' },
     });
   };
-  const changeForm = (stepNumber) => {
+  const goToChangeStep = (stepNumber) => {
     formDispatch({
       type: 'CHANGE-PAGE',
       payload: { page: 'COMPLAINT', stepNum: stepNumber, pageType: 'change' },
@@ -26,89 +207,102 @@ const CheckYourAnswers = () => {
   };
 
   // returns the base64 string of files
-  const toBase64 = (file) =>
+  const fileToBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-  console.log(formData);
-  const sendEmailHandler = async () => {
-    const checkAnswersEl = document.getElementById('answers-container');
+
+  const sendEmail = async () => {
+    const answersContainerEl = document.getElementById('answers-container');
 
     // replace map with google maps link
     if (formData.address && formData.address.value[0][1].indexOf('www.google.com') !== -1) {
       document.getElementById('answerMapDiv').replaceWith(formData.address.value[0][1]);
     }
     // remove change button
-    const editedText = checkAnswersEl.outerHTML.replaceAll(
+    const editedText = answersContainerEl.outerHTML.replaceAll(
       '<td data-header="Header 2" style="vertical-align: top; width: 70px; text-align: right;"><button type="button" class="wmnds-btn wmnds-btn--link">Change</button></td>',
       ''
     );
 
-    const base64Content = btoa(editedText);
     const file = formData.file ? formData.file.value[0][1][0] : undefined;
     let base64File;
-    let fileData;
+    let attachments;
 
     if (file) {
-      base64File = await toBase64(file);
-      fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
+      base64File = await fileToBase64(file);
+      attachments = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
 
-    const postData = await fetch(
-      `https://notifying7irie3hwphseg.azurewebsites.net/api/EmailSender`,
-      {
+    let fetchResponse;
+    // console.log(emailIndex);
+    try {
+      fetchResponse = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          to: 5,
-          subject: 'This is a Campaign Test',
-          body: base64Content,
-          from: 0,
-          files: file ? fileData : [],
+          to: emailIndex,
+          subject: emailHeader,
+          body: '{"M":"j"}',
+          bodyHtml: submissionDataBase64,
+          from: 'donotreply@tfwm.org.uk',
+          files: file ? attachments : [],
+          displayName: formData.name
+            ? `${formData.name.value[0][1]} ${formData.name.value[1][1]}`
+            : 'No Name',
         }),
-      }
-    );
-    const postDataResponse = await postData.json();
-    console.log(postDataResponse);
-  };
-
-  const checkCheckboxes = async () => {
-    const checkboxes = [...document.querySelectorAll(`.checkox-option`)];
-
-    const findCheckedBoxes = [...document.querySelectorAll(`input:checked`)];
-    if (findCheckedBoxes.length < checkboxes.length) {
-      setErrorMsg('Please select both options');
-    } else {
-      await sendEmailHandler();
-
-      formDispatch({
-        type: 'CHANGE-PAGE',
-        payload: { page: 'SUCCESS', stepNum },
       });
-      setErrorMsg('');
+    } catch (e) {
+      return false;
+    }
+
+    return fetchResponse.status === 200;
+  };
+  const handleCheckboxes = async () => {
+    const checkboxOptions = [...document.querySelectorAll(`.checkox-option`)];
+
+    const checkedBoxes = [...document.querySelectorAll(`input:checked`)];
+    if (checkedBoxes.length < checkboxOptions.length) {
+      setErrorMessage(
+        `Please select ${urlHashParams === 'step-update-DD' ? 'all' : 'both'}  options`
+      );
+    } else {
+      const success = await sendEmail();
+      if (success) {
+        formDispatch({
+          type: 'CHANGE-PAGE',
+          payload: { page: 'SUCCESS', stepNum },
+        });
+        setErrorMessage('');
+      } else {
+        setErrorMessage('Sorry, there was a problem sending your form. Please try again.');
+      }
     }
   };
 
-  const getCoords = (value) => {
+  const parseCoords = (value) => {
     const coords = value.split('query=')[1].split(',');
 
     return coords;
   };
-  const groupBySection = Object.values(formData).reduce(
+  const groupedAnswers = Object.values(formData).reduce(
     (groups, item) => ({
       ...groups,
       [item.section]: [...(groups[item.section] || []), item],
     }),
     {}
   );
-  const formAnswers = Object.entries(groupBySection);
+  const sectionEntries = Object.entries(groupedAnswers);
 
   return (
     <div className="wmnds-container wmnds-container--main">
       <div className="wmnds-col-1 wmnds-m-b-md">
-        <button type="button" className="wmnds-btn wmnds-btn--link" onClick={prevStep}>
+        <button type="button" className="wmnds-btn wmnds-btn--link" onClick={goBack}>
           &lt; Back
         </button>
       </div>
@@ -117,15 +311,20 @@ const CheckYourAnswers = () => {
         id="check-your-answers"
         style={{ maxWidth: '40rem', backgroundColor: 'white' }}
       >
+        {emailHeader !== '' && (
+          <p>
+            <strong>{emailHeader}</strong>
+          </p>
+        )}
         <h2 className=" wmnds-m-t-lg">Check your answers</h2>
-        <div id="answers-container">
-          {formAnswers.map((answers) => (
-            <>
+        <div id="answers-container" style={{ textAlign: 'left' }}>
+          {sectionEntries.map((answers) => (
+            <React.Fragment key={answers[0]}>
               <h3>{answers[0]}</h3>
               <table className="wmnds-table wmnds-table--without-header">
                 <tbody>
                   {answers[1].map((data) => (
-                    <tr>
+                    <tr key={data.answerTitle}>
                       <th
                         scope="row"
                         data-header="Header 1"
@@ -178,30 +377,57 @@ const CheckYourAnswers = () => {
                             <br />
 
                             <GetMap
-                              lat={getCoords(data.value[0][1])[1]}
-                              lang={getCoords(data.value[0][1])[0]}
+                              lat={parseCoords(data.value[0][1])[1]}
+                              lang={parseCoords(data.value[0][1])[0]}
                             />
                           </>
                         )}
                         {data.answerTitle !== 'Name' &&
                           data.answerTitle !== 'Date of birth' &&
                           data.answerTitle !== 'Supporting documents' &&
+                          data.answerTitle !== 'Contact preference' &&
                           data.answerTitle !== 'What was the date and time of the issue?' &&
                           data.value[0][0] !== 'postcode' && (
                             <>
                               {data.value.map((value) => (
-                                <>
+                                <React.Fragment key={value[0]}>
                                   {value[0] !== 'yes-or-no-skip' && value[1] === 'Yes' ? (
                                     ''
                                   ) : (
                                     <>
-                                      {value[1]} <br />
+                                      {formatDisplayValueForField(
+                                        value[1],
+                                        value[0],
+                                        data.answerTitle
+                                      )}{' '}
+                                      <br />
                                     </>
                                   )}
-                                </>
+                                </React.Fragment>
                               ))}
                             </>
                           )}
+                        {data.answerTitle === 'Contact preference' && (
+                          <>
+                            {data.value.map((value) => (
+                              <React.Fragment key={value[0]}>
+                                {value[0] !== 'CC-pref-phone-name' &&
+                                value[0] !== 'CC-pref-email-address' ? (
+                                  ''
+                                ) : (
+                                  <>
+                                    {formatDisplayValueForField(
+                                      value[1],
+                                      value[0],
+                                      data.answerTitle
+                                    )}{' '}
+                                    <br />
+                                  </>
+                                )}
+                              </React.Fragment>
+                            ))}
+                          </>
+                        )}
                       </td>
                       <td
                         data-header="Header 2"
@@ -209,15 +435,12 @@ const CheckYourAnswers = () => {
                           verticalAlign: 'top',
                           width: 70,
                           textAlign: 'right',
-                          '@media (max-width: 768)': {
-                            textAlign: 'left',
-                          },
                         }}
                       >
                         <button
                           type="button"
                           className="wmnds-btn wmnds-btn--link"
-                          onClick={() => changeForm(data.stepNum)}
+                          onClick={() => goToChangeStep(data.stepNum)}
                         >
                           Change
                         </button>
@@ -226,7 +449,7 @@ const CheckYourAnswers = () => {
                   ))}
                 </tbody>
               </table>
-            </>
+            </React.Fragment>
           ))}
         </div>
 
@@ -237,10 +460,9 @@ const CheckYourAnswers = () => {
         </p>
 
         <div className="wmnds-fe-group">
-          <div className={`wmnds-fe-checkboxes ${errorMsg && 'wmnds-fe-group--error'}`}>
-            {errorMsg && <span className="wmnds-fe-error-message">{errorMsg}</span>}
-            {formId === 'step-update-DD' && (
-              <div style={{ display: 'flex', gap: '.5rem' }}>
+          <div className="wmnds-fe-checkboxes">
+            {urlHashParams === 'step-update-DD' && (
+              <div>
                 <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option0">
                   Please pay West Midlands Combined Authority Direct Debits from the account
                   detailed in this Instruction subject to the safeguards assured by the
@@ -282,13 +504,18 @@ const CheckYourAnswers = () => {
                   src="/direct-debit-logo.png"
                   alt="direct debit logo"
                   className={classes.ddLogo}
+                  style={{ transform: 'scale(0.6)', marginLeft: '30px', marginBottom: '20px' }}
                 />
               </div>
             )}
 
             <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option1">
               Agree to the{' '}
-              <a href="https://www.tfwm.org.uk/terms-and-conditions/transport-for-west-midlands-website/">
+              <a
+                href="https://www.tfwm.org.uk/terms-and-conditions/transport-for-west-midlands-website/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 terms and conditions
               </a>
               <input
@@ -306,7 +533,11 @@ const CheckYourAnswers = () => {
             </label>
             <label className="wmnds-fe-checkboxes__container" htmlFor="checkboxes_option2">
               Agree to the{' '}
-              <a href="https://www.tfwm.org.uk/policies/privacy-and-cookies-policy/">
+              <a
+                href="https://www.tfwm.org.uk/policies/privacy-and-cookies-policy/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 privacy policy
               </a>
               <input
@@ -324,7 +555,8 @@ const CheckYourAnswers = () => {
             </label>
           </div>
         </div>
-        <button className="wmnds-btn wmnds-btn--start" type="button" onClick={checkCheckboxes}>
+        {errorMessage && <span className="wmnds-fe-error-message">{errorMessage}</span>}
+        <button className="wmnds-btn wmnds-btn--start" type="button" onClick={handleCheckboxes}>
           Accept and send
           <svg className="wmnds-btn__icon wmnds-btn__icon--right ">
             <use xlinkHref="#wmnds-general-chevron-right" href="#wmnds-general-chevron-right" />
