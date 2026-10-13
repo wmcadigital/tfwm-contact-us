@@ -14,6 +14,9 @@ import Data from '../../ContactUs/newData.json';
 export const getResponseDays = (formToLoad) => {
   const page = Data.pages.find((data) => data.currentStepId === formToLoad);
 
+  const getPageByCurrentStepId = (currentStepId) =>
+    Data.pages.find((data) => data.currentStepId === currentStepId) || null;
+
   const hasAncestorStep = (currentPage, targetStepId) => {
     let current = currentPage;
 
@@ -22,9 +25,7 @@ export const getResponseDays = (formToLoad) => {
         return true;
       }
 
-      current = current.prevStepId
-        ? Data.pages.find((data) => data.currentStepId === current.prevStepId)
-        : null;
+      current = current.prevStepId ? getPageByCurrentStepId(current.prevStepId) : null;
     }
 
     return false;
@@ -32,8 +33,7 @@ export const getResponseDays = (formToLoad) => {
 
   const isSwiftBranch = page && hasAncestorStep(page, 'step-swift-tickets-passes');
   const isCorporateTicketing =
-    formToLoad === 'step-corporate-ticketing' ||
-    (page && page.parentId === 'corporate-ticketing');
+    formToLoad === 'step-corporate-ticketing' || (page && page.parentId === 'corporate-ticketing');
   const isOlderPassHelp =
     formToLoad === 'step-help-olderpass-application' ||
     (page && page.parentId === 'older-persons-pass');

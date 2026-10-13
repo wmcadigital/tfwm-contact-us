@@ -80,6 +80,16 @@ const Form = () => {
         names.push('day', 'month', 'year');
         if (comp.showTime) names.push('hour', 'minute');
       }
+      if (
+        (comp.type === 'Input' ||
+          comp.type === 'Number' ||
+          comp.type === 'Textarea' ||
+          comp.type === 'FileUpload' ||
+          comp.type === 'Dropdown') &&
+        comp.required
+      ) {
+        names.push(comp.name);
+      }
       if (comp.inputs) {
         comp.inputs.forEach((input) => {
           if (input.required) names.push(input.name);
