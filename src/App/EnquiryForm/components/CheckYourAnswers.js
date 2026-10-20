@@ -10,7 +10,8 @@ import { FormDataContext } from '../../../globalState';
 import classes from '../../App.module.scss';
 import Data from '../../ContactUs/newData.json';
 
-const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+const EMAIL_REGEX =
+  /^[a-z0-9_%+-]+(?:\.[a-z0-9_%+-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i;
 
 const CheckYourAnswers = () => {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
