@@ -62,7 +62,8 @@ const Form = () => {
     shouldUnregister: true,
   });
 
-  const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+  const EMAIL_REGEX =
+    /^[a-z0-9_%+-]+(?:\.[a-z0-9_%+-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i;
 
   const [formError, setFormError] = useState([]);
 
@@ -79,6 +80,16 @@ const Form = () => {
       if (comp.type === 'Date' && comp.required) {
         names.push('day', 'month', 'year');
         if (comp.showTime) names.push('hour', 'minute');
+      }
+      if (
+        (comp.type === 'Input' ||
+          comp.type === 'Number' ||
+          comp.type === 'Textarea' ||
+          comp.type === 'FileUpload' ||
+          comp.type === 'Dropdown') &&
+        comp.required
+      ) {
+        names.push(comp.name);
       }
       if (comp.inputs) {
         comp.inputs.forEach((input) => {
