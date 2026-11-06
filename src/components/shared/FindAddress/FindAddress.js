@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Address from '../Address/Address';
 
-const FindAddress = ({
+function FindAddress({
   label = '',
   name = '',
   defaultValue = '',
@@ -16,7 +16,7 @@ const FindAddress = ({
   unregister,
   allowMapView,
   setValue,
-}) => {
+}) {
   const [hasError, setHasError] = useState(errors.includes(name));
   const [postcode, setPostcode] = useState(undefined);
   const isValidPostcode = postcode && /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d[A-Za-z]{2}$/.test(postcode);
@@ -309,7 +309,7 @@ const FindAddress = ({
       )}
     </div>
   );
-};
+}
 
 // PropTypes
 FindAddress.propTypes = {

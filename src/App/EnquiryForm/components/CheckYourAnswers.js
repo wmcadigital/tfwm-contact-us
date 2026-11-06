@@ -12,7 +12,7 @@ import Data from '../../ContactUs/newData.json';
 
 const EMAIL_REGEX = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
 
-const CheckYourAnswers = () => {
+function CheckYourAnswers() {
   const [{ formData, stepNum, formId }, formDispatch] = useContext(FormDataContext);
   // JSON-schema-like representation derived from `formData`
   const formDataSchema = {
@@ -294,12 +294,13 @@ const CheckYourAnswers = () => {
     });
 
     let response;
-    console.log(emailIndex);
+    // console.log(emailIndex);
     try {
       response = await fetch(`${process.env.REACT_APP_EMAIL_API}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-functions-key': process.env.REACT_APP_EMAIL_API_KEY,
         },
         body: JSON.stringify({
           to: emailIndex,
@@ -612,5 +613,5 @@ const CheckYourAnswers = () => {
       </div>
     </div>
   );
-};
+}
 export default CheckYourAnswers;

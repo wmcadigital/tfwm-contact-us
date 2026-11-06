@@ -6,7 +6,7 @@ import Data from '../../ContactUs/newData.json';
 
 const { sanitize } = dompurify;
 
-const SubmitAnEnquiry = () => {
+function SubmitAnEnquiry() {
   const [{ formId }, formDispatch] = useContext(FormDataContext);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
@@ -53,5 +53,5 @@ const SubmitAnEnquiry = () => {
       </div>
     </div>
   );
-};
+}
 export default SubmitAnEnquiry;
