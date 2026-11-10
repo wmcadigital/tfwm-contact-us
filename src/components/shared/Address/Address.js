@@ -78,11 +78,11 @@ const Address = ({
 
                     <input
                       className="wmnds-fe-input mapPoint mapInput"
-                      name="postcode"
+                      name="mapPoint"
                       type="text"
                       onChangeCapture={checkBoxesChangeHandler}
                       style={{ display: 'none' }}
-                      ref={registerRef(0) ? register : unregister('postcode')}
+                      ref={registerRef(0) ? register : unregister('mapPoint')}
                     />
                     <input
                       className="wmnds-fe-input searchAddress mapInput"
