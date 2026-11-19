@@ -23,9 +23,15 @@ const Address = ({
   inputs,
   unregister,
   allowMapView,
+  mapViewSelected,
+  onMapViewChange,
 }) => {
-  const [mapView, setMapView] = useState(false);
+  const [localMapView, setLocalMapView] = useState(false);
   const [inputValues, setInputValues] = useState([]);
+  const mapView = mapViewSelected === undefined ? localMapView : mapViewSelected;
+  const storedEntries = Array.isArray(defaultValue?.value) ? defaultValue.value : [];
+  const savedMapPoint = storedEntries.find((entry) => entry[0] === 'postcode')?.[1] || '';
+  const savedSearchAddress = storedEntries.find((entry) => entry[0] === 'address')?.[1] || '';
 
   const checkBoxesChangeHandler = () => {
     const findInputs = [...document.querySelectorAll('.mapInput')].map((input) => input.value);
@@ -53,7 +59,10 @@ const Address = ({
               text={mapView ? 'List view' : 'Map view'}
               btnClass="wmnds-btn--secondary"
               iconRight={mapView ? 'general-list' : 'general-location-pin'}
-              onClick={() => setMapView(!mapView)}
+              onClick={() => {
+                if (onMapViewChange) onMapViewChange(!mapView);
+                else setLocalMapView(!mapView);
+              }}
             />
           </div>
           {mapView && (
@@ -80,6 +89,7 @@ const Address = ({
                       className="wmnds-fe-input mapPoint mapInput"
                       name="postcode"
                       type="text"
+                      defaultValue={savedMapPoint}
                       onChangeCapture={checkBoxesChangeHandler}
                       style={{ display: 'none' }}
                       ref={registerRef(0) ? register : unregister('postcode')}
@@ -88,6 +98,7 @@ const Address = ({
                       className="wmnds-fe-input searchAddress mapInput"
                       name="address"
                       type="text"
+                      defaultValue={savedSearchAddress}
                       onChangeCapture={checkBoxesChangeHandler}
                       style={{ display: 'none' }}
                       ref={registerRef(1) ? register : unregister('address')}
@@ -108,7 +119,7 @@ const Address = ({
                   </div>
                 </label>
               </div>
-              <MapView />
+              <MapView savedMapPoint={savedMapPoint} savedSearchAddress={savedSearchAddress} />
             </div>
           )}
         </>

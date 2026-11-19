@@ -210,18 +210,26 @@ function CheckYourAnswers() {
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const [errorMsg, setErrorMsg] = useState('');
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   // Debug logging for Netlify production issues
-  useEffect(() => {
-    console.log('Debug Info:', {
-      formToLoad,
-      formId,
-      params,
-      dataAvailable: !!Data,
-      dataPages: Data?.pages?.length || 0,
-      matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
-    });
-  }, [formToLoad, formId, params]);
+  // useEffect(() => {
+  //   console.log('Debug Info:', {
+  //     formToLoad,
+  //     formId,
+  //     params,
+  //     dataAvailable: !!Data,
+  //     dataPages: Data?.pages?.length || 0,
+  //     matchedPage: Data?.pages?.find((p) => p.currentStepId === formToLoad),
+  //   });
+  // }, [formToLoad, formId, params]);
 
   const currentPage = Data?.pages?.find((pageData) => pageData.currentStepId === formToLoad) || {};
   const { emailIndex } = Data.pages.find((pageData) => pageData.currentStepId === formToLoad);
@@ -272,6 +280,7 @@ function CheckYourAnswers() {
       base64File = await toBase64(file);
       fileData = [{ name: file.name, type: file.type, content: base64File.split('base64,')[1] }];
     }
+    if (!isMounted.current) return false;
     const answerObject = {};
     const dataMap = formData;
     delete dataMap.file;
@@ -328,13 +337,23 @@ function CheckYourAnswers() {
     if (findCheckedBoxes.length < checkboxes.length) {
       setErrorMsg(`Please select ${params === 'step-update-DD' ? 'all' : 'both'}  options`);
     } else {
-      const success = await sendEmailHandler();
+      let success;
+      try {
+        success = await sendEmailHandler();
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Unable to prepare the form for sending:', error);
+        if (isMounted.current) {
+          setErrorMsg('Sorry, there was a problem sending your form. Please try again.');
+        }
+        return;
+      }
+      if (!isMounted.current) return;
       if (success) {
         formDispatch({
           type: 'CHANGE-PAGE',
           payload: { page: 'SUCCESS', stepNum },
         });
-        setErrorMsg('');
       } else {
         setErrorMsg('Sorry, there was a problem sending your form. Please try again.');
       }
