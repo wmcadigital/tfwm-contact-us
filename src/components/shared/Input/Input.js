@@ -50,11 +50,13 @@ const Input = ({
           htmlFor={name}
         >
           {label}
+          {required && <span aria-hidden="true"> *</span>}
         </label>
       )}
       {label2 && (
         <label className="wmnds-fe-label" htmlFor={name}>
           {label2}
+          {required && !label && <span aria-hidden="true"> *</span>}
         </label>
       )}
       {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}

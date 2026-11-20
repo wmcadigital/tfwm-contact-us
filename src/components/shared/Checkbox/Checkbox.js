@@ -49,7 +49,10 @@ const Checkbox = ({
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
 
-        <span className="wmnds-fe-checkboxes__desc">{label}</span>
+        <span className="wmnds-fe-checkboxes__desc">
+          {label}
+          {required && <span aria-hidden="true"> *</span>}
+        </span>
 
         {options.map((option, idx) => (
           <div key={option.name} className="wmnds-m-b-md">
@@ -81,6 +84,7 @@ const Checkbox = ({
               >
                 <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                   {option.inputLabel1}
+                  {option.required && <span aria-hidden="true"> *</span>}
                 </label>
                 <label className="wmnds-fe-label" htmlFor="input">
                   {option.inputLabel2}

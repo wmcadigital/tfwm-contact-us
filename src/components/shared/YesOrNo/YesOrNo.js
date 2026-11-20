@@ -79,7 +79,10 @@ const YesOrNo = ({
         {hasError && (
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
-        <p>{label}</p>
+        <p>
+          {label}
+          {required && <span aria-hidden="true"> *</span>}
+        </p>
         <fieldset
           style={{ border: 'none' }}
           name={`yes-or-no${options[0].inputLabel1 || options[0].inputs ? '' : '-skip'}`}
@@ -144,6 +147,7 @@ const YesOrNo = ({
                           >
                             <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                               {option.inputLabel1}
+                              {option.required && <span aria-hidden="true"> *</span>}
                             </label>
                             <label className="wmnds-fe-label" htmlFor="input">
                               {option.inputLabel2}

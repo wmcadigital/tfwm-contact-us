@@ -31,9 +31,11 @@ const Textarea = ({ title, text1, text2, name, defaultValue, required, register,
       <div className={`wmnds-fe-group wmnds-m-t-20 ${hasError && 'wmnds-fe-group--error'}`}>
         <label className="wmnds-fe-label" htmlFor="genericInput">
           {text1}
+          {required && text1 && <span aria-hidden="true"> *</span>}
         </label>
         <label className="wmnds-fe-label wmnds-m-t-20" htmlFor="example-textarea">
           {text2}
+          {required && !text1 && text2 && <span aria-hidden="true"> *</span>}
         </label>
         {hasError && <span className="wmnds-fe-error-message">Field is required</span>}
         <textarea

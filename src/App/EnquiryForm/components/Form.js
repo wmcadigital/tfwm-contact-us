@@ -71,6 +71,9 @@ const Form = () => {
   const getRequiredFieldNames = () => {
     const names = [];
     (data.components || []).forEach((comp) => {
+      if (['Input', 'Number', 'Dropdown', 'Textarea'].includes(comp.type) && comp.required) {
+        names.push(comp.name);
+      }
       if (comp.type === 'FindAddress' && comp.required) {
         names.push(comp.name);
       }

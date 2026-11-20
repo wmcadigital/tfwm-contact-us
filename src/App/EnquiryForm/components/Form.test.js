@@ -34,7 +34,7 @@ jest.mock('../../ContactUs/newData.json', () => ({
               name: 'other',
               label: 'Other',
               id: 'other',
-              required: false,
+              required: true,
               errorMsg: 'Enter a value',
             },
           ],
@@ -83,11 +83,11 @@ test('remembers map view and its answer when navigating back, and remembers swit
   expect(document.querySelector('.searchAddress').value).toBe('Birmingham');
 
   await act(async () => fireEvent.click(screen.getByText('List view')));
-  fireEvent.change(screen.getByLabelText('Street'), { target: { value: 'High Street' } });
+  fireEvent.change(screen.getByLabelText('Street *'), { target: { value: 'High Street' } });
   await act(async () => fireEvent.click(screen.getByText('Continue')));
   await act(async () => fireEvent.click(screen.getByText('< Back')));
   expect(screen.getByText('Map view')).toBeInTheDocument();
-  expect(screen.getByLabelText('Street')).toHaveValue('High Street');
+  expect(screen.getByLabelText('Street *')).toHaveValue('High Street');
 });
 
 test('remembers map view even when no location was selected', async () => {
@@ -100,4 +100,21 @@ test('remembers map view even when no location was selected', async () => {
   await act(async () => fireEvent.click(screen.getByText('Continue')));
   await act(async () => fireEvent.click(screen.getByText('< Back')));
   expect(screen.getByText('List view')).toBeInTheDocument();
+});
+
+test('prevents continuing when a required input is empty', async () => {
+  render(
+    <FormProvider>
+      <Form />
+    </FormProvider>
+  );
+  await act(async () => fireEvent.click(screen.getByText('Map view')));
+  fireEvent.click(screen.getByText('Select point'));
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  expect(document.querySelector('label[for="other"]')).toHaveTextContent('Other *');
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  expect(screen.getByText('Next step')).toBeInTheDocument();
+  expect(screen.getByText('Enter a value')).toBeInTheDocument();
 });

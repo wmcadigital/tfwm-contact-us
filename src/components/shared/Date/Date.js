@@ -31,7 +31,9 @@ const Calendar = ({
           <div className={`wmnds-fe-dropdown ${timeError && 'wmnds-fe-group--error'}`}>
             {timeError && <span className="wmnds-fe-error-message">Enter a valid time</span>}
             <label className="wmnds-fe-label" htmlFor="dropdown-example">
-              <p style={{ marginBottom: 10 }}>Time</p>
+              <p style={{ marginBottom: 10 }}>
+                Time{required && <span aria-hidden="true"> *</span>}
+              </p>
               <select
                 className="wmnds-fe-dropdown__select "
                 id="hour"
@@ -72,7 +74,10 @@ const Calendar = ({
       <div id="date-input" className={`wmnds-fe-group ${dateError && 'wmnds-fe-group--error'}`}>
         <div className="wmnds-fe-date-input">
           {dateError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
-          <p style={{ marginBottom: 30 }}>{label}</p>
+          <p style={{ marginBottom: 30 }}>
+            {label}
+            {required && <span aria-hidden="true"> *</span>}
+          </p>
 
           <div className="wmnds-fe-date-input__day">
             <label className="wmnds-fe-label" htmlFor="LastUsedDateDay">
