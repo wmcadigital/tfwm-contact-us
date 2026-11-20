@@ -39,6 +39,19 @@ jest.mock('../../ContactUs/newData.json', () => ({
             },
           ],
         },
+        {
+          name: 'date',
+          title: 'Date step',
+          components: [
+            {
+              type: 'Date',
+              name: 'date',
+              id: 'date',
+              label: 'Date',
+              required: true,
+            },
+          ],
+        },
       ],
     },
   ],
@@ -117,4 +130,70 @@ test('prevents continuing when a required input is empty', async () => {
 
   expect(screen.getByText('Next step')).toBeInTheDocument();
   expect(screen.getByText('Enter a value')).toBeInTheDocument();
+});
+
+test('rejects invalid and future dates with the appropriate error', async () => {
+  render(
+    <FormProvider>
+      <Form />
+    </FormProvider>
+  );
+  await act(async () => fireEvent.click(screen.getByText('Map view')));
+  fireEvent.click(screen.getByText('Select point'));
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+  fireEvent.change(screen.getByLabelText('Other *'), { target: { value: 'test' } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  fireEvent.change(document.querySelector('[name="day"]'), { target: { value: '31' } });
+  fireEvent.change(document.querySelector('[name="month"]'), { target: { value: '02' } });
+  fireEvent.change(document.querySelector('[name="year"]'), { target: { value: '2025' } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  expect(screen.getByText('Date step')).toBeInTheDocument();
+  expect(screen.getByText('Enter a valid date')).toBeInTheDocument();
+
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  fireEvent.change(document.querySelector('[name="day"]'), {
+    target: { value: String(tomorrow.getDate()) },
+  });
+  fireEvent.change(document.querySelector('[name="month"]'), {
+    target: { value: String(tomorrow.getMonth() + 1) },
+  });
+  fireEvent.change(document.querySelector('[name="year"]'), {
+    target: { value: String(tomorrow.getFullYear()) },
+  });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  expect(screen.getByText("The date can't be in the future")).toBeInTheDocument();
+});
+
+test('limits date years to the current year and previous 99 calendar years', async () => {
+  render(
+    <FormProvider>
+      <Form />
+    </FormProvider>
+  );
+  await act(async () => fireEvent.click(screen.getByText('Map view')));
+  fireEvent.click(screen.getByText('Select point'));
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+  fireEvent.change(screen.getByLabelText('Other *'), { target: { value: 'test' } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+
+  const currentYear = new Date().getFullYear();
+  fireEvent.change(document.querySelector('[name="day"]'), { target: { value: '15' } });
+  fireEvent.change(document.querySelector('[name="month"]'), { target: { value: '06' } });
+  const yearField = document.querySelector('[name="year"]');
+
+  fireEvent.change(yearField, { target: { value: String(currentYear - 100) } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+  expect(screen.getByText('Enter a valid date')).toBeInTheDocument();
+
+  fireEvent.change(yearField, { target: { value: String(currentYear - 99) } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+  expect(screen.queryByText('Enter a valid date')).not.toBeInTheDocument();
+
+  fireEvent.change(yearField, { target: { value: String(currentYear + 1) } });
+  await act(async () => fireEvent.click(screen.getByText('Continue')));
+  expect(screen.getByText("The date can't be in the future")).toBeInTheDocument();
 });

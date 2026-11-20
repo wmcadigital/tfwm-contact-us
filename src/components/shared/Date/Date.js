@@ -19,6 +19,7 @@ const Calendar = ({
   showTime,
 }) => {
   const dateError = errors.includes('year') || errors.includes('month') || errors.includes('day');
+  const futureDateError = errors.includes('future-date');
   const timeError = errors.includes('hour') || errors.includes('minute');
   const padDateFieldOnBlur = (event) => {
     const { target } = event;
@@ -73,7 +74,11 @@ const Calendar = ({
 
       <div id="date-input" className={`wmnds-fe-group ${dateError && 'wmnds-fe-group--error'}`}>
         <div className="wmnds-fe-date-input">
-          {dateError && <span className="wmnds-fe-error-message">Enter a valid date</span>}
+          {dateError && (
+            <span className="wmnds-fe-error-message">
+              {futureDateError ? "The date can't be in the future" : 'Enter a valid date'}
+            </span>
+          )}
           <p style={{ marginBottom: 30 }}>
             {label}
             {required && <span aria-hidden="true"> *</span>}
