@@ -21,6 +21,7 @@ export const FormProvider = (props) => {
     page: 'SUBMIT',
     stepNum: 0,
     formData: {},
+    addressViews: {},
     formId: '',
     pageType: '',
     formComponents: [],
@@ -80,6 +81,15 @@ export const FormProvider = (props) => {
         return {
           ...state,
           formComponents: action.payload.formComponents,
+        };
+      }
+      case 'SET-ADDRESS-VIEW': {
+        return {
+          ...state,
+          addressViews: {
+            ...state.addressViews,
+            [action.payload.key]: action.payload.mapView,
+          },
         };
       }
       case 'NEXT': {

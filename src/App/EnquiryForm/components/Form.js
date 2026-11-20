@@ -21,8 +21,10 @@ import { FormDataContext } from '../../../globalState/ContactUsContext';
 import Data from '../../ContactUs/newData.json';
 
 const Form = () => {
-  const [{ stepNum, formData, formId, pageType, page, formComponents }, formDispatch] =
-    useContext(FormDataContext);
+  const [
+    { stepNum, formData, formId, pageType, page, formComponents, addressViews },
+    formDispatch,
+  ] = useContext(FormDataContext);
   const params = window.location.hash.slice(2);
   const formToLoad = formId || params;
   const findComponents = Data.pages.find(
@@ -369,10 +371,22 @@ const Form = () => {
                   <Address
                     label={component.label}
                     name={component.name}
-                    defaultValue={formData[component.name]}
+                    defaultValue={formData[data.name]}
                     errorMsg={component.errorMsg}
                     required={component.required}
                     allowMapView={component.allowMapView}
+                    mapViewSelected={
+                      addressViews[JSON.stringify([formToLoad, data.name, component.id])] || false
+                    }
+                    onMapViewChange={(mapView) =>
+                      formDispatch({
+                        type: 'SET-ADDRESS-VIEW',
+                        payload: {
+                          key: JSON.stringify([formToLoad, data.name, component.id]),
+                          mapView,
+                        },
+                      })
+                    }
                     register={register}
                     errors={formError}
                     inputs={component.inputs}

@@ -41,11 +41,15 @@ const ReceivedForm = ({
 // PropTypes
 ReceivedForm.propTypes = {
   successTitle: PropTypes.string.isRequired,
-  successText: PropTypes.string.isRequired,
+  successText: PropTypes.string,
   title: PropTypes.string.isRequired,
   text1: PropTypes.string.isRequired,
   text2: PropTypes.string.isRequired,
   text3: PropTypes.string.isRequired,
+};
+
+ReceivedForm.defaultProps = {
+  successText: '',
 };
 
 export default ReceivedForm;
