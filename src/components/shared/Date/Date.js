@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 /* eslint-disable react/prop-types */
+const padSingleDigit = (value) => (/^\d$/.test(value) ? `0${value}` : value);
+
 const Calendar = ({
   dayDefaultValue = undefined,
   monthDefaultValue = undefined,
@@ -18,6 +20,10 @@ const Calendar = ({
 }) => {
   const dateError = errors.includes('year') || errors.includes('month') || errors.includes('day');
   const timeError = errors.includes('hour') || errors.includes('minute');
+  const padDateFieldOnBlur = (event) => {
+    const { target } = event;
+    target.value = padSingleDigit(target.value);
+  };
   return (
     <div className="wmnds-fe-group">
       {showTime && (
@@ -37,7 +43,7 @@ const Calendar = ({
                 <option value="">--</option>
                 {Array.from(Array(24).keys()).map((val) => (
                   <option key={val} value={val}>
-                    {val}
+                    {val < 10 ? `0${val}` : val}
                   </option>
                 ))}
               </select>
@@ -54,7 +60,7 @@ const Calendar = ({
                 <option value="">--</option>
                 {Array.from(Array(60).keys()).map((val) => (
                   <option key={val} value={val}>
-                    {val}
+                    {val < 10 ? `0${val}` : val}
                   </option>
                 ))}
               </select>
@@ -80,7 +86,8 @@ const Calendar = ({
                 maxLength="2"
                 minLength="1"
                 pattern="[0-9]*"
-                defaultValue={dayDefaultValue}
+                defaultValue={padSingleDigit(dayDefaultValue)}
+                onBlur={padDateFieldOnBlur}
                 ref={register}
               />
             </label>
@@ -97,7 +104,8 @@ const Calendar = ({
                 maxLength="2"
                 minLength="1"
                 pattern="[0-9]*"
-                defaultValue={monthDefaultValue}
+                defaultValue={padSingleDigit(monthDefaultValue)}
+                onBlur={padDateFieldOnBlur}
                 ref={register}
               />
             </label>
