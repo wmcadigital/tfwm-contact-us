@@ -38,7 +38,10 @@ const RadioOptions = ({
         {hasError && (
           <span className="wmnds-fe-error-message">Please select at least one option</span>
         )}
-        <p>{label}</p>
+        <p>
+          {label}
+          {required && <span aria-hidden="true"> *</span>}
+        </p>
         <fieldset style={{ border: 'none' }}>
           {options.map((option, idx) => (
             <div key={option.name} className="wmnds-m-b-md">
@@ -72,6 +75,7 @@ const RadioOptions = ({
                     >
                       <label className="wmnds-fe-label wmnds-m-b-xs" htmlFor="input">
                         {option.inputLabel1}
+                        {option.required && <span aria-hidden="true"> *</span>}
                       </label>
                       <label className="wmnds-fe-label" htmlFor="input">
                         {option.inputLabel2}

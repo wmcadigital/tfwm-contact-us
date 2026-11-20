@@ -184,7 +184,9 @@ function FindAddress({
       {formState === 'idle' && (
         <>
           <label className="wmnds-fe-label" htmlFor={name}>
-            <p style={{ fontWeight: 'bold', marginBottom: 10 }}>Postcode</p>
+            <p style={{ fontWeight: 'bold', marginBottom: 10 }}>
+              Postcode{required && <span aria-hidden="true"> *</span>}
+            </p>
             {hasError && required && <span className="wmnds-fe-error-message">{errorMsg}</span>}
             <input
               className={`wmnds-fe-input ${hasError && required && 'wmnds-fe-input--error'}`}
@@ -237,7 +239,9 @@ function FindAddress({
           </div>
           <div className="wmnds-fe-dropdown">
             <label className="wmnds-fe-label" htmlFor="dropdown-example">
-              <p style={{ fontWeight: 'bold', marginBottom: 10 }}> Select an address</p>
+              <p style={{ fontWeight: 'bold', marginBottom: 10 }}>
+                Select an address{required && <span aria-hidden="true"> *</span>}
+              </p>
               {hasError && <span className="wmnds-fe-error-message">{errorMsg}</span>}
               <select
                 className="wmnds-fe-dropdown__select"

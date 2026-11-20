@@ -20,6 +20,47 @@ import { FormDataContext } from '../../../globalState/ContactUsContext';
 
 import Data from '../../ContactUs/newData.json';
 
+const isValidCalendarDate = (day, month, year) => {
+  if (!/^\d{1,2}$/.test(day) || !/^\d{1,2}$/.test(month) || !/^\d{4}$/.test(year)) {
+    return false;
+  }
+
+  const dayValue = parseInt(day, 10);
+  const monthValue = parseInt(month, 10);
+  const yearValue = parseInt(year, 10);
+
+  if (dayValue < 1 || monthValue < 1 || monthValue > 12 || yearValue < 1) {
+    return false;
+  }
+
+  const isLeapYear = yearValue % 4 === 0 && (yearValue % 100 !== 0 || yearValue % 400 === 0);
+  const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  return dayValue <= daysInMonth[monthValue - 1];
+};
+
+const isWithinAllowedYearRange = (year) => {
+  if (!/^\d{4}$/.test(year)) return false;
+
+  const yearValue = parseInt(year, 10);
+  const currentYear = new window.Date().getFullYear();
+  return yearValue >= currentYear - 99 && yearValue <= currentYear;
+};
+
+const isFutureCalendarDate = (day, month, year) => {
+  const now = new window.Date();
+  const dateParts = [parseInt(year, 10), parseInt(month, 10), parseInt(day, 10)];
+  const currentParts = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
+
+  return (
+    dateParts[0] > currentParts[0] ||
+    (dateParts[0] === currentParts[0] && dateParts[1] > currentParts[1]) ||
+    (dateParts[0] === currentParts[0] &&
+      dateParts[1] === currentParts[1] &&
+      dateParts[2] > currentParts[2])
+  );
+};
+
 const Form = () => {
   const [
     { stepNum, formData, formId, pageType, page, formComponents, addressViews },
@@ -71,6 +112,9 @@ const Form = () => {
   const getRequiredFieldNames = () => {
     const names = [];
     (data.components || []).forEach((comp) => {
+      if (['Input', 'Number', 'Dropdown', 'Textarea'].includes(comp.type) && comp.required) {
+        names.push(comp.name);
+      }
       if (comp.type === 'FindAddress' && comp.required) {
         names.push(comp.name);
       }
@@ -116,6 +160,25 @@ const Form = () => {
         return false;
       })
       .map((val) => val[0]);
+
+    const hasDateComponent = (data.components || []).some((component) => component.type === 'Date');
+    const dateValues = [values.day, values.month, values.year];
+    const hasDateInput = dateValues.some(Boolean);
+    const validCalendarDate = isValidCalendarDate(values.day, values.month, values.year);
+    const futureDate =
+      hasDateComponent && hasDateInput && validCalendarDate
+        ? isFutureCalendarDate(values.day, values.month, values.year)
+        : false;
+    if (
+      hasDateComponent &&
+      hasDateInput &&
+      (!validCalendarDate || futureDate || !isWithinAllowedYearRange(values.year))
+    ) {
+      ['day', 'month', 'year'].forEach((field) => {
+        if (!errors.includes(field)) errors.push(field);
+      });
+      if (futureDate) errors.push('future-date');
+    }
 
     setFormError(errors);
 

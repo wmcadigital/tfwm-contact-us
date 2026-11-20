@@ -28,7 +28,10 @@ const FileUpload = ({
     <div className="wmnds-fe-group ">
       <div className="wmnds-fe-file-upload">
         <p className="wmnds-m-t-lg wmnds-m-b-lg">{details}</p>
-        <p>{label}</p>
+        <p>
+          {label}
+          {required && <span aria-hidden="true"> *</span>}
+        </p>
         <label
           htmlFor="fileUploader"
           className="wmnds-btn wmnds-btn--primary wmnds-fe-file-upload__label "

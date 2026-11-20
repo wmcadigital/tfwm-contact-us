@@ -47,6 +47,7 @@ const Dropdown = ({
       <div className="wmnds-fe-dropdown">
         <label className="wmnds-fe-label" htmlFor="dropdown-example">
           {label}
+          {required && <span aria-hidden="true"> *</span>}
         </label>
         {hasError && <span className="wmnds-fe-error-message">{errorMsg}</span>}
 
